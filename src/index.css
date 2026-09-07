@@ -83,6 +83,7 @@ a {
 
 .page {
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 .page-title {
@@ -93,11 +94,13 @@ a {
 .page-with-sidebar {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 28px;
 }
 
 .page-with-sidebar__main {
-  flex: 1;
+  flex: 1 1 760px;
+  max-width: 760px;
   min-width: 0;
 }
 
