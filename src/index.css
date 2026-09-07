@@ -713,6 +713,7 @@ a {
 .answer-section__text {
   line-height: 1.7;
   color: var(--text);
+  white-space: pre-line;
 }
 
 /* -------------------------------------------------------- Progress sidebar */
