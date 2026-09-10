@@ -4,12 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-- `npm run dev` — start the Vite dev server (HMR)
+- `npm run dev` — start the Vite dev server with HMR (defaults to http://localhost:5173)
 - `npm run build` — production build (`vite build`); use this to check for compile errors
 - `npm run preview` — serve the production build locally
 - `npm run lint` — run Oxlint (config: `.oxlintrc.json`, plugins `react` + `oxc`)
 
+Requires Node 20.19+ / 22.12+ (Vite 8) — there is no `engines` field to enforce it.
+
 There is no test suite configured in this project.
+
+`npm run lint` currently emits pre-existing `react/only-export-components` warnings in
+`src/context/QuestionsContext.jsx` and `src/utils/skillIcons.jsx` (both intentionally
+export non-component values alongside a provider/helpers). Don't try to "fix" these.
 
 ## Architecture
 
@@ -19,9 +25,15 @@ This is a client-only React 19 + Vite SPA (no backend) for interview-prep Q&A st
 
 The core design constraint: **question content and user progress are stored separately** so that editing the question bank never wipes a user's learning progress, and vice versa.
 
-- `src/data/questions.js` — the static question bank. Exports `SKILLS` (the fixed list of 14 skill tags) and `questions` (an array built from an internal `rawQuestions` array via `createQuestion()`). **IDs are assigned by array position (`index + 1`), not randomly** — this is intentional: a random ID generated at module-load time would change on every page refresh and orphan all saved localStorage progress. This means reordering or deleting entries in `rawQuestions` shifts IDs and can disconnect existing progress; appending new entries at the end is always safe. See the comment block at the top of the file for the exact shape to copy when adding a question.
-- `src/utils/storage.js` — thin localStorage read/write wrappers for two independent keys: per-question progress (`status`/`favorite`/`learnedCount`/`learnedGoal`) and filter state.
-- `src/context/QuestionsContext.jsx` (`QuestionsProvider` / `useQuestions()`) — the single source of truth at runtime. On render it merges the static `questions` array with saved progress from localStorage, and **derives `status` from `learnedCount >= learnedGoal`** rather than trusting a stored status field, so the "Learned" badge can never drift out of sync with the count. Also owns filter state (`DEFAULT_FILTERS`, `setFilters`, `resetFilters`), persisted the same way.
+- `src/data/questions.js` — the static question bank. Exports `SKILLS` (the fixed list of 14 skill tags) and `questions` (an array built from an internal `rawQuestions` array via `createQuestion()`). **IDs are assigned by array position (`index + 1`), not randomly** — this is intentional: a random ID generated at module-load time would change on every page refresh and orphan all saved localStorage progress. This means reordering or deleting entries in `rawQuestions` shifts IDs and can disconnect existing progress; appending new entries at the end is always safe. `rawQuestions.map()` also re-forces the progress fields (`status`/`favorite`/`learnedCount`/`learnedGoal`) to defaults, so any progress-like values in the data file are ignored.
+- `src/utils/storage.js` — thin localStorage read/write wrappers for two independent keys (`interview-prep:progress`, `interview-prep:filters`). Every read/write is wrapped in try/catch and degrades silently (private mode, quota) — these functions never throw. `loadFilters` spreads saved state over the passed defaults, so adding a new filter key is backward-compatible.
+- `src/context/QuestionsContext.jsx` (`QuestionsProvider` / `useQuestions()`) — the single source of truth at runtime. On render it merges the static `questions` array with saved progress from localStorage, and **derives `status` from `learnedCount >= learnedGoal`** rather than trusting a stored status field, so the "Learned" badge can never drift out of sync with the count. Also owns filter state: `DEFAULT_FILTERS` is `{ query, skills[], difficultyRanges[] (values `"1-3"|"4-6"|"7-8"|"9-10"`), ratings[] (1–5), status (`"all"|"learned"|"not_learned"`), favoriteOnly }`, persisted the same way.
+
+### Editing the question bank
+
+`src/data/questions.js` is ~13k lines. `rawQuestions` is split into per-skill blocks with banner comments (`// ---- <Skill> ----`) in `SKILLS` order; the large blocks under `// ---- Импортировано из yeahub-scrap ... ----` markers (React, TypeScript, Git) are bulk-imported and dominate the file. When adding a question for a skill, append it at the **end of that skill's block**; appending at the very end of `rawQuestions` is safest for ID stability. The Russian comment block at the top of the file is the canonical "shape of one question" reference — copy it from there.
+
+Question text conventions: inline code in `shortAnswer` / `longAnswer` is written with `` `backticks` `` and rendered as `<code>` by `src/components/FormattedText.jsx`; `codeExample` (optional) renders through `src/components/CodeBlock.jsx` with a copy button. `\n` in answer strings survives as a line break because `.answer-section__text` in `index.css` sets `white-space: pre-line` — keep that rule if you touch answer styling.
 
 ### Shared behavior hooks
 
@@ -30,6 +42,6 @@ The core design constraint: **question content and user progress are stored sepa
 
 ### Pages and navigation
 
-`App.jsx` wraps everything in `QuestionsProvider` + `BrowserRouter`, with a persistent `Sidebar` (`src/components/Sidebar.jsx`) and routed content in `src/pages/*`. Route structure mirrors the sidebar's nav groups (Training → Interview/Tasks, Knowledge base → Resources/Questions/Collections, plus Home and Analytics); question details live at `/knowledge-base/questions/:id`. Each page renders its own `Breadcrumbs` rather than deriving them from route config.
+`App.jsx` wraps everything in `QuestionsProvider` + `BrowserRouter`, with a persistent `Sidebar` (`src/components/Sidebar.jsx`) and routed content in `src/pages/*`. Route structure mirrors the sidebar's nav groups (Training → Interview/Tasks, Knowledge base → Resources/Questions/Collections, plus Home and Analytics); question details live at `/knowledge-base/questions/:id`. `TasksPage` and `ResourcesPage` are placeholders. Each page renders its own `Breadcrumbs` rather than deriving them from route config.
 
 `src/utils/skillIcons.jsx` centralizes the skill → icon/color mapping (brand icons via `react-icons/si`, a couple of `lucide-react` fallbacks for CI/CD and Networks) — use `SKILL_META` / `<SkillIcon skill=... />` instead of adding new icon imports elsewhere.
