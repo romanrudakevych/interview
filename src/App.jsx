@@ -13,7 +13,7 @@ import { CollectionsPage } from "./pages/CollectionsPage.jsx";
 export default function App() {
   return (
     <QuestionsProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <div className="app-shell">
           <Sidebar />
           <main className="app-content">

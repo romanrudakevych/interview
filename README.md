@@ -76,6 +76,30 @@ npm run dev        # start the dev server with HMR — http://localhost:5173
 | `npm run build`   | Production build to `dist/` (also the quickest compile check)   |
 | `npm run preview` | Serve the production build locally                              |
 | `npm run lint`    | Run Oxlint (config: `.oxlintrc.json`)                           |
+| `npm run deploy`  | Build and publish `dist/` to the `gh-pages` branch              |
+
+## Deployment (GitHub Pages)
+
+The app is a static SPA and is hosted on GitHub Pages at
+**https://romanrudakevych.github.io/interview/**.
+
+```bash
+npm run deploy   # runs the build, then pushes dist/ to the gh-pages branch
+```
+
+One-time setup on GitHub: **Settings → Pages → Build and deployment → Source:
+"Deploy from a branch"**, branch **`gh-pages`**, folder **`/ (root)`**.
+
+How it works:
+
+- `vite.config.js` sets `base: '/interview/'` so assets resolve under the
+  project-site subpath, and `App.jsx` passes `basename={import.meta.env.BASE_URL}`
+  to the router.
+- `public/404.html` + a small decoder snippet in `index.html` implement the
+  [spa-github-pages](https://github.com/rafgraph/spa-github-pages) redirect so deep
+  links (e.g. `/interview/knowledge-base/questions/994`) don't 404 on refresh.
+- `gh-pages -d dist --nojekyll` publishes the build (the `--nojekyll` flag keeps
+  Vite's `_`-prefixed asset files servable).
 
 ## Architecture
 
