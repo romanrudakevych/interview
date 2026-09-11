@@ -31538,19 +31538,1054 @@ function Input() {
 
 // Angular: двусторонний поток
 <input [(ngModel)]="username" />
-// username автоматически обновляется при вводе`,skills:[`React`],keywords:[`#useState`],difficulty:4,rating:3},{question:`Зачем нужен React Router в SPA-приложении?`,shortAnswer:`React Router реализует клиентскую маршрутизацию: меняет отображаемый контент в соответствии с URL без полной перезагрузки страницы.`,longAnswer:`В классическом сайте каждый URL соответствует отдельному HTTP-запросу к серверу. В Single Page Application всё приложение загружается один раз, а React Router перехватывает изменения URL (через History API) и рендерит нужный компонент-страницу, сохраняя состояние приложения и избегая перезагрузки. Это даёт более быструю навигацию, сохранение состояния между переходами и возможность анимировать переход между страницами.`,codeExample:`<Routes>
+// username автоматически обновляется при вводе`,skills:[`React`],keywords:[`#useState`],difficulty:4,rating:3},{question:`Что такое React Router?`,shortAnswer:`React Router — это библиотека для добавления маршрутизации в приложения React, позволяющая пользователю переходить между различными страницами без необходимости полной перезагрузки.`,longAnswer:"React Router — это библиотека, которая добавляет маршрутизацию в приложения React, обеспечивая плавные переходы между компонентами. Это позволяет разработчикам создавать многостраничные приложения с динамическим контентом. Основные компоненты React Router, такие как `<BrowserRouter>` и `<Route>`, позволяют управлять маршрутами и отображением различных компонентов в зависимости от текущего URL. Этот инструмент улучшает пользовательский опыт, делая взаимодействие с веб-приложением более естественным и похожим на работу с обычными веб-сайтами. Практическим примером может служить создание страниц профиля, где маршрут зависит от ID пользователя в URL.",codeExample:`import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+function App() {
+return (
+  <Router>
+    <Switch>
+      <Route path="/profile/:id" component={ProfilePage} />
+      {/* Other routes */}
+    </Switch>
+  </Router>
+);
+}
+function ProfilePage({ match }) {
+  const userId = match.params.id;
+  return <div>Профиль пользователя с ID: {userId}</div>;
+}`,skills:[`React Router`]},{question:`Можете ли вы объяснить, что такое BrowserRouter и HashRouter?`,shortAnswer:`BrowserRouter и HashRouter — это методы маршрутизации в React Router. BrowserRouter использует истинные URL, в то время как HashRouter использует хэш-фрагменты (#).`,longAnswer:"BrowserRouter и HashRouter — это два способа добавления маршрутизации в приложения React. `BrowserRouter` использует истинные URL, что означает, что URL-ы могут быть изменены в адресной строке браузера и поддерживают SEO. Например, URL `https://example.com/profile/1` будет правильно интерпретирован как профиль пользователя с ID 1. В отличие от этого, `HashRouter` использует хэш-фрагменты (#), чтобы изменять URL, что позволяет манипулировать маршрутом без реального изменения самого URL. Это менее предпочтительно, так как не поддерживает SEO и может иметь ограничения при интеграции с сервером. Выбор метода зависит от конкретных требований проекта, таких как поддержка SEO и серверное взаимодействие.",skills:[`React Router`]},{question:`Как вы можете получить доступ к объекту истории в React Router?`,shortAnswer:"Доступ к объекту истории в React Router можно получить через `useHistory()` или `useNavigate()` в функциональных компонентах, что позволяет манипулировать текущим маршрутом.",longAnswer:'В React Router доступ к объекту истории обеспечивается через `useHistory()` или `useNavigate()`.\n`useHistory()` предоставляет доступ к объекту истории, который позволяет изменять текущий маршрут, например, с помощью методов `push()` для добавления нового маршрута или `goBack()` для возврата на предыдущую страницу.\n`useNavigate()` работает аналогично, но возвращает функцию для манипуляции маршрутом. Эти инструменты позволяют создавать динамичные и пользовательско-ориентированные приложения, которые обеспечивают плавное и интуитивно понятное взаимодействие с пользователем.\nПримером может служить создание кнопки "Назад" на странице профиля, которая использует `goBack()` для возврата на предыдущую страницу.\n\n`useNavigate()` работает аналогично, но возвращает функцию для программного изменения маршрута:',codeExample:`import { useHistory } from 'react-router-dom';
+function SomeComponent() {
+  const history = useHistory();
+  const navigateToProfile = () => {
+    history.push('/profile/1');
+  };
+  return <button onClick={navigateToProfile}>Перейти к профилю</button>;
+}
+
+import { useNavigate } from 'react-router-dom';
+function SomeComponent() {
+  const navigate = useNavigate();
+  const navigateToProfile = () => {
+    navigate('/profile/1');
+  };
+  return <button onClick={navigateToProfile}>Перейти к профилю</button>;
+}`,skills:[`React Router`]},{question:`Какие основные компоненты предоставляет React Router DOM для создания маршрутов?`,shortAnswer:"React Router DOM предоставляет ключевые компоненты, такие как `<BrowserRouter>`, `<Routes>`, `<Route>`, и `<Link>`. `<BrowserRouter>` используется для обертки приложения, чтобы включить маршрутизацию. `<Routes>` содержит набор маршрутов, а `<Route>` определяет, какой компонент рендерится при совпадении с определенным URL. `<Link>` используется для создания ссылок, которые позволяют навигацию без перезагрузки страницы.",longAnswer:"React Router DOM — библиотека для управления маршрутизацией в React. Основные компоненты:\n\n- `<BrowserRouter>`: Главная обертка, которая связывает маршрутизацию с историей браузера. Все маршруты должны находиться внутри этого компонента.\n\n- `<Routes>`: Контейнер для маршрутов. Он заменяет `<Switch>` из старых версий и определяет набор маршрутов для проверки.\n\n- `<Route>`: Определяет путь (`path`) и связанный компонент (`element`). Если текущий URL совпадает с `path`, то рендерится указанный компонент.\n\n- `<Link>`: Заменяет стандартные HTML-ссылки (`<a>`) для навигации между страницами без перезагрузки.\n\nЭти компоненты используются в большинстве приложений для создания SPA (Single Page Application), где переходы между страницами осуществляются без полной перезагрузки.",codeExample:`import { BrowserRouter } from 'react-router-dom';
+const App = () => (
+  <BrowserRouter>
+    {/* Routes go here */}
+  </BrowserRouter>
+);
+
+import { Routes, Route } from 'react-router-dom';
+const AppRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+  </Routes>
+);
+
+import { Link } from 'react-router-dom';
+const Navbar = () => (
+  <nav>
+    <Link to="/">Home</Link>
+    <Link to="/about">About</Link>
+  </nav>
+);`,skills:[`React Router`]},{question:`Чем отличаются компоненты <Route> и <Routes>?`,shortAnswer:"`<Route>` определяет отдельный маршрут и связан с конкретным компонентом, который отображается при совпадении URL. `<Routes>` является контейнером для `<Route>` и отвечает за поиск первого подходящего маршрута. Без `<Routes>` компоненты `<Route>` не будут работать корректно в новых версиях React Router.",longAnswer:"В React Router DOM компоненты `<Route>` и `<Routes>` выполняют разные задачи:\n`<Route>`: Этот компонент описывает маршрут: путь (`path`) и то, какой компонент (`element`) будет отображаться при совпадении. Он является базовым строительным блоком для маршрутизации.\n\n`<Routes>`: Это контейнер для всех `<Route>`. В версиях React Router 6 и выше он заменяет `<Switch>`. `<Routes>` проверяет маршруты сверху вниз и отображает первый совпавший маршрут. Без `<Routes>` маршруты работать не будут.\n\nКлючевое отличие:\n\n- `<Route>` определяет отдельный маршрут.\n\n- `<Routes>` организует их проверку, чтобы выбрать подходящий маршрут для текущего URL.",codeExample:`<Route path="/about" element={<About />} />
+
+<Routes>
   <Route path="/" element={<Home />} />
-  <Route path="/questions/:id" element={<Details />} />
-</Routes>`,skills:[`React Router`],keywords:[`#routing`,`#spa`],difficulty:2,rating:4},{question:`Для чего используются хуки useNavigate и useParams?`,shortAnswer:"`useNavigate` позволяет программно переходить на другой маршрут, а `useParams` читает динамические параметры текущего URL.",longAnswer:"`useNavigate` возвращает функцию-навигатор, которую можно вызвать после определённого действия (например, успешного сабмита формы или логина), передавая путь или относительное смещение в истории (`navigate(-1)` — назад). `useParams` возвращает объект с именованными параметрами из шаблона маршрута — например, для `/questions/:id` и URL `/questions/42` вернёт `{ id: '42' }`. Вместе эти хуки позволяют строить динамические страницы деталей и программную навигацию без прямого манипулирования `window.location`.",codeExample:`const { id } = useParams();
+  <Route path="/about" element={<About />} />
+</Routes>`,skills:[`React Router`]},{question:`Что произойдет, если два маршрута совпадают с текущим URL? Как это управляется?`,shortAnswer:'Если два маршрута совпадают, `<Routes>` выбирает первый, который полностью соответствует текущему URL. Это называется "точное совпадение". Чтобы управлять этим, маршруты размещаются в порядке убывания специфичности (от более специфичных к менее специфичным).',longAnswer:'React Router DOM обрабатывает маршруты по принципу "первое совпадение". Это значит, что `<Routes>` проверяет каждый `<Route>` сверху вниз и выбирает первый, чей `path` полностью соответствует текущему URL.\nНапример:\n\nЕсли текущий URL `/about/team`, будет рендериться `<Team />`, так как этот маршрут более специфичен.\nРасположение маршрутов:\nСпецифичные маршруты размещаются выше.\nИспользование подстановочных знаков (`*`):\nДля указания более общих маршрутов.\n\nЭтот подход обеспечивает контроль над поведением маршрутизации и предотвращает конфликты.',codeExample:`<Routes>
+  <Route path="/about/team" element={<Team />} />
+  <Route path="/about" element={<About />} />
+</Routes>
+
+<Route path="*" element={<NotFound />} />`,skills:[`React Router`]},{question:`Что делает <Link> и чем он отличается от обычного <a> тега?`,shortAnswer:"`<Link>` из React Router используется для навигации внутри React-приложения, предотвращая полную перезагрузку страницы. В отличие от `<a>`, который обновляет всю страницу, `<Link>` обновляет только нужные компоненты, сохраняя состояние приложения.",longAnswer:`В React-приложениях \`<Link>\` заменяет стандартный тег \`<a>\` для внутренней навигации. Вот основные отличия:
+Обновление страницы:
+
+- \`<a>\` вызывает полную перезагрузку страницы, так как браузер обращается к серверу.
+
+- \`<Link>\` позволяет React Router перехватывать переход и менять только контент, что делает навигацию мгновенной.
+
+Сохранение состояния:
+
+- При использовании \`<a>\` состояние React (например, данные в компонентах) сбрасывается.
+
+- \`<Link>\` сохраняет состояние приложения, так как работает без перезагрузки.
+
+Пример:
+
+В итоге, \`<Link>\` используется для создания плавной и быстрой навигации внутри Single Page Application (SPA).`,codeExample:`import { Link } from 'react-router-dom';
+const Navigation = () => (
+  <nav>
+    <Link to="/">Home</Link>
+    <Link to="/about">About</Link>
+  </nav>
+);`,skills:[`React Router`]},{question:`Чем отличаются динамические сегменты маршрута и параметры запроса (query parameters)?`,shortAnswer:"Динамические сегменты маршрута — это часть пути, указанная через `:paramName`, которая является обязательной. Параметры запроса (query parameters) передаются через строку после `?` и являются необязательными. Динамические сегменты — это часть URL-структуры, а параметры запроса подходят для передачи дополнительной информации.",longAnswer:`Динамические сегменты маршрута:
+
+- Указываются в пути маршрута с помощью двоеточия (\`:\`).
+
+- Являются обязательной частью URL.
+
+- Используются для идентификации конкретных ресурсов (например, ID пользователя).
+
+Пример URL: \`/user/123\`. Здесь \`123\` — динамический сегмент \`userId\`.
+Параметры запроса (Query parameters):
+
+- Передаются после \`?\` в URL в формате \`key=value\`.
+
+- Не обязательны, могут быть добавлены к любому маршруту.
+
+- Используются для передачи дополнительных данных, например, сортировки или фильтров.
+
+Ключевое отличие:
+
+- Динамические сегменты — часть пути, включенная в определение маршрута.
+
+- Параметры запроса — дополнительная информация, не влияющая на маршрут.`,codeExample:`<Route path="/user/:userId" element={<User />} />
+
+/products?sort=price&order=asc`,skills:[`React Router`]},{question:`Как получить параметры маршрута внутри компонента?`,shortAnswer:"Параметры маршрута можно получить с помощью хука `useParams`, который возвращает объект с ключами, соответствующими динамическим сегментам. Параметры запроса можно извлечь через `useSearchParams`, предоставляющий доступ к строке запроса.",longAnswer:"React Router предоставляет удобные хуки для работы с параметрами маршрутов:\nДля динамических сегментов маршрута: Используется хук `useParams`:\n\nЕсли маршрут `/user/:userId` и URL `/user/123`, то `userId` будет `123`.\nДля параметров запроса (Query parameters): Используется хук `useSearchParams`:\n\nДля URL `/products?sort=price`, `sort` будет `price`.\nЭти хуки позволяют эффективно извлекать параметры и использовать их для рендеринга компонентов или выполнения логики.",codeExample:`import { useParams } from 'react-router-dom';
+const User = () => {
+  const { userId } = useParams(); // Получаем значение сегмента userId
+  return <div>User ID: {userId}</div>;
+};
+
+import { useSearchParams } from 'react-router-dom';
+const Products = () => {
+  const [searchParams] = useSearchParams();
+  const sort = searchParams.get('sort'); // Получаем значение параметра sort
+  return <div>Sort by: {sort}</div>;
+};`,skills:[`React Router`]},{question:`Что делает useLocation, и какие данные он предоставляет?`,shortAnswer:"`useLocation` — это хук из React Router, который возвращает объект с информацией о текущем URL. Он предоставляет такие данные, как путь (`pathname`), строка запроса (`search`) и состояние маршрута (`state`), если оно передано.",longAnswer:"Хук `useLocation` позволяет получить доступ к текущему местоположению (location) в приложении.\nВозвращаемый объект имеет следующие свойства:\n\n- `pathname`: Строка, представляющая текущий путь.\n\n- `search`: Строка запроса (query string), например, `?sort=price`.\n\n- `hash`: Фрагмент URL после `#`, например, `#section1`.\n\n- `state`: Дополнительные данные, переданные при навигации, например, через `Link` или `navigate`.\n\nПример использования:\n\n`useLocation` часто используется для проверки текущего пути, отображения соответствующего контента или работы с переданными данными.",codeExample:`import { useLocation } from 'react-router-dom';
+const CurrentLocation = () => {
+  const location = useLocation();
+  return (
+    <div>
+      <p>Pathname: {location.pathname}</p>
+      <p>Search: {location.search}</p>
+      <p>Hash: {location.hash}</p>
+      <p>State: {JSON.stringify(location.state)}</p>
+    </div>
+  );
+};`,skills:[`React Router`]},{question:`Как задать маршруты с вложенными компонентами (nested routes)?`,shortAnswer:"Для создания вложенных маршрутов в React Router используется структура маршрутов, где один `<Route>` включает в себя другой. Дочерние маршруты отображаются внутри родительского компонента с использованием компонента `<Outlet>`.",longAnswer:"Вложенные маршруты (nested routes) позволяют организовать компоненты в иерархию, где дочерние маршруты отображаются внутри родительского. Это достигается использованием компонента `<Outlet>` для рендеринга дочерних маршрутов.\nПример:\n\n- Родительский компонент (`Layout`) включает общий контент, например, шапку и подвал.\n\n- `<Outlet>` определяет место, где будут рендериться дочерние маршруты (`/about`, `/contact`).\n\nПри переходе на `/about` рендерится `<About />` внутри `<Layout>`.",codeExample:`import { Routes, Route } from 'react-router-dom';
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route path="about" element={<About />} />
+      <Route path="contact" element={<Contact />} />
+    </Route>
+  </Routes>
+);
+const Layout = () => (
+  <div>
+    <header>Header</header>
+    <Outlet /> {/* Здесь рендерятся дочерние маршруты */}
+    <footer>Footer</footer>
+  </div>
+);`,skills:[`React Router`]},{question:`Что такое Outlet, и когда он используется?`,shortAnswer:"`Outlet` — это компонент из React Router, который отображает дочерний маршрут внутри родительского компонента. Используется, когда маршруты вложены, чтобы рендерить контент дочерних маршрутов в указанном месте.",longAnswer:'`Outlet` — это "пустое место" в компоненте родительского маршрута, где рендерятся дочерние маршруты. Он позволяет создавать иерархическую структуру маршрутов.\nПример использования:\n\n- Определение маршрутов:\n\n- Родительский компонент с `Outlet`:\n\nКак это работает:\n\n- При переходе на `/dashboard` рендерятся `<Header>`, `<Dashboard />`, и `<Footer>`.\n\n- При переходе на `/settings` рендерится `<Settings />` вместо `<Dashboard />`.\n\nКогда используется:\n\n- Вложенные маршруты, когда нужно добавить общую оболочку (например, шапку или подвал).\n\n- Для рендеринга динамического контента в зависимости от текущего дочернего маршрута.',codeExample:`<Routes>
+  <Route path="/" element={<Layout />}>
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+</Routes>
+
+const Layout = () => (
+  <div>
+    <header>Header</header>
+    <Outlet /> {/* Здесь рендерятся Dashboard и Settings */}
+    <footer>Footer</footer>
+  </div>
+);`,skills:[`React Router`]},{question:`Как работают относительные и абсолютные пути в маршрутах?`,shortAnswer:"Абсолютные пути начинаются с `/` и указывают полный путь от корня. Относительные пути зависят от текущего местоположения (URL) и позволяют строить маршруты относительно текущего маршрута.",longAnswer:`Абсолютные пути:
+
+- Начинаются с \`/\`.
+
+- Указывают точное местоположение маршрута независимо от текущего пути.
+
+Относительные пути:
+
+- Задаются относительно текущего маршрута.
+
+- Удобны для вложенных маршрутов.
+
+Пример: Для текущего URL \`/user/123\`:
+
+- Абсолютный путь \`/settings\` приведет к \`/settings\`.
+
+- Относительный путь \`settings\` приведет к \`/user/123/settings\`.
+
+Использование относительных путей делает код более гибким и простым в поддержке при изменении структуры маршрутов.`,codeExample:`<Link to="/about">About</Link> // Абсолютный путь
+
+<Link to="profile">Profile</Link> // Относительный путь`,skills:[`React Router`]},{question:`Как задать редирект в приложении?`,shortAnswer:"Редирект можно задать с помощью компонента `<Navigate>` для автоматического перенаправления или программно через хук `useNavigate`.",longAnswer:`Редирект с использованием \`<Navigate>\`:
+Используется для автоматического перенаправления, например, при условии проверки.
+
+Программный редирект через \`useNavigate\`:
+Позволяет перенаправлять пользователя по нажатию кнопки или в процессе выполнения логики.
+
+Редиректы полезны для защиты маршрутов, перенаправления после действий или переноса пользователей с устаревших страниц.`,codeExample:`import { Navigate } from 'react-router-dom';
+const ProtectedRoute = ({ isAuthenticated }) => {
+  return isAuthenticated ? <Dashboard /> : <Navigate to="/login" />;
+};
+
+import { useNavigate } from 'react-router-dom';
+const Login = () => {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    // Логика аутентификации
+    navigate('/dashboard');
+  };
+  return <button onClick={handleLogin}>Login</button>;
+};`,skills:[`React Router`]},{question:`Чем отличается replace от push при использовании useNavigate?`,shortAnswer:"Метод `push` добавляет новый маршрут в историю браузера, что позволяет вернуться назад. Метод `replace` заменяет текущий маршрут, не сохраняя его в истории, что предотвращает возврат на предыдущую страницу.",longAnswer:`Хук \`useNavigate\` предоставляет два способа навигации, зависящих от манипуляции с историей браузера:
+
+- \`push\` (по умолчанию):
+
+- Добавляет новый маршрут в стек истории.
+
+- Пользователь может вернуться назад, используя кнопку "Назад" в браузере.
+
+- \`replace\`:
+
+- Заменяет текущий маршрут.
+
+- Не добавляет его в стек истории, что исключает возможность возврата.
+
+Когда использовать:
+
+- \`push\`: Для обычной навигации, когда пользователь может захотеть вернуться на предыдущую страницу.
+
+- \`replace\`: Для редиректов, чтобы исключить возможность возврата (например, после логина).`,codeExample:`navigate('/dashboard'); // Аналог push
+
+navigate('/login', { replace: true });`,skills:[`React Router`]},{question:`Что такое маршруты-заглушки (fallback routes), и как их реализовать?`,shortAnswer:"Маршруты-заглушки обрабатывают ситуации, когда запрашиваемый маршрут не существует. Они реализуются с помощью маршрута `*` и позволяют показывать страницу ошибки или редиректить на основной маршрут.",longAnswer:"Маршруты-заглушки — это маршруты, которые срабатывают, если ни один из ранее определенных маршрутов не совпал с текущим URL. В React Router они задаются через путь `*`.\nПример реализации:\n\nЕсли пользователь переходит на несуществующий путь, например `/unknown`, отобразится компонент `NotFound`.\nИспользование маршрутов-заглушек улучшает пользовательский опыт, предотвращая показ пустых страниц и направляя пользователя к полезной информации.",codeExample:`import { Routes, Route } from 'react-router-dom';
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="*" element={<NotFound />} /> {/* Маршрут-заглушка */}
+  </Routes>
+);
+const NotFound = () => <h1>404: Page Not Found</h1>;`,skills:[`React Router`]},{question:`Как работает ленивый роутинг (lazy loading) в React Router DOM?`,shortAnswer:"Ленивый роутинг загружает компоненты маршрутов только при их необходимости. Это достигается использованием функции `React.lazy` в сочетании с динамическим импортом (`import()`), что позволяет уменьшить начальный размер бандла.",longAnswer:`Ленивый роутинг позволяет загружать компоненты маршрутов "по требованию", а не включать их в начальный бандл. Это особенно полезно для больших приложений, где не все страницы требуются сразу.
+Пример реализации:
+Импортируйте компоненты лениво с помощью \`React.lazy\`:
+
+Используйте \`<Suspense>\` для отображения индикатора загрузки:
+
+Как это работает:
+
+- Когда пользователь переходит на маршрут \`/about\`, компонент \`About\` загружается динамически.
+
+- Это снижает нагрузку на начальную загрузку приложения.`,codeExample:`import { lazy } from 'react';
+
+const Home = lazy(() => import('./Home'));
+const About = lazy(() => import('./About'));
+
+import { Routes, Route } from 'react-router-dom';
+import { Suspense } from 'react';
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  </Suspense>
+);`,skills:[`React Router`]},{question:`Как использовать Suspense и lazy для загрузки компонентов маршрутов?`,shortAnswer:"`React.lazy` используется для ленивого импорта компонентов, а `Suspense` позволяет показывать индикатор загрузки, пока компонент загружается.",longAnswer:`\`React.lazy\` и \`Suspense\` работают вместе, чтобы облегчить загрузку больших компонентов или страниц. Основная идея заключается в том, чтобы загружать компоненты только тогда, когда они действительно нужны.
+Настройка \`React.lazy\`:
+Используйте функцию \`React.lazy\` для ленивого импорта:
+
+Использование \`Suspense\`:
+Оберните маршруты или компоненты в \`<Suspense>\` для обработки состояния загрузки:
+
+Преимущества:
+
+- Компоненты подгружаются только при их использовании.
+
+- Уменьшается время загрузки главной страницы приложения.
+
+Пример с вложенными маршрутами:
+Работает и с вложенными маршрутами:
+
+Таким образом, \`lazy\` и \`Suspense\` позволяют управлять загрузкой компонентов, минимизируя время загрузки приложения и улучшая пользовательский опыт.`,codeExample:`const Profile = lazy(() => import('./Profile'));
+
+import { Suspense } from 'react';
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Routes>
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+  </Suspense>
+);
+
+const Dashboard = lazy(() => import('./Dashboard'));
+const Settings = lazy(() => import('./Settings'));
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="settings" element={<Settings />} />
+      </Route>
+    </Routes>
+  </Suspense>
+);`,skills:[`React Router`]},{question:`Что такое маршруты-защита (protected routes), и как их настроить?`,shortAnswer:`Маршруты-защита позволяют ограничивать доступ к компонентам или страницам. Они реализуются путем проверки условий (например, аутентификации) и перенаправления неавторизованных пользователей на другую страницу.`,longAnswer:`Маршруты-защита (protected routes) используются для предотвращения доступа к страницам без выполнения определенных условий, например, если пользователь не вошел в систему.
+Пример реализации:
+
+- Создайте компонент защиты:
+
+- Используйте компонент защиты в маршрутах:
+
+Преимущества:
+
+- Упрощает управление доступом к маршрутам.
+
+- Повышает безопасность, исключая доступ к закрытым ресурсам.`,codeExample:`import { Navigate } from 'react-router-dom';
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+import { Routes, Route } from 'react-router-dom';
+const App = () => {
+  const isAuthenticated = /* Логика проверки аутентификации */;
+  return (
+    <Routes>
+      <Route path="/dashboard" element={
+        <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
+};`,skills:[`React Router`]},{question:`Как реализовать проверку прав доступа на маршрутах (authorization)?`,shortAnswer:`Проверка прав доступа (authorization) добавляется к маршрутам, где доступ предоставляется только при соответствии роли или разрешению. Это реализуется с помощью проверки перед рендерингом компонента.`,longAnswer:`Права доступа можно проверить, добавив условие к защищенному маршруту. Например, используя роли:
+Компонент для проверки ролей:
+
+Пример маршрута с авторизацией:
+
+Преимущества:
+
+- Позволяет легко управлять доступом на основе ролей.
+
+- Обеспечивает гибкость в реализации сложных сценариев безопасности.`,codeExample:`const RoleProtectedRoute = ({ userRole, allowedRoles, children }) => {
+  return allowedRoles.includes(userRole) ? children : <Navigate to="/unauthorized" />;
+};
+
+const App = () => {
+  const userRole = "admin"; // Пример текущей роли
+  return (
+    <Routes>
+      <Route path="/admin" element={
+        <RoleProtectedRoute userRole={userRole} allowedRoles={['admin']}>
+          <AdminPanel />
+        </RoleProtectedRoute>
+      } />
+      <Route path="/unauthorized" element={<Unauthorized />} />
+    </Routes>
+  );
+};`,skills:[`React Router`]},{question:`Как перехватить попытку смены маршрута (например, для отображения подтверждения)?`,shortAnswer:"Для перехвата попытки смены маршрута в React Router используется хук `usePrompt` (или `useBlocker` в React Router 6), который позволяет отобразить подтверждение или выполнить логику перед сменой пути.",longAnswer:`Перехват попыток смены маршрута можно реализовать следующим образом:
+Использование хука \`useBlocker\`:
+
+Пример использования:
+
+Объяснение:
+
+- Если \`isDirty\` равно \`true\`, попытка смены маршрута вызывает подтверждение.
+
+- При согласии переход продолжается.
+
+Важно: В последних версиях React Router рекомендуется использовать \`useNavigate\` для управления программными редиректами, но \`useBlocker\` остается полезным для подтверждений.`,codeExample:`import { useBlocker } from 'react-router-dom';
+const useUnsavedChangesPrompt = (shouldBlock) => {
+  useBlocker(({ retry }) => {
+    if (window.confirm("У вас есть несохраненные изменения. Покинуть страницу?")) {
+      retry(); // Продолжить переход
+    }
+  }, shouldBlock);
+};
+
+const FormPage = () => {
+  const [isDirty, setIsDirty] = useState(false);
+  useUnsavedChangesPrompt(isDirty);
+  const handleInputChange = () => setIsDirty(true);
+  return (
+    <form>
+      <input onChange={handleInputChange} />
+      <button type="submit" onClick={() => setIsDirty(false)}>Сохранить</button>
+    </form>
+  );
+};`,skills:[`React Router`]},{question:`Что такое createBrowserRouter и чем он отличается от использования <BrowserRouter>?`,shortAnswer:"`<BrowserRouter>` обеспечивает базовую маршрутизацию с декларативным описанием маршрутов в JSX. `createBrowserRouter` позволяет описывать маршруты программно, предоставляя расширенные возможности, такие как загрузчики данных, обработчики ошибок и действие (action) маршрутов.",longAnswer:`\`<BrowserRouter>\`:
+
+- Работает через JSX.
+
+- Маршруты описываются декларативно:
+
+\`createBrowserRouter\`:
+
+- Позволяет описывать маршруты в виде JavaScript-объекта.
+
+- Поддерживает загрузчики (loaders), действия (actions), и обработку ошибок.
+
+Различия:
+
+- \`createBrowserRouter\` предоставляет больше возможностей для серверного рендеринга и управления состоянием маршрутов.
+
+- \`<BrowserRouter>\` проще и подходит для приложений без сложной логики маршрутов.`,codeExample:`import { BrowserRouter, Routes, Route } from 'react-router-dom';
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  </BrowserRouter>
+);
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <NotFound />,
+    loader: fetchHomeData,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+]);
+const App = () => <RouterProvider router={router} />;`,skills:[`React Router`]},{question:`Как настроить маршрутизацию на стороне сервера в приложении с использованием React Router DOM?`,shortAnswer:`Для маршрутизации на стороне сервера необходимо настроить сервер (например, Node.js с Express), чтобы он обрабатывал все запросы и направлял их на главный HTML-файл приложения React. React Router на клиенте берет на себя рендеринг компонентов на основе пути.`,longAnswer:`Настройка маршрутов на сервере:
+Используйте Node.js и Express:
+
+Почему это важно:
+
+- Сервер возвращает один и тот же HTML-файл для всех запросов.
+
+- React Router интерпретирует URL и рендерит соответствующий компонент.
+
+Для серверного рендеринга (SSR):
+
+- Используйте библиотеки, такие как \`react-router-dom/server\` и \`react-dom/server\` для рендеринга компонентов на сервере.
+
+Итог: Настройка маршрутов на сервере обеспечивает поддержку глубоких ссылок и предотвращает ошибки 404 при прямом доступе к странице.`,codeExample:`const express = require('express');
+const path = require('path');
+const app = express();
+// Обслуживание статических файлов
+app.use(express.static(path.join(__dirname, 'build')));
+// Обработка всех запросов
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+app.listen(3000, () => console.log('Сервер запущен на порту 3000'));
+
+import { StaticRouter } from 'react-router-dom/server';
+const html = renderToString(
+  <StaticRouter location={req.url}>
+    <App />
+  </StaticRouter>
+);`,skills:[`React Router`]},{question:`Как добавить обработку ошибок маршрутов (error handling routes)?`,shortAnswer:"Обработка ошибок в React Router осуществляется через свойство `errorElement` для маршрута или через глобальный обработчик ошибок на уровне роутера. Ошибки могут быть отображены с помощью компонента ошибки.",longAnswer:`Использование свойства \`errorElement\`:
+Добавьте \`errorElement\` для отображения страницы ошибок при возникновении проблем.
+
+Обработка ошибок загрузчиков (loader):
+Если в загрузчике данных возникает ошибка, \`errorElement\` отображается автоматически.
+
+Преимущества:
+
+- Централизованная обработка ошибок.
+
+- Улучшение UX за счет отображения понятных сообщений вместо пустых страниц.`,codeExample:`import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+]);
+const App = () => <RouterProvider router={router} />;
+
+const loaderWithError = async () => {
+  throw new Error("Ошибка загрузки данных");
+};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    loader: loaderWithError,
+    errorElement: <ErrorPage />,
+  },
+]);`,skills:[`React Router`]},{question:`Как интегрировать React Router DOM с системой управления состоянием, например, Redux?`,shortAnswer:"Интеграция React Router DOM с Redux позволяет использовать состояние Redux для управления маршрутизацией, например, для перенаправлений на основе состояния пользователя. Это достигается через использование хуков, таких как `useSelector` и `useDispatch`, в компонентах маршрутов.",longAnswer:`Пример с проверкой аутентификации через Redux:
+Создайте хранилище Redux с состоянием пользователя:
+
+Подключите Redux к React приложению:
+
+Использование состояния Redux в маршрутах:
+Проверьте состояние перед рендерингом защищенных маршрутов:
+
+Интеграция с редиректами:
+Используйте \`useDispatch\` для программной смены маршрутов:
+
+Преимущества:
+
+- Централизация управления состоянием и маршрутизацией.
+
+- Удобство перенаправлений на основе глобального состояния.`,codeExample:`const initialState = { isAuthenticated: false };
+const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return { ...state, isAuthenticated: true };
+    case 'LOGOUT':
+      return { ...state, isAuthenticated: false };
+    default:
+      return state;
+  }
+};
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+const store = createStore(authReducer);
+const App = () => (
+  <Provider store={store}>
+    <MainRouter />
+  </Provider>
+);
+
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    dispatch({ type: 'LOGIN' });
+    navigate('/dashboard');
+  };
+  return <button onClick={handleLogin}>Войти</button>;
+};`,skills:[`React Router`]},{question:`Как настроить маршруты с анимациями переходов?`,shortAnswer:"Анимации переходов между маршрутами в React Router DOM реализуются с использованием библиотеки `react-transition-group` или фреймворков, таких как Framer Motion. Компоненты маршрутов оборачиваются в контейнер с анимацией.",longAnswer:`Установка \`react-transition-group\`:
+
+Пример с анимацией:
+Настройте маршруты с анимацией:
+
+Добавьте CSS для анимации:
+
+Использование Framer Motion:
+Более гибкий способ:
+
+Итог: Анимация маршрутов позволяет сделать приложение более плавным и интерактивным.`,codeExample:`npm install react-transition-group
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import './animations.css';
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <TransitionGroup>
+      <CSSTransition key={location.key} classNames="fade" timeout={300}>
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+};
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+import { motion } from 'framer-motion';
+const AnimatedPage = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
+    {children}
+  </motion.div>
+);`,skills:[`React Router`]},{question:`Как React Router DOM обрабатывает неизвестные или некорректные URL?`,shortAnswer:'React Router DOM перенаправляет некорректные URL на компонент обработки ошибок, который настраивается с помощью специального маршрута (`path="*"` или `errorElement`).',longAnswer:`Использование маршрута-заглушки \`path="*"\`:
+Добавьте маршрут для неизвестных URL:
+
+Использование \`errorElement\`:
+В \`createBrowserRouter\` можно настроить глобальный обработчик ошибок:
+
+Отображение страницы 404:
+Создайте компонент для ошибки:
+
+Почему это важно:
+Обработка некорректных маршрутов улучшает UX, показывая пользователю полезную информацию вместо пустой страницы.`,codeExample:`import { Routes, Route } from 'react-router-dom';
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+]);
+const App = () => <RouterProvider router={router} />;
+
+const NotFound = () => <h1>Страница не найдена</h1>;`,skills:[`React Router`]},{question:`Как передавать данные через loader в data маршрутах?`,shortAnswer:"`loader` в data маршрутах используется для загрузки данных перед рендерингом компонента. Он возвращает данные, которые затем доступны через хук `useLoaderData` внутри компонента.",longAnswer:`Определение \`loader\`:
+Это функция, которая асинхронно загружает данные.
+
+Пример использования \`loader\`:
+Определите маршрут с \`loader\`:
+
+Получение данных в компоненте:
+Используйте хук \`useLoaderData\`:
+
+Обработка ошибок:
+
+- Если \`loader\` выбрасывает ошибку, срабатывает \`errorElement\`.
+
+Преимущества:
+
+- Сокращение времени рендеринга, так как данные загружаются до показа компонента.
+
+- Централизованная обработка данных маршрутов.`,codeExample:`const fetchData = async () => {
+  const response = await fetch('/api/data');
+  if (!response.ok) throw new Error('Failed to load data');
+  return response.json();
+};
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    loader: fetchData,
+  },
+]);
+const App = () => <RouterProvider router={router} />;
+
+import { useLoaderData } from 'react-router-dom';
+const Home = () => {
+  const data = useLoaderData();
+  return <div>{JSON.stringify(data)}</div>;
+};`,skills:[`React Router`]},{question:`Как работает action в data маршрутах, и зачем он нужен?`,shortAnswer:"`action` обрабатывает POST, PUT, DELETE и другие запросы для маршрута. Он используется для выполнения операций, таких как отправка формы или обновление данных, и возвращает результат операции, доступный в компоненте.",longAnswer:`Определение \`action\`:
+Это функция, вызываемая при запросе POST или PUT на соответствующий маршрут.
+
+Пример использования \`action\`:
+Настройте маршрут с \`action\`:
+
+Обработка отправки формы:
+Используйте \`<Form>\` из React Router:
+
+Получение результата:
+Результат операции доступен через \`useActionData\`.
+
+Итог: \`action\` упрощает обработку запросов, связанных с изменением данных, и интегрируется с маршрутизацией.`,codeExample:`const saveData = async ({ request }) => {
+  const formData = await request.formData();
+  const response = await fetch('/api/save', {
+    method: 'POST',
+    body: JSON.stringify(Object.fromEntries(formData)),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (!response.ok) throw new Error('Failed to save data');
+  return response.json();
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/form",
+    element: <Form />,
+    action: saveData,
+  },
+]);
+
+import { Form } from 'react-router-dom';
+const FormComponent = () => (
+  <Form method="post">
+    <input name=
+ame" type=  ext" />
+    <button type="submit">Отправить</button>
+  </Form>
+);
+
+import { useActionData } from 'react-router-dom';
+const Form = () => {
+  const result = useActionData();
+  return result ? <p>Данные сохранены</p> : null;
+};`,skills:[`React Router`]},{question:`Чем полезен useRouteError, и в каких ситуациях его использовать?`,shortAnswer:"`useRouteError` позволяет получить ошибку, возникшую в `loader` или `action`, и отобразить её пользователю. Он используется в `errorElement` маршрутов для показа кастомных страниц ошибок.",longAnswer:"Как работает `useRouteError`:\nОшибка, выброшенная в `loader` или `action`, автоматически передается в `errorElement` маршрута.\nВ `errorElement` хук `useRouteError` предоставляет объект ошибки.\nПример использования:\nНастройте маршрут с обработкой ошибок:\n\nСоздайте компонент для обработки ошибок:\n\nОбработка ошибок действий:\nАналогично `loader`, ошибки из `action` также обрабатываются через `errorElement`.\nПреимущества:\n\n- Централизованная обработка ошибок.\n\n- Возможность предоставлять пользователю понятные сообщения об ошибках.\n\nИтог: `useRouteError` улучшает пользовательский опыт, позволяя показать детальную информацию при ошибках.",codeExample:`const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    loader: async () => {
+      throw new Error("Ошибка загрузки данных");
+    },
+    errorElement: <ErrorPage />,
+  },
+]);
+
+import { useRouteError } from 'react-router-dom';
+const ErrorPage = () => {
+  const error = useRouteError();
+  return (
+    <div>
+      <h1>Ошибка!</h1>
+      <p>{error.message}</p>
+    </div>
+  );
+};`,skills:[`React Router`]},{question:`Как управлять заголовками страницы (title) через маршруты?`,shortAnswer:"React Router DOM позволяет управлять заголовками страницы через функцию `document.title` в компоненте маршрута. Используется хук `useEffect` для обновления заголовка в зависимости от маршрута.",longAnswer:`Использование \`useEffect\` для управления заголовками:
+В компоненте маршрута измените заголовок страницы при рендере:
+
+Преимущества:
+
+- Динамическое управление заголовками для каждого маршрута.
+
+- Легкость в реализации с использованием React Router DOM.
+
+Недостатки:
+В некоторых случаях может потребоваться больше кода для сложных маршрутов, особенно при использовании динамических данных.
+Итог: Управление заголовками через \`useEffect\` с использованием \`useLocation\` в React Router DOM предоставляет гибкость и простоту.`,codeExample:`import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+const Page = () => {
+  const location = useLocation();
+  useEffect(() => {
+    document.title = \`Page Title - \${location.pathname}\`;
+  }, [location.pathname]);
+  return <div>Содержание страницы</div>;
+};`,skills:[`React Router`]},{question:`Какие преимущества и недостатки у React Router DOM по сравнению с альтернативными библиотеками (например, Next.js маршрутизацией)?`,shortAnswer:`React Router DOM предоставляет большую гибкость и интеграцию с любыми фреймворками и библиотеками на базе React, в то время как Next.js использует встроенную маршрутизацию и может предлагать оптимизации для серверной стороны.`,longAnswer:`Преимущества React Router DOM:
+
+- Гибкость: Может быть интегрирован с любыми фреймворками и библиотеками, не ограничивается только React.
+
+- Конфигурация: Позволяет настроить маршруты через JSX и компонентный подход.
+
+- Динамическое управление состоянием: Поддерживает использование Redux и других систем управления состоянием.
+
+- Производительность: Позволяет настроить оптимизацию и кэширование на стороне клиента.
+
+Преимущества Next.js маршрутизации:
+
+- Использование серверной стороны (SSR): Дает значительное улучшение SEO и производительности при статическом рендеринге.
+
+- Быстрая настройка: Встроенная маршрутизация позволяет быстро создавать приложения с маршрутизацией.
+
+- Оптимизация на уровне приложения: Предлагает автоматическую генерацию маршрутов и некоторых компонентов на сервере.
+
+Недостатки:
+
+- React Router DOM: Не предоставляет автоматическую оптимизацию на сервере (SSR) и может требовать настройки для улучшения производительности.
+
+- Next.js: Ограничивает гибкость в интеграции с не-Next компонентами и библиотеками, так как маршруты и компоненты должны быть настроены в рамках фреймворка.
+
+Использование в реальных сценариях:
+
+- Для большинства проектов React Router DOM подходит из-за его гибкости и возможности интеграции с другими библиотеками.
+
+- Для приложений с высокими требованиями к SEO и производительности Next.js может быть более предпочтительным выбором.
+
+Итог: Выбор между React Router DOM и Next.js зависит от конкретных требований проекта, таких как SEO, производительность и гибкость интеграции.`,skills:[`React Router`]},{question:`Как реагировать на изменение параметров маршрута (params) и обновлять данные?`,shortAnswer:"При изменении параметров маршрута компонент может не пересоздаваться. Чтобы обновить данные, используют `watch` на `this.$route.params` или хук `beforeRouteUpdate`. В этих местах можно заново запрашивать данные. Такой подход гарантирует, что интерфейс будет соответствовать текущему URL. Это стандартная практика во Vue-приложениях.",longAnswer:`Во Vue Router при смене параметров маршрута, например \`id\`, компонент часто остаётся тем же самым, поэтому хуки создания не вызываются.
+Почему компонент не пересоздаётся
+Vue Router переиспользует компонент, если:
+
+- используется тот же маршрут
+
+- меняются только \`params\`
+
+Это улучшает производительность, но требует ручного обновления данных.
+Использование watch
+Самый простой способ — следить за параметрами маршрута.
+
+Подходит, если:
+
+- нужно реагировать на конкретный параметр
+
+- логика простая
+
+Использование beforeRouteUpdate
+Для более контролируемого поведения применяется навигационный хук.
+
+Преимущества:
+
+- вызывается до завершения навигации
+
+- есть доступ к новому и старому маршруту
+
+Практические рекомендации
+
+- Загружать данные в \`created\` при первом входе
+
+- Обновлять данные через \`watch\` или \`beforeRouteUpdate\`
+
+- Избегать логики, зависящей от пересоздания компонента
+
+Вывод
+Для реакции на изменение \`params\` нужно явно отслеживать их изменение, так как компонент не пересоздаётся автоматически`,codeExample:`watch: {
+  '$route.params.id'(newId, oldId) {
+    this.fetchData(newId);
+  }
+}
+
+beforeRouteUpdate(to, from, next) {
+  this.fetchData(to.params.id);
+  next();
+}`,skills:[`React Router`]},{question:`Какие способы существуют для реагирования на смену динамического id в маршруте?`,shortAnswer:"Смену динамического `id` можно обрабатывать через `watch` на `$route.params`, через `beforeRouteUpdate` или через ключ `key` у `<router-view>`. Каждый способ имеет свои особенности. `watch` и `beforeRouteUpdate` обновляют данные без пересоздания компонента. Использование `key` приводит к пересозданию компонента.",longAnswer:`Динамический \`id\` в маршруте — частый сценарий при отображении страниц деталей.
+Способ 1. watch на params
+Подходит для обновления данных без пересоздания компонента.
+
+Плюсы:
+
+- простой и понятный подход
+
+- сохраняется состояние компонента
+
+Способ 2. beforeRouteUpdate
+Используется, если нужен контроль над навигацией.
+
+Плюсы:
+
+- доступ к обоим маршрутам
+
+- возможность отменить навигацию
+
+Способ 3. key у router-view
+Можно принудительно пересоздать компонент.
+
+Особенности:
+
+- вызываются хуки создания
+
+- состояние компонента сбрасывается
+
+- используется редко
+
+Вывод
+Выбор способа зависит от того, нужно ли сохранять состояние компонента или пересоздавать его при смене \`id\`.`,codeExample:`watch: {
+  '$route.params.id'(id) {
+    this.loadData(id);
+  }
+}
+
+beforeRouteUpdate(to, from, next) {
+  this.loadData(to.params.id);
+  next();
+}
+
+<router-view :key="$route.fullPath" />`,skills:[`React Router`]},{question:`Для чего используется beforeRouteEnter?`,shortAnswer:"`beforeRouteEnter` используется для выполнения логики до отображения компонента. В этом хуке ещё нет доступа к `this`. Он часто применяется для загрузки данных перед входом на страницу. После завершения навигации можно получить доступ к экземпляру компонента через callback. Это делает хук удобным для инициализации.",longAnswer:`\`beforeRouteEnter\` — это компонентный route-guard, который вызывается до создания экземпляра компонента.
+Особенность доступа к this
+В \`beforeRouteEnter\`:
+
+- экземпляр компонента ещё не создан
+
+- \`this\` недоступен
+
+- доступ к компоненту возможен через callback
+
+Пример:
+
+Когда использовать beforeRouteEnter
+Этот хук подходит, если:
+
+- нужно загрузить данные до рендера
+
+- важно избежать промежуточного состояния
+
+- требуется контроль перед входом на маршрут
+
+Отличие от beforeRouteUpdate
+
+- \`beforeRouteEnter\` — при первом входе
+
+- \`beforeRouteUpdate\` — при изменении params
+
+Практические сценарии
+
+- Предзагрузка данных
+
+- Проверка прав доступа
+
+- Логирование входа на страницу
+
+Вывод
+\`beforeRouteEnter\` используется для выполнения логики до создания компонента и полезен, когда данные должны быть готовы до отображения интерфейса.`,codeExample:`beforeRouteEnter(to, from, next) {
+  next(vm => {
+    vm.fetchData();
+  });
+}`,skills:[`React Router`]},{question:`Как реализовать проверку авторизации при переходе между маршрутами?`,shortAnswer:"Проверка авторизации обычно реализуется через глобальный `beforeEach` guard. В нём проверяется наличие токена или состояния авторизации. При отсутствии доступа выполняется редирект на страницу логина. Такой подход централизует логику безопасности. Это стандартное решение во Vue-приложениях.",longAnswer:`Контроль доступа к маршрутам — одна из самых частых задач при использовании Vue Router.
+Использование глобального beforeEach
+Наиболее распространённый способ — глобальный guard.
+
+Использование meta-полей
+Маршруты помечаются флагами доступа.
+
+Преимущества подхода
+
+- Централизованная логика
+
+- Простота поддержки
+
+- Лёгкое масштабирование
+
+Дополнительные меры
+
+- Проверка прав ролей
+
+- Обновление токена
+
+- Обработка редиректа после логина
+
+Вывод
+Проверка авторизации при навигации реализуется через route-guards, чаще всего с помощью глобального \`beforeEach\`, что обеспечивает контроль доступа на уровне маршрутизации.`,codeExample:`router.beforeEach((to, from, next) => {
+  const isAuth = store.state.isAuthenticated;
+
+  if (to.meta.requiresAuth && !isAuth) {
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+{
+  path: '/profile',
+  component: Profile,
+  meta: { requiresAuth: true }
+}`,skills:[`React Router`]},{question:`Как реализовать поддержку динамического base path в React-приложении?`,shortAnswer:"Динамический base path позволяет React-приложению работать корректно, когда оно развернуто не в корне домена, а в поддиректории (например, /app/). Для этого нужно настроить роутер и сборщик. В React Router используйте пропс `basename` в компоненте ``. Значение basename можно получать из переменных окружения или конфигурационного файла. Также необходимо настроить Webpack или другой сборщик, указав `publicPath`, чтобы статические ресурсы (JS, CSS) загружались из правильного пути.",longAnswer:"Поддержка динамического base path необходима, когда ваше React-приложение развертывается не в корне домена (например, `https://example.com`), а в поддиректории (например, `https://example.com/my-app/`). Это часто встречается в микросервисных архитектурах, где несколько приложений живут на одном домене, или на shared хостингах. Без правильной настройки приложение будет искать ресурсы и маршруты по неправильным путям, что приведет к ошибкам 404 и сломанной навигации.\n\nНастройка React Router\n\nОсновной инструмент для управления путями в React — это роутер. В React Router (v6) вы можете задать базовый путь с помощью пропса `basename` в компоненте `<BrowserRouter>` или `<Router>`. Значение должно быть строкой, соответствующей поддиректории, где живет ваше приложение. Чтобы сделать его динамическим, можно прочитать значение из переменной окружения или конфигурационного файла, загружаемого во время сборки или выполнения.\n\nНастройка сборщика (Webpack)\n\nДля корректной загрузки статических ресурсов (JavaScript, CSS, изображения) необходимо настроить `publicPath` в вашем сборщике. В Webpack это делается в конфигурации. Значение `publicPath` должно совпадать с base path вашего приложения. Его также можно сделать динамическим, используя переменные окружения.\n\nЕсли вы используете Create React App, вы можете задать переменную окружения `PUBLIC_URL` перед сборкой. Например, `PUBLIC_URL=/my-app npm run build`. Это автоматически установит `publicPath` в Webpack и будет использоваться для префикса путей к ресурсам в HTML.\n\nРабота со ссылками и API-запросами\n\nПри использовании base path все относительные ссылки на ресурсы (например, изображения) и API-эндпоинты должны учитывать этот префикс. Для ссылок внутри приложения используйте компонент `<Link>` из React Router, который автоматически учитывает `basename`. Для API-запросов рекомендуется использовать абсолютные URL или создавать базовый экземпляр axios/fetch с заданным префиксом.\n\nВывод: Динамический base path стоит реализовывать, когда ваше React-приложение планируется развертывать в поддиректории. Это обеспечивает корректную работу маршрутизации и загрузку ресурсов в таких средах, как микросервисы, корпоративные порталы или shared хостинги.",codeExample:`import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Значение base path можно получить из переменной окружения или конфига.
+const BASE_PATH = process.env.REACT_APP_BASE_PATH || '/';
+
+function App() {
+  return (
+    <BrowserRouter basename={BASE_PATH}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// webpack.config.js
+module.exports = {
+  output: {
+    publicPath: process.env.PUBLIC_PATH || '/',
+  },
+  // ... остальная конфигурация
+};
+
+// Пример настройки axios с базовым URL
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL || '/api',
+});
+
+// Все запросы через этот экземпляр будут иметь правильный префикс.
+api.get('/users').then(response => console.log(response));`,skills:[`React Router`]},{question:`Что такое base URL в React Router и зачем он нужен?`,shortAnswer:"Base URL (базовый путь) в React Router — это префикс, который автоматически добавляется ко всем относительным маршрутам в приложении. Он нужен, когда ваше React-приложение развёрнуто не в корне домена (например, на `example.com/my-app/`), а в поддиректории. Без указания правильного base URL маршрутизация может сломаться, так как React Router будет искать пути относительно корня сервера, а не вашей поддиректории. Вы задаёте его с помощью пропа `basename` в компоненте ``. Это обеспечивает корректную работу ссылок и навигации в продакшн-среде.",longAnswer:'В веб-разработке, особенно при развёртывании одностраничных приложений (SPA), часто возникает ситуация, когда приложение размещается не в корневой директории домена, а внутри подпапки. Например, оно может быть доступно по адресу `https://company.com/dashboard/` или `https://github.com/username/project-name/` (для GitHub Pages). React Router по умолчанию предполагает, что приложение работает от корня (`/`). Если это не так, все относительные маршруты (например, `/users` или `/settings`) будут разрешаться относительно корня сервера, что приведёт к ошибкам 404 или некорректному отображению компонентов.\n\nЧто такое basename?\n\nПроп `basename` в компоненте `<BrowserRouter>` (или `<HashRouter>`) позволяет указать базовый путь для всего приложения. Все маршруты, определённые внутри этого роутера, будут автоматически иметь этот префикс. Это влияет на:\n\n- Генерацию ссылок компонентом `<Link to="...">`.\n\n- Сопоставление путей в `<Route path="...">`.\n\n- Работу хуков, таких как `useNavigate()` и `useLocation()`.\n\nКак это использовать?\n\nВы задаёте `basename` при создании роутера. Вот практический пример:\n\nВ этом примере, если пользователь перейдёт по адресу `/admin/users`, React Router корректно отобразит компонент `UsersList`, потому что он знает, что базовый путь — `/admin`.\n\nВажные нюансы\n\n- Серверная конфигурация: Указание `basename` в React Router не заменяет настройку сервера. Ваш веб-сервер (Nginx, Apache) или хостинг (GitHub Pages, Netlify) также должен быть сконфигурирован так, чтобы все запросы в пределах `/your-base-path` перенаправлялись на ваш `index.html` (правило "catch-all" для SPA).\n\n- Абсолютные пути: Если вы используете абсолютные URL (начинающиеся с `/`) внутри `basename`, они будут автоматически дополнены. Относительные пути (без ведущего слэша) работают относительно текущего URL.\n\n- Хэш-роутер: Для `HashRouter` принцип тот же, но хэш-фрагмент (`#`) добавляется после базового пути.\n\nВывод: Используйте `basename` в React Router, когда ваше приложение развёртывается в поддиректории на сервере. Это необходимое условие для корректной работы маршрутизации, навигации и избежания ошибок 404 в продакшн-окружении.',codeExample:`import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+function App() {
+  // Приложение развёрнуто в поддиректории /admin
+  return (
+    <BrowserRouter basename="/admin">
+      <nav>
+        <Link to="/">Dashboard</Link> // Фактический путь: /admin/
+        <Link to="/users">Users</Link> // Фактический путь: /admin/users
+      </nav>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/users" element={<UsersList />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}`,skills:[`React Router`]},{question:`Чем отличается клиентская маршрутизация в SPA от серверной навигации?`,shortAnswer:`Клиентская маршрутизация в SPA обрабатывает переходы между страницами на стороне браузера без перезагрузки страницы, используя JavaScript и History API. Серверная навигация отправляет запрос на сервер, который возвращает новый HTML, вызывая полную перезагрузку. Клиентская маршрутизация быстрее и создает плавный пользовательский опыт, но требует начальной загрузки всего приложения. Серверная навигация проще для SEO и работает без JavaScript.`,longAnswer:`Основное различие
+Клиентская маршрутизация в SPA (Single Page Application) обрабатывает навигацию на стороне браузера без полной перезагрузки страницы. Серверная навигация, напротив, при каждом переходе отправляет запрос на сервер, который возвращает новый HTML-документ, вызывая полную перезагрузку.
+Как работает клиентская маршрутизация
+В SPA приложение загружается один раз, а затем JavaScript перехватывает клики по ссылкам, изменяет URL с помощью History API (pushState или replaceState) и динамически обновляет содержимое страницы. Это позволяет избежать задержек, связанных с загрузкой ресурсов заново.
+
+Как работает серверная навигация
+При серверной навигации каждый переход — это новый HTTP-запрос. Сервер обрабатывает URL, генерирует HTML и отправляет его клиенту. Браузер полностью перезагружает страницу, сбрасывая состояние приложения.
+
+Когда что применять
+Клиентская маршрутизация подходит для интерактивных приложений, где важна скорость отклика и плавность переходов (например, дашборды, социальные сети). Серверная навигация лучше для контентных сайтов, где важна SEO-оптимизация и быстрый первый рендер (например, блоги, новостные порталы).
+Вывод: Выбор между клиентской и серверной маршрутизацией зависит от требований к производительности, SEO и сложности приложения. Для SPA с высокой интерактивностью предпочтительна клиентская маршрутизация, для контентных сайтов — серверная.`,codeExample:`// Пример с React Router
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// Пример серверного маршрута на Express
+app.get('/about', (req, res) => {
+  res.send('<h1>About Page</h1><p>Server-rendered content</p>');
+});`,skills:[`React Router`]},{question:`В чем разница между react-router 5 и 6 версии?`,shortAnswer:`React Router v6 представил несколько значительных изменений. Компонент Switch заменен на Routes, а Route теперь использует element вместо component. Порядок маршрутов больше не важен, так как v6 использует алгоритм ранжирования. Хук useHistory заменен на useNavigate. Также в v6 появилась поддержка вложенных маршрутов и относительных ссылок.`,longAnswer:`Основные различия между React Router v5 и v6
+React Router v6 представляет собой значительное обновление, которое упрощает API и делает маршрутизацию более интуитивной. Главное изменение — замена компонента Switch на Routes, который автоматически выбирает наиболее подходящий маршрут, а не первый совпадающий.
+Изменения в компонентах маршрутов
+В v5 использовался компонент Switch для группировки Route, и порядок маршрутов имел значение. В v6 Switch заменен на Routes, а Route теперь принимает prop element вместо component или render. Это позволяет передавать компоненты напрямую:
+
+Навигация и хуки
+В v5 для программной навигации использовался хук useHistory. В v6 он заменен на useNavigate, который предоставляет более гибкий API:
+
+Вложенные маршруты и относительные ссылки
+React Router v6 значительно улучшил поддержку вложенных маршрутов. Теперь можно определять дочерние маршруты прямо внутри родительского компонента, используя Outlet:
+
+Вывод
+React Router v6 предлагает более чистый и предсказуемый API, упрощает работу с вложенными маршрутами и улучшает производительность. При миграции с v5 на v6 стоит обратить внимание на замену Switch на Routes, обновление хуков навигации и рефакторинг вложенных маршрутов с использованием Outlet.`,codeExample:`// React Router v5
+
+
+// React Router v6
+
+  } />
+  } />
+
+// React Router v5
+const history = useHistory();
+history.push('/home');
+
+// React Router v6
 const navigate = useNavigate();
+navigate('/home');
+navigate(-1); // для перехода назад
 
-navigate(\`/questions/\${nextId}\`);`,skills:[`React Router`],keywords:[`#useNavigate`,`#useParams`],difficulty:3,rating:3},{question:`Что такое вложенные маршруты (nested routes) и компонент Outlet?`,shortAnswer:"Вложенные маршруты позволяют рендерить дочернюю страницу внутри родительского layout-компонента; `<Outlet />` — это место, куда React Router подставляет дочерний маршрут.",longAnswer:"Вместо дублирования общих элементов (сайдбар, хедер) на каждой странице, родительский маршрут определяет layout с `<Outlet />` внутри, а React Router автоматически рендерит в этом месте соответствующий дочерний `<Route>` в зависимости от URL. Это особенно удобно для разделов вроде `Knowledge base`, где Questions, Resources и Collections имеют общую навигацию, но разный контент.",codeExample:`<Route path="knowledge-base" element={<KnowledgeLayout />}>
-  <Route path="questions" element={<QuestionList />} />
-  <Route path="resources" element={<Resources />} />
-</Route>
+function App() {
+  return (
+    
+      }>
+        } />
+        } />
+      
+    
+  );
+}
 
-// KnowledgeLayout.jsx
-<Outlet />`,skills:[`React Router`],keywords:[`#nested-routes`,`#outlet`],difficulty:4,rating:3},{question:`Какие преимущества у Next.js перед обычным React?`,shortAnswer:`Next.js предоставляет встроенные решения для рендеринга на сервере (SSR), статической генерации страниц (SSG), маршрутизации, оптимизации изображений и API-роутов, что ускоряет разработку, улучшает SEO и производительность по сравнению с настройкой этих систем вручную в React-приложении.`,longAnswer:`Next.js — это фреймворк, построенный поверх React, который решает общие задачи веб-разработки "из коробки".
+function Dashboard() {
+  return (
+    
+      Dashboard
+       {/* Здесь будут отображаться дочерние маршруты */}
+    
+  );
+}`,skills:[`React Router`]},{question:`Какие преимущества у Next.js перед обычным React?`,shortAnswer:`Next.js предоставляет встроенные решения для рендеринга на сервере (SSR), статической генерации страниц (SSG), маршрутизации, оптимизации изображений и API-роутов, что ускоряет разработку, улучшает SEO и производительность по сравнению с настройкой этих систем вручную в React-приложении.`,longAnswer:`Next.js — это фреймворк, построенный поверх React, который решает общие задачи веб-разработки "из коробки".
 Ключевые преимущества:
 
 - Встроенный SSR и SSG:
