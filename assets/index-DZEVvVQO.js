@@ -8,15 +8,7388 @@ Error generating stack: `+e.message+`
 `+e.stack}}var Ae=Object.prototype.hasOwnProperty,je=t.unstable_scheduleCallback,Me=t.unstable_cancelCallback,Ne=t.unstable_shouldYield,Pe=t.unstable_requestPaint,Fe=t.unstable_now,Ie=t.unstable_getCurrentPriorityLevel,Le=t.unstable_ImmediatePriority,Re=t.unstable_UserBlockingPriority,ze=t.unstable_NormalPriority,Be=t.unstable_LowPriority,Ve=t.unstable_IdlePriority,He=t.log,Ue=t.unstable_setDisableYieldValue,We=null,Ge=null;function Ke(e){if(typeof He==`function`&&Ue(e),Ge&&typeof Ge.setStrictMode==`function`)try{Ge.setStrictMode(We,e)}catch{}}var qe=Math.clz32?Math.clz32:Xe,Je=Math.log,Ye=Math.LN2;function Xe(e){return e>>>=0,e===0?32:31-(Je(e)/Ye|0)|0}var Ze=256,Qe=262144,$e=4194304;function et(e){var t=e&42;if(t!==0)return t;switch(e&-e){case 1:return 1;case 2:return 2;case 4:return 4;case 8:return 8;case 16:return 16;case 32:return 32;case 64:return 64;case 128:return 128;case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:return e&261888;case 262144:case 524288:case 1048576:case 2097152:return e&3932160;case 4194304:case 8388608:case 16777216:case 33554432:return e&62914560;case 67108864:return 67108864;case 134217728:return 134217728;case 268435456:return 268435456;case 536870912:return 536870912;case 1073741824:return 0;default:return e}}function tt(e,t,n){var r=e.pendingLanes;if(r===0)return 0;var i=0,a=e.suspendedLanes,o=e.pingedLanes;e=e.warmLanes;var s=r&134217727;return s===0?(s=r&~a,s===0?o===0?n||(n=r&~e,n!==0&&(i=et(n))):i=et(o):i=et(s)):(r=s&~a,r===0?(o&=s,o===0?n||(n=s&~e,n!==0&&(i=et(n))):i=et(o)):i=et(r)),i===0?0:t!==0&&t!==i&&(t&a)===0&&(a=i&-i,n=t&-t,a>=n||a===32&&n&4194048)?t:i}function nt(e,t){return(e.pendingLanes&~(e.suspendedLanes&~e.pingedLanes)&t)===0}function rt(e,t){switch(e){case 1:case 2:case 4:case 8:case 64:return t+250;case 16:case 32:case 128:case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:case 262144:case 524288:case 1048576:case 2097152:return t+5e3;case 4194304:case 8388608:case 16777216:case 33554432:return-1;case 67108864:case 134217728:case 268435456:case 536870912:case 1073741824:return-1;default:return-1}}function it(){var e=$e;return $e<<=1,!($e&62914560)&&($e=4194304),e}function at(e){for(var t=[],n=0;31>n;n++)t.push(e);return t}function ot(e,t){e.pendingLanes|=t,t!==268435456&&(e.suspendedLanes=0,e.pingedLanes=0,e.warmLanes=0)}function st(e,t,n,r,i,a){var o=e.pendingLanes;e.pendingLanes=n,e.suspendedLanes=0,e.pingedLanes=0,e.warmLanes=0,e.expiredLanes&=n,e.entangledLanes&=n,e.errorRecoveryDisabledLanes&=n,e.shellSuspendCounter=0;var s=e.entanglements,c=e.expirationTimes,l=e.hiddenUpdates;for(n=o&~n;0<n;){var u=31-qe(n),d=1<<u;s[u]=0,c[u]=-1;var f=l[u];if(f!==null)for(l[u]=null,u=0;u<f.length;u++){var p=f[u];p!==null&&(p.lane&=-536870913)}n&=~d}r!==0&&ct(e,r,0),a!==0&&i===0&&e.tag!==0&&(e.suspendedLanes|=a&~(o&~t))}function ct(e,t,n){e.pendingLanes|=t,e.suspendedLanes&=~t;var r=31-qe(t);e.entangledLanes|=t,e.entanglements[r]=e.entanglements[r]|1073741824|n&261930}function lt(e,t){var n=e.entangledLanes|=t;for(e=e.entanglements;n;){var r=31-qe(n),i=1<<r;i&t|e[r]&t&&(e[r]|=t),n&=~i}}function ut(e,t){var n=t&-t;return n=n&42?1:dt(n),(n&(e.suspendedLanes|t))===0?n:0}function dt(e){switch(e){case 2:e=1;break;case 8:e=4;break;case 32:e=16;break;case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:case 262144:case 524288:case 1048576:case 2097152:case 4194304:case 8388608:case 16777216:case 33554432:e=128;break;case 268435456:e=134217728;break;default:e=0}return e}function ft(e){return e&=-e,2<e?8<e?e&134217727?32:268435456:8:2}function pt(){var e=E.p;return e===0?(e=window.event,e===void 0?32:mp(e.type)):e}function mt(e,t){var n=E.p;try{return E.p=e,t()}finally{E.p=n}}var ht=Math.random().toString(36).slice(2),gt=`__reactFiber$`+ht,_t=`__reactProps$`+ht,vt=`__reactContainer$`+ht,yt=`__reactEvents$`+ht,bt=`__reactListeners$`+ht,xt=`__reactHandles$`+ht,St=`__reactResources$`+ht,Ct=`__reactMarker$`+ht;function wt(e){delete e[gt],delete e[_t],delete e[yt],delete e[bt],delete e[xt]}function Tt(e){var t=e[gt];if(t)return t;for(var n=e.parentNode;n;){if(t=n[vt]||n[gt]){if(n=t.alternate,t.child!==null||n!==null&&n.child!==null)for(e=df(e);e!==null;){if(n=e[gt])return n;e=df(e)}return t}e=n,n=e.parentNode}return null}function Et(e){if(e=e[gt]||e[vt]){var t=e.tag;if(t===5||t===6||t===13||t===31||t===26||t===27||t===3)return e}return null}function Dt(e){var t=e.tag;if(t===5||t===26||t===27||t===6)return e.stateNode;throw Error(i(33))}function Ot(e){var t=e[St];return t||=e[St]={hoistableStyles:new Map,hoistableScripts:new Map},t}function kt(e){e[Ct]=!0}var At=new Set,jt={};function Mt(e,t){Nt(e,t),Nt(e+`Capture`,t)}function Nt(e,t){for(jt[e]=t,e=0;e<t.length;e++)At.add(t[e])}var Pt=RegExp(`^[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$`),Ft={},It={};function Lt(e){return Ae.call(It,e)?!0:Ae.call(Ft,e)?!1:Pt.test(e)?It[e]=!0:(Ft[e]=!0,!1)}function Rt(e,t,n){if(Lt(t)){if(n===null)e.removeAttribute(t);else{switch(typeof n){case`undefined`:case`function`:case`symbol`:e.removeAttribute(t);return;case`boolean`:var r=t.toLowerCase().slice(0,5);if(r!==`data-`&&r!==`aria-`){e.removeAttribute(t);return}}e.setAttribute(t,``+n)}}}function zt(e,t,n){if(n===null)e.removeAttribute(t);else{switch(typeof n){case`undefined`:case`function`:case`symbol`:case`boolean`:e.removeAttribute(t);return}e.setAttribute(t,``+n)}}function Bt(e,t,n,r){if(r===null)e.removeAttribute(n);else{switch(typeof r){case`undefined`:case`function`:case`symbol`:case`boolean`:e.removeAttribute(n);return}e.setAttributeNS(t,n,``+r)}}function Vt(e){switch(typeof e){case`bigint`:case`boolean`:case`number`:case`string`:case`undefined`:return e;case`object`:return e;default:return``}}function Ht(e){var t=e.type;return(e=e.nodeName)&&e.toLowerCase()===`input`&&(t===`checkbox`||t===`radio`)}function Ut(e,t,n){var r=Object.getOwnPropertyDescriptor(e.constructor.prototype,t);if(!e.hasOwnProperty(t)&&r!==void 0&&typeof r.get==`function`&&typeof r.set==`function`){var i=r.get,a=r.set;return Object.defineProperty(e,t,{configurable:!0,get:function(){return i.call(this)},set:function(e){n=``+e,a.call(this,e)}}),Object.defineProperty(e,t,{enumerable:r.enumerable}),{getValue:function(){return n},setValue:function(e){n=``+e},stopTracking:function(){e._valueTracker=null,delete e[t]}}}}function Wt(e){if(!e._valueTracker){var t=Ht(e)?`checked`:`value`;e._valueTracker=Ut(e,t,``+e[t])}}function Gt(e){if(!e)return!1;var t=e._valueTracker;if(!t)return!0;var n=t.getValue(),r=``;return e&&(r=Ht(e)?e.checked?`true`:`false`:e.value),e=r,e!==n&&(t.setValue(e),!0)}function Kt(e){if(e||=typeof document<`u`?document:void 0,e===void 0)return null;try{return e.activeElement||e.body}catch{return e.body}}var qt=/[\n"\\]/g;function k(e){return e.replace(qt,function(e){return`\\`+e.charCodeAt(0).toString(16)+` `})}function Jt(e,t,n,r,i,a,o,s){e.name=``,o!=null&&typeof o!=`function`&&typeof o!=`symbol`&&typeof o!=`boolean`?e.type=o:e.removeAttribute(`type`),t==null?o!==`submit`&&o!==`reset`||e.removeAttribute(`value`):o===`number`?(t===0&&e.value===``||e.value!=t)&&(e.value=``+Vt(t)):e.value!==``+Vt(t)&&(e.value=``+Vt(t)),t==null?n==null?r!=null&&e.removeAttribute(`value`):Xt(e,o,Vt(n)):Xt(e,o,Vt(t)),i==null&&a!=null&&(e.defaultChecked=!!a),i!=null&&(e.checked=i&&typeof i!=`function`&&typeof i!=`symbol`),s!=null&&typeof s!=`function`&&typeof s!=`symbol`&&typeof s!=`boolean`?e.name=``+Vt(s):e.removeAttribute(`name`)}function Yt(e,t,n,r,i,a,o,s){if(a!=null&&typeof a!=`function`&&typeof a!=`symbol`&&typeof a!=`boolean`&&(e.type=a),t!=null||n!=null){if(!(a!==`submit`&&a!==`reset`||t!=null)){Wt(e);return}n=n==null?``:``+Vt(n),t=t==null?n:``+Vt(t),s||t===e.value||(e.value=t),e.defaultValue=t}r??=i,r=typeof r!=`function`&&typeof r!=`symbol`&&!!r,e.checked=s?e.checked:!!r,e.defaultChecked=!!r,o!=null&&typeof o!=`function`&&typeof o!=`symbol`&&typeof o!=`boolean`&&(e.name=o),Wt(e)}function Xt(e,t,n){t===`number`&&Kt(e.ownerDocument)===e||e.defaultValue===``+n||(e.defaultValue=``+n)}function Zt(e,t,n,r){if(e=e.options,t){t={};for(var i=0;i<n.length;i++)t[`$`+n[i]]=!0;for(n=0;n<e.length;n++)i=t.hasOwnProperty(`$`+e[n].value),e[n].selected!==i&&(e[n].selected=i),i&&r&&(e[n].defaultSelected=!0)}else{for(n=``+Vt(n),t=null,i=0;i<e.length;i++){if(e[i].value===n){e[i].selected=!0,r&&(e[i].defaultSelected=!0);return}t!==null||e[i].disabled||(t=e[i])}t!==null&&(t.selected=!0)}}function Qt(e,t,n){if(t!=null&&(t=``+Vt(t),t!==e.value&&(e.value=t),n==null)){e.defaultValue!==t&&(e.defaultValue=t);return}e.defaultValue=n==null?``:``+Vt(n)}function $t(e,t,n,r){if(t==null){if(r!=null){if(n!=null)throw Error(i(92));if(ue(r)){if(1<r.length)throw Error(i(93));r=r[0]}n=r}n??=``,t=n}n=Vt(t),e.defaultValue=n,r=e.textContent,r===n&&r!==``&&r!==null&&(e.value=r),Wt(e)}function en(e,t){if(t){var n=e.firstChild;if(n&&n===e.lastChild&&n.nodeType===3){n.nodeValue=t;return}}e.textContent=t}var tn=new Set(`animationIterationCount aspectRatio borderImageOutset borderImageSlice borderImageWidth boxFlex boxFlexGroup boxOrdinalGroup columnCount columns flex flexGrow flexPositive flexShrink flexNegative flexOrder gridArea gridRow gridRowEnd gridRowSpan gridRowStart gridColumn gridColumnEnd gridColumnSpan gridColumnStart fontWeight lineClamp lineHeight opacity order orphans scale tabSize widows zIndex zoom fillOpacity floodOpacity stopOpacity strokeDasharray strokeDashoffset strokeMiterlimit strokeOpacity strokeWidth MozAnimationIterationCount MozBoxFlex MozBoxFlexGroup MozLineClamp msAnimationIterationCount msFlex msZoom msFlexGrow msFlexNegative msFlexOrder msFlexPositive msFlexShrink msGridColumn msGridColumnSpan msGridRow msGridRowSpan WebkitAnimationIterationCount WebkitBoxFlex WebKitBoxFlexGroup WebkitBoxOrdinalGroup WebkitColumnCount WebkitColumns WebkitFlex WebkitFlexGrow WebkitFlexPositive WebkitFlexShrink WebkitLineClamp`.split(` `));function nn(e,t,n){var r=t.indexOf(`--`)===0;n==null||typeof n==`boolean`||n===``?r?e.setProperty(t,``):t===`float`?e.cssFloat=``:e[t]=``:r?e.setProperty(t,n):typeof n!=`number`||n===0||tn.has(t)?t===`float`?e.cssFloat=n:e[t]=(``+n).trim():e[t]=n+`px`}function rn(e,t,n){if(t!=null&&typeof t!=`object`)throw Error(i(62));if(e=e.style,n!=null){for(var r in n)!n.hasOwnProperty(r)||t!=null&&t.hasOwnProperty(r)||(r.indexOf(`--`)===0?e.setProperty(r,``):r===`float`?e.cssFloat=``:e[r]=``);for(var a in t)r=t[a],t.hasOwnProperty(a)&&n[a]!==r&&nn(e,a,r)}else for(var o in t)t.hasOwnProperty(o)&&nn(e,o,t[o])}function an(e){if(e.indexOf(`-`)===-1)return!1;switch(e){case`annotation-xml`:case`color-profile`:case`font-face`:case`font-face-src`:case`font-face-uri`:case`font-face-format`:case`font-face-name`:case`missing-glyph`:return!1;default:return!0}}var on=new Map([[`acceptCharset`,`accept-charset`],[`htmlFor`,`for`],[`httpEquiv`,`http-equiv`],[`crossOrigin`,`crossorigin`],[`accentHeight`,`accent-height`],[`alignmentBaseline`,`alignment-baseline`],[`arabicForm`,`arabic-form`],[`baselineShift`,`baseline-shift`],[`capHeight`,`cap-height`],[`clipPath`,`clip-path`],[`clipRule`,`clip-rule`],[`colorInterpolation`,`color-interpolation`],[`colorInterpolationFilters`,`color-interpolation-filters`],[`colorProfile`,`color-profile`],[`colorRendering`,`color-rendering`],[`dominantBaseline`,`dominant-baseline`],[`enableBackground`,`enable-background`],[`fillOpacity`,`fill-opacity`],[`fillRule`,`fill-rule`],[`floodColor`,`flood-color`],[`floodOpacity`,`flood-opacity`],[`fontFamily`,`font-family`],[`fontSize`,`font-size`],[`fontSizeAdjust`,`font-size-adjust`],[`fontStretch`,`font-stretch`],[`fontStyle`,`font-style`],[`fontVariant`,`font-variant`],[`fontWeight`,`font-weight`],[`glyphName`,`glyph-name`],[`glyphOrientationHorizontal`,`glyph-orientation-horizontal`],[`glyphOrientationVertical`,`glyph-orientation-vertical`],[`horizAdvX`,`horiz-adv-x`],[`horizOriginX`,`horiz-origin-x`],[`imageRendering`,`image-rendering`],[`letterSpacing`,`letter-spacing`],[`lightingColor`,`lighting-color`],[`markerEnd`,`marker-end`],[`markerMid`,`marker-mid`],[`markerStart`,`marker-start`],[`overlinePosition`,`overline-position`],[`overlineThickness`,`overline-thickness`],[`paintOrder`,`paint-order`],[`panose-1`,`panose-1`],[`pointerEvents`,`pointer-events`],[`renderingIntent`,`rendering-intent`],[`shapeRendering`,`shape-rendering`],[`stopColor`,`stop-color`],[`stopOpacity`,`stop-opacity`],[`strikethroughPosition`,`strikethrough-position`],[`strikethroughThickness`,`strikethrough-thickness`],[`strokeDasharray`,`stroke-dasharray`],[`strokeDashoffset`,`stroke-dashoffset`],[`strokeLinecap`,`stroke-linecap`],[`strokeLinejoin`,`stroke-linejoin`],[`strokeMiterlimit`,`stroke-miterlimit`],[`strokeOpacity`,`stroke-opacity`],[`strokeWidth`,`stroke-width`],[`textAnchor`,`text-anchor`],[`textDecoration`,`text-decoration`],[`textRendering`,`text-rendering`],[`transformOrigin`,`transform-origin`],[`underlinePosition`,`underline-position`],[`underlineThickness`,`underline-thickness`],[`unicodeBidi`,`unicode-bidi`],[`unicodeRange`,`unicode-range`],[`unitsPerEm`,`units-per-em`],[`vAlphabetic`,`v-alphabetic`],[`vHanging`,`v-hanging`],[`vIdeographic`,`v-ideographic`],[`vMathematical`,`v-mathematical`],[`vectorEffect`,`vector-effect`],[`vertAdvY`,`vert-adv-y`],[`vertOriginX`,`vert-origin-x`],[`vertOriginY`,`vert-origin-y`],[`wordSpacing`,`word-spacing`],[`writingMode`,`writing-mode`],[`xmlnsXlink`,`xmlns:xlink`],[`xHeight`,`x-height`]]),sn=/^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i;function cn(e){return sn.test(``+e)?`javascript:throw new Error('React has blocked a javascript: URL as a security precaution.')`:e}function ln(){}var un=null;function dn(e){return e=e.target||e.srcElement||window,e.correspondingUseElement&&(e=e.correspondingUseElement),e.nodeType===3?e.parentNode:e}var fn=null,pn=null;function mn(e){var t=Et(e);if(t&&(e=t.stateNode)){var n=e[_t]||null;a:switch(e=t.stateNode,t.type){case`input`:if(Jt(e,n.value,n.defaultValue,n.defaultValue,n.checked,n.defaultChecked,n.type,n.name),t=n.name,n.type===`radio`&&t!=null){for(n=e;n.parentNode;)n=n.parentNode;for(n=n.querySelectorAll(`input[name="`+k(``+t)+`"][type="radio"]`),t=0;t<n.length;t++){var r=n[t];if(r!==e&&r.form===e.form){var a=r[_t]||null;if(!a)throw Error(i(90));Jt(r,a.value,a.defaultValue,a.defaultValue,a.checked,a.defaultChecked,a.type,a.name)}}for(t=0;t<n.length;t++)r=n[t],r.form===e.form&&Gt(r)}break a;case`textarea`:Qt(e,n.value,n.defaultValue);break a;case`select`:t=n.value,t!=null&&Zt(e,!!n.multiple,t,!1)}}}var hn=!1;function gn(e,t,n){if(hn)return e(t,n);hn=!0;try{return e(t)}finally{if(hn=!1,(fn!==null||pn!==null)&&(bu(),fn&&(t=fn,e=pn,pn=fn=null,mn(t),e)))for(t=0;t<e.length;t++)mn(e[t])}}function _n(e,t){var n=e.stateNode;if(n===null)return null;var r=n[_t]||null;if(r===null)return null;n=r[t];a:switch(t){case`onClick`:case`onClickCapture`:case`onDoubleClick`:case`onDoubleClickCapture`:case`onMouseDown`:case`onMouseDownCapture`:case`onMouseMove`:case`onMouseMoveCapture`:case`onMouseUp`:case`onMouseUpCapture`:case`onMouseEnter`:(r=!r.disabled)||(e=e.type,r=e!==`button`&&e!==`input`&&e!==`select`&&e!==`textarea`),e=!r;break a;default:e=!1}if(e)return null;if(n&&typeof n!=`function`)throw Error(i(231,t,typeof n));return n}var vn=!(typeof window>`u`||window.document===void 0||window.document.createElement===void 0),yn=!1;if(vn)try{var bn={};Object.defineProperty(bn,"passive",{get:function(){yn=!0}}),window.addEventListener(`test`,bn,bn),window.removeEventListener(`test`,bn,bn)}catch{yn=!1}var xn=null,Sn=null,Cn=null;function wn(){if(Cn)return Cn;var e,t=Sn,n=t.length,r,i=`value`in xn?xn.value:xn.textContent,a=i.length;for(e=0;e<n&&t[e]===i[e];e++);var o=n-e;for(r=1;r<=o&&t[n-r]===i[a-r];r++);return Cn=i.slice(e,1<r?1-r:void 0)}function Tn(e){var t=e.keyCode;return`charCode`in e?(e=e.charCode,e===0&&t===13&&(e=13)):e=t,e===10&&(e=13),32<=e||e===13?e:0}function En(){return!0}function Dn(){return!1}function On(e){function t(t,n,r,i,a){for(var o in this._reactName=t,this._targetInst=r,this.type=n,this.nativeEvent=i,this.target=a,this.currentTarget=null,e)e.hasOwnProperty(o)&&(t=e[o],this[o]=t?t(i):i[o]);return this.isDefaultPrevented=(i.defaultPrevented==null?!1===i.returnValue:i.defaultPrevented)?En:Dn,this.isPropagationStopped=Dn,this}return h(t.prototype,{preventDefault:function(){this.defaultPrevented=!0;var e=this.nativeEvent;e&&(e.preventDefault?e.preventDefault():typeof e.returnValue!=`unknown`&&(e.returnValue=!1),this.isDefaultPrevented=En)},stopPropagation:function(){var e=this.nativeEvent;e&&(e.stopPropagation?e.stopPropagation():typeof e.cancelBubble!=`unknown`&&(e.cancelBubble=!0),this.isPropagationStopped=En)},persist:function(){},isPersistent:En}),t}var kn={eventPhase:0,bubbles:0,cancelable:0,timeStamp:function(e){return e.timeStamp||Date.now()},defaultPrevented:0,isTrusted:0},An=On(kn),jn=h({},kn,{view:0,detail:0}),Mn=On(jn),Nn,Pn,Fn,In=h({},jn,{screenX:0,screenY:0,clientX:0,clientY:0,pageX:0,pageY:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,getModifierState:qn,button:0,buttons:0,relatedTarget:function(e){return e.relatedTarget===void 0?e.fromElement===e.srcElement?e.toElement:e.fromElement:e.relatedTarget},movementX:function(e){return`movementX`in e?e.movementX:(e!==Fn&&(Fn&&e.type===`mousemove`?(Nn=e.screenX-Fn.screenX,Pn=e.screenY-Fn.screenY):Pn=Nn=0,Fn=e),Nn)},movementY:function(e){return`movementY`in e?e.movementY:Pn}}),Ln=On(In),Rn=On(h({},In,{dataTransfer:0})),zn=On(h({},jn,{relatedTarget:0})),Bn=On(h({},kn,{animationName:0,elapsedTime:0,pseudoElement:0})),Vn=On(h({},kn,{clipboardData:function(e){return`clipboardData`in e?e.clipboardData:window.clipboardData}})),Hn=On(h({},kn,{data:0})),Un={Esc:`Escape`,Spacebar:` `,Left:`ArrowLeft`,Up:`ArrowUp`,Right:`ArrowRight`,Down:`ArrowDown`,Del:`Delete`,Win:`OS`,Menu:`ContextMenu`,Apps:`ContextMenu`,Scroll:`ScrollLock`,MozPrintableKey:`Unidentified`},Wn={8:`Backspace`,9:`Tab`,12:`Clear`,13:`Enter`,16:`Shift`,17:`Control`,18:`Alt`,19:`Pause`,20:`CapsLock`,27:`Escape`,32:` `,33:`PageUp`,34:`PageDown`,35:`End`,36:`Home`,37:`ArrowLeft`,38:`ArrowUp`,39:`ArrowRight`,40:`ArrowDown`,45:`Insert`,46:`Delete`,112:`F1`,113:`F2`,114:`F3`,115:`F4`,116:`F5`,117:`F6`,118:`F7`,119:`F8`,120:`F9`,121:`F10`,122:`F11`,123:`F12`,144:`NumLock`,145:`ScrollLock`,224:`Meta`},Gn={Alt:`altKey`,Control:`ctrlKey`,Meta:`metaKey`,Shift:`shiftKey`};function Kn(e){var t=this.nativeEvent;return t.getModifierState?t.getModifierState(e):(e=Gn[e])?!!t[e]:!1}function qn(){return Kn}var Jn=On(h({},jn,{key:function(e){if(e.key){var t=Un[e.key]||e.key;if(t!==`Unidentified`)return t}return e.type===`keypress`?(e=Tn(e),e===13?`Enter`:String.fromCharCode(e)):e.type===`keydown`||e.type===`keyup`?Wn[e.keyCode]||`Unidentified`:``},code:0,location:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,repeat:0,locale:0,getModifierState:qn,charCode:function(e){return e.type===`keypress`?Tn(e):0},keyCode:function(e){return e.type===`keydown`||e.type===`keyup`?e.keyCode:0},which:function(e){return e.type===`keypress`?Tn(e):e.type===`keydown`||e.type===`keyup`?e.keyCode:0}})),Yn=On(h({},In,{pointerId:0,width:0,height:0,pressure:0,tangentialPressure:0,tiltX:0,tiltY:0,twist:0,pointerType:0,isPrimary:0})),Xn=On(h({},jn,{touches:0,targetTouches:0,changedTouches:0,altKey:0,metaKey:0,ctrlKey:0,shiftKey:0,getModifierState:qn})),Zn=On(h({},kn,{propertyName:0,elapsedTime:0,pseudoElement:0})),Qn=On(h({},In,{deltaX:function(e){return`deltaX`in e?e.deltaX:`wheelDeltaX`in e?-e.wheelDeltaX:0},deltaY:function(e){return`deltaY`in e?e.deltaY:`wheelDeltaY`in e?-e.wheelDeltaY:`wheelDelta`in e?-e.wheelDelta:0},deltaZ:0,deltaMode:0})),$n=On(h({},kn,{newState:0,oldState:0})),er=[9,13,27,32],tr=vn&&`CompositionEvent`in window,nr=null;vn&&`documentMode`in document&&(nr=document.documentMode);var A=vn&&`TextEvent`in window&&!nr,rr=vn&&(!tr||nr&&8<nr&&11>=nr),ir=` `,ar=!1;function or(e,t){switch(e){case`keyup`:return er.indexOf(t.keyCode)!==-1;case`keydown`:return t.keyCode!==229;case`keypress`:case`mousedown`:case`focusout`:return!0;default:return!1}}function sr(e){return e=e.detail,typeof e==`object`&&`data`in e?e.data:null}var cr=!1;function lr(e,t){switch(e){case`compositionend`:return sr(t);case`keypress`:return t.which===32?(ar=!0,ir):null;case`textInput`:return e=t.data,e===ir&&ar?null:e;default:return null}}function ur(e,t){if(cr)return e===`compositionend`||!tr&&or(e,t)?(e=wn(),Cn=Sn=xn=null,cr=!1,e):null;switch(e){case`paste`:return null;case`keypress`:if(!(t.ctrlKey||t.altKey||t.metaKey)||t.ctrlKey&&t.altKey){if(t.char&&1<t.char.length)return t.char;if(t.which)return String.fromCharCode(t.which)}return null;case`compositionend`:return rr&&t.locale!==`ko`?null:t.data;default:return null}}var dr={color:!0,date:!0,datetime:!0,"datetime-local":!0,email:!0,month:!0,number:!0,password:!0,range:!0,search:!0,tel:!0,text:!0,time:!0,url:!0,week:!0};function fr(e){var t=e&&e.nodeName&&e.nodeName.toLowerCase();return t===`input`?!!dr[e.type]:t===`textarea`}function pr(e,t,n,r){fn?pn?pn.push(r):pn=[r]:fn=r,t=Ed(t,`onChange`),0<t.length&&(n=new An(`onChange`,`change`,null,n,r),e.push({event:n,listeners:t}))}var mr=null,hr=null;function gr(e){yd(e,0)}function j(e){if(Gt(Dt(e)))return e}function _r(e,t){if(e===`change`)return t}var vr=!1;if(vn){var yr;if(vn){var br=`oninput`in document;if(!br){var xr=document.createElement(`div`);xr.setAttribute(`oninput`,`return;`),br=typeof xr.oninput==`function`}yr=br}else yr=!1;vr=yr&&(!document.documentMode||9<document.documentMode)}function Sr(){mr&&(mr.detachEvent(`onpropertychange`,Cr),hr=mr=null)}function Cr(e){if(e.propertyName===`value`&&j(hr)){var t=[];pr(t,hr,e,dn(e)),gn(gr,t)}}function wr(e,t,n){e===`focusin`?(Sr(),mr=t,hr=n,mr.attachEvent(`onpropertychange`,Cr)):e===`focusout`&&Sr()}function Tr(e){if(e===`selectionchange`||e===`keyup`||e===`keydown`)return j(hr)}function Er(e,t){if(e===`click`)return j(t)}function Dr(e,t){if(e===`input`||e===`change`)return j(t)}function Or(e,t){return e===t&&(e!==0||1/e==1/t)||e!==e&&t!==t}var kr=typeof Object.is==`function`?Object.is:Or;function Ar(e,t){if(kr(e,t))return!0;if(typeof e!=`object`||!e||typeof t!=`object`||!t)return!1;var n=Object.keys(e),r=Object.keys(t);if(n.length!==r.length)return!1;for(r=0;r<n.length;r++){var i=n[r];if(!Ae.call(t,i)||!kr(e[i],t[i]))return!1}return!0}function jr(e){for(;e&&e.firstChild;)e=e.firstChild;return e}function Mr(e,t){var n=jr(e);e=0;for(var r;n;){if(n.nodeType===3){if(r=e+n.textContent.length,e<=t&&r>=t)return{node:n,offset:t-e};e=r}a:{for(;n;){if(n.nextSibling){n=n.nextSibling;break a}n=n.parentNode}n=void 0}n=jr(n)}}function Nr(e,t){return e&&t?e===t?!0:e&&e.nodeType===3?!1:t&&t.nodeType===3?Nr(e,t.parentNode):`contains`in e?e.contains(t):e.compareDocumentPosition?!!(e.compareDocumentPosition(t)&16):!1:!1}function Pr(e){e=e!=null&&e.ownerDocument!=null&&e.ownerDocument.defaultView!=null?e.ownerDocument.defaultView:window;for(var t=Kt(e.document);t instanceof e.HTMLIFrameElement;){try{var n=typeof t.contentWindow.location.href==`string`}catch{n=!1}if(n)e=t.contentWindow;else break;t=Kt(e.document)}return t}function Fr(e){var t=e&&e.nodeName&&e.nodeName.toLowerCase();return t&&(t===`input`&&(e.type===`text`||e.type===`search`||e.type===`tel`||e.type===`url`||e.type===`password`)||t===`textarea`||e.contentEditable===`true`)}var Ir=vn&&`documentMode`in document&&11>=document.documentMode,Lr=null,Rr=null,zr=null,Br=!1;function Vr(e,t,n){var r=n.window===n?n.document:n.nodeType===9?n:n.ownerDocument;Br||Lr==null||Lr!==Kt(r)||(r=Lr,`selectionStart`in r&&Fr(r)?r={start:r.selectionStart,end:r.selectionEnd}:(r=(r.ownerDocument&&r.ownerDocument.defaultView||window).getSelection(),r={anchorNode:r.anchorNode,anchorOffset:r.anchorOffset,focusNode:r.focusNode,focusOffset:r.focusOffset}),zr&&Ar(zr,r)||(zr=r,r=Ed(Rr,`onSelect`),0<r.length&&(t=new An(`onSelect`,`select`,null,t,n),e.push({event:t,listeners:r}),t.target=Lr)))}function Hr(e,t){var n={};return n[e.toLowerCase()]=t.toLowerCase(),n[`Webkit`+e]=`webkit`+t,n[`Moz`+e]=`moz`+t,n}var Ur={animationend:Hr(`Animation`,`AnimationEnd`),animationiteration:Hr(`Animation`,`AnimationIteration`),animationstart:Hr(`Animation`,`AnimationStart`),transitionrun:Hr(`Transition`,`TransitionRun`),transitionstart:Hr(`Transition`,`TransitionStart`),transitioncancel:Hr(`Transition`,`TransitionCancel`),transitionend:Hr(`Transition`,`TransitionEnd`)},Wr={},Gr={};vn&&(Gr=document.createElement(`div`).style,`AnimationEvent`in window||(delete Ur.animationend.animation,delete Ur.animationiteration.animation,delete Ur.animationstart.animation),`TransitionEvent`in window||delete Ur.transitionend.transition);function Kr(e){if(Wr[e])return Wr[e];if(!Ur[e])return e;var t=Ur[e],n;for(n in t)if(t.hasOwnProperty(n)&&n in Gr)return Wr[e]=t[n];return e}var qr=Kr(`animationend`),Jr=Kr(`animationiteration`),Yr=Kr(`animationstart`),Xr=Kr(`transitionrun`),Zr=Kr(`transitionstart`),Qr=Kr(`transitioncancel`),$r=Kr(`transitionend`),ei=new Map,ti=`abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel`.split(` `);ti.push(`scrollEnd`);function ni(e,t){ei.set(e,t),Mt(t,[e])}var ri=typeof reportError==`function`?reportError:function(e){if(typeof window==`object`&&typeof window.ErrorEvent==`function`){var t=new window.ErrorEvent(`error`,{bubbles:!0,cancelable:!0,message:typeof e==`object`&&e&&typeof e.message==`string`?String(e.message):String(e),error:e});if(!window.dispatchEvent(t))return}else if(typeof process==`object`&&typeof process.emit==`function`){process.emit(`uncaughtException`,e);return}console.error(e)},ii=[],ai=0,oi=0;function si(){for(var e=ai,t=oi=ai=0;t<e;){var n=ii[t];ii[t++]=null;var r=ii[t];ii[t++]=null;var i=ii[t];ii[t++]=null;var a=ii[t];if(ii[t++]=null,r!==null&&i!==null){var o=r.pending;o===null?i.next=i:(i.next=o.next,o.next=i),r.pending=i}a!==0&&di(n,i,a)}}function ci(e,t,n,r){ii[ai++]=e,ii[ai++]=t,ii[ai++]=n,ii[ai++]=r,oi|=r,e.lanes|=r,e=e.alternate,e!==null&&(e.lanes|=r)}function li(e,t,n,r){return ci(e,t,n,r),fi(e)}function ui(e,t){return ci(e,null,null,t),fi(e)}function di(e,t,n){e.lanes|=n;var r=e.alternate;r!==null&&(r.lanes|=n);for(var i=!1,a=e.return;a!==null;)a.childLanes|=n,r=a.alternate,r!==null&&(r.childLanes|=n),a.tag===22&&(e=a.stateNode,e===null||e._visibility&1||(i=!0)),e=a,a=a.return;return e.tag===3?(a=e.stateNode,i&&t!==null&&(i=31-qe(n),e=a.hiddenUpdates,r=e[i],r===null?e[i]=[t]:r.push(t),t.lane=n|536870912),a):null}function fi(e){if(50<du)throw du=0,fu=null,Error(i(185));for(var t=e.return;t!==null;)e=t,t=e.return;return e.tag===3?e.stateNode:null}var pi={};function mi(e,t,n,r){this.tag=e,this.key=n,this.sibling=this.child=this.return=this.stateNode=this.type=this.elementType=null,this.index=0,this.refCleanup=this.ref=null,this.pendingProps=t,this.dependencies=this.memoizedState=this.updateQueue=this.memoizedProps=null,this.mode=r,this.subtreeFlags=this.flags=0,this.deletions=null,this.childLanes=this.lanes=0,this.alternate=null}function hi(e,t,n,r){return new mi(e,t,n,r)}function gi(e){return e=e.prototype,!(!e||!e.isReactComponent)}function _i(e,t){var n=e.alternate;return n===null?(n=hi(e.tag,t,e.key,e.mode),n.elementType=e.elementType,n.type=e.type,n.stateNode=e.stateNode,n.alternate=e,e.alternate=n):(n.pendingProps=t,n.type=e.type,n.flags=0,n.subtreeFlags=0,n.deletions=null),n.flags=e.flags&65011712,n.childLanes=e.childLanes,n.lanes=e.lanes,n.child=e.child,n.memoizedProps=e.memoizedProps,n.memoizedState=e.memoizedState,n.updateQueue=e.updateQueue,t=e.dependencies,n.dependencies=t===null?null:{lanes:t.lanes,firstContext:t.firstContext},n.sibling=e.sibling,n.index=e.index,n.ref=e.ref,n.refCleanup=e.refCleanup,n}function vi(e,t){e.flags&=65011714;var n=e.alternate;return n===null?(e.childLanes=0,e.lanes=t,e.child=null,e.subtreeFlags=0,e.memoizedProps=null,e.memoizedState=null,e.updateQueue=null,e.dependencies=null,e.stateNode=null):(e.childLanes=n.childLanes,e.lanes=n.lanes,e.child=n.child,e.subtreeFlags=0,e.deletions=null,e.memoizedProps=n.memoizedProps,e.memoizedState=n.memoizedState,e.updateQueue=n.updateQueue,e.type=n.type,t=n.dependencies,e.dependencies=t===null?null:{lanes:t.lanes,firstContext:t.firstContext}),e}function yi(e,t,n,r,a,o){var s=0;if(r=e,typeof e==`function`)gi(e)&&(s=1);else if(typeof e==`string`)s=Uf(e,n,he.current)?26:e===`html`||e===`head`||e===`body`?27:5;else a:switch(e){case w:return e=hi(31,n,t,a),e.elementType=w,e.lanes=o,e;case y:return bi(n.children,a,o,t);case b:s=8,a|=24;break;case x:return e=hi(12,n,t,a|2),e.elementType=x,e.lanes=o,e;case te:return e=hi(13,n,t,a),e.elementType=te,e.lanes=o,e;case ne:return e=hi(19,n,t,a),e.elementType=ne,e.lanes=o,e;default:if(typeof e==`object`&&e)switch(e.$$typeof){case S:s=10;break a;case ee:s=9;break a;case C:s=11;break a;case re:s=14;break a;case ie:s=16,r=null;break a}s=29,n=Error(i(130,e===null?`null`:typeof e,``)),r=null}return t=hi(s,n,t,a),t.elementType=e,t.type=r,t.lanes=o,t}function bi(e,t,n,r){return e=hi(7,e,r,t),e.lanes=n,e}function xi(e,t,n){return e=hi(6,e,null,t),e.lanes=n,e}function Si(e){var t=hi(18,null,null,0);return t.stateNode=e,t}function Ci(e,t,n){return t=hi(4,e.children===null?[]:e.children,e.key,t),t.lanes=n,t.stateNode={containerInfo:e.containerInfo,pendingChildren:null,implementation:e.implementation},t}var wi=new WeakMap;function Ti(e,t){if(typeof e==`object`&&e){var n=wi.get(e);return n===void 0?(t={value:e,source:t,stack:ke(t)},wi.set(e,t),t):n}return{value:e,source:t,stack:ke(t)}}var Ei=[],Di=0,Oi=null,ki=0,Ai=[],ji=0,Mi=null,Ni=1,Pi=``;function Fi(e,t){Ei[Di++]=ki,Ei[Di++]=Oi,Oi=e,ki=t}function Ii(e,t,n){Ai[ji++]=Ni,Ai[ji++]=Pi,Ai[ji++]=Mi,Mi=e;var r=Ni;e=Pi;var i=32-qe(r)-1;r&=~(1<<i),n+=1;var a=32-qe(t)+i;if(30<a){var o=i-i%5;a=(r&(1<<o)-1).toString(32),r>>=o,i-=o,Ni=1<<32-qe(t)+i|n<<i|r,Pi=a+e}else Ni=1<<a|n<<i|r,Pi=e}function Li(e){e.return!==null&&(Fi(e,1),Ii(e,1,0))}function Ri(e){for(;e===Oi;)Oi=Ei[--Di],Ei[Di]=null,ki=Ei[--Di],Ei[Di]=null;for(;e===Mi;)Mi=Ai[--ji],Ai[ji]=null,Pi=Ai[--ji],Ai[ji]=null,Ni=Ai[--ji],Ai[ji]=null}function zi(e,t){Ai[ji++]=Ni,Ai[ji++]=Pi,Ai[ji++]=Mi,Ni=t.id,Pi=t.overflow,Mi=e}var Bi=null,M=null,N=!1,Vi=null,Hi=!1,Ui=Error(i(519));function Wi(e){throw Xi(Ti(Error(i(418,1<arguments.length&&arguments[1]!==void 0&&arguments[1]?`text`:`HTML`,``)),e)),Ui}function Gi(e){var t=e.stateNode,n=e.type,r=e.memoizedProps;switch(t[gt]=e,t[_t]=r,n){case`dialog`:Q(`cancel`,t),Q(`close`,t);break;case`iframe`:case`object`:case`embed`:Q(`load`,t);break;case`video`:case`audio`:for(n=0;n<_d.length;n++)Q(_d[n],t);break;case`source`:Q(`error`,t);break;case`img`:case`image`:case`link`:Q(`error`,t),Q(`load`,t);break;case`details`:Q(`toggle`,t);break;case`input`:Q(`invalid`,t),Yt(t,r.value,r.defaultValue,r.checked,r.defaultChecked,r.type,r.name,!0);break;case`select`:Q(`invalid`,t);break;case`textarea`:Q(`invalid`,t),$t(t,r.value,r.defaultValue,r.children)}n=r.children,typeof n!=`string`&&typeof n!=`number`&&typeof n!=`bigint`||t.textContent===``+n||!0===r.suppressHydrationWarning||Md(t.textContent,n)?(r.popover!=null&&(Q(`beforetoggle`,t),Q(`toggle`,t)),r.onScroll!=null&&Q(`scroll`,t),r.onScrollEnd!=null&&Q(`scrollend`,t),r.onClick!=null&&(t.onclick=ln),t=!0):t=!1,t||Wi(e,!0)}function Ki(e){for(Bi=e.return;Bi;)switch(Bi.tag){case 5:case 31:case 13:Hi=!1;return;case 27:case 3:Hi=!0;return;default:Bi=Bi.return}}function qi(e){if(e!==Bi)return!1;if(!N)return Ki(e),N=!0,!1;var t=e.tag,n;if((n=t!==3&&t!==27)&&((n=t===5)&&(n=e.type,n=n===`form`||n===`button`||Ud(e.type,e.memoizedProps)),n=!n),n&&M&&Wi(e),Ki(e),t===13){if(e=e.memoizedState,e=e===null?null:e.dehydrated,!e)throw Error(i(317));M=uf(e)}else if(t===31){if(e=e.memoizedState,e=e===null?null:e.dehydrated,!e)throw Error(i(317));M=uf(e)}else t===27?(t=M,Zd(e.type)?(e=lf,lf=null,M=e):M=t):M=Bi?cf(e.stateNode.nextSibling):null;return!0}function Ji(){M=Bi=null,N=!1}function Yi(){var e=Vi;return e!==null&&(Zl===null?Zl=e:Zl.push.apply(Zl,e),Vi=null),e}function Xi(e){Vi===null?Vi=[e]:Vi.push(e)}var Zi=me(null),Qi=null,$i=null;function ea(e,t,n){O(Zi,t._currentValue),t._currentValue=n}function ta(e){e._currentValue=Zi.current,D(Zi)}function na(e,t,n){for(;e!==null;){var r=e.alternate;if((e.childLanes&t)===t?r!==null&&(r.childLanes&t)!==t&&(r.childLanes|=t):(e.childLanes|=t,r!==null&&(r.childLanes|=t)),e===n)break;e=e.return}}function ra(e,t,n,r){var a=e.child;for(a!==null&&(a.return=e);a!==null;){var o=a.dependencies;if(o!==null){var s=a.child;o=o.firstContext;a:for(;o!==null;){var c=o;o=a;for(var l=0;l<t.length;l++)if(c.context===t[l]){o.lanes|=n,c=o.alternate,c!==null&&(c.lanes|=n),na(o.return,n,e),r||(s=null);break a}o=c.next}}else if(a.tag===18){if(s=a.return,s===null)throw Error(i(341));s.lanes|=n,o=s.alternate,o!==null&&(o.lanes|=n),na(s,n,e),s=null}else s=a.child;if(s!==null)s.return=a;else for(s=a;s!==null;){if(s===e){s=null;break}if(a=s.sibling,a!==null){a.return=s.return,s=a;break}s=s.return}a=s}}function ia(e,t,n,r){e=null;for(var a=t,o=!1;a!==null;){if(!o){if(a.flags&524288)o=!0;else if(a.flags&262144)break}if(a.tag===10){var s=a.alternate;if(s===null)throw Error(i(387));if(s=s.memoizedProps,s!==null){var c=a.type;kr(a.pendingProps.value,s.value)||(e===null?e=[c]:e.push(c))}}else if(a===ve.current){if(s=a.alternate,s===null)throw Error(i(387));s.memoizedState.memoizedState!==a.memoizedState.memoizedState&&(e===null?e=[Qf]:e.push(Qf))}a=a.return}e!==null&&ra(t,e,n,r),t.flags|=262144}function aa(e){for(e=e.firstContext;e!==null;){if(!kr(e.context._currentValue,e.memoizedValue))return!0;e=e.next}return!1}function oa(e){Qi=e,$i=null,e=e.dependencies,e!==null&&(e.firstContext=null)}function sa(e){return la(Qi,e)}function ca(e,t){return Qi===null&&oa(e),la(e,t)}function la(e,t){var n=t._currentValue;if(t={context:t,memoizedValue:n,next:null},$i===null){if(e===null)throw Error(i(308));$i=t,e.dependencies={lanes:0,firstContext:t},e.flags|=524288}else $i=$i.next=t;return n}var ua=typeof AbortController<`u`?AbortController:function(){var e=[],t=this.signal={aborted:!1,addEventListener:function(t,n){e.push(n)}};this.abort=function(){t.aborted=!0,e.forEach(function(e){return e()})}},da=t.unstable_scheduleCallback,fa=t.unstable_NormalPriority,P={$$typeof:S,Consumer:null,Provider:null,_currentValue:null,_currentValue2:null,_threadCount:0};function pa(){return{controller:new ua,data:new Map,refCount:0}}function ma(e){e.refCount--,e.refCount===0&&da(fa,function(){e.controller.abort()})}var ha=null,ga=0,_a=0,va=null;function ya(e,t){if(ha===null){var n=ha=[];ga=0,_a=dd(),va={status:`pending`,value:void 0,then:function(e){n.push(e)}}}return ga++,t.then(ba,ba),t}function ba(){if(--ga===0&&ha!==null){va!==null&&(va.status=`fulfilled`);var e=ha;ha=null,_a=0,va=null;for(var t=0;t<e.length;t++)(0,e[t])()}}function xa(e,t){var n=[],r={status:`pending`,value:null,reason:null,then:function(e){n.push(e)}};return e.then(function(){r.status=`fulfilled`,r.value=t;for(var e=0;e<n.length;e++)(0,n[e])(t)},function(e){for(r.status=`rejected`,r.reason=e,e=0;e<n.length;e++)(0,n[e])(void 0)}),r}var Sa=T.S;T.S=function(e,t){eu=Fe(),typeof t==`object`&&t&&typeof t.then==`function`&&ya(e,t),Sa!==null&&Sa(e,t)};var Ca=me(null);function wa(){var e=Ca.current;return e===null?K.pooledCache:e}function Ta(e,t){t===null?O(Ca,Ca.current):O(Ca,t.pool)}function Ea(){var e=wa();return e===null?null:{parent:P._currentValue,pool:e}}var Da=Error(i(460)),Oa=Error(i(474)),ka=Error(i(542)),Aa={then:function(){}};function ja(e){return e=e.status,e===`fulfilled`||e===`rejected`}function Ma(e,t,n){switch(n=e[n],n===void 0?e.push(t):n!==t&&(t.then(ln,ln),t=n),t.status){case`fulfilled`:return t.value;case`rejected`:throw e=t.reason,Ia(e),e;default:if(typeof t.status==`string`)t.then(ln,ln);else{if(e=K,e!==null&&100<e.shellSuspendCounter)throw Error(i(482));e=t,e.status=`pending`,e.then(function(e){if(t.status===`pending`){var n=t;n.status=`fulfilled`,n.value=e}},function(e){if(t.status===`pending`){var n=t;n.status=`rejected`,n.reason=e}})}switch(t.status){case`fulfilled`:return t.value;case`rejected`:throw e=t.reason,Ia(e),e}throw Pa=t,Da}}function Na(e){try{var t=e._init;return t(e._payload)}catch(e){throw typeof e==`object`&&e&&typeof e.then==`function`?(Pa=e,Da):e}}var Pa=null;function Fa(){if(Pa===null)throw Error(i(459));var e=Pa;return Pa=null,e}function Ia(e){if(e===Da||e===ka)throw Error(i(483))}var La=null,Ra=0;function za(e){var t=Ra;return Ra+=1,La===null&&(La=[]),Ma(La,e,t)}function Ba(e,t){t=t.props.ref,e.ref=t===void 0?null:t}function Va(e,t){throw t.$$typeof===g?Error(i(525)):(e=Object.prototype.toString.call(t),Error(i(31,e===`[object Object]`?`object with keys {`+Object.keys(t).join(`, `)+`}`:e)))}function Ha(e){function t(t,n){if(e){var r=t.deletions;r===null?(t.deletions=[n],t.flags|=16):r.push(n)}}function n(n,r){if(!e)return null;for(;r!==null;)t(n,r),r=r.sibling;return null}function r(e){for(var t=new Map;e!==null;)e.key===null?t.set(e.index,e):t.set(e.key,e),e=e.sibling;return t}function a(e,t){return e=_i(e,t),e.index=0,e.sibling=null,e}function o(t,n,r){return t.index=r,e?(r=t.alternate,r===null?(t.flags|=67108866,n):(r=r.index,r<n?(t.flags|=67108866,n):r)):(t.flags|=1048576,n)}function s(t){return e&&t.alternate===null&&(t.flags|=67108866),t}function c(e,t,n,r){return t===null||t.tag!==6?(t=xi(n,e.mode,r),t.return=e,t):(t=a(t,n),t.return=e,t)}function l(e,t,n,r){var i=n.type;return i===y?d(e,t,n.props.children,r,n.key):t!==null&&(t.elementType===i||typeof i==`object`&&i&&i.$$typeof===ie&&Na(i)===t.type)?(t=a(t,n.props),Ba(t,n),t.return=e,t):(t=yi(n.type,n.key,n.props,null,e.mode,r),Ba(t,n),t.return=e,t)}function u(e,t,n,r){return t===null||t.tag!==4||t.stateNode.containerInfo!==n.containerInfo||t.stateNode.implementation!==n.implementation?(t=Ci(n,e.mode,r),t.return=e,t):(t=a(t,n.children||[]),t.return=e,t)}function d(e,t,n,r,i){return t===null||t.tag!==7?(t=bi(n,e.mode,r,i),t.return=e,t):(t=a(t,n),t.return=e,t)}function f(e,t,n){if(typeof t==`string`&&t!==``||typeof t==`number`||typeof t==`bigint`)return t=xi(``+t,e.mode,n),t.return=e,t;if(typeof t==`object`&&t){switch(t.$$typeof){case _:return n=yi(t.type,t.key,t.props,null,e.mode,n),Ba(n,t),n.return=e,n;case v:return t=Ci(t,e.mode,n),t.return=e,t;case ie:return t=Na(t),f(e,t,n)}if(ue(t)||se(t))return t=bi(t,e.mode,n,null),t.return=e,t;if(typeof t.then==`function`)return f(e,za(t),n);if(t.$$typeof===S)return f(e,ca(e,t),n);Va(e,t)}return null}function p(e,t,n,r){var i=t===null?null:t.key;if(typeof n==`string`&&n!==``||typeof n==`number`||typeof n==`bigint`)return i===null?c(e,t,``+n,r):null;if(typeof n==`object`&&n){switch(n.$$typeof){case _:return n.key===i?l(e,t,n,r):null;case v:return n.key===i?u(e,t,n,r):null;case ie:return n=Na(n),p(e,t,n,r)}if(ue(n)||se(n))return i===null?d(e,t,n,r,null):null;if(typeof n.then==`function`)return p(e,t,za(n),r);if(n.$$typeof===S)return p(e,t,ca(e,n),r);Va(e,n)}return null}function m(e,t,n,r,i){if(typeof r==`string`&&r!==``||typeof r==`number`||typeof r==`bigint`)return e=e.get(n)||null,c(t,e,``+r,i);if(typeof r==`object`&&r){switch(r.$$typeof){case _:return e=e.get(r.key===null?n:r.key)||null,l(t,e,r,i);case v:return e=e.get(r.key===null?n:r.key)||null,u(t,e,r,i);case ie:return r=Na(r),m(e,t,n,r,i)}if(ue(r)||se(r))return e=e.get(n)||null,d(t,e,r,i,null);if(typeof r.then==`function`)return m(e,t,n,za(r),i);if(r.$$typeof===S)return m(e,t,n,ca(t,r),i);Va(t,r)}return null}function h(i,a,s,c){for(var l=null,u=null,d=a,h=a=0,g=null;d!==null&&h<s.length;h++){d.index>h?(g=d,d=null):g=d.sibling;var _=p(i,d,s[h],c);if(_===null){d===null&&(d=g);break}e&&d&&_.alternate===null&&t(i,d),a=o(_,a,h),u===null?l=_:u.sibling=_,u=_,d=g}if(h===s.length)return n(i,d),N&&Fi(i,h),l;if(d===null){for(;h<s.length;h++)d=f(i,s[h],c),d!==null&&(a=o(d,a,h),u===null?l=d:u.sibling=d,u=d);return N&&Fi(i,h),l}for(d=r(d);h<s.length;h++)g=m(d,i,h,s[h],c),g!==null&&(e&&g.alternate!==null&&d.delete(g.key===null?h:g.key),a=o(g,a,h),u===null?l=g:u.sibling=g,u=g);return e&&d.forEach(function(e){return t(i,e)}),N&&Fi(i,h),l}function g(a,s,c,l){if(c==null)throw Error(i(151));for(var u=null,d=null,h=s,g=s=0,_=null,v=c.next();h!==null&&!v.done;g++,v=c.next()){h.index>g?(_=h,h=null):_=h.sibling;var y=p(a,h,v.value,l);if(y===null){h===null&&(h=_);break}e&&h&&y.alternate===null&&t(a,h),s=o(y,s,g),d===null?u=y:d.sibling=y,d=y,h=_}if(v.done)return n(a,h),N&&Fi(a,g),u;if(h===null){for(;!v.done;g++,v=c.next())v=f(a,v.value,l),v!==null&&(s=o(v,s,g),d===null?u=v:d.sibling=v,d=v);return N&&Fi(a,g),u}for(h=r(h);!v.done;g++,v=c.next())v=m(h,a,g,v.value,l),v!==null&&(e&&v.alternate!==null&&h.delete(v.key===null?g:v.key),s=o(v,s,g),d===null?u=v:d.sibling=v,d=v);return e&&h.forEach(function(e){return t(a,e)}),N&&Fi(a,g),u}function b(e,r,o,c){if(typeof o==`object`&&o&&o.type===y&&o.key===null&&(o=o.props.children),typeof o==`object`&&o){switch(o.$$typeof){case _:a:{for(var l=o.key;r!==null;){if(r.key===l){if(l=o.type,l===y){if(r.tag===7){n(e,r.sibling),c=a(r,o.props.children),c.return=e,e=c;break a}}else if(r.elementType===l||typeof l==`object`&&l&&l.$$typeof===ie&&Na(l)===r.type){n(e,r.sibling),c=a(r,o.props),Ba(c,o),c.return=e,e=c;break a}n(e,r);break}t(e,r),r=r.sibling}o.type===y?(c=bi(o.props.children,e.mode,c,o.key),c.return=e,e=c):(c=yi(o.type,o.key,o.props,null,e.mode,c),Ba(c,o),c.return=e,e=c)}return s(e);case v:a:{for(l=o.key;r!==null;){if(r.key===l){if(r.tag===4&&r.stateNode.containerInfo===o.containerInfo&&r.stateNode.implementation===o.implementation){n(e,r.sibling),c=a(r,o.children||[]),c.return=e,e=c;break a}n(e,r);break}t(e,r),r=r.sibling}c=Ci(o,e.mode,c),c.return=e,e=c}return s(e);case ie:return o=Na(o),b(e,r,o,c)}if(ue(o))return h(e,r,o,c);if(se(o)){if(l=se(o),typeof l!=`function`)throw Error(i(150));return o=l.call(o),g(e,r,o,c)}if(typeof o.then==`function`)return b(e,r,za(o),c);if(o.$$typeof===S)return b(e,r,ca(e,o),c);Va(e,o)}return typeof o==`string`&&o!==``||typeof o==`number`||typeof o==`bigint`?(o=``+o,r!==null&&r.tag===6?(n(e,r.sibling),c=a(r,o),c.return=e,e=c):(n(e,r),c=xi(o,e.mode,c),c.return=e,e=c),s(e)):n(e,r)}return function(e,t,n,r){try{Ra=0;var i=b(e,t,n,r);return La=null,i}catch(t){if(t===Da||t===ka)throw t;var a=hi(29,t,null,e.mode);return a.lanes=r,a.return=e,a}}}var Ua=Ha(!0),Wa=Ha(!1),Ga=!1;function Ka(e){e.updateQueue={baseState:e.memoizedState,firstBaseUpdate:null,lastBaseUpdate:null,shared:{pending:null,lanes:0,hiddenCallbacks:null},callbacks:null}}function qa(e,t){e=e.updateQueue,t.updateQueue===e&&(t.updateQueue={baseState:e.baseState,firstBaseUpdate:e.firstBaseUpdate,lastBaseUpdate:e.lastBaseUpdate,shared:e.shared,callbacks:null})}function Ja(e){return{lane:e,tag:0,payload:null,callback:null,next:null}}function Ya(e,t,n){var r=e.updateQueue;if(r===null)return null;if(r=r.shared,G&2){var i=r.pending;return i===null?t.next=t:(t.next=i.next,i.next=t),r.pending=t,t=fi(e),di(e,null,n),t}return ci(e,r,t,n),fi(e)}function Xa(e,t,n){if(t=t.updateQueue,t!==null&&(t=t.shared,n&4194048)){var r=t.lanes;r&=e.pendingLanes,n|=r,t.lanes=n,lt(e,n)}}function Za(e,t){var n=e.updateQueue,r=e.alternate;if(r!==null&&(r=r.updateQueue,n===r)){var i=null,a=null;if(n=n.firstBaseUpdate,n!==null){do{var o={lane:n.lane,tag:n.tag,payload:n.payload,callback:null,next:null};a===null?i=a=o:a=a.next=o,n=n.next}while(n!==null);a===null?i=a=t:a=a.next=t}else i=a=t;n={baseState:r.baseState,firstBaseUpdate:i,lastBaseUpdate:a,shared:r.shared,callbacks:r.callbacks},e.updateQueue=n;return}e=n.lastBaseUpdate,e===null?n.firstBaseUpdate=t:e.next=t,n.lastBaseUpdate=t}var Qa=!1;function $a(){if(Qa){var e=va;if(e!==null)throw e}}function eo(e,t,n,r){Qa=!1;var i=e.updateQueue;Ga=!1;var a=i.firstBaseUpdate,o=i.lastBaseUpdate,s=i.shared.pending;if(s!==null){i.shared.pending=null;var c=s,l=c.next;c.next=null,o===null?a=l:o.next=l,o=c;var u=e.alternate;u!==null&&(u=u.updateQueue,s=u.lastBaseUpdate,s!==o&&(s===null?u.firstBaseUpdate=l:s.next=l,u.lastBaseUpdate=c))}if(a!==null){var d=i.baseState;o=0,u=l=c=null,s=a;do{var f=s.lane&-536870913,p=f!==s.lane;if(p?(J&f)===f:(r&f)===f){f!==0&&f===_a&&(Qa=!0),u!==null&&(u=u.next={lane:0,tag:s.tag,payload:s.payload,callback:null,next:null});a:{var m=e,g=s;f=t;var _=n;switch(g.tag){case 1:if(m=g.payload,typeof m==`function`){d=m.call(_,d,f);break a}d=m;break a;case 3:m.flags=m.flags&-65537|128;case 0:if(m=g.payload,f=typeof m==`function`?m.call(_,d,f):m,f==null)break a;d=h({},d,f);break a;case 2:Ga=!0}}f=s.callback,f!==null&&(e.flags|=64,p&&(e.flags|=8192),p=i.callbacks,p===null?i.callbacks=[f]:p.push(f))}else p={lane:f,tag:s.tag,payload:s.payload,callback:s.callback,next:null},u===null?(l=u=p,c=d):u=u.next=p,o|=f;if(s=s.next,s===null){if(s=i.shared.pending,s===null)break;p=s,s=p.next,p.next=null,i.lastBaseUpdate=p,i.shared.pending=null}}while(1);u===null&&(c=d),i.baseState=c,i.firstBaseUpdate=l,i.lastBaseUpdate=u,a===null&&(i.shared.lanes=0),Gl|=o,e.lanes=o,e.memoizedState=d}}function to(e,t){if(typeof e!=`function`)throw Error(i(191,e));e.call(t)}function no(e,t){var n=e.callbacks;if(n!==null)for(e.callbacks=null,e=0;e<n.length;e++)to(n[e],t)}var ro=me(null),io=me(0);function ao(e,t){e=Wl,O(io,e),O(ro,t),Wl=e|t.baseLanes}function oo(){O(io,Wl),O(ro,ro.current)}function so(){Wl=io.current,D(ro),D(io)}var co=me(null),lo=null;function uo(e){var t=e.alternate;O(F,F.current&1),O(co,e),lo===null&&(t===null||ro.current!==null||t.memoizedState!==null)&&(lo=e)}function fo(e){O(F,F.current),O(co,e),lo===null&&(lo=e)}function po(e){e.tag===22?(O(F,F.current),O(co,e),lo===null&&(lo=e)):mo(e)}function mo(){O(F,F.current),O(co,co.current)}function ho(e){D(co),lo===e&&(lo=null),D(F)}var F=me(0);function go(e){for(var t=e;t!==null;){if(t.tag===13){var n=t.memoizedState;if(n!==null&&(n=n.dehydrated,n===null||af(n)||of(n)))return t}else if(t.tag===19&&(t.memoizedProps.revealOrder===`forwards`||t.memoizedProps.revealOrder===`backwards`||t.memoizedProps.revealOrder===`unstable_legacy-backwards`||t.memoizedProps.revealOrder===`together`)){if(t.flags&128)return t}else if(t.child!==null){t.child.return=t,t=t.child;continue}if(t===e)break;for(;t.sibling===null;){if(t.return===null||t.return===e)return null;t=t.return}t.sibling.return=t.return,t=t.sibling}return null}var _o=0,I=null,L=null,R=null,vo=!1,yo=!1,bo=!1,xo=0,So=0,Co=null,wo=0;function z(){throw Error(i(321))}function To(e,t){if(t===null)return!1;for(var n=0;n<t.length&&n<e.length;n++)if(!kr(e[n],t[n]))return!1;return!0}function Eo(e,t,n,r,i,a){return _o=a,I=t,t.memoizedState=null,t.updateQueue=null,t.lanes=0,T.H=e===null||e.memoizedState===null?Hs:Us,bo=!1,a=n(r,i),bo=!1,yo&&(a=Oo(t,n,r,i)),Do(e),a}function Do(e){T.H=Vs;var t=L!==null&&L.next!==null;if(_o=0,R=L=I=null,vo=!1,So=0,Co=null,t)throw Error(i(300));e===null||V||(e=e.dependencies,e!==null&&aa(e)&&(V=!0))}function Oo(e,t,n,r){I=e;var a=0;do{if(yo&&(Co=null),So=0,yo=!1,25<=a)throw Error(i(301));if(a+=1,R=L=null,e.updateQueue!=null){var o=e.updateQueue;o.lastEffect=null,o.events=null,o.stores=null,o.memoCache!=null&&(o.memoCache.index=0)}T.H=Ws,o=t(n,r)}while(yo);return o}function ko(){var e=T.H,t=e.useState()[0];return t=typeof t.then==`function`?Fo(t):t,e=e.useState()[0],(L===null?null:L.memoizedState)!==e&&(I.flags|=1024),t}function Ao(){var e=xo!==0;return xo=0,e}function jo(e,t,n){t.updateQueue=e.updateQueue,t.flags&=-2053,e.lanes&=~n}function Mo(e){if(vo){for(e=e.memoizedState;e!==null;){var t=e.queue;t!==null&&(t.pending=null),e=e.next}vo=!1}_o=0,R=L=I=null,yo=!1,So=xo=0,Co=null}function No(){var e={memoizedState:null,baseState:null,baseQueue:null,queue:null,next:null};return R===null?I.memoizedState=R=e:R=R.next=e,R}function B(){if(L===null){var e=I.alternate;e=e===null?null:e.memoizedState}else e=L.next;var t=R===null?I.memoizedState:R.next;if(t!==null)R=t,L=e;else{if(e===null)throw I.alternate===null?Error(i(467)):Error(i(310));L=e,e={memoizedState:L.memoizedState,baseState:L.baseState,baseQueue:L.baseQueue,queue:L.queue,next:null},R===null?I.memoizedState=R=e:R=R.next=e}return R}function Po(){return{lastEffect:null,events:null,stores:null,memoCache:null}}function Fo(e){var t=So;return So+=1,Co===null&&(Co=[]),e=Ma(Co,e,t),t=I,(R===null?t.memoizedState:R.next)===null&&(t=t.alternate,T.H=t===null||t.memoizedState===null?Hs:Us),e}function Io(e){if(typeof e==`object`&&e){if(typeof e.then==`function`)return Fo(e);if(e.$$typeof===S)return sa(e)}throw Error(i(438,String(e)))}function Lo(e){var t=null,n=I.updateQueue;if(n!==null&&(t=n.memoCache),t==null){var r=I.alternate;r!==null&&(r=r.updateQueue,r!==null&&(r=r.memoCache,r!=null&&(t={data:r.data.map(function(e){return e.slice()}),index:0})))}if(t??={data:[],index:0},n===null&&(n=Po(),I.updateQueue=n),n.memoCache=t,n=t.data[t.index],n===void 0)for(n=t.data[t.index]=Array(e),r=0;r<e;r++)n[r]=ae;return t.index++,n}function Ro(e,t){return typeof t==`function`?t(e):t}function zo(e){return Bo(B(),L,e)}function Bo(e,t,n){var r=e.queue;if(r===null)throw Error(i(311));r.lastRenderedReducer=n;var a=e.baseQueue,o=r.pending;if(o!==null){if(a!==null){var s=a.next;a.next=o.next,o.next=s}t.baseQueue=a=o,r.pending=null}if(o=e.baseState,a===null)e.memoizedState=o;else{t=a.next;var c=s=null,l=null,u=t,d=!1;do{var f=u.lane&-536870913;if(f===u.lane?(_o&f)===f:(J&f)===f){var p=u.revertLane;if(p===0)l!==null&&(l=l.next={lane:0,revertLane:0,gesture:null,action:u.action,hasEagerState:u.hasEagerState,eagerState:u.eagerState,next:null}),f===_a&&(d=!0);else if((_o&p)===p){u=u.next,p===_a&&(d=!0);continue}else f={lane:0,revertLane:u.revertLane,gesture:null,action:u.action,hasEagerState:u.hasEagerState,eagerState:u.eagerState,next:null},l===null?(c=l=f,s=o):l=l.next=f,I.lanes|=p,Gl|=p;f=u.action,bo&&n(o,f),o=u.hasEagerState?u.eagerState:n(o,f)}else p={lane:f,revertLane:u.revertLane,gesture:u.gesture,action:u.action,hasEagerState:u.hasEagerState,eagerState:u.eagerState,next:null},l===null?(c=l=p,s=o):l=l.next=p,I.lanes|=f,Gl|=f;u=u.next}while(u!==null&&u!==t);if(l===null?s=o:l.next=c,!kr(o,e.memoizedState)&&(V=!0,d&&(n=va,n!==null)))throw n;e.memoizedState=o,e.baseState=s,e.baseQueue=l,r.lastRenderedState=o}return a===null&&(r.lanes=0),[e.memoizedState,r.dispatch]}function Vo(e){var t=B(),n=t.queue;if(n===null)throw Error(i(311));n.lastRenderedReducer=e;var r=n.dispatch,a=n.pending,o=t.memoizedState;if(a!==null){n.pending=null;var s=a=a.next;do o=e(o,s.action),s=s.next;while(s!==a);kr(o,t.memoizedState)||(V=!0),t.memoizedState=o,t.baseQueue===null&&(t.baseState=o),n.lastRenderedState=o}return[o,r]}function Ho(e,t,n){var r=I,a=B(),o=N;if(o){if(n===void 0)throw Error(i(407));n=n()}else n=t();var s=!kr((L||a).memoizedState,n);if(s&&(a.memoizedState=n,V=!0),a=a.queue,ps(Go.bind(null,r,a,e),[e]),a.getSnapshot!==t||s||R!==null&&R.memoizedState.tag&1){if(r.flags|=2048,cs(9,{destroy:void 0},Wo.bind(null,r,a,n,t),null),K===null)throw Error(i(349));o||_o&127||Uo(r,t,n)}return n}function Uo(e,t,n){e.flags|=16384,e={getSnapshot:t,value:n},t=I.updateQueue,t===null?(t=Po(),I.updateQueue=t,t.stores=[e]):(n=t.stores,n===null?t.stores=[e]:n.push(e))}function Wo(e,t,n,r){t.value=n,t.getSnapshot=r,Ko(t)&&qo(e)}function Go(e,t,n){return n(function(){Ko(t)&&qo(e)})}function Ko(e){var t=e.getSnapshot;e=e.value;try{var n=t();return!kr(e,n)}catch{return!0}}function qo(e){var t=ui(e,2);t!==null&&hu(t,e,2)}function Jo(e){var t=No();if(typeof e==`function`){var n=e;if(e=n(),bo){Ke(!0);try{n()}finally{Ke(!1)}}}return t.memoizedState=t.baseState=e,t.queue={pending:null,lanes:0,dispatch:null,lastRenderedReducer:Ro,lastRenderedState:e},t}function Yo(e,t,n,r){return e.baseState=n,Bo(e,L,typeof r==`function`?r:Ro)}function Xo(e,t,n,r,a){if(Rs(e))throw Error(i(485));if(e=t.action,e!==null){var o={payload:a,action:e,next:null,isTransition:!0,status:`pending`,value:null,reason:null,listeners:[],then:function(e){o.listeners.push(e)}};T.T===null?o.isTransition=!1:n(!0),r(o),n=t.pending,n===null?(o.next=t.pending=o,Zo(t,o)):(o.next=n.next,t.pending=n.next=o)}}function Zo(e,t){var n=t.action,r=t.payload,i=e.state;if(t.isTransition){var a=T.T,o={};T.T=o;try{var s=n(i,r),c=T.S;c!==null&&c(o,s),Qo(e,t,s)}catch(n){es(e,t,n)}finally{a!==null&&o.types!==null&&(a.types=o.types),T.T=a}}else try{a=n(i,r),Qo(e,t,a)}catch(n){es(e,t,n)}}function Qo(e,t,n){typeof n==`object`&&n&&typeof n.then==`function`?n.then(function(n){$o(e,t,n)},function(n){return es(e,t,n)}):$o(e,t,n)}function $o(e,t,n){t.status=`fulfilled`,t.value=n,ts(t),e.state=n,t=e.pending,t!==null&&(n=t.next,n===t?e.pending=null:(n=n.next,t.next=n,Zo(e,n)))}function es(e,t,n){var r=e.pending;if(e.pending=null,r!==null){r=r.next;do t.status=`rejected`,t.reason=n,ts(t),t=t.next;while(t!==r)}e.action=null}function ts(e){e=e.listeners;for(var t=0;t<e.length;t++)(0,e[t])()}function ns(e,t){return t}function rs(e,t){if(N){var n=K.formState;if(n!==null){a:{var r=I;if(N){if(M){b:{for(var i=M,a=Hi;i.nodeType!==8;){if(!a){i=null;break b}if(i=cf(i.nextSibling),i===null){i=null;break b}}a=i.data,i=a===`F!`||a===`F`?i:null}if(i){M=cf(i.nextSibling),r=i.data===`F!`;break a}}Wi(r)}r=!1}r&&(t=n[0])}}return n=No(),n.memoizedState=n.baseState=t,r={pending:null,lanes:0,dispatch:null,lastRenderedReducer:ns,lastRenderedState:t},n.queue=r,n=Fs.bind(null,I,r),r.dispatch=n,r=Jo(!1),a=Ls.bind(null,I,!1,r.queue),r=No(),i={state:t,dispatch:null,action:e,pending:null},r.queue=i,n=Xo.bind(null,I,i,a,n),i.dispatch=n,r.memoizedState=e,[t,n,!1]}function is(e){return as(B(),L,e)}function as(e,t,n){if(t=Bo(e,t,ns)[0],e=zo(Ro)[0],typeof t==`object`&&t&&typeof t.then==`function`)try{var r=Fo(t)}catch(e){throw e===Da?ka:e}else r=t;t=B();var i=t.queue,a=i.dispatch;return n!==t.memoizedState&&(I.flags|=2048,cs(9,{destroy:void 0},os.bind(null,i,n),null)),[r,a,e]}function os(e,t){e.action=t}function ss(e){var t=B(),n=L;if(n!==null)return as(t,n,e);B(),t=t.memoizedState,n=B();var r=n.queue.dispatch;return n.memoizedState=e,[t,r,!1]}function cs(e,t,n,r){return e={tag:e,create:n,deps:r,inst:t,next:null},t=I.updateQueue,t===null&&(t=Po(),I.updateQueue=t),n=t.lastEffect,n===null?t.lastEffect=e.next=e:(r=n.next,n.next=e,e.next=r,t.lastEffect=e),e}function ls(){return B().memoizedState}function us(e,t,n,r){var i=No();I.flags|=e,i.memoizedState=cs(1|t,{destroy:void 0},n,r===void 0?null:r)}function ds(e,t,n,r){var i=B();r=r===void 0?null:r;var a=i.memoizedState.inst;L!==null&&r!==null&&To(r,L.memoizedState.deps)?i.memoizedState=cs(t,a,n,r):(I.flags|=e,i.memoizedState=cs(1|t,a,n,r))}function fs(e,t){us(8390656,8,e,t)}function ps(e,t){ds(2048,8,e,t)}function ms(e){I.flags|=4;var t=I.updateQueue;if(t===null)t=Po(),I.updateQueue=t,t.events=[e];else{var n=t.events;n===null?t.events=[e]:n.push(e)}}function hs(e){var t=B().memoizedState;return ms({ref:t,nextImpl:e}),function(){if(G&2)throw Error(i(440));return t.impl.apply(void 0,arguments)}}function gs(e,t){return ds(4,2,e,t)}function _s(e,t){return ds(4,4,e,t)}function vs(e,t){if(typeof t==`function`){e=e();var n=t(e);return function(){typeof n==`function`?n():t(null)}}if(t!=null)return e=e(),t.current=e,function(){t.current=null}}function ys(e,t,n){n=n==null?null:n.concat([e]),ds(4,4,vs.bind(null,t,e),n)}function bs(){}function xs(e,t){var n=B();t=t===void 0?null:t;var r=n.memoizedState;return t!==null&&To(t,r[1])?r[0]:(n.memoizedState=[e,t],e)}function Ss(e,t){var n=B();t=t===void 0?null:t;var r=n.memoizedState;if(t!==null&&To(t,r[1]))return r[0];if(r=e(),bo){Ke(!0);try{e()}finally{Ke(!1)}}return n.memoizedState=[r,t],r}function Cs(e,t,n){return n===void 0||_o&1073741824&&!(J&261930)?e.memoizedState=t:(e.memoizedState=n,e=mu(),I.lanes|=e,Gl|=e,n)}function ws(e,t,n,r){return kr(n,t)?n:ro.current===null?!(_o&42)||_o&1073741824&&!(J&261930)?(V=!0,e.memoizedState=n):(e=mu(),I.lanes|=e,Gl|=e,t):(e=Cs(e,n,r),kr(e,t)||(V=!0),e)}function Ts(e,t,n,r,i){var a=E.p;E.p=a!==0&&8>a?a:8;var o=T.T,s={};T.T=s,Ls(e,!1,t,n);try{var c=i(),l=T.S;l!==null&&l(s,c),typeof c==`object`&&c&&typeof c.then==`function`?Is(e,t,xa(c,r),pu(e)):Is(e,t,r,pu(e))}catch(n){Is(e,t,{then:function(){},status:`rejected`,reason:n},pu())}finally{E.p=a,o!==null&&s.types!==null&&(o.types=s.types),T.T=o}}function Es(){}function Ds(e,t,n,r){if(e.tag!==5)throw Error(i(476));var a=Os(e).queue;Ts(e,a,t,de,n===null?Es:function(){return ks(e),n(r)})}function Os(e){var t=e.memoizedState;if(t!==null)return t;t={memoizedState:de,baseState:de,baseQueue:null,queue:{pending:null,lanes:0,dispatch:null,lastRenderedReducer:Ro,lastRenderedState:de},next:null};var n={};return t.next={memoizedState:n,baseState:n,baseQueue:null,queue:{pending:null,lanes:0,dispatch:null,lastRenderedReducer:Ro,lastRenderedState:n},next:null},e.memoizedState=t,e=e.alternate,e!==null&&(e.memoizedState=t),t}function ks(e){var t=Os(e);t.next===null&&(t=e.alternate.memoizedState),Is(e,t.next.queue,{},pu())}function As(){return sa(Qf)}function js(){return B().memoizedState}function Ms(){return B().memoizedState}function Ns(e){for(var t=e.return;t!==null;){switch(t.tag){case 24:case 3:var n=pu();e=Ja(n);var r=Ya(t,e,n);r!==null&&(hu(r,t,n),Xa(r,t,n)),t={cache:pa()},e.payload=t;return}t=t.return}}function Ps(e,t,n){var r=pu();n={lane:r,revertLane:0,gesture:null,action:n,hasEagerState:!1,eagerState:null,next:null},Rs(e)?zs(t,n):(n=li(e,t,n,r),n!==null&&(hu(n,e,r),Bs(n,t,r)))}function Fs(e,t,n){Is(e,t,n,pu())}function Is(e,t,n,r){var i={lane:r,revertLane:0,gesture:null,action:n,hasEagerState:!1,eagerState:null,next:null};if(Rs(e))zs(t,i);else{var a=e.alternate;if(e.lanes===0&&(a===null||a.lanes===0)&&(a=t.lastRenderedReducer,a!==null))try{var o=t.lastRenderedState,s=a(o,n);if(i.hasEagerState=!0,i.eagerState=s,kr(s,o))return ci(e,t,i,0),K===null&&si(),!1}catch{}if(n=li(e,t,i,r),n!==null)return hu(n,e,r),Bs(n,t,r),!0}return!1}function Ls(e,t,n,r){if(r={lane:2,revertLane:dd(),gesture:null,action:r,hasEagerState:!1,eagerState:null,next:null},Rs(e)){if(t)throw Error(i(479))}else t=li(e,n,r,2),t!==null&&hu(t,e,2)}function Rs(e){var t=e.alternate;return e===I||t!==null&&t===I}function zs(e,t){yo=vo=!0;var n=e.pending;n===null?t.next=t:(t.next=n.next,n.next=t),e.pending=t}function Bs(e,t,n){if(n&4194048){var r=t.lanes;r&=e.pendingLanes,n|=r,t.lanes=n,lt(e,n)}}var Vs={readContext:sa,use:Io,useCallback:z,useContext:z,useEffect:z,useImperativeHandle:z,useLayoutEffect:z,useInsertionEffect:z,useMemo:z,useReducer:z,useRef:z,useState:z,useDebugValue:z,useDeferredValue:z,useTransition:z,useSyncExternalStore:z,useId:z,useHostTransitionStatus:z,useFormState:z,useActionState:z,useOptimistic:z,useMemoCache:z,useCacheRefresh:z};Vs.useEffectEvent=z;var Hs={readContext:sa,use:Io,useCallback:function(e,t){return No().memoizedState=[e,t===void 0?null:t],e},useContext:sa,useEffect:fs,useImperativeHandle:function(e,t,n){n=n==null?null:n.concat([e]),us(4194308,4,vs.bind(null,t,e),n)},useLayoutEffect:function(e,t){return us(4194308,4,e,t)},useInsertionEffect:function(e,t){us(4,2,e,t)},useMemo:function(e,t){var n=No();t=t===void 0?null:t;var r=e();if(bo){Ke(!0);try{e()}finally{Ke(!1)}}return n.memoizedState=[r,t],r},useReducer:function(e,t,n){var r=No();if(n!==void 0){var i=n(t);if(bo){Ke(!0);try{n(t)}finally{Ke(!1)}}}else i=t;return r.memoizedState=r.baseState=i,e={pending:null,lanes:0,dispatch:null,lastRenderedReducer:e,lastRenderedState:i},r.queue=e,e=e.dispatch=Ps.bind(null,I,e),[r.memoizedState,e]},useRef:function(e){var t=No();return e={current:e},t.memoizedState=e},useState:function(e){e=Jo(e);var t=e.queue,n=Fs.bind(null,I,t);return t.dispatch=n,[e.memoizedState,n]},useDebugValue:bs,useDeferredValue:function(e,t){return Cs(No(),e,t)},useTransition:function(){var e=Jo(!1);return e=Ts.bind(null,I,e.queue,!0,!1),No().memoizedState=e,[!1,e]},useSyncExternalStore:function(e,t,n){var r=I,a=No();if(N){if(n===void 0)throw Error(i(407));n=n()}else{if(n=t(),K===null)throw Error(i(349));J&127||Uo(r,t,n)}a.memoizedState=n;var o={value:n,getSnapshot:t};return a.queue=o,fs(Go.bind(null,r,o,e),[e]),r.flags|=2048,cs(9,{destroy:void 0},Wo.bind(null,r,o,n,t),null),n},useId:function(){var e=No(),t=K.identifierPrefix;if(N){var n=Pi,r=Ni;n=(r&~(1<<32-qe(r)-1)).toString(32)+n,t=`_`+t+`R_`+n,n=xo++,0<n&&(t+=`H`+n.toString(32)),t+=`_`}else n=wo++,t=`_`+t+`r_`+n.toString(32)+`_`;return e.memoizedState=t},useHostTransitionStatus:As,useFormState:rs,useActionState:rs,useOptimistic:function(e){var t=No();t.memoizedState=t.baseState=e;var n={pending:null,lanes:0,dispatch:null,lastRenderedReducer:null,lastRenderedState:null};return t.queue=n,t=Ls.bind(null,I,!0,n),n.dispatch=t,[e,t]},useMemoCache:Lo,useCacheRefresh:function(){return No().memoizedState=Ns.bind(null,I)},useEffectEvent:function(e){var t=No(),n={impl:e};return t.memoizedState=n,function(){if(G&2)throw Error(i(440));return n.impl.apply(void 0,arguments)}}},Us={readContext:sa,use:Io,useCallback:xs,useContext:sa,useEffect:ps,useImperativeHandle:ys,useInsertionEffect:gs,useLayoutEffect:_s,useMemo:Ss,useReducer:zo,useRef:ls,useState:function(){return zo(Ro)},useDebugValue:bs,useDeferredValue:function(e,t){return ws(B(),L.memoizedState,e,t)},useTransition:function(){var e=zo(Ro)[0],t=B().memoizedState;return[typeof e==`boolean`?e:Fo(e),t]},useSyncExternalStore:Ho,useId:js,useHostTransitionStatus:As,useFormState:is,useActionState:is,useOptimistic:function(e,t){return Yo(B(),L,e,t)},useMemoCache:Lo,useCacheRefresh:Ms};Us.useEffectEvent=hs;var Ws={readContext:sa,use:Io,useCallback:xs,useContext:sa,useEffect:ps,useImperativeHandle:ys,useInsertionEffect:gs,useLayoutEffect:_s,useMemo:Ss,useReducer:Vo,useRef:ls,useState:function(){return Vo(Ro)},useDebugValue:bs,useDeferredValue:function(e,t){var n=B();return L===null?Cs(n,e,t):ws(n,L.memoizedState,e,t)},useTransition:function(){var e=Vo(Ro)[0],t=B().memoizedState;return[typeof e==`boolean`?e:Fo(e),t]},useSyncExternalStore:Ho,useId:js,useHostTransitionStatus:As,useFormState:ss,useActionState:ss,useOptimistic:function(e,t){var n=B();return L===null?(n.baseState=e,[e,n.queue.dispatch]):Yo(n,L,e,t)},useMemoCache:Lo,useCacheRefresh:Ms};Ws.useEffectEvent=hs;function Gs(e,t,n,r){t=e.memoizedState,n=n(r,t),n=n==null?t:h({},t,n),e.memoizedState=n,e.lanes===0&&(e.updateQueue.baseState=n)}var Ks={enqueueSetState:function(e,t,n){e=e._reactInternals;var r=pu(),i=Ja(r);i.payload=t,n!=null&&(i.callback=n),t=Ya(e,i,r),t!==null&&(hu(t,e,r),Xa(t,e,r))},enqueueReplaceState:function(e,t,n){e=e._reactInternals;var r=pu(),i=Ja(r);i.tag=1,i.payload=t,n!=null&&(i.callback=n),t=Ya(e,i,r),t!==null&&(hu(t,e,r),Xa(t,e,r))},enqueueForceUpdate:function(e,t){e=e._reactInternals;var n=pu(),r=Ja(n);r.tag=2,t!=null&&(r.callback=t),t=Ya(e,r,n),t!==null&&(hu(t,e,n),Xa(t,e,n))}};function qs(e,t,n,r,i,a,o){return e=e.stateNode,typeof e.shouldComponentUpdate==`function`?e.shouldComponentUpdate(r,a,o):t.prototype&&t.prototype.isPureReactComponent?!Ar(n,r)||!Ar(i,a):!0}function Js(e,t,n,r){e=t.state,typeof t.componentWillReceiveProps==`function`&&t.componentWillReceiveProps(n,r),typeof t.UNSAFE_componentWillReceiveProps==`function`&&t.UNSAFE_componentWillReceiveProps(n,r),t.state!==e&&Ks.enqueueReplaceState(t,t.state,null)}function Ys(e,t){var n=t;if(`ref`in t)for(var r in n={},t)r!==`ref`&&(n[r]=t[r]);if(e=e.defaultProps)for(var i in n===t&&(n=h({},n)),e)n[i]===void 0&&(n[i]=e[i]);return n}function Xs(e){ri(e)}function Zs(e){console.error(e)}function Qs(e){ri(e)}function $s(e,t){try{var n=e.onUncaughtError;n(t.value,{componentStack:t.stack})}catch(e){setTimeout(function(){throw e})}}function ec(e,t,n){try{var r=e.onCaughtError;r(n.value,{componentStack:n.stack,errorBoundary:t.tag===1?t.stateNode:null})}catch(e){setTimeout(function(){throw e})}}function tc(e,t,n){return n=Ja(n),n.tag=3,n.payload={element:null},n.callback=function(){$s(e,t)},n}function nc(e){return e=Ja(e),e.tag=3,e}function rc(e,t,n,r){var i=n.type.getDerivedStateFromError;if(typeof i==`function`){var a=r.value;e.payload=function(){return i(a)},e.callback=function(){ec(t,n,r)}}var o=n.stateNode;o!==null&&typeof o.componentDidCatch==`function`&&(e.callback=function(){ec(t,n,r),typeof i!=`function`&&(ru===null?ru=new Set([this]):ru.add(this));var e=r.stack;this.componentDidCatch(r.value,{componentStack:e===null?``:e})})}function ic(e,t,n,r,a){if(n.flags|=32768,typeof r==`object`&&r&&typeof r.then==`function`){if(t=n.alternate,t!==null&&ia(t,n,a,!0),n=co.current,n!==null){switch(n.tag){case 31:case 13:return lo===null?Du():n.alternate===null&&X===0&&(X=3),n.flags&=-257,n.flags|=65536,n.lanes=a,r===Aa?n.flags|=16384:(t=n.updateQueue,t===null?n.updateQueue=new Set([r]):t.add(r),Gu(e,r,a)),!1;case 22:return n.flags|=65536,r===Aa?n.flags|=16384:(t=n.updateQueue,t===null?(t={transitions:null,markerInstances:null,retryQueue:new Set([r])},n.updateQueue=t):(n=t.retryQueue,n===null?t.retryQueue=new Set([r]):n.add(r)),Gu(e,r,a)),!1}throw Error(i(435,n.tag))}return Gu(e,r,a),Du(),!1}if(N)return t=co.current,t===null?(r!==Ui&&(t=Error(i(423),{cause:r}),Xi(Ti(t,n))),e=e.current.alternate,e.flags|=65536,a&=-a,e.lanes|=a,r=Ti(r,n),a=tc(e.stateNode,r,a),Za(e,a),X!==4&&(X=2)):(!(t.flags&65536)&&(t.flags|=256),t.flags|=65536,t.lanes=a,r!==Ui&&(e=Error(i(422),{cause:r}),Xi(Ti(e,n)))),!1;var o=Error(i(520),{cause:r});if(o=Ti(o,n),Xl===null?Xl=[o]:Xl.push(o),X!==4&&(X=2),t===null)return!0;r=Ti(r,n),n=t;do{switch(n.tag){case 3:return n.flags|=65536,e=a&-a,n.lanes|=e,e=tc(n.stateNode,r,e),Za(n,e),!1;case 1:if(t=n.type,o=n.stateNode,!(n.flags&128)&&(typeof t.getDerivedStateFromError==`function`||o!==null&&typeof o.componentDidCatch==`function`&&(ru===null||!ru.has(o))))return n.flags|=65536,a&=-a,n.lanes|=a,a=nc(a),rc(a,e,n,r),Za(n,a),!1}n=n.return}while(n!==null);return!1}var ac=Error(i(461)),V=!1;function oc(e,t,n,r){t.child=e===null?Wa(t,null,n,r):Ua(t,e.child,n,r)}function sc(e,t,n,r,i){n=n.render;var a=t.ref;if(`ref`in r){var o={};for(var s in r)s!==`ref`&&(o[s]=r[s])}else o=r;return oa(t),r=Eo(e,t,n,o,a,i),s=Ao(),e!==null&&!V?(jo(e,t,i),jc(e,t,i)):(N&&s&&Li(t),t.flags|=1,oc(e,t,r,i),t.child)}function cc(e,t,n,r,i){if(e===null){var a=n.type;return typeof a==`function`&&!gi(a)&&a.defaultProps===void 0&&n.compare===null?(t.tag=15,t.type=a,lc(e,t,a,r,i)):(e=yi(n.type,null,r,t,t.mode,i),e.ref=t.ref,e.return=t,t.child=e)}if(a=e.child,!Mc(e,i)){var o=a.memoizedProps;if(n=n.compare,n=n===null?Ar:n,n(o,r)&&e.ref===t.ref)return jc(e,t,i)}return t.flags|=1,e=_i(a,r),e.ref=t.ref,e.return=t,t.child=e}function lc(e,t,n,r,i){if(e!==null){var a=e.memoizedProps;if(Ar(a,r)&&e.ref===t.ref){if(V=!1,t.pendingProps=r=a,Mc(e,i))e.flags&131072&&(V=!0);else return t.lanes=e.lanes,jc(e,t,i)}}return _c(e,t,n,r,i)}function uc(e,t,n,r){var i=r.children,a=e===null?null:e.memoizedState;if(e===null&&t.stateNode===null&&(t.stateNode={_visibility:1,_pendingMarkers:null,_retryCache:null,_transitions:null}),r.mode===`hidden`){if(t.flags&128){if(a=a===null?n:a.baseLanes|n,e!==null){for(r=t.child=e.child,i=0;r!==null;)i=i|r.lanes|r.childLanes,r=r.sibling;r=i&~a}else r=0,t.child=null;return fc(e,t,a,n,r)}if(n&536870912)t.memoizedState={baseLanes:0,cachePool:null},e!==null&&Ta(t,a===null?null:a.cachePool),a===null?oo():ao(t,a),po(t);else return r=t.lanes=536870912,fc(e,t,a===null?n:a.baseLanes|n,n,r)}else a===null?(e!==null&&Ta(t,null),oo(),mo(t)):(Ta(t,a.cachePool),ao(t,a),mo(t),t.memoizedState=null);return oc(e,t,i,n),t.child}function dc(e,t){return e!==null&&e.tag===22||t.stateNode!==null||(t.stateNode={_visibility:1,_pendingMarkers:null,_retryCache:null,_transitions:null}),t.sibling}function fc(e,t,n,r,i){var a=wa();return a=a===null?null:{parent:P._currentValue,pool:a},t.memoizedState={baseLanes:n,cachePool:a},e!==null&&Ta(t,null),oo(),po(t),e!==null&&ia(e,t,r,!0),t.childLanes=i,null}function pc(e,t){return t=Ec({mode:t.mode,children:t.children},e.mode),t.ref=e.ref,e.child=t,t.return=e,t}function mc(e,t,n){return Ua(t,e.child,null,n),e=pc(t,t.pendingProps),e.flags|=2,ho(t),t.memoizedState=null,e}function hc(e,t,n){var r=t.pendingProps,a=!!(t.flags&128);if(t.flags&=-129,e===null){if(N){if(r.mode===`hidden`)return e=pc(t,r),t.lanes=536870912,dc(null,e);if(fo(t),(e=M)?(e=rf(e,Hi),e=e!==null&&e.data===`&`?e:null,e!==null&&(t.memoizedState={dehydrated:e,treeContext:Mi===null?null:{id:Ni,overflow:Pi},retryLane:536870912,hydrationErrors:null},n=Si(e),n.return=t,t.child=n,Bi=t,M=null)):e=null,e===null)throw Wi(t);return t.lanes=536870912,null}return pc(t,r)}var o=e.memoizedState;if(o!==null){var s=o.dehydrated;if(fo(t),a){if(t.flags&256)t.flags&=-257,t=mc(e,t,n);else if(t.memoizedState!==null)t.child=e.child,t.flags|=128,t=null;else throw Error(i(558))}else if(V||ia(e,t,n,!1),a=(n&e.childLanes)!==0,V||a){if(r=K,r!==null&&(s=ut(r,n),s!==0&&s!==o.retryLane))throw o.retryLane=s,ui(e,s),hu(r,e,s),ac;Du(),t=mc(e,t,n)}else e=o.treeContext,M=cf(s.nextSibling),Bi=t,N=!0,Vi=null,Hi=!1,e!==null&&zi(t,e),t=pc(t,r),t.flags|=4096;return t}return e=_i(e.child,{mode:r.mode,children:r.children}),e.ref=t.ref,t.child=e,e.return=t,e}function gc(e,t){var n=t.ref;if(n===null)e!==null&&e.ref!==null&&(t.flags|=4194816);else{if(typeof n!=`function`&&typeof n!=`object`)throw Error(i(284));(e===null||e.ref!==n)&&(t.flags|=4194816)}}function _c(e,t,n,r,i){return oa(t),n=Eo(e,t,n,r,void 0,i),r=Ao(),e!==null&&!V?(jo(e,t,i),jc(e,t,i)):(N&&r&&Li(t),t.flags|=1,oc(e,t,n,i),t.child)}function vc(e,t,n,r,i,a){return oa(t),t.updateQueue=null,n=Oo(t,r,n,i),Do(e),r=Ao(),e!==null&&!V?(jo(e,t,a),jc(e,t,a)):(N&&r&&Li(t),t.flags|=1,oc(e,t,n,a),t.child)}function yc(e,t,n,r,i){if(oa(t),t.stateNode===null){var a=pi,o=n.contextType;typeof o==`object`&&o&&(a=sa(o)),a=new n(r,a),t.memoizedState=a.state!==null&&a.state!==void 0?a.state:null,a.updater=Ks,t.stateNode=a,a._reactInternals=t,a=t.stateNode,a.props=r,a.state=t.memoizedState,a.refs={},Ka(t),o=n.contextType,a.context=typeof o==`object`&&o?sa(o):pi,a.state=t.memoizedState,o=n.getDerivedStateFromProps,typeof o==`function`&&(Gs(t,n,o,r),a.state=t.memoizedState),typeof n.getDerivedStateFromProps==`function`||typeof a.getSnapshotBeforeUpdate==`function`||typeof a.UNSAFE_componentWillMount!=`function`&&typeof a.componentWillMount!=`function`||(o=a.state,typeof a.componentWillMount==`function`&&a.componentWillMount(),typeof a.UNSAFE_componentWillMount==`function`&&a.UNSAFE_componentWillMount(),o!==a.state&&Ks.enqueueReplaceState(a,a.state,null),eo(t,r,a,i),$a(),a.state=t.memoizedState),typeof a.componentDidMount==`function`&&(t.flags|=4194308),r=!0}else if(e===null){a=t.stateNode;var s=t.memoizedProps,c=Ys(n,s);a.props=c;var l=a.context,u=n.contextType;o=pi,typeof u==`object`&&u&&(o=sa(u));var d=n.getDerivedStateFromProps;u=typeof d==`function`||typeof a.getSnapshotBeforeUpdate==`function`,s=t.pendingProps!==s,u||typeof a.UNSAFE_componentWillReceiveProps!=`function`&&typeof a.componentWillReceiveProps!=`function`||(s||l!==o)&&Js(t,a,r,o),Ga=!1;var f=t.memoizedState;a.state=f,eo(t,r,a,i),$a(),l=t.memoizedState,s||f!==l||Ga?(typeof d==`function`&&(Gs(t,n,d,r),l=t.memoizedState),(c=Ga||qs(t,n,c,r,f,l,o))?(u||typeof a.UNSAFE_componentWillMount!=`function`&&typeof a.componentWillMount!=`function`||(typeof a.componentWillMount==`function`&&a.componentWillMount(),typeof a.UNSAFE_componentWillMount==`function`&&a.UNSAFE_componentWillMount()),typeof a.componentDidMount==`function`&&(t.flags|=4194308)):(typeof a.componentDidMount==`function`&&(t.flags|=4194308),t.memoizedProps=r,t.memoizedState=l),a.props=r,a.state=l,a.context=o,r=c):(typeof a.componentDidMount==`function`&&(t.flags|=4194308),r=!1)}else{a=t.stateNode,qa(e,t),o=t.memoizedProps,u=Ys(n,o),a.props=u,d=t.pendingProps,f=a.context,l=n.contextType,c=pi,typeof l==`object`&&l&&(c=sa(l)),s=n.getDerivedStateFromProps,(l=typeof s==`function`||typeof a.getSnapshotBeforeUpdate==`function`)||typeof a.UNSAFE_componentWillReceiveProps!=`function`&&typeof a.componentWillReceiveProps!=`function`||(o!==d||f!==c)&&Js(t,a,r,c),Ga=!1,f=t.memoizedState,a.state=f,eo(t,r,a,i),$a();var p=t.memoizedState;o!==d||f!==p||Ga||e!==null&&e.dependencies!==null&&aa(e.dependencies)?(typeof s==`function`&&(Gs(t,n,s,r),p=t.memoizedState),(u=Ga||qs(t,n,u,r,f,p,c)||e!==null&&e.dependencies!==null&&aa(e.dependencies))?(l||typeof a.UNSAFE_componentWillUpdate!=`function`&&typeof a.componentWillUpdate!=`function`||(typeof a.componentWillUpdate==`function`&&a.componentWillUpdate(r,p,c),typeof a.UNSAFE_componentWillUpdate==`function`&&a.UNSAFE_componentWillUpdate(r,p,c)),typeof a.componentDidUpdate==`function`&&(t.flags|=4),typeof a.getSnapshotBeforeUpdate==`function`&&(t.flags|=1024)):(typeof a.componentDidUpdate!=`function`||o===e.memoizedProps&&f===e.memoizedState||(t.flags|=4),typeof a.getSnapshotBeforeUpdate!=`function`||o===e.memoizedProps&&f===e.memoizedState||(t.flags|=1024),t.memoizedProps=r,t.memoizedState=p),a.props=r,a.state=p,a.context=c,r=u):(typeof a.componentDidUpdate!=`function`||o===e.memoizedProps&&f===e.memoizedState||(t.flags|=4),typeof a.getSnapshotBeforeUpdate!=`function`||o===e.memoizedProps&&f===e.memoizedState||(t.flags|=1024),r=!1)}return a=r,gc(e,t),r=!!(t.flags&128),a||r?(a=t.stateNode,n=r&&typeof n.getDerivedStateFromError!=`function`?null:a.render(),t.flags|=1,e!==null&&r?(t.child=Ua(t,e.child,null,i),t.child=Ua(t,null,n,i)):oc(e,t,n,i),t.memoizedState=a.state,e=t.child):e=jc(e,t,i),e}function bc(e,t,n,r){return Ji(),t.flags|=256,oc(e,t,n,r),t.child}var xc={dehydrated:null,treeContext:null,retryLane:0,hydrationErrors:null};function Sc(e){return{baseLanes:e,cachePool:Ea()}}function Cc(e,t,n){return e=e===null?0:e.childLanes&~n,t&&(e|=Jl),e}function wc(e,t,n){var r=t.pendingProps,a=!1,o=!!(t.flags&128),s;if((s=o)||(s=e!==null&&e.memoizedState===null?!1:!!(F.current&2)),s&&(a=!0,t.flags&=-129),s=!!(t.flags&32),t.flags&=-33,e===null){if(N){if(a?uo(t):mo(t),(e=M)?(e=rf(e,Hi),e=e!==null&&e.data!==`&`?e:null,e!==null&&(t.memoizedState={dehydrated:e,treeContext:Mi===null?null:{id:Ni,overflow:Pi},retryLane:536870912,hydrationErrors:null},n=Si(e),n.return=t,t.child=n,Bi=t,M=null)):e=null,e===null)throw Wi(t);return of(e)?t.lanes=32:t.lanes=536870912,null}var c=r.children;return r=r.fallback,a?(mo(t),a=t.mode,c=Ec({mode:`hidden`,children:c},a),r=bi(r,a,n,null),c.return=t,r.return=t,c.sibling=r,t.child=c,r=t.child,r.memoizedState=Sc(n),r.childLanes=Cc(e,s,n),t.memoizedState=xc,dc(null,r)):(uo(t),Tc(t,c))}var l=e.memoizedState;if(l!==null&&(c=l.dehydrated,c!==null)){if(o)t.flags&256?(uo(t),t.flags&=-257,t=Dc(e,t,n)):t.memoizedState===null?(mo(t),c=r.fallback,a=t.mode,r=Ec({mode:`visible`,children:r.children},a),c=bi(c,a,n,null),c.flags|=2,r.return=t,c.return=t,r.sibling=c,t.child=r,Ua(t,e.child,null,n),r=t.child,r.memoizedState=Sc(n),r.childLanes=Cc(e,s,n),t.memoizedState=xc,t=dc(null,r)):(mo(t),t.child=e.child,t.flags|=128,t=null);else if(uo(t),of(c)){if(s=c.nextSibling&&c.nextSibling.dataset,s)var u=s.dgst;s=u,r=Error(i(419)),r.stack=``,r.digest=s,Xi({value:r,source:null,stack:null}),t=Dc(e,t,n)}else if(V||ia(e,t,n,!1),s=(n&e.childLanes)!==0,V||s){if(s=K,s!==null&&(r=ut(s,n),r!==0&&r!==l.retryLane))throw l.retryLane=r,ui(e,r),hu(s,e,r),ac;af(c)||Du(),t=Dc(e,t,n)}else af(c)?(t.flags|=192,t.child=e.child,t=null):(e=l.treeContext,M=cf(c.nextSibling),Bi=t,N=!0,Vi=null,Hi=!1,e!==null&&zi(t,e),t=Tc(t,r.children),t.flags|=4096);return t}return a?(mo(t),c=r.fallback,a=t.mode,l=e.child,u=l.sibling,r=_i(l,{mode:`hidden`,children:r.children}),r.subtreeFlags=l.subtreeFlags&65011712,u===null?(c=bi(c,a,n,null),c.flags|=2):c=_i(u,c),c.return=t,r.return=t,r.sibling=c,t.child=r,dc(null,r),r=t.child,c=e.child.memoizedState,c===null?c=Sc(n):(a=c.cachePool,a===null?a=Ea():(l=P._currentValue,a=a.parent===l?a:{parent:l,pool:l}),c={baseLanes:c.baseLanes|n,cachePool:a}),r.memoizedState=c,r.childLanes=Cc(e,s,n),t.memoizedState=xc,dc(e.child,r)):(uo(t),n=e.child,e=n.sibling,n=_i(n,{mode:`visible`,children:r.children}),n.return=t,n.sibling=null,e!==null&&(s=t.deletions,s===null?(t.deletions=[e],t.flags|=16):s.push(e)),t.child=n,t.memoizedState=null,n)}function Tc(e,t){return t=Ec({mode:`visible`,children:t},e.mode),t.return=e,e.child=t}function Ec(e,t){return e=hi(22,e,null,t),e.lanes=0,e}function Dc(e,t,n){return Ua(t,e.child,null,n),e=Tc(t,t.pendingProps.children),e.flags|=2,t.memoizedState=null,e}function Oc(e,t,n){e.lanes|=t;var r=e.alternate;r!==null&&(r.lanes|=t),na(e.return,t,n)}function kc(e,t,n,r,i,a){var o=e.memoizedState;o===null?e.memoizedState={isBackwards:t,rendering:null,renderingStartTime:0,last:r,tail:n,tailMode:i,treeForkCount:a}:(o.isBackwards=t,o.rendering=null,o.renderingStartTime=0,o.last=r,o.tail=n,o.tailMode=i,o.treeForkCount=a)}function Ac(e,t,n){var r=t.pendingProps,i=r.revealOrder,a=r.tail;r=r.children;var o=F.current,s=!!(o&2);if(s?(o=o&1|2,t.flags|=128):o&=1,O(F,o),oc(e,t,r,n),r=N?ki:0,!s&&e!==null&&e.flags&128)a:for(e=t.child;e!==null;){if(e.tag===13)e.memoizedState!==null&&Oc(e,n,t);else if(e.tag===19)Oc(e,n,t);else if(e.child!==null){e.child.return=e,e=e.child;continue}if(e===t)break a;for(;e.sibling===null;){if(e.return===null||e.return===t)break a;e=e.return}e.sibling.return=e.return,e=e.sibling}switch(i){case`forwards`:for(n=t.child,i=null;n!==null;)e=n.alternate,e!==null&&go(e)===null&&(i=n),n=n.sibling;n=i,n===null?(i=t.child,t.child=null):(i=n.sibling,n.sibling=null),kc(t,!1,i,n,a,r);break;case`backwards`:case`unstable_legacy-backwards`:for(n=null,i=t.child,t.child=null;i!==null;){if(e=i.alternate,e!==null&&go(e)===null){t.child=i;break}e=i.sibling,i.sibling=n,n=i,i=e}kc(t,!0,n,null,a,r);break;case`together`:kc(t,!1,null,null,void 0,r);break;default:t.memoizedState=null}return t.child}function jc(e,t,n){if(e!==null&&(t.dependencies=e.dependencies),Gl|=t.lanes,(n&t.childLanes)===0){if(e!==null){if(ia(e,t,n,!1),(n&t.childLanes)===0)return null}else return null}if(e!==null&&t.child!==e.child)throw Error(i(153));if(t.child!==null){for(e=t.child,n=_i(e,e.pendingProps),t.child=n,n.return=t;e.sibling!==null;)e=e.sibling,n=n.sibling=_i(e,e.pendingProps),n.return=t;n.sibling=null}return t.child}function Mc(e,t){return(e.lanes&t)!==0||(e=e.dependencies,!!(e!==null&&aa(e)))}function Nc(e,t,n){switch(t.tag){case 3:ye(t,t.stateNode.containerInfo),ea(t,P,e.memoizedState.cache),Ji();break;case 27:case 5:xe(t);break;case 4:ye(t,t.stateNode.containerInfo);break;case 10:ea(t,t.type,t.memoizedProps.value);break;case 31:if(t.memoizedState!==null)return t.flags|=128,fo(t),null;break;case 13:var r=t.memoizedState;if(r!==null)return r.dehydrated===null?(n&t.child.childLanes)===0?(uo(t),e=jc(e,t,n),e===null?null:e.sibling):wc(e,t,n):(uo(t),t.flags|=128,null);uo(t);break;case 19:var i=!!(e.flags&128);if(r=(n&t.childLanes)!==0,r||=(ia(e,t,n,!1),(n&t.childLanes)!==0),i){if(r)return Ac(e,t,n);t.flags|=128}if(i=t.memoizedState,i!==null&&(i.rendering=null,i.tail=null,i.lastEffect=null),O(F,F.current),r)break;return null;case 22:return t.lanes=0,uc(e,t,n,t.pendingProps);case 24:ea(t,P,e.memoizedState.cache)}return jc(e,t,n)}function Pc(e,t,n){if(e!==null){if(e.memoizedProps!==t.pendingProps)V=!0;else{if(!Mc(e,n)&&!(t.flags&128))return V=!1,Nc(e,t,n);V=!!(e.flags&131072)}}else V=!1,N&&t.flags&1048576&&Ii(t,ki,t.index);switch(t.lanes=0,t.tag){case 16:a:{var r=t.pendingProps;if(e=Na(t.elementType),t.type=e,typeof e==`function`)gi(e)?(r=Ys(e,r),t.tag=1,t=yc(null,t,e,r,n)):(t.tag=0,t=_c(null,t,e,r,n));else{if(e!=null){var a=e.$$typeof;if(a===C){t.tag=11,t=sc(null,t,e,r,n);break a}if(a===re){t.tag=14,t=cc(null,t,e,r,n);break a}}throw t=le(e)||e,Error(i(306,t,``))}}return t;case 0:return _c(e,t,t.type,t.pendingProps,n);case 1:return r=t.type,a=Ys(r,t.pendingProps),yc(e,t,r,a,n);case 3:a:{if(ye(t,t.stateNode.containerInfo),e===null)throw Error(i(387));r=t.pendingProps;var o=t.memoizedState;a=o.element,qa(e,t),eo(t,r,null,n);var s=t.memoizedState;if(r=s.cache,ea(t,P,r),r!==o.cache&&ra(t,[P],n,!0),$a(),r=s.element,o.isDehydrated){if(o={element:r,isDehydrated:!1,cache:s.cache},t.updateQueue.baseState=o,t.memoizedState=o,t.flags&256){t=bc(e,t,r,n);break a}if(r!==a){a=Ti(Error(i(424)),t),Xi(a),t=bc(e,t,r,n);break a}switch(e=t.stateNode.containerInfo,e.nodeType){case 9:e=e.body;break;default:e=e.nodeName===`HTML`?e.ownerDocument.body:e}for(M=cf(e.firstChild),Bi=t,N=!0,Vi=null,Hi=!0,n=Wa(t,null,r,n),t.child=n;n;)n.flags=n.flags&-3|4096,n=n.sibling}else{if(Ji(),r===a){t=jc(e,t,n);break a}oc(e,t,r,n)}t=t.child}return t;case 26:return gc(e,t),e===null?(n=kf(t.type,null,t.pendingProps,null))?t.memoizedState=n:N||(n=t.type,e=t.pendingProps,r=Bd(_e.current).createElement(n),r[gt]=t,r[_t]=e,Pd(r,n,e),kt(r),t.stateNode=r):t.memoizedState=kf(t.type,e.memoizedProps,t.pendingProps,e.memoizedState),null;case 27:return xe(t),e===null&&N&&(r=t.stateNode=ff(t.type,t.pendingProps,_e.current),Bi=t,Hi=!0,a=M,Zd(t.type)?(lf=a,M=cf(r.firstChild)):M=a),oc(e,t,t.pendingProps.children,n),gc(e,t),e===null&&(t.flags|=4194304),t.child;case 5:return e===null&&N&&((a=r=M)&&(r=tf(r,t.type,t.pendingProps,Hi),r===null?a=!1:(t.stateNode=r,Bi=t,M=cf(r.firstChild),Hi=!1,a=!0)),a||Wi(t)),xe(t),a=t.type,o=t.pendingProps,s=e===null?null:e.memoizedProps,r=o.children,Ud(a,o)?r=null:s!==null&&Ud(a,s)&&(t.flags|=32),t.memoizedState!==null&&(a=Eo(e,t,ko,null,null,n),Qf._currentValue=a),gc(e,t),oc(e,t,r,n),t.child;case 6:return e===null&&N&&((e=n=M)&&(n=nf(n,t.pendingProps,Hi),n===null?e=!1:(t.stateNode=n,Bi=t,M=null,e=!0)),e||Wi(t)),null;case 13:return wc(e,t,n);case 4:return ye(t,t.stateNode.containerInfo),r=t.pendingProps,e===null?t.child=Ua(t,null,r,n):oc(e,t,r,n),t.child;case 11:return sc(e,t,t.type,t.pendingProps,n);case 7:return oc(e,t,t.pendingProps,n),t.child;case 8:return oc(e,t,t.pendingProps.children,n),t.child;case 12:return oc(e,t,t.pendingProps.children,n),t.child;case 10:return r=t.pendingProps,ea(t,t.type,r.value),oc(e,t,r.children,n),t.child;case 9:return a=t.type._context,r=t.pendingProps.children,oa(t),a=sa(a),r=r(a),t.flags|=1,oc(e,t,r,n),t.child;case 14:return cc(e,t,t.type,t.pendingProps,n);case 15:return lc(e,t,t.type,t.pendingProps,n);case 19:return Ac(e,t,n);case 31:return hc(e,t,n);case 22:return uc(e,t,n,t.pendingProps);case 24:return oa(t),r=sa(P),e===null?(a=wa(),a===null&&(a=K,o=pa(),a.pooledCache=o,o.refCount++,o!==null&&(a.pooledCacheLanes|=n),a=o),t.memoizedState={parent:r,cache:a},Ka(t),ea(t,P,a)):((e.lanes&n)!==0&&(qa(e,t),eo(t,null,null,n),$a()),a=e.memoizedState,o=t.memoizedState,a.parent===r?(r=o.cache,ea(t,P,r),r!==a.cache&&ra(t,[P],n,!0)):(a={parent:r,cache:r},t.memoizedState=a,t.lanes===0&&(t.memoizedState=t.updateQueue.baseState=a),ea(t,P,r))),oc(e,t,t.pendingProps.children,n),t.child;case 29:throw t.pendingProps}throw Error(i(156,t.tag))}function Fc(e){e.flags|=4}function Ic(e,t,n,r,i){if((t=!!(e.mode&32))&&(t=!1),t){if(e.flags|=16777216,(i&335544128)===i){if(e.stateNode.complete)e.flags|=8192;else if(wu())e.flags|=8192;else throw Pa=Aa,Oa}}else e.flags&=-16777217}function Lc(e,t){if(t.type!==`stylesheet`||t.state.loading&4)e.flags&=-16777217;else if(e.flags|=16777216,!Wf(t)){if(wu())e.flags|=8192;else throw Pa=Aa,Oa}}function Rc(e,t){t!==null&&(e.flags|=4),e.flags&16384&&(t=e.tag===22?536870912:it(),e.lanes|=t,Yl|=t)}function zc(e,t){if(!N)switch(e.tailMode){case`hidden`:t=e.tail;for(var n=null;t!==null;)t.alternate!==null&&(n=t),t=t.sibling;n===null?e.tail=null:n.sibling=null;break;case`collapsed`:n=e.tail;for(var r=null;n!==null;)n.alternate!==null&&(r=n),n=n.sibling;r===null?t||e.tail===null?e.tail=null:e.tail.sibling=null:r.sibling=null}}function H(e){var t=e.alternate!==null&&e.alternate.child===e.child,n=0,r=0;if(t)for(var i=e.child;i!==null;)n|=i.lanes|i.childLanes,r|=i.subtreeFlags&65011712,r|=i.flags&65011712,i.return=e,i=i.sibling;else for(i=e.child;i!==null;)n|=i.lanes|i.childLanes,r|=i.subtreeFlags,r|=i.flags,i.return=e,i=i.sibling;return e.subtreeFlags|=r,e.childLanes=n,t}function Bc(e,t,n){var r=t.pendingProps;switch(Ri(t),t.tag){case 16:case 15:case 0:case 11:case 7:case 8:case 12:case 9:case 14:return H(t),null;case 1:return H(t),null;case 3:return n=t.stateNode,r=null,e!==null&&(r=e.memoizedState.cache),t.memoizedState.cache!==r&&(t.flags|=2048),ta(P),be(),n.pendingContext&&(n.context=n.pendingContext,n.pendingContext=null),(e===null||e.child===null)&&(qi(t)?Fc(t):e===null||e.memoizedState.isDehydrated&&!(t.flags&256)||(t.flags|=1024,Yi())),H(t),null;case 26:var a=t.type,o=t.memoizedState;return e===null?(Fc(t),o===null?(H(t),Ic(t,a,null,r,n)):(H(t),Lc(t,o))):o?o===e.memoizedState?(H(t),t.flags&=-16777217):(Fc(t),H(t),Lc(t,o)):(e=e.memoizedProps,e!==r&&Fc(t),H(t),Ic(t,a,e,r,n)),null;case 27:if(Se(t),n=_e.current,a=t.type,e!==null&&t.stateNode!=null)e.memoizedProps!==r&&Fc(t);else{if(!r){if(t.stateNode===null)throw Error(i(166));return H(t),null}e=he.current,qi(t)?Gi(t,e):(e=ff(a,r,n),t.stateNode=e,Fc(t))}return H(t),null;case 5:if(Se(t),a=t.type,e!==null&&t.stateNode!=null)e.memoizedProps!==r&&Fc(t);else{if(!r){if(t.stateNode===null)throw Error(i(166));return H(t),null}if(o=he.current,qi(t))Gi(t,o);else{var s=Bd(_e.current);switch(o){case 1:o=s.createElementNS(`http://www.w3.org/2000/svg`,a);break;case 2:o=s.createElementNS(`http://www.w3.org/1998/Math/MathML`,a);break;default:switch(a){case`svg`:o=s.createElementNS(`http://www.w3.org/2000/svg`,a);break;case`math`:o=s.createElementNS(`http://www.w3.org/1998/Math/MathML`,a);break;case`script`:o=s.createElement(`div`),o.innerHTML=`<script><\/script>`,o=o.removeChild(o.firstChild);break;case`select`:o=typeof r.is==`string`?s.createElement(`select`,{is:r.is}):s.createElement(`select`),r.multiple?o.multiple=!0:r.size&&(o.size=r.size);break;default:o=typeof r.is==`string`?s.createElement(a,{is:r.is}):s.createElement(a)}}o[gt]=t,o[_t]=r;a:for(s=t.child;s!==null;){if(s.tag===5||s.tag===6)o.appendChild(s.stateNode);else if(s.tag!==4&&s.tag!==27&&s.child!==null){s.child.return=s,s=s.child;continue}if(s===t)break a;for(;s.sibling===null;){if(s.return===null||s.return===t)break a;s=s.return}s.sibling.return=s.return,s=s.sibling}t.stateNode=o;a:switch(Pd(o,a,r),a){case`button`:case`input`:case`select`:case`textarea`:r=!!r.autoFocus;break a;case`img`:r=!0;break a;default:r=!1}r&&Fc(t)}}return H(t),Ic(t,t.type,e===null?null:e.memoizedProps,t.pendingProps,n),null;case 6:if(e&&t.stateNode!=null)e.memoizedProps!==r&&Fc(t);else{if(typeof r!=`string`&&t.stateNode===null)throw Error(i(166));if(e=_e.current,qi(t)){if(e=t.stateNode,n=t.memoizedProps,r=null,a=Bi,a!==null)switch(a.tag){case 27:case 5:r=a.memoizedProps}e[gt]=t,e=!!(e.nodeValue===n||r!==null&&!0===r.suppressHydrationWarning||Md(e.nodeValue,n)),e||Wi(t,!0)}else e=Bd(e).createTextNode(r),e[gt]=t,t.stateNode=e}return H(t),null;case 31:if(n=t.memoizedState,e===null||e.memoizedState!==null){if(r=qi(t),n!==null){if(e===null){if(!r)throw Error(i(318));if(e=t.memoizedState,e=e===null?null:e.dehydrated,!e)throw Error(i(557));e[gt]=t}else Ji(),!(t.flags&128)&&(t.memoizedState=null),t.flags|=4;H(t),e=!1}else n=Yi(),e!==null&&e.memoizedState!==null&&(e.memoizedState.hydrationErrors=n),e=!0;if(!e)return t.flags&256?(ho(t),t):(ho(t),null);if(t.flags&128)throw Error(i(558))}return H(t),null;case 13:if(r=t.memoizedState,e===null||e.memoizedState!==null&&e.memoizedState.dehydrated!==null){if(a=qi(t),r!==null&&r.dehydrated!==null){if(e===null){if(!a)throw Error(i(318));if(a=t.memoizedState,a=a===null?null:a.dehydrated,!a)throw Error(i(317));a[gt]=t}else Ji(),!(t.flags&128)&&(t.memoizedState=null),t.flags|=4;H(t),a=!1}else a=Yi(),e!==null&&e.memoizedState!==null&&(e.memoizedState.hydrationErrors=a),a=!0;if(!a)return t.flags&256?(ho(t),t):(ho(t),null)}return ho(t),t.flags&128?(t.lanes=n,t):(n=r!==null,e=e!==null&&e.memoizedState!==null,n&&(r=t.child,a=null,r.alternate!==null&&r.alternate.memoizedState!==null&&r.alternate.memoizedState.cachePool!==null&&(a=r.alternate.memoizedState.cachePool.pool),o=null,r.memoizedState!==null&&r.memoizedState.cachePool!==null&&(o=r.memoizedState.cachePool.pool),o!==a&&(r.flags|=2048)),n!==e&&n&&(t.child.flags|=8192),Rc(t,t.updateQueue),H(t),null);case 4:return be(),e===null&&Sd(t.stateNode.containerInfo),H(t),null;case 10:return ta(t.type),H(t),null;case 19:if(D(F),r=t.memoizedState,r===null)return H(t),null;if(a=!!(t.flags&128),o=r.rendering,o===null){if(a)zc(r,!1);else{if(X!==0||e!==null&&e.flags&128)for(e=t.child;e!==null;){if(o=go(e),o!==null){for(t.flags|=128,zc(r,!1),e=o.updateQueue,t.updateQueue=e,Rc(t,e),t.subtreeFlags=0,e=n,n=t.child;n!==null;)vi(n,e),n=n.sibling;return O(F,F.current&1|2),N&&Fi(t,r.treeForkCount),t.child}e=e.sibling}r.tail!==null&&Fe()>tu&&(t.flags|=128,a=!0,zc(r,!1),t.lanes=4194304)}}else{if(!a){if(e=go(o),e!==null){if(t.flags|=128,a=!0,e=e.updateQueue,t.updateQueue=e,Rc(t,e),zc(r,!0),r.tail===null&&r.tailMode===`hidden`&&!o.alternate&&!N)return H(t),null}else 2*Fe()-r.renderingStartTime>tu&&n!==536870912&&(t.flags|=128,a=!0,zc(r,!1),t.lanes=4194304)}r.isBackwards?(o.sibling=t.child,t.child=o):(e=r.last,e===null?t.child=o:e.sibling=o,r.last=o)}return r.tail===null?(H(t),null):(e=r.tail,r.rendering=e,r.tail=e.sibling,r.renderingStartTime=Fe(),e.sibling=null,n=F.current,O(F,a?n&1|2:n&1),N&&Fi(t,r.treeForkCount),e);case 22:case 23:return ho(t),so(),r=t.memoizedState!==null,e===null?r&&(t.flags|=8192):e.memoizedState!==null!==r&&(t.flags|=8192),r?n&536870912&&!(t.flags&128)&&(H(t),t.subtreeFlags&6&&(t.flags|=8192)):H(t),n=t.updateQueue,n!==null&&Rc(t,n.retryQueue),n=null,e!==null&&e.memoizedState!==null&&e.memoizedState.cachePool!==null&&(n=e.memoizedState.cachePool.pool),r=null,t.memoizedState!==null&&t.memoizedState.cachePool!==null&&(r=t.memoizedState.cachePool.pool),r!==n&&(t.flags|=2048),e!==null&&D(Ca),null;case 24:return n=null,e!==null&&(n=e.memoizedState.cache),t.memoizedState.cache!==n&&(t.flags|=2048),ta(P),H(t),null;case 25:return null;case 30:return null}throw Error(i(156,t.tag))}function Vc(e,t){switch(Ri(t),t.tag){case 1:return e=t.flags,e&65536?(t.flags=e&-65537|128,t):null;case 3:return ta(P),be(),e=t.flags,e&65536&&!(e&128)?(t.flags=e&-65537|128,t):null;case 26:case 27:case 5:return Se(t),null;case 31:if(t.memoizedState!==null){if(ho(t),t.alternate===null)throw Error(i(340));Ji()}return e=t.flags,e&65536?(t.flags=e&-65537|128,t):null;case 13:if(ho(t),e=t.memoizedState,e!==null&&e.dehydrated!==null){if(t.alternate===null)throw Error(i(340));Ji()}return e=t.flags,e&65536?(t.flags=e&-65537|128,t):null;case 19:return D(F),null;case 4:return be(),null;case 10:return ta(t.type),null;case 22:case 23:return ho(t),so(),e!==null&&D(Ca),e=t.flags,e&65536?(t.flags=e&-65537|128,t):null;case 24:return ta(P),null;case 25:return null;default:return null}}function Hc(e,t){switch(Ri(t),t.tag){case 3:ta(P),be();break;case 26:case 27:case 5:Se(t);break;case 4:be();break;case 31:t.memoizedState!==null&&ho(t);break;case 13:ho(t);break;case 19:D(F);break;case 10:ta(t.type);break;case 22:case 23:ho(t),so(),e!==null&&D(Ca);break;case 24:ta(P)}}function Uc(e,t){try{var n=t.updateQueue,r=n===null?null:n.lastEffect;if(r!==null){var i=r.next;n=i;do{if((n.tag&e)===e){r=void 0;var a=n.create,o=n.inst;r=a(),o.destroy=r}n=n.next}while(n!==i)}}catch(e){Z(t,t.return,e)}}function Wc(e,t,n){try{var r=t.updateQueue,i=r===null?null:r.lastEffect;if(i!==null){var a=i.next;r=a;do{if((r.tag&e)===e){var o=r.inst,s=o.destroy;if(s!==void 0){o.destroy=void 0,i=t;var c=n,l=s;try{l()}catch(e){Z(i,c,e)}}}r=r.next}while(r!==a)}}catch(e){Z(t,t.return,e)}}function Gc(e){var t=e.updateQueue;if(t!==null){var n=e.stateNode;try{no(t,n)}catch(t){Z(e,e.return,t)}}}function Kc(e,t,n){n.props=Ys(e.type,e.memoizedProps),n.state=e.memoizedState;try{n.componentWillUnmount()}catch(n){Z(e,t,n)}}function qc(e,t){try{var n=e.ref;if(n!==null){switch(e.tag){case 26:case 27:case 5:var r=e.stateNode;break;case 30:r=e.stateNode;break;default:r=e.stateNode}typeof n==`function`?e.refCleanup=n(r):n.current=r}}catch(n){Z(e,t,n)}}function Jc(e,t){var n=e.ref,r=e.refCleanup;if(n!==null){if(typeof r==`function`)try{r()}catch(n){Z(e,t,n)}finally{e.refCleanup=null,e=e.alternate,e!=null&&(e.refCleanup=null)}else if(typeof n==`function`)try{n(null)}catch(n){Z(e,t,n)}else n.current=null}}function Yc(e){var t=e.type,n=e.memoizedProps,r=e.stateNode;try{a:switch(t){case`button`:case`input`:case`select`:case`textarea`:n.autoFocus&&r.focus();break a;case`img`:n.src?r.src=n.src:n.srcSet&&(r.srcset=n.srcSet)}}catch(t){Z(e,e.return,t)}}function Xc(e,t,n){try{var r=e.stateNode;Fd(r,e.type,n,t),r[_t]=t}catch(t){Z(e,e.return,t)}}function Zc(e){return e.tag===5||e.tag===3||e.tag===26||e.tag===27&&Zd(e.type)||e.tag===4}function Qc(e){a:for(;;){for(;e.sibling===null;){if(e.return===null||Zc(e.return))return null;e=e.return}for(e.sibling.return=e.return,e=e.sibling;e.tag!==5&&e.tag!==6&&e.tag!==18;){if(e.tag===27&&Zd(e.type)||e.flags&2||e.child===null||e.tag===4)continue a;e.child.return=e,e=e.child}if(!(e.flags&2))return e.stateNode}}function $c(e,t,n){var r=e.tag;if(r===5||r===6)e=e.stateNode,t?(n.nodeType===9?n.body:n.nodeName===`HTML`?n.ownerDocument.body:n).insertBefore(e,t):(t=n.nodeType===9?n.body:n.nodeName===`HTML`?n.ownerDocument.body:n,t.appendChild(e),n=n._reactRootContainer,n!=null||t.onclick!==null||(t.onclick=ln));else if(r!==4&&(r===27&&Zd(e.type)&&(n=e.stateNode,t=null),e=e.child,e!==null))for($c(e,t,n),e=e.sibling;e!==null;)$c(e,t,n),e=e.sibling}function el(e,t,n){var r=e.tag;if(r===5||r===6)e=e.stateNode,t?n.insertBefore(e,t):n.appendChild(e);else if(r!==4&&(r===27&&Zd(e.type)&&(n=e.stateNode),e=e.child,e!==null))for(el(e,t,n),e=e.sibling;e!==null;)el(e,t,n),e=e.sibling}function tl(e){var t=e.stateNode,n=e.memoizedProps;try{for(var r=e.type,i=t.attributes;i.length;)t.removeAttributeNode(i[0]);Pd(t,r,n),t[gt]=e,t[_t]=n}catch(t){Z(e,e.return,t)}}var nl=!1,U=!1,rl=!1,il=typeof WeakSet==`function`?WeakSet:Set,al=null;function ol(e,t){if(e=e.containerInfo,Rd=sp,e=Pr(e),Fr(e)){if(`selectionStart`in e)var n={start:e.selectionStart,end:e.selectionEnd};else a:{n=(n=e.ownerDocument)&&n.defaultView||window;var r=n.getSelection&&n.getSelection();if(r&&r.rangeCount!==0){n=r.anchorNode;var a=r.anchorOffset,o=r.focusNode;r=r.focusOffset;try{n.nodeType,o.nodeType}catch{n=null;break a}var s=0,c=-1,l=-1,u=0,d=0,f=e,p=null;b:for(;;){for(var m;f!==n||a!==0&&f.nodeType!==3||(c=s+a),f!==o||r!==0&&f.nodeType!==3||(l=s+r),f.nodeType===3&&(s+=f.nodeValue.length),(m=f.firstChild)!==null;)p=f,f=m;for(;;){if(f===e)break b;if(p===n&&++u===a&&(c=s),p===o&&++d===r&&(l=s),(m=f.nextSibling)!==null)break;f=p,p=f.parentNode}f=m}n=c===-1||l===-1?null:{start:c,end:l}}else n=null}n||={start:0,end:0}}else n=null;for(zd={focusedElem:e,selectionRange:n},sp=!1,al=t;al!==null;)if(t=al,e=t.child,t.subtreeFlags&1028&&e!==null)e.return=t,al=e;else for(;al!==null;){switch(t=al,o=t.alternate,e=t.flags,t.tag){case 0:if(e&4&&(e=t.updateQueue,e=e===null?null:e.events,e!==null))for(n=0;n<e.length;n++)a=e[n],a.ref.impl=a.nextImpl;break;case 11:case 15:break;case 1:if(e&1024&&o!==null){e=void 0,n=t,a=o.memoizedProps,o=o.memoizedState,r=n.stateNode;try{var h=Ys(n.type,a);e=r.getSnapshotBeforeUpdate(h,o),r.__reactInternalSnapshotBeforeUpdate=e}catch(e){Z(n,n.return,e)}}break;case 3:if(e&1024){if(e=t.stateNode.containerInfo,n=e.nodeType,n===9)ef(e);else if(n===1)switch(e.nodeName){case`HEAD`:case`HTML`:case`BODY`:ef(e);break;default:e.textContent=``}}break;case 5:case 26:case 27:case 6:case 4:case 17:break;default:if(e&1024)throw Error(i(163))}if(e=t.sibling,e!==null){e.return=t.return,al=e;break}al=t.return}}function sl(e,t,n){var r=n.flags;switch(n.tag){case 0:case 11:case 15:xl(e,n),r&4&&Uc(5,n);break;case 1:if(xl(e,n),r&4){if(e=n.stateNode,t===null)try{e.componentDidMount()}catch(e){Z(n,n.return,e)}else{var i=Ys(n.type,t.memoizedProps);t=t.memoizedState;try{e.componentDidUpdate(i,t,e.__reactInternalSnapshotBeforeUpdate)}catch(e){Z(n,n.return,e)}}}r&64&&Gc(n),r&512&&qc(n,n.return);break;case 3:if(xl(e,n),r&64&&(e=n.updateQueue,e!==null)){if(t=null,n.child!==null)switch(n.child.tag){case 27:case 5:t=n.child.stateNode;break;case 1:t=n.child.stateNode}try{no(e,t)}catch(e){Z(n,n.return,e)}}break;case 27:t===null&&r&4&&tl(n);case 26:case 5:xl(e,n),t===null&&r&4&&Yc(n),r&512&&qc(n,n.return);break;case 12:xl(e,n);break;case 31:xl(e,n),r&4&&fl(e,n);break;case 13:xl(e,n),r&4&&pl(e,n),r&64&&(e=n.memoizedState,e!==null&&(e=e.dehydrated,e!==null&&(n=Ju.bind(null,n),sf(e,n))));break;case 22:if(r=n.memoizedState!==null||nl,!r){t=t!==null&&t.memoizedState!==null||U,i=nl;var a=U;nl=r,(U=t)&&!a?Cl(e,n,!!(n.subtreeFlags&8772)):xl(e,n),nl=i,U=a}break;case 30:break;default:xl(e,n)}}function cl(e){var t=e.alternate;t!==null&&(e.alternate=null,cl(t)),e.child=null,e.deletions=null,e.sibling=null,e.tag===5&&(t=e.stateNode,t!==null&&wt(t)),e.stateNode=null,e.return=null,e.dependencies=null,e.memoizedProps=null,e.memoizedState=null,e.pendingProps=null,e.stateNode=null,e.updateQueue=null}var W=null,ll=!1;function ul(e,t,n){for(n=n.child;n!==null;)dl(e,t,n),n=n.sibling}function dl(e,t,n){if(Ge&&typeof Ge.onCommitFiberUnmount==`function`)try{Ge.onCommitFiberUnmount(We,n)}catch{}switch(n.tag){case 26:U||Jc(n,t),ul(e,t,n),n.memoizedState?n.memoizedState.count--:n.stateNode&&(n=n.stateNode,n.parentNode.removeChild(n));break;case 27:U||Jc(n,t);var r=W,i=ll;Zd(n.type)&&(W=n.stateNode,ll=!1),ul(e,t,n),pf(n.stateNode),W=r,ll=i;break;case 5:U||Jc(n,t);case 6:if(r=W,i=ll,W=null,ul(e,t,n),W=r,ll=i,W!==null){if(ll)try{(W.nodeType===9?W.body:W.nodeName===`HTML`?W.ownerDocument.body:W).removeChild(n.stateNode)}catch(e){Z(n,t,e)}else try{W.removeChild(n.stateNode)}catch(e){Z(n,t,e)}}break;case 18:W!==null&&(ll?(e=W,Qd(e.nodeType===9?e.body:e.nodeName===`HTML`?e.ownerDocument.body:e,n.stateNode),Np(e)):Qd(W,n.stateNode));break;case 4:r=W,i=ll,W=n.stateNode.containerInfo,ll=!0,ul(e,t,n),W=r,ll=i;break;case 0:case 11:case 14:case 15:Wc(2,n,t),U||Wc(4,n,t),ul(e,t,n);break;case 1:U||(Jc(n,t),r=n.stateNode,typeof r.componentWillUnmount==`function`&&Kc(n,t,r)),ul(e,t,n);break;case 21:ul(e,t,n);break;case 22:U=(r=U)||n.memoizedState!==null,ul(e,t,n),U=r;break;default:ul(e,t,n)}}function fl(e,t){if(t.memoizedState===null&&(e=t.alternate,e!==null&&(e=e.memoizedState,e!==null))){e=e.dehydrated;try{Np(e)}catch(e){Z(t,t.return,e)}}}function pl(e,t){if(t.memoizedState===null&&(e=t.alternate,e!==null&&(e=e.memoizedState,e!==null&&(e=e.dehydrated,e!==null))))try{Np(e)}catch(e){Z(t,t.return,e)}}function ml(e){switch(e.tag){case 31:case 13:case 19:var t=e.stateNode;return t===null&&(t=e.stateNode=new il),t;case 22:return e=e.stateNode,t=e._retryCache,t===null&&(t=e._retryCache=new il),t;default:throw Error(i(435,e.tag))}}function hl(e,t){var n=ml(e);t.forEach(function(t){if(!n.has(t)){n.add(t);var r=Yu.bind(null,e,t);t.then(r,r)}})}function gl(e,t){var n=t.deletions;if(n!==null)for(var r=0;r<n.length;r++){var a=n[r],o=e,s=t,c=s;a:for(;c!==null;){switch(c.tag){case 27:if(Zd(c.type)){W=c.stateNode,ll=!1;break a}break;case 5:W=c.stateNode,ll=!1;break a;case 3:case 4:W=c.stateNode.containerInfo,ll=!0;break a}c=c.return}if(W===null)throw Error(i(160));dl(o,s,a),W=null,ll=!1,o=a.alternate,o!==null&&(o.return=null),a.return=null}if(t.subtreeFlags&13886)for(t=t.child;t!==null;)vl(t,e),t=t.sibling}var _l=null;function vl(e,t){var n=e.alternate,r=e.flags;switch(e.tag){case 0:case 11:case 14:case 15:gl(t,e),yl(e),r&4&&(Wc(3,e,e.return),Uc(3,e),Wc(5,e,e.return));break;case 1:gl(t,e),yl(e),r&512&&(U||n===null||Jc(n,n.return)),r&64&&nl&&(e=e.updateQueue,e!==null&&(r=e.callbacks,r!==null&&(n=e.shared.hiddenCallbacks,e.shared.hiddenCallbacks=n===null?r:n.concat(r))));break;case 26:var a=_l;if(gl(t,e),yl(e),r&512&&(U||n===null||Jc(n,n.return)),r&4){var o=n===null?null:n.memoizedState;if(r=e.memoizedState,n===null){if(r===null){if(e.stateNode===null){a:{r=e.type,n=e.memoizedProps,a=a.ownerDocument||a;b:switch(r){case`title`:o=a.getElementsByTagName(`title`)[0],(!o||o[Ct]||o[gt]||o.namespaceURI===`http://www.w3.org/2000/svg`||o.hasAttribute(`itemprop`))&&(o=a.createElement(r),a.head.insertBefore(o,a.querySelector(`head > title`))),Pd(o,r,n),o[gt]=e,kt(o),r=o;break a;case`link`:var s=Vf(`link`,`href`,a).get(r+(n.href||``));if(s){for(var c=0;c<s.length;c++)if(o=s[c],o.getAttribute(`href`)===(n.href==null||n.href===``?null:n.href)&&o.getAttribute(`rel`)===(n.rel==null?null:n.rel)&&o.getAttribute(`title`)===(n.title==null?null:n.title)&&o.getAttribute(`crossorigin`)===(n.crossOrigin==null?null:n.crossOrigin)){s.splice(c,1);break b}}o=a.createElement(r),Pd(o,r,n),a.head.appendChild(o);break;case`meta`:if(s=Vf(`meta`,`content`,a).get(r+(n.content||``))){for(c=0;c<s.length;c++)if(o=s[c],o.getAttribute(`content`)===(n.content==null?null:``+n.content)&&o.getAttribute(`name`)===(n.name==null?null:n.name)&&o.getAttribute(`property`)===(n.property==null?null:n.property)&&o.getAttribute(`http-equiv`)===(n.httpEquiv==null?null:n.httpEquiv)&&o.getAttribute(`charset`)===(n.charSet==null?null:n.charSet)){s.splice(c,1);break b}}o=a.createElement(r),Pd(o,r,n),a.head.appendChild(o);break;default:throw Error(i(468,r))}o[gt]=e,kt(o),r=o}e.stateNode=r}else Hf(a,e.type,e.stateNode)}else e.stateNode=If(a,r,e.memoizedProps)}else o===r?r===null&&e.stateNode!==null&&Xc(e,e.memoizedProps,n.memoizedProps):(o===null?n.stateNode!==null&&(n=n.stateNode,n.parentNode.removeChild(n)):o.count--,r===null?Hf(a,e.type,e.stateNode):If(a,r,e.memoizedProps))}break;case 27:gl(t,e),yl(e),r&512&&(U||n===null||Jc(n,n.return)),n!==null&&r&4&&Xc(e,e.memoizedProps,n.memoizedProps);break;case 5:if(gl(t,e),yl(e),r&512&&(U||n===null||Jc(n,n.return)),e.flags&32){a=e.stateNode;try{en(a,``)}catch(t){Z(e,e.return,t)}}r&4&&e.stateNode!=null&&(a=e.memoizedProps,Xc(e,a,n===null?a:n.memoizedProps)),r&1024&&(rl=!0);break;case 6:if(gl(t,e),yl(e),r&4){if(e.stateNode===null)throw Error(i(162));r=e.memoizedProps,n=e.stateNode;try{n.nodeValue=r}catch(t){Z(e,e.return,t)}}break;case 3:if(Bf=null,a=_l,_l=gf(t.containerInfo),gl(t,e),_l=a,yl(e),r&4&&n!==null&&n.memoizedState.isDehydrated)try{Np(t.containerInfo)}catch(t){Z(e,e.return,t)}rl&&(rl=!1,bl(e));break;case 4:r=_l,_l=gf(e.stateNode.containerInfo),gl(t,e),yl(e),_l=r;break;case 12:gl(t,e),yl(e);break;case 31:gl(t,e),yl(e),r&4&&(r=e.updateQueue,r!==null&&(e.updateQueue=null,hl(e,r)));break;case 13:gl(t,e),yl(e),e.child.flags&8192&&e.memoizedState!==null!=(n!==null&&n.memoizedState!==null)&&($l=Fe()),r&4&&(r=e.updateQueue,r!==null&&(e.updateQueue=null,hl(e,r)));break;case 22:a=e.memoizedState!==null;var l=n!==null&&n.memoizedState!==null,u=nl,d=U;if(nl=u||a,U=d||l,gl(t,e),U=d,nl=u,yl(e),r&8192)a:for(t=e.stateNode,t._visibility=a?t._visibility&-2:t._visibility|1,a&&(n===null||l||nl||U||Sl(e)),n=null,t=e;;){if(t.tag===5||t.tag===26){if(n===null){l=n=t;try{if(o=l.stateNode,a)s=o.style,typeof s.setProperty==`function`?s.setProperty(`display`,`none`,`important`):s.display=`none`;else{c=l.stateNode;var f=l.memoizedProps.style,p=f!=null&&f.hasOwnProperty(`display`)?f.display:null;c.style.display=p==null||typeof p==`boolean`?``:(``+p).trim()}}catch(e){Z(l,l.return,e)}}}else if(t.tag===6){if(n===null){l=t;try{l.stateNode.nodeValue=a?``:l.memoizedProps}catch(e){Z(l,l.return,e)}}}else if(t.tag===18){if(n===null){l=t;try{var m=l.stateNode;a?$d(m,!0):$d(l.stateNode,!1)}catch(e){Z(l,l.return,e)}}}else if((t.tag!==22&&t.tag!==23||t.memoizedState===null||t===e)&&t.child!==null){t.child.return=t,t=t.child;continue}if(t===e)break a;for(;t.sibling===null;){if(t.return===null||t.return===e)break a;n===t&&(n=null),t=t.return}n===t&&(n=null),t.sibling.return=t.return,t=t.sibling}r&4&&(r=e.updateQueue,r!==null&&(n=r.retryQueue,n!==null&&(r.retryQueue=null,hl(e,n))));break;case 19:gl(t,e),yl(e),r&4&&(r=e.updateQueue,r!==null&&(e.updateQueue=null,hl(e,r)));break;case 30:break;case 21:break;default:gl(t,e),yl(e)}}function yl(e){var t=e.flags;if(t&2){try{for(var n,r=e.return;r!==null;){if(Zc(r)){n=r;break}r=r.return}if(n==null)throw Error(i(160));switch(n.tag){case 27:var a=n.stateNode;el(e,Qc(e),a);break;case 5:var o=n.stateNode;n.flags&32&&(en(o,``),n.flags&=-33),el(e,Qc(e),o);break;case 3:case 4:var s=n.stateNode.containerInfo;$c(e,Qc(e),s);break;default:throw Error(i(161))}}catch(t){Z(e,e.return,t)}e.flags&=-3}t&4096&&(e.flags&=-4097)}function bl(e){if(e.subtreeFlags&1024)for(e=e.child;e!==null;){var t=e;bl(t),t.tag===5&&t.flags&1024&&t.stateNode.reset(),e=e.sibling}}function xl(e,t){if(t.subtreeFlags&8772)for(t=t.child;t!==null;)sl(e,t.alternate,t),t=t.sibling}function Sl(e){for(e=e.child;e!==null;){var t=e;switch(t.tag){case 0:case 11:case 14:case 15:Wc(4,t,t.return),Sl(t);break;case 1:Jc(t,t.return);var n=t.stateNode;typeof n.componentWillUnmount==`function`&&Kc(t,t.return,n),Sl(t);break;case 27:pf(t.stateNode);case 26:case 5:Jc(t,t.return),Sl(t);break;case 22:t.memoizedState===null&&Sl(t);break;case 30:Sl(t);break;default:Sl(t)}e=e.sibling}}function Cl(e,t,n){for(n&&=!!(t.subtreeFlags&8772),t=t.child;t!==null;){var r=t.alternate,i=e,a=t,o=a.flags;switch(a.tag){case 0:case 11:case 15:Cl(i,a,n),Uc(4,a);break;case 1:if(Cl(i,a,n),r=a,i=r.stateNode,typeof i.componentDidMount==`function`)try{i.componentDidMount()}catch(e){Z(r,r.return,e)}if(r=a,i=r.updateQueue,i!==null){var s=r.stateNode;try{var c=i.shared.hiddenCallbacks;if(c!==null)for(i.shared.hiddenCallbacks=null,i=0;i<c.length;i++)to(c[i],s)}catch(e){Z(r,r.return,e)}}n&&o&64&&Gc(a),qc(a,a.return);break;case 27:tl(a);case 26:case 5:Cl(i,a,n),n&&r===null&&o&4&&Yc(a),qc(a,a.return);break;case 12:Cl(i,a,n);break;case 31:Cl(i,a,n),n&&o&4&&fl(i,a);break;case 13:Cl(i,a,n),n&&o&4&&pl(i,a);break;case 22:a.memoizedState===null&&Cl(i,a,n),qc(a,a.return);break;case 30:break;default:Cl(i,a,n)}t=t.sibling}}function wl(e,t){var n=null;e!==null&&e.memoizedState!==null&&e.memoizedState.cachePool!==null&&(n=e.memoizedState.cachePool.pool),e=null,t.memoizedState!==null&&t.memoizedState.cachePool!==null&&(e=t.memoizedState.cachePool.pool),e!==n&&(e!=null&&e.refCount++,n!=null&&ma(n))}function Tl(e,t){e=null,t.alternate!==null&&(e=t.alternate.memoizedState.cache),t=t.memoizedState.cache,t!==e&&(t.refCount++,e!=null&&ma(e))}function El(e,t,n,r){if(t.subtreeFlags&10256)for(t=t.child;t!==null;)Dl(e,t,n,r),t=t.sibling}function Dl(e,t,n,r){var i=t.flags;switch(t.tag){case 0:case 11:case 15:El(e,t,n,r),i&2048&&Uc(9,t);break;case 1:El(e,t,n,r);break;case 3:El(e,t,n,r),i&2048&&(e=null,t.alternate!==null&&(e=t.alternate.memoizedState.cache),t=t.memoizedState.cache,t!==e&&(t.refCount++,e!=null&&ma(e)));break;case 12:if(i&2048){El(e,t,n,r),e=t.stateNode;try{var a=t.memoizedProps,o=a.id,s=a.onPostCommit;typeof s==`function`&&s(o,t.alternate===null?`mount`:`update`,e.passiveEffectDuration,-0)}catch(e){Z(t,t.return,e)}}else El(e,t,n,r);break;case 31:El(e,t,n,r);break;case 13:El(e,t,n,r);break;case 23:break;case 22:a=t.stateNode,o=t.alternate,t.memoizedState===null?a._visibility&2?El(e,t,n,r):(a._visibility|=2,Ol(e,t,n,r,!!(t.subtreeFlags&10256)||!1)):a._visibility&2?El(e,t,n,r):kl(e,t),i&2048&&wl(o,t);break;case 24:El(e,t,n,r),i&2048&&Tl(t.alternate,t);break;default:El(e,t,n,r)}}function Ol(e,t,n,r,i){for(i&&=!!(t.subtreeFlags&10256)||!1,t=t.child;t!==null;){var a=e,o=t,s=n,c=r,l=o.flags;switch(o.tag){case 0:case 11:case 15:Ol(a,o,s,c,i),Uc(8,o);break;case 23:break;case 22:var u=o.stateNode;o.memoizedState===null?(u._visibility|=2,Ol(a,o,s,c,i)):u._visibility&2?Ol(a,o,s,c,i):kl(a,o),i&&l&2048&&wl(o.alternate,o);break;case 24:Ol(a,o,s,c,i),i&&l&2048&&Tl(o.alternate,o);break;default:Ol(a,o,s,c,i)}t=t.sibling}}function kl(e,t){if(t.subtreeFlags&10256)for(t=t.child;t!==null;){var n=e,r=t,i=r.flags;switch(r.tag){case 22:kl(n,r),i&2048&&wl(r.alternate,r);break;case 24:kl(n,r),i&2048&&Tl(r.alternate,r);break;default:kl(n,r)}t=t.sibling}}var Al=8192;function jl(e,t,n){if(e.subtreeFlags&Al)for(e=e.child;e!==null;)Ml(e,t,n),e=e.sibling}function Ml(e,t,n){switch(e.tag){case 26:jl(e,t,n),e.flags&Al&&e.memoizedState!==null&&Gf(n,_l,e.memoizedState,e.memoizedProps);break;case 5:jl(e,t,n);break;case 3:case 4:var r=_l;_l=gf(e.stateNode.containerInfo),jl(e,t,n),_l=r;break;case 22:e.memoizedState===null&&(r=e.alternate,r!==null&&r.memoizedState!==null?(r=Al,Al=16777216,jl(e,t,n),Al=r):jl(e,t,n));break;default:jl(e,t,n)}}function Nl(e){var t=e.alternate;if(t!==null&&(e=t.child,e!==null)){t.child=null;do t=e.sibling,e.sibling=null,e=t;while(e!==null)}}function Pl(e){var t=e.deletions;if(e.flags&16){if(t!==null)for(var n=0;n<t.length;n++){var r=t[n];al=r,Ll(r,e)}Nl(e)}if(e.subtreeFlags&10256)for(e=e.child;e!==null;)Fl(e),e=e.sibling}function Fl(e){switch(e.tag){case 0:case 11:case 15:Pl(e),e.flags&2048&&Wc(9,e,e.return);break;case 3:Pl(e);break;case 12:Pl(e);break;case 22:var t=e.stateNode;e.memoizedState!==null&&t._visibility&2&&(e.return===null||e.return.tag!==13)?(t._visibility&=-3,Il(e)):Pl(e);break;default:Pl(e)}}function Il(e){var t=e.deletions;if(e.flags&16){if(t!==null)for(var n=0;n<t.length;n++){var r=t[n];al=r,Ll(r,e)}Nl(e)}for(e=e.child;e!==null;){switch(t=e,t.tag){case 0:case 11:case 15:Wc(8,t,t.return),Il(t);break;case 22:n=t.stateNode,n._visibility&2&&(n._visibility&=-3,Il(t));break;default:Il(t)}e=e.sibling}}function Ll(e,t){for(;al!==null;){var n=al;switch(n.tag){case 0:case 11:case 15:Wc(8,n,t);break;case 23:case 22:if(n.memoizedState!==null&&n.memoizedState.cachePool!==null){var r=n.memoizedState.cachePool.pool;r!=null&&r.refCount++}break;case 24:ma(n.memoizedState.cache)}if(r=n.child,r!==null)r.return=n,al=r;else a:for(n=e;al!==null;){r=al;var i=r.sibling,a=r.return;if(cl(r),r===n){al=null;break a}if(i!==null){i.return=a,al=i;break a}al=a}}}var Rl={getCacheForType:function(e){var t=sa(P),n=t.data.get(e);return n===void 0&&(n=e(),t.data.set(e,n)),n},cacheSignal:function(){return sa(P).controller.signal}},zl=typeof WeakMap==`function`?WeakMap:Map,G=0,K=null,q=null,J=0,Y=0,Bl=null,Vl=!1,Hl=!1,Ul=!1,Wl=0,X=0,Gl=0,Kl=0,ql=0,Jl=0,Yl=0,Xl=null,Zl=null,Ql=!1,$l=0,eu=0,tu=1/0,nu=null,ru=null,iu=0,au=null,ou=null,su=0,cu=0,lu=null,uu=null,du=0,fu=null;function pu(){return G&2&&J!==0?J&-J:T.T===null?pt():dd()}function mu(){if(Jl===0){if(!(J&536870912)||N){var e=Qe;Qe<<=1,!(Qe&3932160)&&(Qe=262144),Jl=e}else Jl=536870912}return e=co.current,e!==null&&(e.flags|=32),Jl}function hu(e,t,n){(e===K&&(Y===2||Y===9)||e.cancelPendingCommit!==null)&&(Su(e,0),yu(e,J,Jl,!1)),ot(e,n),(!(G&2)||e!==K)&&(e===K&&(!(G&2)&&(Kl|=n),X===4&&yu(e,J,Jl,!1)),rd(e))}function gu(e,t,n){if(G&6)throw Error(i(327));var r=!n&&!(t&127)&&(t&e.expiredLanes)===0||nt(e,t),a=r?Au(e,t):Ou(e,t,!0),o=r;do{if(a===0){Hl&&!r&&yu(e,t,0,!1);break}if(n=e.current.alternate,o&&!vu(n)){a=Ou(e,t,!1),o=!1;continue}if(a===2){if(o=t,e.errorRecoveryDisabledLanes&o)var s=0;else s=e.pendingLanes&-536870913,s=s===0?s&536870912?536870912:0:s;if(s!==0){t=s;a:{var c=e;a=Xl;var l=c.current.memoizedState.isDehydrated;if(l&&(Su(c,s).flags|=256),s=Ou(c,s,!1),s!==2){if(Ul&&!l){c.errorRecoveryDisabledLanes|=o,Kl|=o,a=4;break a}o=Zl,Zl=a,o!==null&&(Zl===null?Zl=o:Zl.push.apply(Zl,o))}a=s}if(o=!1,a!==2)continue}}if(a===1){Su(e,0),yu(e,t,0,!0);break}a:{switch(r=e,o=a,o){case 0:case 1:throw Error(i(345));case 4:if((t&4194048)!==t)break;case 6:yu(r,t,Jl,!Vl);break a;case 2:Zl=null;break;case 3:case 5:break;default:throw Error(i(329))}if((t&62914560)===t&&(a=$l+300-Fe(),10<a)){if(yu(r,t,Jl,!Vl),tt(r,0,!0)!==0)break a;su=t,r.timeoutHandle=Kd(_u.bind(null,r,n,Zl,nu,Ql,t,Jl,Kl,Yl,Vl,o,`Throttled`,-0,0),a);break a}_u(r,n,Zl,nu,Ql,t,Jl,Kl,Yl,Vl,o,null,-0,0)}break}while(1);rd(e)}function _u(e,t,n,r,i,a,o,s,c,l,u,d,f,p){if(e.timeoutHandle=-1,d=t.subtreeFlags,d&8192||(d&16785408)==16785408){d={stylesheets:null,count:0,imgCount:0,imgBytes:0,suspenseyImages:[],waitingForImages:!0,waitingForViewTransition:!1,unsuspend:ln},Ml(t,a,d);var m=(a&62914560)===a?$l-Fe():(a&4194048)===a?eu-Fe():0;if(m=qf(d,m),m!==null){su=a,e.cancelPendingCommit=m(Lu.bind(null,e,t,a,n,r,i,o,s,c,u,d,null,f,p)),yu(e,a,o,!l);return}}Lu(e,t,a,n,r,i,o,s,c)}function vu(e){for(var t=e;;){var n=t.tag;if((n===0||n===11||n===15)&&t.flags&16384&&(n=t.updateQueue,n!==null&&(n=n.stores,n!==null)))for(var r=0;r<n.length;r++){var i=n[r],a=i.getSnapshot;i=i.value;try{if(!kr(a(),i))return!1}catch{return!1}}if(n=t.child,t.subtreeFlags&16384&&n!==null)n.return=t,t=n;else{if(t===e)break;for(;t.sibling===null;){if(t.return===null||t.return===e)return!0;t=t.return}t.sibling.return=t.return,t=t.sibling}}return!0}function yu(e,t,n,r){t&=~ql,t&=~Kl,e.suspendedLanes|=t,e.pingedLanes&=~t,r&&(e.warmLanes|=t),r=e.expirationTimes;for(var i=t;0<i;){var a=31-qe(i),o=1<<a;r[a]=-1,i&=~o}n!==0&&ct(e,n,t)}function bu(){return G&6?!0:(id(0,!1),!1)}function xu(){if(q!==null){if(Y===0)var e=q.return;else e=q,$i=Qi=null,Mo(e),La=null,Ra=0,e=q;for(;e!==null;)Hc(e.alternate,e),e=e.return;q=null}}function Su(e,t){var n=e.timeoutHandle;n!==-1&&(e.timeoutHandle=-1,qd(n)),n=e.cancelPendingCommit,n!==null&&(e.cancelPendingCommit=null,n()),su=0,xu(),K=e,q=n=_i(e.current,null),J=t,Y=0,Bl=null,Vl=!1,Hl=nt(e,t),Ul=!1,Yl=Jl=ql=Kl=Gl=X=0,Zl=Xl=null,Ql=!1,t&8&&(t|=t&32);var r=e.entangledLanes;if(r!==0)for(e=e.entanglements,r&=t;0<r;){var i=31-qe(r),a=1<<i;t|=e[i],r&=~a}return Wl=t,si(),n}function Cu(e,t){I=null,T.H=Vs,t===Da||t===ka?(t=Fa(),Y=3):t===Oa?(t=Fa(),Y=4):Y=t===ac?8:typeof t==`object`&&t&&typeof t.then==`function`?6:1,Bl=t,q===null&&(X=1,$s(e,Ti(t,e.current)))}function wu(){var e=co.current;return e===null?!0:(J&4194048)===J?lo===null:(J&62914560)===J||J&536870912?e===lo:!1}function Tu(){var e=T.H;return T.H=Vs,e===null?Vs:e}function Eu(){var e=T.A;return T.A=Rl,e}function Du(){X=4,Vl||(J&4194048)!==J&&co.current!==null||(Hl=!0),!(Gl&134217727)&&!(Kl&134217727)||K===null||yu(K,J,Jl,!1)}function Ou(e,t,n){var r=G;G|=2;var i=Tu(),a=Eu();(K!==e||J!==t)&&(nu=null,Su(e,t)),t=!1;var o=X;a:do try{if(Y!==0&&q!==null){var s=q,c=Bl;switch(Y){case 8:xu(),o=6;break a;case 3:case 2:case 9:case 6:co.current===null&&(t=!0);var l=Y;if(Y=0,Bl=null,Pu(e,s,c,l),n&&Hl){o=0;break a}break;default:l=Y,Y=0,Bl=null,Pu(e,s,c,l)}}ku(),o=X;break}catch(t){Cu(e,t)}while(1);return t&&e.shellSuspendCounter++,$i=Qi=null,G=r,T.H=i,T.A=a,q===null&&(K=null,J=0,si()),o}function ku(){for(;q!==null;)Mu(q)}function Au(e,t){var n=G;G|=2;var r=Tu(),a=Eu();K!==e||J!==t?(nu=null,tu=Fe()+500,Su(e,t)):Hl=nt(e,t);a:do try{if(Y!==0&&q!==null){t=q;var o=Bl;b:switch(Y){case 1:Y=0,Bl=null,Pu(e,t,o,1);break;case 2:case 9:if(ja(o)){Y=0,Bl=null,Nu(t);break}t=function(){Y!==2&&Y!==9||K!==e||(Y=7),rd(e)},o.then(t,t);break a;case 3:Y=7;break a;case 4:Y=5;break a;case 7:ja(o)?(Y=0,Bl=null,Nu(t)):(Y=0,Bl=null,Pu(e,t,o,7));break;case 5:var s=null;switch(q.tag){case 26:s=q.memoizedState;case 5:case 27:var c=q;if(s?Wf(s):c.stateNode.complete){Y=0,Bl=null;var l=c.sibling;if(l!==null)q=l;else{var u=c.return;u===null?q=null:(q=u,Fu(u))}break b}}Y=0,Bl=null,Pu(e,t,o,5);break;case 6:Y=0,Bl=null,Pu(e,t,o,6);break;case 8:xu(),X=6;break a;default:throw Error(i(462))}}ju();break}catch(t){Cu(e,t)}while(1);return $i=Qi=null,T.H=r,T.A=a,G=n,q===null?(K=null,J=0,si(),X):0}function ju(){for(;q!==null&&!Ne();)Mu(q)}function Mu(e){var t=Pc(e.alternate,e,Wl);e.memoizedProps=e.pendingProps,t===null?Fu(e):q=t}function Nu(e){var t=e,n=t.alternate;switch(t.tag){case 15:case 0:t=vc(n,t,t.pendingProps,t.type,void 0,J);break;case 11:t=vc(n,t,t.pendingProps,t.type.render,t.ref,J);break;case 5:Mo(t);default:Hc(n,t),t=q=vi(t,Wl),t=Pc(n,t,Wl)}e.memoizedProps=e.pendingProps,t===null?Fu(e):q=t}function Pu(e,t,n,r){$i=Qi=null,Mo(t),La=null,Ra=0;var i=t.return;try{if(ic(e,i,t,n,J)){X=1,$s(e,Ti(n,e.current)),q=null;return}}catch(t){if(i!==null)throw q=i,t;X=1,$s(e,Ti(n,e.current)),q=null;return}t.flags&32768?(N||r===1?e=!0:Hl||J&536870912?e=!1:(Vl=e=!0,(r===2||r===9||r===3||r===6)&&(r=co.current,r!==null&&r.tag===13&&(r.flags|=16384))),Iu(t,e)):Fu(t)}function Fu(e){var t=e;do{if(t.flags&32768){Iu(t,Vl);return}e=t.return;var n=Bc(t.alternate,t,Wl);if(n!==null){q=n;return}if(t=t.sibling,t!==null){q=t;return}q=t=e}while(t!==null);X===0&&(X=5)}function Iu(e,t){do{var n=Vc(e.alternate,e);if(n!==null){n.flags&=32767,q=n;return}if(n=e.return,n!==null&&(n.flags|=32768,n.subtreeFlags=0,n.deletions=null),!t&&(e=e.sibling,e!==null)){q=e;return}q=e=n}while(e!==null);X=6,q=null}function Lu(e,t,n,r,a,o,s,c,l){e.cancelPendingCommit=null;do Hu();while(iu!==0);if(G&6)throw Error(i(327));if(t!==null){if(t===e.current)throw Error(i(177));if(o=t.lanes|t.childLanes,o|=oi,st(e,n,o,s,c,l),e===K&&(q=K=null,J=0),ou=t,au=e,su=n,cu=o,lu=a,uu=r,t.subtreeFlags&10256||t.flags&10256?(e.callbackNode=null,e.callbackPriority=0,Xu(ze,function(){return Uu(),null})):(e.callbackNode=null,e.callbackPriority=0),r=!!(t.flags&13878),t.subtreeFlags&13878||r){r=T.T,T.T=null,a=E.p,E.p=2,s=G,G|=4;try{ol(e,t,n)}finally{G=s,E.p=a,T.T=r}}iu=1,Ru(),zu(),Bu()}}function Ru(){if(iu===1){iu=0;var e=au,t=ou,n=!!(t.flags&13878);if(t.subtreeFlags&13878||n){n=T.T,T.T=null;var r=E.p;E.p=2;var i=G;G|=4;try{vl(t,e);var a=zd,o=Pr(e.containerInfo),s=a.focusedElem,c=a.selectionRange;if(o!==s&&s&&s.ownerDocument&&Nr(s.ownerDocument.documentElement,s)){if(c!==null&&Fr(s)){var l=c.start,u=c.end;if(u===void 0&&(u=l),`selectionStart`in s)s.selectionStart=l,s.selectionEnd=Math.min(u,s.value.length);else{var d=s.ownerDocument||document,f=d&&d.defaultView||window;if(f.getSelection){var p=f.getSelection(),m=s.textContent.length,h=Math.min(c.start,m),g=c.end===void 0?h:Math.min(c.end,m);!p.extend&&h>g&&(o=g,g=h,h=o);var _=Mr(s,h),v=Mr(s,g);if(_&&v&&(p.rangeCount!==1||p.anchorNode!==_.node||p.anchorOffset!==_.offset||p.focusNode!==v.node||p.focusOffset!==v.offset)){var y=d.createRange();y.setStart(_.node,_.offset),p.removeAllRanges(),h>g?(p.addRange(y),p.extend(v.node,v.offset)):(y.setEnd(v.node,v.offset),p.addRange(y))}}}}for(d=[],p=s;p=p.parentNode;)p.nodeType===1&&d.push({element:p,left:p.scrollLeft,top:p.scrollTop});for(typeof s.focus==`function`&&s.focus(),s=0;s<d.length;s++){var b=d[s];b.element.scrollLeft=b.left,b.element.scrollTop=b.top}}sp=!!Rd,zd=Rd=null}finally{G=i,E.p=r,T.T=n}}e.current=t,iu=2}}function zu(){if(iu===2){iu=0;var e=au,t=ou,n=!!(t.flags&8772);if(t.subtreeFlags&8772||n){n=T.T,T.T=null;var r=E.p;E.p=2;var i=G;G|=4;try{sl(e,t.alternate,t)}finally{G=i,E.p=r,T.T=n}}iu=3}}function Bu(){if(iu===4||iu===3){iu=0,Pe();var e=au,t=ou,n=su,r=uu;t.subtreeFlags&10256||t.flags&10256?iu=5:(iu=0,ou=au=null,Vu(e,e.pendingLanes));var i=e.pendingLanes;if(i===0&&(ru=null),ft(n),t=t.stateNode,Ge&&typeof Ge.onCommitFiberRoot==`function`)try{Ge.onCommitFiberRoot(We,t,void 0,(t.current.flags&128)==128)}catch{}if(r!==null){t=T.T,i=E.p,E.p=2,T.T=null;try{for(var a=e.onRecoverableError,o=0;o<r.length;o++){var s=r[o];a(s.value,{componentStack:s.stack})}}finally{T.T=t,E.p=i}}su&3&&Hu(),rd(e),i=e.pendingLanes,n&261930&&i&42?e===fu?du++:(du=0,fu=e):du=0,id(0,!1)}}function Vu(e,t){(e.pooledCacheLanes&=t)===0&&(t=e.pooledCache,t!=null&&(e.pooledCache=null,ma(t)))}function Hu(){return Ru(),zu(),Bu(),Uu()}function Uu(){if(iu!==5)return!1;var e=au,t=cu;cu=0;var n=ft(su),r=T.T,a=E.p;try{E.p=32>n?32:n,T.T=null,n=lu,lu=null;var o=au,s=su;if(iu=0,ou=au=null,su=0,G&6)throw Error(i(331));var c=G;if(G|=4,Fl(o.current),Dl(o,o.current,s,n),G=c,id(0,!1),Ge&&typeof Ge.onPostCommitFiberRoot==`function`)try{Ge.onPostCommitFiberRoot(We,o)}catch{}return!0}finally{E.p=a,T.T=r,Vu(e,t)}}function Wu(e,t,n){t=Ti(n,t),t=tc(e.stateNode,t,2),e=Ya(e,t,2),e!==null&&(ot(e,2),rd(e))}function Z(e,t,n){if(e.tag===3)Wu(e,e,n);else for(;t!==null;){if(t.tag===3){Wu(t,e,n);break}if(t.tag===1){var r=t.stateNode;if(typeof t.type.getDerivedStateFromError==`function`||typeof r.componentDidCatch==`function`&&(ru===null||!ru.has(r))){e=Ti(n,e),n=nc(2),r=Ya(t,n,2),r!==null&&(rc(n,r,t,e),ot(r,2),rd(r));break}}t=t.return}}function Gu(e,t,n){var r=e.pingCache;if(r===null){r=e.pingCache=new zl;var i=new Set;r.set(t,i)}else i=r.get(t),i===void 0&&(i=new Set,r.set(t,i));i.has(n)||(Ul=!0,i.add(n),e=Ku.bind(null,e,t,n),t.then(e,e))}function Ku(e,t,n){var r=e.pingCache;r!==null&&r.delete(t),e.pingedLanes|=e.suspendedLanes&n,e.warmLanes&=~n,K===e&&(J&n)===n&&(X===4||X===3&&(J&62914560)===J&&300>Fe()-$l?!(G&2)&&Su(e,0):ql|=n,Yl===J&&(Yl=0)),rd(e)}function qu(e,t){t===0&&(t=it()),e=ui(e,t),e!==null&&(ot(e,t),rd(e))}function Ju(e){var t=e.memoizedState,n=0;t!==null&&(n=t.retryLane),qu(e,n)}function Yu(e,t){var n=0;switch(e.tag){case 31:case 13:var r=e.stateNode,a=e.memoizedState;a!==null&&(n=a.retryLane);break;case 19:r=e.stateNode;break;case 22:r=e.stateNode._retryCache;break;default:throw Error(i(314))}r!==null&&r.delete(t),qu(e,n)}function Xu(e,t){return je(e,t)}var Zu=null,Qu=null,$u=!1,ed=!1,td=!1,nd=0;function rd(e){e!==Qu&&e.next===null&&(Qu===null?Zu=Qu=e:Qu=Qu.next=e),ed=!0,$u||($u=!0,ud())}function id(e,t){if(!td&&ed){td=!0;do for(var n=!1,r=Zu;r!==null;){if(!t){if(e!==0){var i=r.pendingLanes;if(i===0)var a=0;else{var o=r.suspendedLanes,s=r.pingedLanes;a=(1<<31-qe(42|e)+1)-1,a&=i&~(o&~s),a=a&201326741?a&201326741|1:a?a|2:0}a!==0&&(n=!0,ld(r,a))}else a=J,a=tt(r,r===K?a:0,r.cancelPendingCommit!==null||r.timeoutHandle!==-1),!(a&3)||nt(r,a)||(n=!0,ld(r,a))}r=r.next}while(n);td=!1}}function ad(){od()}function od(){ed=$u=!1;var e=0;nd!==0&&Gd()&&(e=nd);for(var t=Fe(),n=null,r=Zu;r!==null;){var i=r.next,a=sd(r,t);a===0?(r.next=null,n===null?Zu=i:n.next=i,i===null&&(Qu=n)):(n=r,(e!==0||a&3)&&(ed=!0)),r=i}iu!==0&&iu!==5||id(e,!1),nd!==0&&(nd=0)}function sd(e,t){for(var n=e.suspendedLanes,r=e.pingedLanes,i=e.expirationTimes,a=e.pendingLanes&-62914561;0<a;){var o=31-qe(a),s=1<<o,c=i[o];c===-1?((s&n)===0||(s&r)!==0)&&(i[o]=rt(s,t)):c<=t&&(e.expiredLanes|=s),a&=~s}if(t=K,n=J,n=tt(e,e===t?n:0,e.cancelPendingCommit!==null||e.timeoutHandle!==-1),r=e.callbackNode,n===0||e===t&&(Y===2||Y===9)||e.cancelPendingCommit!==null)return r!==null&&r!==null&&Me(r),e.callbackNode=null,e.callbackPriority=0;if(!(n&3)||nt(e,n)){if(t=n&-n,t===e.callbackPriority)return t;switch(r!==null&&Me(r),ft(n)){case 2:case 8:n=Re;break;case 32:n=ze;break;case 268435456:n=Ve;break;default:n=ze}return r=cd.bind(null,e),n=je(n,r),e.callbackPriority=t,e.callbackNode=n,t}return r!==null&&r!==null&&Me(r),e.callbackPriority=2,e.callbackNode=null,2}function cd(e,t){if(iu!==0&&iu!==5)return e.callbackNode=null,e.callbackPriority=0,null;var n=e.callbackNode;if(Hu()&&e.callbackNode!==n)return null;var r=J;return r=tt(e,e===K?r:0,e.cancelPendingCommit!==null||e.timeoutHandle!==-1),r===0?null:(gu(e,r,t),sd(e,Fe()),e.callbackNode!=null&&e.callbackNode===n?cd.bind(null,e):null)}function ld(e,t){if(Hu())return null;gu(e,t,!0)}function ud(){Yd(function(){G&6?je(Le,ad):od()})}function dd(){if(nd===0){var e=_a;e===0&&(e=Ze,Ze<<=1,!(Ze&261888)&&(Ze=256)),nd=e}return nd}function fd(e){return e==null||typeof e==`symbol`||typeof e==`boolean`?null:typeof e==`function`?e:cn(``+e)}function pd(e,t){var n=t.ownerDocument.createElement(`input`);return n.name=t.name,n.value=t.value,e.id&&n.setAttribute(`form`,e.id),t.parentNode.insertBefore(n,t),e=new FormData(e),n.parentNode.removeChild(n),e}function md(e,t,n,r,i){if(t===`submit`&&n&&n.stateNode===i){var a=fd((i[_t]||null).action),o=r.submitter;o&&(t=(t=o[_t]||null)?fd(t.formAction):o.getAttribute(`formAction`),t!==null&&(a=t,o=null));var s=new An(`action`,`action`,null,r,i);e.push({event:s,listeners:[{instance:null,listener:function(){if(r.defaultPrevented){if(nd!==0){var e=o?pd(i,o):new FormData(i);Ds(n,{pending:!0,data:e,method:i.method,action:a},null,e)}}else typeof a==`function`&&(s.preventDefault(),e=o?pd(i,o):new FormData(i),Ds(n,{pending:!0,data:e,method:i.method,action:a},a,e))},currentTarget:i}]})}}for(var hd=0;hd<ti.length;hd++){var gd=ti[hd];ni(gd.toLowerCase(),`on`+(gd[0].toUpperCase()+gd.slice(1)))}ni(qr,`onAnimationEnd`),ni(Jr,`onAnimationIteration`),ni(Yr,`onAnimationStart`),ni(`dblclick`,`onDoubleClick`),ni(`focusin`,`onFocus`),ni(`focusout`,`onBlur`),ni(Xr,`onTransitionRun`),ni(Zr,`onTransitionStart`),ni(Qr,`onTransitionCancel`),ni($r,`onTransitionEnd`),Nt(`onMouseEnter`,[`mouseout`,`mouseover`]),Nt(`onMouseLeave`,[`mouseout`,`mouseover`]),Nt(`onPointerEnter`,[`pointerout`,`pointerover`]),Nt(`onPointerLeave`,[`pointerout`,`pointerover`]),Mt(`onChange`,`change click focusin focusout input keydown keyup selectionchange`.split(` `)),Mt(`onSelect`,`focusout contextmenu dragend focusin keydown keyup mousedown mouseup selectionchange`.split(` `)),Mt(`onBeforeInput`,[`compositionend`,`keypress`,`textInput`,`paste`]),Mt(`onCompositionEnd`,`compositionend focusout keydown keypress keyup mousedown`.split(` `)),Mt(`onCompositionStart`,`compositionstart focusout keydown keypress keyup mousedown`.split(` `)),Mt(`onCompositionUpdate`,`compositionupdate focusout keydown keypress keyup mousedown`.split(` `));var _d=`abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting`.split(` `),vd=new Set(`beforetoggle cancel close invalid load scroll scrollend toggle`.split(` `).concat(_d));function yd(e,t){t=!!(t&4);for(var n=0;n<e.length;n++){var r=e[n],i=r.event;r=r.listeners;a:{var a=void 0;if(t)for(var o=r.length-1;0<=o;o--){var s=r[o],c=s.instance,l=s.currentTarget;if(s=s.listener,c!==a&&i.isPropagationStopped())break a;a=s,i.currentTarget=l;try{a(i)}catch(e){ri(e)}i.currentTarget=null,a=c}else for(o=0;o<r.length;o++){if(s=r[o],c=s.instance,l=s.currentTarget,s=s.listener,c!==a&&i.isPropagationStopped())break a;a=s,i.currentTarget=l;try{a(i)}catch(e){ri(e)}i.currentTarget=null,a=c}}}}function Q(e,t){var n=t[yt];n===void 0&&(n=t[yt]=new Set);var r=e+`__bubble`;n.has(r)||(Cd(t,e,2,!1),n.add(r))}function bd(e,t,n){var r=0;t&&(r|=4),Cd(n,e,r,t)}var xd=`_reactListening`+Math.random().toString(36).slice(2);function Sd(e){if(!e[xd]){e[xd]=!0,At.forEach(function(t){t!==`selectionchange`&&(vd.has(t)||bd(t,!1,e),bd(t,!0,e))});var t=e.nodeType===9?e:e.ownerDocument;t===null||t[xd]||(t[xd]=!0,bd(`selectionchange`,!1,t))}}function Cd(e,t,n,r){switch(mp(t)){case 2:var i=cp;break;case 8:i=lp;break;default:i=up}n=i.bind(null,t,n,e),i=void 0,!yn||t!==`touchstart`&&t!==`touchmove`&&t!==`wheel`||(i=!0),r?i===void 0?e.addEventListener(t,n,!0):e.addEventListener(t,n,{capture:!0,passive:i}):i===void 0?e.addEventListener(t,n,!1):e.addEventListener(t,n,{passive:i})}function wd(e,t,n,r,i){var a=r;if(!(t&1)&&!(t&2)&&r!==null)a:for(;;){if(r===null)return;var s=r.tag;if(s===3||s===4){var c=r.stateNode.containerInfo;if(c===i)break;if(s===4)for(s=r.return;s!==null;){var l=s.tag;if((l===3||l===4)&&s.stateNode.containerInfo===i)return;s=s.return}for(;c!==null;){if(s=Tt(c),s===null)return;if(l=s.tag,l===5||l===6||l===26||l===27){r=a=s;continue a}c=c.parentNode}}r=r.return}gn(function(){var r=a,i=dn(n),s=[];a:{var c=ei.get(e);if(c!==void 0){var l=An,u=e;switch(e){case`keypress`:if(Tn(n)===0)break a;case`keydown`:case`keyup`:l=Jn;break;case`focusin`:u=`focus`,l=zn;break;case`focusout`:u=`blur`,l=zn;break;case`beforeblur`:case`afterblur`:l=zn;break;case`click`:if(n.button===2)break a;case`auxclick`:case`dblclick`:case`mousedown`:case`mousemove`:case`mouseup`:case`mouseout`:case`mouseover`:case`contextmenu`:l=Ln;break;case`drag`:case`dragend`:case`dragenter`:case`dragexit`:case`dragleave`:case`dragover`:case`dragstart`:case`drop`:l=Rn;break;case`touchcancel`:case`touchend`:case`touchmove`:case`touchstart`:l=Xn;break;case qr:case Jr:case Yr:l=Bn;break;case $r:l=Zn;break;case`scroll`:case`scrollend`:l=Mn;break;case`wheel`:l=Qn;break;case`copy`:case`cut`:case`paste`:l=Vn;break;case`gotpointercapture`:case`lostpointercapture`:case`pointercancel`:case`pointerdown`:case`pointermove`:case`pointerout`:case`pointerover`:case`pointerup`:l=Yn;break;case`toggle`:case`beforetoggle`:l=$n}var d=!!(t&4),f=!d&&(e===`scroll`||e===`scrollend`),p=d?c===null?null:c+`Capture`:c;d=[];for(var m=r,h;m!==null;){var g=m;if(h=g.stateNode,g=g.tag,g!==5&&g!==26&&g!==27||h===null||p===null||(g=_n(m,p),g!=null&&d.push(Td(m,g,h))),f)break;m=m.return}0<d.length&&(c=new l(c,u,null,n,i),s.push({event:c,listeners:d}))}}if(!(t&7)){a:{if(c=e===`mouseover`||e===`pointerover`,l=e===`mouseout`||e===`pointerout`,c&&n!==un&&(u=n.relatedTarget||n.fromElement)&&(Tt(u)||u[vt]))break a;if((l||c)&&(c=i.window===i?i:(c=i.ownerDocument)?c.defaultView||c.parentWindow:window,l?(u=n.relatedTarget||n.toElement,l=r,u=u?Tt(u):null,u!==null&&(f=o(u),d=u.tag,u!==f||d!==5&&d!==27&&d!==6)&&(u=null)):(l=null,u=r),l!==u)){if(d=Ln,g=`onMouseLeave`,p=`onMouseEnter`,m=`mouse`,(e===`pointerout`||e===`pointerover`)&&(d=Yn,g=`onPointerLeave`,p=`onPointerEnter`,m=`pointer`),f=l==null?c:Dt(l),h=u==null?c:Dt(u),c=new d(g,m+`leave`,l,n,i),c.target=f,c.relatedTarget=h,g=null,Tt(i)===r&&(d=new d(p,m+`enter`,u,n,i),d.target=h,d.relatedTarget=f,g=d),f=g,l&&u)b:{for(d=Dd,p=l,m=u,h=0,g=p;g;g=d(g))h++;g=0;for(var _=m;_;_=d(_))g++;for(;0<h-g;)p=d(p),h--;for(;0<g-h;)m=d(m),g--;for(;h--;){if(p===m||m!==null&&p===m.alternate){d=p;break b}p=d(p),m=d(m)}d=null}else d=null;l!==null&&Od(s,c,l,d,!1),u!==null&&f!==null&&Od(s,f,u,d,!0)}}a:{if(c=r?Dt(r):window,l=c.nodeName&&c.nodeName.toLowerCase(),l===`select`||l===`input`&&c.type===`file`)var v=_r;else if(fr(c)){if(vr)v=Dr;else{v=Tr;var y=wr}}else l=c.nodeName,!l||l.toLowerCase()!==`input`||c.type!==`checkbox`&&c.type!==`radio`?r&&an(r.elementType)&&(v=_r):v=Er;if(v&&=v(e,r)){pr(s,v,n,i);break a}y&&y(e,c,r),e===`focusout`&&r&&c.type===`number`&&r.memoizedProps.value!=null&&Xt(c,`number`,c.value)}switch(y=r?Dt(r):window,e){case`focusin`:(fr(y)||y.contentEditable===`true`)&&(Lr=y,Rr=r,zr=null);break;case`focusout`:zr=Rr=Lr=null;break;case`mousedown`:Br=!0;break;case`contextmenu`:case`mouseup`:case`dragend`:Br=!1,Vr(s,n,i);break;case`selectionchange`:if(Ir)break;case`keydown`:case`keyup`:Vr(s,n,i)}var b;if(tr)b:{switch(e){case`compositionstart`:var x=`onCompositionStart`;break b;case`compositionend`:x=`onCompositionEnd`;break b;case`compositionupdate`:x=`onCompositionUpdate`;break b}x=void 0}else cr?or(e,n)&&(x=`onCompositionEnd`):e===`keydown`&&n.keyCode===229&&(x=`onCompositionStart`);x&&(rr&&n.locale!==`ko`&&(cr||x!==`onCompositionStart`?x===`onCompositionEnd`&&cr&&(b=wn()):(xn=i,Sn=`value`in xn?xn.value:xn.textContent,cr=!0)),y=Ed(r,x),0<y.length&&(x=new Hn(x,e,null,n,i),s.push({event:x,listeners:y}),b?x.data=b:(b=sr(n),b!==null&&(x.data=b)))),(b=A?lr(e,n):ur(e,n))&&(x=Ed(r,`onBeforeInput`),0<x.length&&(y=new Hn(`onBeforeInput`,`beforeinput`,null,n,i),s.push({event:y,listeners:x}),y.data=b)),md(s,e,r,n,i)}yd(s,t)})}function Td(e,t,n){return{instance:e,listener:t,currentTarget:n}}function Ed(e,t){for(var n=t+`Capture`,r=[];e!==null;){var i=e,a=i.stateNode;if(i=i.tag,i!==5&&i!==26&&i!==27||a===null||(i=_n(e,n),i!=null&&r.unshift(Td(e,i,a)),i=_n(e,t),i!=null&&r.push(Td(e,i,a))),e.tag===3)return r;e=e.return}return[]}function Dd(e){if(e===null)return null;do e=e.return;while(e&&e.tag!==5&&e.tag!==27);return e||null}function Od(e,t,n,r,i){for(var a=t._reactName,o=[];n!==null&&n!==r;){var s=n,c=s.alternate,l=s.stateNode;if(s=s.tag,c!==null&&c===r)break;s!==5&&s!==26&&s!==27||l===null||(c=l,i?(l=_n(n,a),l!=null&&o.unshift(Td(n,l,c))):i||(l=_n(n,a),l!=null&&o.push(Td(n,l,c)))),n=n.return}o.length!==0&&e.push({event:t,listeners:o})}var kd=/\r\n?/g,Ad=/\u0000|\uFFFD/g;function jd(e){return(typeof e==`string`?e:``+e).replace(kd,`
 `).replace(Ad,``)}function Md(e,t){return t=jd(t),jd(e)===t}function $(e,t,n,r,a,o){switch(n){case`children`:typeof r==`string`?t===`body`||t===`textarea`&&r===``||en(e,r):(typeof r==`number`||typeof r==`bigint`)&&t!==`body`&&en(e,``+r);break;case`className`:zt(e,`class`,r);break;case`tabIndex`:zt(e,`tabindex`,r);break;case`dir`:case`role`:case`viewBox`:case`width`:case`height`:zt(e,n,r);break;case`style`:rn(e,r,o);break;case`data`:if(t!==`object`){zt(e,`data`,r);break}case`src`:case`href`:if(r===``&&(t!==`a`||n!==`href`)){e.removeAttribute(n);break}if(r==null||typeof r==`function`||typeof r==`symbol`||typeof r==`boolean`){e.removeAttribute(n);break}r=cn(``+r),e.setAttribute(n,r);break;case`action`:case`formAction`:if(typeof r==`function`){e.setAttribute(n,`javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')`);break}if(typeof o==`function`&&(n===`formAction`?(t!==`input`&&$(e,t,`name`,a.name,a,null),$(e,t,`formEncType`,a.formEncType,a,null),$(e,t,`formMethod`,a.formMethod,a,null),$(e,t,`formTarget`,a.formTarget,a,null)):($(e,t,`encType`,a.encType,a,null),$(e,t,`method`,a.method,a,null),$(e,t,`target`,a.target,a,null))),r==null||typeof r==`symbol`||typeof r==`boolean`){e.removeAttribute(n);break}r=cn(``+r),e.setAttribute(n,r);break;case`onClick`:r!=null&&(e.onclick=ln);break;case`onScroll`:r!=null&&Q(`scroll`,e);break;case`onScrollEnd`:r!=null&&Q(`scrollend`,e);break;case`dangerouslySetInnerHTML`:if(r!=null){if(typeof r!=`object`||!(`__html`in r))throw Error(i(61));if(n=r.__html,n!=null){if(a.children!=null)throw Error(i(60));e.innerHTML=n}}break;case`multiple`:e.multiple=r&&typeof r!=`function`&&typeof r!=`symbol`;break;case`muted`:e.muted=r&&typeof r!=`function`&&typeof r!=`symbol`;break;case`suppressContentEditableWarning`:case`suppressHydrationWarning`:case`defaultValue`:case`defaultChecked`:case`innerHTML`:case`ref`:break;case`autoFocus`:break;case`xlinkHref`:if(r==null||typeof r==`function`||typeof r==`boolean`||typeof r==`symbol`){e.removeAttribute(`xlink:href`);break}n=cn(``+r),e.setAttributeNS(`http://www.w3.org/1999/xlink`,`xlink:href`,n);break;case`contentEditable`:case`spellCheck`:case`draggable`:case`value`:case`autoReverse`:case`externalResourcesRequired`:case`focusable`:case`preserveAlpha`:r!=null&&typeof r!=`function`&&typeof r!=`symbol`?e.setAttribute(n,``+r):e.removeAttribute(n);break;case`inert`:case`allowFullScreen`:case`async`:case`autoPlay`:case`controls`:case`default`:case`defer`:case`disabled`:case`disablePictureInPicture`:case`disableRemotePlayback`:case`formNoValidate`:case`hidden`:case`loop`:case`noModule`:case`noValidate`:case`open`:case`playsInline`:case`readOnly`:case`required`:case`reversed`:case`scoped`:case`seamless`:case`itemScope`:r&&typeof r!=`function`&&typeof r!=`symbol`?e.setAttribute(n,``):e.removeAttribute(n);break;case`capture`:case`download`:!0===r?e.setAttribute(n,``):!1!==r&&r!=null&&typeof r!=`function`&&typeof r!=`symbol`?e.setAttribute(n,r):e.removeAttribute(n);break;case`cols`:case`rows`:case`size`:case`span`:r!=null&&typeof r!=`function`&&typeof r!=`symbol`&&!isNaN(r)&&1<=r?e.setAttribute(n,r):e.removeAttribute(n);break;case`rowSpan`:case`start`:r==null||typeof r==`function`||typeof r==`symbol`||isNaN(r)?e.removeAttribute(n):e.setAttribute(n,r);break;case`popover`:Q(`beforetoggle`,e),Q(`toggle`,e),Rt(e,`popover`,r);break;case`xlinkActuate`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:actuate`,r);break;case`xlinkArcrole`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:arcrole`,r);break;case`xlinkRole`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:role`,r);break;case`xlinkShow`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:show`,r);break;case`xlinkTitle`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:title`,r);break;case`xlinkType`:Bt(e,`http://www.w3.org/1999/xlink`,`xlink:type`,r);break;case`xmlBase`:Bt(e,`http://www.w3.org/XML/1998/namespace`,`xml:base`,r);break;case`xmlLang`:Bt(e,`http://www.w3.org/XML/1998/namespace`,`xml:lang`,r);break;case`xmlSpace`:Bt(e,`http://www.w3.org/XML/1998/namespace`,`xml:space`,r);break;case`is`:Rt(e,`is`,r);break;case`innerText`:case`textContent`:break;default:(!(2<n.length)||n[0]!==`o`&&n[0]!==`O`||n[1]!==`n`&&n[1]!==`N`)&&(n=on.get(n)||n,Rt(e,n,r))}}function Nd(e,t,n,r,a,o){switch(n){case`style`:rn(e,r,o);break;case`dangerouslySetInnerHTML`:if(r!=null){if(typeof r!=`object`||!(`__html`in r))throw Error(i(61));if(n=r.__html,n!=null){if(a.children!=null)throw Error(i(60));e.innerHTML=n}}break;case`children`:typeof r==`string`?en(e,r):(typeof r==`number`||typeof r==`bigint`)&&en(e,``+r);break;case`onScroll`:r!=null&&Q(`scroll`,e);break;case`onScrollEnd`:r!=null&&Q(`scrollend`,e);break;case`onClick`:r!=null&&(e.onclick=ln);break;case`suppressContentEditableWarning`:case`suppressHydrationWarning`:case`innerHTML`:case`ref`:break;case`innerText`:case`textContent`:break;default:if(!jt.hasOwnProperty(n))a:{if(n[0]===`o`&&n[1]===`n`&&(a=n.endsWith(`Capture`),t=n.slice(2,a?n.length-7:void 0),o=e[_t]||null,o=o==null?null:o[n],typeof o==`function`&&e.removeEventListener(t,o,a),typeof r==`function`)){typeof o!=`function`&&o!==null&&(n in e?e[n]=null:e.hasAttribute(n)&&e.removeAttribute(n)),e.addEventListener(t,r,a);break a}n in e?e[n]=r:!0===r?e.setAttribute(n,``):Rt(e,n,r)}}}function Pd(e,t,n){switch(t){case`div`:case`span`:case`svg`:case`path`:case`a`:case`g`:case`p`:case`li`:break;case`img`:Q(`error`,e),Q(`load`,e);var r=!1,a=!1,o;for(o in n)if(n.hasOwnProperty(o)){var s=n[o];if(s!=null)switch(o){case`src`:r=!0;break;case`srcSet`:a=!0;break;case`children`:case`dangerouslySetInnerHTML`:throw Error(i(137,t));default:$(e,t,o,s,n,null)}}a&&$(e,t,`srcSet`,n.srcSet,n,null),r&&$(e,t,`src`,n.src,n,null);return;case`input`:Q(`invalid`,e);var c=o=s=a=null,l=null,u=null;for(r in n)if(n.hasOwnProperty(r)){var d=n[r];if(d!=null)switch(r){case`name`:a=d;break;case`type`:s=d;break;case`checked`:l=d;break;case`defaultChecked`:u=d;break;case`value`:o=d;break;case`defaultValue`:c=d;break;case`children`:case`dangerouslySetInnerHTML`:if(d!=null)throw Error(i(137,t));break;default:$(e,t,r,d,n,null)}}Yt(e,o,c,l,u,s,a,!1);return;case`select`:for(a in Q(`invalid`,e),r=s=o=null,n)if(n.hasOwnProperty(a)&&(c=n[a],c!=null))switch(a){case`value`:o=c;break;case`defaultValue`:s=c;break;case`multiple`:r=c;default:$(e,t,a,c,n,null)}t=o,n=s,e.multiple=!!r,t==null?n!=null&&Zt(e,!!r,n,!0):Zt(e,!!r,t,!1);return;case`textarea`:for(s in Q(`invalid`,e),o=a=r=null,n)if(n.hasOwnProperty(s)&&(c=n[s],c!=null))switch(s){case`value`:r=c;break;case`defaultValue`:a=c;break;case`children`:o=c;break;case`dangerouslySetInnerHTML`:if(c!=null)throw Error(i(91));break;default:$(e,t,s,c,n,null)}$t(e,r,a,o);return;case`option`:for(l in n)if(n.hasOwnProperty(l)&&(r=n[l],r!=null))switch(l){case`selected`:e.selected=r&&typeof r!=`function`&&typeof r!=`symbol`;break;default:$(e,t,l,r,n,null)}return;case`dialog`:Q(`beforetoggle`,e),Q(`toggle`,e),Q(`cancel`,e),Q(`close`,e);break;case`iframe`:case`object`:Q(`load`,e);break;case`video`:case`audio`:for(r=0;r<_d.length;r++)Q(_d[r],e);break;case`image`:Q(`error`,e),Q(`load`,e);break;case`details`:Q(`toggle`,e);break;case`embed`:case`source`:case`link`:Q(`error`,e),Q(`load`,e);case`area`:case`base`:case`br`:case`col`:case`hr`:case`keygen`:case`meta`:case`param`:case`track`:case`wbr`:case`menuitem`:for(u in n)if(n.hasOwnProperty(u)&&(r=n[u],r!=null))switch(u){case`children`:case`dangerouslySetInnerHTML`:throw Error(i(137,t));default:$(e,t,u,r,n,null)}return;default:if(an(t)){for(d in n)n.hasOwnProperty(d)&&(r=n[d],r!==void 0&&Nd(e,t,d,r,n,void 0));return}}for(c in n)n.hasOwnProperty(c)&&(r=n[c],r!=null&&$(e,t,c,r,n,null))}function Fd(e,t,n,r){switch(t){case`div`:case`span`:case`svg`:case`path`:case`a`:case`g`:case`p`:case`li`:break;case`input`:var a=null,o=null,s=null,c=null,l=null,u=null,d=null;for(m in n){var f=n[m];if(n.hasOwnProperty(m)&&f!=null)switch(m){case`checked`:break;case`value`:break;case`defaultValue`:l=f;default:r.hasOwnProperty(m)||$(e,t,m,null,r,f)}}for(var p in r){var m=r[p];if(f=n[p],r.hasOwnProperty(p)&&(m!=null||f!=null))switch(p){case`type`:o=m;break;case`name`:a=m;break;case`checked`:u=m;break;case`defaultChecked`:d=m;break;case`value`:s=m;break;case`defaultValue`:c=m;break;case`children`:case`dangerouslySetInnerHTML`:if(m!=null)throw Error(i(137,t));break;default:m!==f&&$(e,t,p,m,r,f)}}Jt(e,s,c,l,u,d,o,a);return;case`select`:for(o in m=s=c=p=null,n)if(l=n[o],n.hasOwnProperty(o)&&l!=null)switch(o){case`value`:break;case`multiple`:m=l;default:r.hasOwnProperty(o)||$(e,t,o,null,r,l)}for(a in r)if(o=r[a],l=n[a],r.hasOwnProperty(a)&&(o!=null||l!=null))switch(a){case`value`:p=o;break;case`defaultValue`:c=o;break;case`multiple`:s=o;default:o!==l&&$(e,t,a,o,r,l)}t=c,n=s,r=m,p==null?!!r!=!!n&&(t==null?Zt(e,!!n,n?[]:``,!1):Zt(e,!!n,t,!0)):Zt(e,!!n,p,!1);return;case`textarea`:for(c in m=p=null,n)if(a=n[c],n.hasOwnProperty(c)&&a!=null&&!r.hasOwnProperty(c))switch(c){case`value`:break;case`children`:break;default:$(e,t,c,null,r,a)}for(s in r)if(a=r[s],o=n[s],r.hasOwnProperty(s)&&(a!=null||o!=null))switch(s){case`value`:p=a;break;case`defaultValue`:m=a;break;case`children`:break;case`dangerouslySetInnerHTML`:if(a!=null)throw Error(i(91));break;default:a!==o&&$(e,t,s,a,r,o)}Qt(e,p,m);return;case`option`:for(var h in n)if(p=n[h],n.hasOwnProperty(h)&&p!=null&&!r.hasOwnProperty(h))switch(h){case`selected`:e.selected=!1;break;default:$(e,t,h,null,r,p)}for(l in r)if(p=r[l],m=n[l],r.hasOwnProperty(l)&&p!==m&&(p!=null||m!=null))switch(l){case`selected`:e.selected=p&&typeof p!=`function`&&typeof p!=`symbol`;break;default:$(e,t,l,p,r,m)}return;case`img`:case`link`:case`area`:case`base`:case`br`:case`col`:case`embed`:case`hr`:case`keygen`:case`meta`:case`param`:case`source`:case`track`:case`wbr`:case`menuitem`:for(var g in n)p=n[g],n.hasOwnProperty(g)&&p!=null&&!r.hasOwnProperty(g)&&$(e,t,g,null,r,p);for(u in r)if(p=r[u],m=n[u],r.hasOwnProperty(u)&&p!==m&&(p!=null||m!=null))switch(u){case`children`:case`dangerouslySetInnerHTML`:if(p!=null)throw Error(i(137,t));break;default:$(e,t,u,p,r,m)}return;default:if(an(t)){for(var _ in n)p=n[_],n.hasOwnProperty(_)&&p!==void 0&&!r.hasOwnProperty(_)&&Nd(e,t,_,void 0,r,p);for(d in r)p=r[d],m=n[d],!r.hasOwnProperty(d)||p===m||p===void 0&&m===void 0||Nd(e,t,d,p,r,m);return}}for(var v in n)p=n[v],n.hasOwnProperty(v)&&p!=null&&!r.hasOwnProperty(v)&&$(e,t,v,null,r,p);for(f in r)p=r[f],m=n[f],!r.hasOwnProperty(f)||p===m||p==null&&m==null||$(e,t,f,p,r,m)}function Id(e){switch(e){case`css`:case`script`:case`font`:case`img`:case`image`:case`input`:case`link`:return!0;default:return!1}}function Ld(){if(typeof performance.getEntriesByType==`function`){for(var e=0,t=0,n=performance.getEntriesByType(`resource`),r=0;r<n.length;r++){var i=n[r],a=i.transferSize,o=i.initiatorType,s=i.duration;if(a&&s&&Id(o)){for(o=0,s=i.responseEnd,r+=1;r<n.length;r++){var c=n[r],l=c.startTime;if(l>s)break;var u=c.transferSize,d=c.initiatorType;u&&Id(d)&&(c=c.responseEnd,o+=u*(c<s?1:(s-l)/(c-l)))}if(--r,t+=8*(a+o)/(i.duration/1e3),e++,10<e)break}}if(0<e)return t/e/1e6}return navigator.connection&&(e=navigator.connection.downlink,typeof e==`number`)?e:5}var Rd=null,zd=null;function Bd(e){return e.nodeType===9?e:e.ownerDocument}function Vd(e){switch(e){case`http://www.w3.org/2000/svg`:return 1;case`http://www.w3.org/1998/Math/MathML`:return 2;default:return 0}}function Hd(e,t){if(e===0)switch(t){case`svg`:return 1;case`math`:return 2;default:return 0}return e===1&&t===`foreignObject`?0:e}function Ud(e,t){return e===`textarea`||e===`noscript`||typeof t.children==`string`||typeof t.children==`number`||typeof t.children==`bigint`||typeof t.dangerouslySetInnerHTML==`object`&&t.dangerouslySetInnerHTML!==null&&t.dangerouslySetInnerHTML.__html!=null}var Wd=null;function Gd(){var e=window.event;return e&&e.type===`popstate`?e!==Wd&&(Wd=e,!0):(Wd=null,!1)}var Kd=typeof setTimeout==`function`?setTimeout:void 0,qd=typeof clearTimeout==`function`?clearTimeout:void 0,Jd=typeof Promise==`function`?Promise:void 0,Yd=typeof queueMicrotask==`function`?queueMicrotask:Jd===void 0?Kd:function(e){return Jd.resolve(null).then(e).catch(Xd)};function Xd(e){setTimeout(function(){throw e})}function Zd(e){return e===`head`}function Qd(e,t){var n=t,r=0;do{var i=n.nextSibling;if(e.removeChild(n),i&&i.nodeType===8){if(n=i.data,n===`/$`||n===`/&`){if(r===0){e.removeChild(i),Np(t);return}r--}else if(n===`$`||n===`$?`||n===`$~`||n===`$!`||n===`&`)r++;else if(n===`html`)pf(e.ownerDocument.documentElement);else if(n===`head`){n=e.ownerDocument.head,pf(n);for(var a=n.firstChild;a;){var o=a.nextSibling,s=a.nodeName;a[Ct]||s===`SCRIPT`||s===`STYLE`||s===`LINK`&&a.rel.toLowerCase()===`stylesheet`||n.removeChild(a),a=o}}else n===`body`&&pf(e.ownerDocument.body)}n=i}while(n);Np(t)}function $d(e,t){var n=e;e=0;do{var r=n.nextSibling;if(n.nodeType===1?t?(n._stashedDisplay=n.style.display,n.style.display=`none`):(n.style.display=n._stashedDisplay||``,n.getAttribute(`style`)===``&&n.removeAttribute(`style`)):n.nodeType===3&&(t?(n._stashedText=n.nodeValue,n.nodeValue=``):n.nodeValue=n._stashedText||``),r&&r.nodeType===8){if(n=r.data,n===`/$`){if(e===0)break;e--}else n!==`$`&&n!==`$?`&&n!==`$~`&&n!==`$!`||e++}n=r}while(n)}function ef(e){var t=e.firstChild;for(t&&t.nodeType===10&&(t=t.nextSibling);t;){var n=t;switch(t=t.nextSibling,n.nodeName){case`HTML`:case`HEAD`:case`BODY`:ef(n),wt(n);continue;case`SCRIPT`:case`STYLE`:continue;case`LINK`:if(n.rel.toLowerCase()===`stylesheet`)continue}e.removeChild(n)}}function tf(e,t,n,r){for(;e.nodeType===1;){var i=n;if(e.nodeName.toLowerCase()!==t.toLowerCase()){if(!r&&(e.nodeName!==`INPUT`||e.type!==`hidden`))break}else if(!r){if(t===`input`&&e.type===`hidden`){var a=i.name==null?null:``+i.name;if(i.type===`hidden`&&e.getAttribute(`name`)===a)return e}else return e}else if(!e[Ct])switch(t){case`meta`:if(!e.hasAttribute(`itemprop`))break;return e;case`link`:if(a=e.getAttribute(`rel`),a===`stylesheet`&&e.hasAttribute(`data-precedence`)||a!==i.rel||e.getAttribute(`href`)!==(i.href==null||i.href===``?null:i.href)||e.getAttribute(`crossorigin`)!==(i.crossOrigin==null?null:i.crossOrigin)||e.getAttribute(`title`)!==(i.title==null?null:i.title))break;return e;case`style`:if(e.hasAttribute(`data-precedence`))break;return e;case`script`:if(a=e.getAttribute(`src`),(a!==(i.src==null?null:i.src)||e.getAttribute(`type`)!==(i.type==null?null:i.type)||e.getAttribute(`crossorigin`)!==(i.crossOrigin==null?null:i.crossOrigin))&&a&&e.hasAttribute(`async`)&&!e.hasAttribute(`itemprop`))break;return e;default:return e}if(e=cf(e.nextSibling),e===null)break}return null}function nf(e,t,n){if(t===``)return null;for(;e.nodeType!==3;)if((e.nodeType!==1||e.nodeName!==`INPUT`||e.type!==`hidden`)&&!n||(e=cf(e.nextSibling),e===null))return null;return e}function rf(e,t){for(;e.nodeType!==8;)if((e.nodeType!==1||e.nodeName!==`INPUT`||e.type!==`hidden`)&&!t||(e=cf(e.nextSibling),e===null))return null;return e}function af(e){return e.data===`$?`||e.data===`$~`}function of(e){return e.data===`$!`||e.data===`$?`&&e.ownerDocument.readyState!==`loading`}function sf(e,t){var n=e.ownerDocument;if(e.data===`$~`)e._reactRetry=t;else if(e.data!==`$?`||n.readyState!==`loading`)t();else{var r=function(){t(),n.removeEventListener(`DOMContentLoaded`,r)};n.addEventListener(`DOMContentLoaded`,r),e._reactRetry=r}}function cf(e){for(;e!=null;e=e.nextSibling){var t=e.nodeType;if(t===1||t===3)break;if(t===8){if(t=e.data,t===`$`||t===`$!`||t===`$?`||t===`$~`||t===`&`||t===`F!`||t===`F`)break;if(t===`/$`||t===`/&`)return null}}return e}var lf=null;function uf(e){e=e.nextSibling;for(var t=0;e;){if(e.nodeType===8){var n=e.data;if(n===`/$`||n===`/&`){if(t===0)return cf(e.nextSibling);t--}else n!==`$`&&n!==`$!`&&n!==`$?`&&n!==`$~`&&n!==`&`||t++}e=e.nextSibling}return null}function df(e){e=e.previousSibling;for(var t=0;e;){if(e.nodeType===8){var n=e.data;if(n===`$`||n===`$!`||n===`$?`||n===`$~`||n===`&`){if(t===0)return e;t--}else n!==`/$`&&n!==`/&`||t++}e=e.previousSibling}return null}function ff(e,t,n){switch(t=Bd(n),e){case`html`:if(e=t.documentElement,!e)throw Error(i(452));return e;case`head`:if(e=t.head,!e)throw Error(i(453));return e;case`body`:if(e=t.body,!e)throw Error(i(454));return e;default:throw Error(i(451))}}function pf(e){for(var t=e.attributes;t.length;)e.removeAttributeNode(t[0]);wt(e)}var mf=new Map,hf=new Set;function gf(e){return typeof e.getRootNode==`function`?e.getRootNode():e.nodeType===9?e:e.ownerDocument}var _f=E.d;E.d={f:vf,r:yf,D:Sf,C:Cf,L:wf,m:Tf,X:Df,S:Ef,M:Of};function vf(){var e=_f.f(),t=bu();return e||t}function yf(e){var t=Et(e);t!==null&&t.tag===5&&t.type===`form`?ks(t):_f.r(e)}var bf=typeof document>`u`?null:document;function xf(e,t,n){var r=bf;if(r&&typeof t==`string`&&t){var i=k(t);i=`link[rel="`+e+`"][href="`+i+`"]`,typeof n==`string`&&(i+=`[crossorigin="`+n+`"]`),hf.has(i)||(hf.add(i),e={rel:e,crossOrigin:n,href:t},r.querySelector(i)===null&&(t=r.createElement(`link`),Pd(t,`link`,e),kt(t),r.head.appendChild(t)))}}function Sf(e){_f.D(e),xf(`dns-prefetch`,e,null)}function Cf(e,t){_f.C(e,t),xf(`preconnect`,e,t)}function wf(e,t,n){_f.L(e,t,n);var r=bf;if(r&&e&&t){var i=`link[rel="preload"][as="`+k(t)+`"]`;t===`image`&&n&&n.imageSrcSet?(i+=`[imagesrcset="`+k(n.imageSrcSet)+`"]`,typeof n.imageSizes==`string`&&(i+=`[imagesizes="`+k(n.imageSizes)+`"]`)):i+=`[href="`+k(e)+`"]`;var a=i;switch(t){case`style`:a=Af(e);break;case`script`:a=Pf(e)}mf.has(a)||(e=h({rel:`preload`,href:t===`image`&&n&&n.imageSrcSet?void 0:e,as:t},n),mf.set(a,e),r.querySelector(i)!==null||t===`style`&&r.querySelector(jf(a))||t===`script`&&r.querySelector(Ff(a))||(t=r.createElement(`link`),Pd(t,`link`,e),kt(t),r.head.appendChild(t)))}}function Tf(e,t){_f.m(e,t);var n=bf;if(n&&e){var r=t&&typeof t.as==`string`?t.as:`script`,i=`link[rel="modulepreload"][as="`+k(r)+`"][href="`+k(e)+`"]`,a=i;switch(r){case`audioworklet`:case`paintworklet`:case`serviceworker`:case`sharedworker`:case`worker`:case`script`:a=Pf(e)}if(!mf.has(a)&&(e=h({rel:`modulepreload`,href:e},t),mf.set(a,e),n.querySelector(i)===null)){switch(r){case`audioworklet`:case`paintworklet`:case`serviceworker`:case`sharedworker`:case`worker`:case`script`:if(n.querySelector(Ff(a)))return}r=n.createElement(`link`),Pd(r,`link`,e),kt(r),n.head.appendChild(r)}}}function Ef(e,t,n){_f.S(e,t,n);var r=bf;if(r&&e){var i=Ot(r).hoistableStyles,a=Af(e);t||=`default`;var o=i.get(a);if(!o){var s={loading:0,preload:null};if(o=r.querySelector(jf(a)))s.loading=5;else{e=h({rel:`stylesheet`,href:e,"data-precedence":t},n),(n=mf.get(a))&&Rf(e,n);var c=o=r.createElement(`link`);kt(c),Pd(c,`link`,e),c._p=new Promise(function(e,t){c.onload=e,c.onerror=t}),c.addEventListener(`load`,function(){s.loading|=1}),c.addEventListener(`error`,function(){s.loading|=2}),s.loading|=4,Lf(o,t,r)}o={type:`stylesheet`,instance:o,count:1,state:s},i.set(a,o)}}}function Df(e,t){_f.X(e,t);var n=bf;if(n&&e){var r=Ot(n).hoistableScripts,i=Pf(e),a=r.get(i);a||(a=n.querySelector(Ff(i)),a||(e=h({src:e,async:!0},t),(t=mf.get(i))&&zf(e,t),a=n.createElement(`script`),kt(a),Pd(a,`link`,e),n.head.appendChild(a)),a={type:`script`,instance:a,count:1,state:null},r.set(i,a))}}function Of(e,t){_f.M(e,t);var n=bf;if(n&&e){var r=Ot(n).hoistableScripts,i=Pf(e),a=r.get(i);a||(a=n.querySelector(Ff(i)),a||(e=h({src:e,async:!0,type:`module`},t),(t=mf.get(i))&&zf(e,t),a=n.createElement(`script`),kt(a),Pd(a,`link`,e),n.head.appendChild(a)),a={type:`script`,instance:a,count:1,state:null},r.set(i,a))}}function kf(e,t,n,r){var a=(a=_e.current)?gf(a):null;if(!a)throw Error(i(446));switch(e){case`meta`:case`title`:return null;case`style`:return typeof n.precedence==`string`&&typeof n.href==`string`?(t=Af(n.href),n=Ot(a).hoistableStyles,r=n.get(t),r||(r={type:`style`,instance:null,count:0,state:null},n.set(t,r)),r):{type:`void`,instance:null,count:0,state:null};case`link`:if(n.rel===`stylesheet`&&typeof n.href==`string`&&typeof n.precedence==`string`){e=Af(n.href);var o=Ot(a).hoistableStyles,s=o.get(e);if(s||(a=a.ownerDocument||a,s={type:`stylesheet`,instance:null,count:0,state:{loading:0,preload:null}},o.set(e,s),(o=a.querySelector(jf(e)))&&!o._p&&(s.instance=o,s.state.loading=5),mf.has(e)||(n={rel:`preload`,as:`style`,href:n.href,crossOrigin:n.crossOrigin,integrity:n.integrity,media:n.media,hrefLang:n.hrefLang,referrerPolicy:n.referrerPolicy},mf.set(e,n),o||Nf(a,e,n,s.state))),t&&r===null)throw Error(i(528,``));return s}if(t&&r!==null)throw Error(i(529,``));return null;case`script`:return t=n.async,n=n.src,typeof n==`string`&&t&&typeof t!=`function`&&typeof t!=`symbol`?(t=Pf(n),n=Ot(a).hoistableScripts,r=n.get(t),r||(r={type:`script`,instance:null,count:0,state:null},n.set(t,r)),r):{type:`void`,instance:null,count:0,state:null};default:throw Error(i(444,e))}}function Af(e){return`href="`+k(e)+`"`}function jf(e){return`link[rel="stylesheet"][`+e+`]`}function Mf(e){return h({},e,{"data-precedence":e.precedence,precedence:null})}function Nf(e,t,n,r){e.querySelector(`link[rel="preload"][as="style"][`+t+`]`)?r.loading=1:(t=e.createElement(`link`),r.preload=t,t.addEventListener(`load`,function(){return r.loading|=1}),t.addEventListener(`error`,function(){return r.loading|=2}),Pd(t,`link`,n),kt(t),e.head.appendChild(t))}function Pf(e){return`[src="`+k(e)+`"]`}function Ff(e){return`script[async]`+e}function If(e,t,n){if(t.count++,t.instance===null)switch(t.type){case`style`:var r=e.querySelector(`style[data-href~="`+k(n.href)+`"]`);if(r)return t.instance=r,kt(r),r;var a=h({},n,{"data-href":n.href,"data-precedence":n.precedence,href:null,precedence:null});return r=(e.ownerDocument||e).createElement(`style`),kt(r),Pd(r,`style`,a),Lf(r,n.precedence,e),t.instance=r;case`stylesheet`:a=Af(n.href);var o=e.querySelector(jf(a));if(o)return t.state.loading|=4,t.instance=o,kt(o),o;r=Mf(n),(a=mf.get(a))&&Rf(r,a),o=(e.ownerDocument||e).createElement(`link`),kt(o);var s=o;return s._p=new Promise(function(e,t){s.onload=e,s.onerror=t}),Pd(o,`link`,r),t.state.loading|=4,Lf(o,n.precedence,e),t.instance=o;case`script`:return o=Pf(n.src),(a=e.querySelector(Ff(o)))?(t.instance=a,kt(a),a):(r=n,(a=mf.get(o))&&(r=h({},n),zf(r,a)),e=e.ownerDocument||e,a=e.createElement(`script`),kt(a),Pd(a,`link`,r),e.head.appendChild(a),t.instance=a);case`void`:return null;default:throw Error(i(443,t.type))}else t.type===`stylesheet`&&!(t.state.loading&4)&&(r=t.instance,t.state.loading|=4,Lf(r,n.precedence,e));return t.instance}function Lf(e,t,n){for(var r=n.querySelectorAll(`link[rel="stylesheet"][data-precedence],style[data-precedence]`),i=r.length?r[r.length-1]:null,a=i,o=0;o<r.length;o++){var s=r[o];if(s.dataset.precedence===t)a=s;else if(a!==i)break}a?a.parentNode.insertBefore(e,a.nextSibling):(t=n.nodeType===9?n.head:n,t.insertBefore(e,t.firstChild))}function Rf(e,t){e.crossOrigin??=t.crossOrigin,e.referrerPolicy??=t.referrerPolicy,e.title??=t.title}function zf(e,t){e.crossOrigin??=t.crossOrigin,e.referrerPolicy??=t.referrerPolicy,e.integrity??=t.integrity}var Bf=null;function Vf(e,t,n){if(Bf===null){var r=new Map,i=Bf=new Map;i.set(n,r)}else i=Bf,r=i.get(n),r||(r=new Map,i.set(n,r));if(r.has(e))return r;for(r.set(e,null),n=n.getElementsByTagName(e),i=0;i<n.length;i++){var a=n[i];if(!(a[Ct]||a[gt]||e===`link`&&a.getAttribute(`rel`)===`stylesheet`)&&a.namespaceURI!==`http://www.w3.org/2000/svg`){var o=a.getAttribute(t)||``;o=e+o;var s=r.get(o);s?s.push(a):r.set(o,[a])}}return r}function Hf(e,t,n){e=e.ownerDocument||e,e.head.insertBefore(n,t===`title`?e.querySelector(`head > title`):null)}function Uf(e,t,n){if(n===1||t.itemProp!=null)return!1;switch(e){case`meta`:case`title`:return!0;case`style`:if(typeof t.precedence!=`string`||typeof t.href!=`string`||t.href===``)break;return!0;case`link`:if(typeof t.rel!=`string`||typeof t.href!=`string`||t.href===``||t.onLoad||t.onError)break;switch(t.rel){case`stylesheet`:return e=t.disabled,typeof t.precedence==`string`&&e==null;default:return!0}case`script`:if(t.async&&typeof t.async!=`function`&&typeof t.async!=`symbol`&&!t.onLoad&&!t.onError&&t.src&&typeof t.src==`string`)return!0}return!1}function Wf(e){return!(e.type===`stylesheet`&&!(e.state.loading&3))}function Gf(e,t,n,r){if(n.type===`stylesheet`&&(typeof r.media!=`string`||!1!==matchMedia(r.media).matches)&&!(n.state.loading&4)){if(n.instance===null){var i=Af(r.href),a=t.querySelector(jf(i));if(a){t=a._p,typeof t==`object`&&t&&typeof t.then==`function`&&(e.count++,e=Jf.bind(e),t.then(e,e)),n.state.loading|=4,n.instance=a,kt(a);return}a=t.ownerDocument||t,r=Mf(r),(i=mf.get(i))&&Rf(r,i),a=a.createElement(`link`),kt(a);var o=a;o._p=new Promise(function(e,t){o.onload=e,o.onerror=t}),Pd(a,`link`,r),n.instance=a}e.stylesheets===null&&(e.stylesheets=new Map),e.stylesheets.set(n,t),(t=n.state.preload)&&!(n.state.loading&3)&&(e.count++,n=Jf.bind(e),t.addEventListener(`load`,n),t.addEventListener(`error`,n))}}var Kf=0;function qf(e,t){return e.stylesheets&&e.count===0&&Xf(e,e.stylesheets),0<e.count||0<e.imgCount?function(n){var r=setTimeout(function(){if(e.stylesheets&&Xf(e,e.stylesheets),e.unsuspend){var t=e.unsuspend;e.unsuspend=null,t()}},6e4+t);0<e.imgBytes&&Kf===0&&(Kf=62500*Ld());var i=setTimeout(function(){if(e.waitingForImages=!1,e.count===0&&(e.stylesheets&&Xf(e,e.stylesheets),e.unsuspend)){var t=e.unsuspend;e.unsuspend=null,t()}},(e.imgBytes>Kf?50:800)+t);return e.unsuspend=n,function(){e.unsuspend=null,clearTimeout(r),clearTimeout(i)}}:null}function Jf(){if(this.count--,this.count===0&&(this.imgCount===0||!this.waitingForImages)){if(this.stylesheets)Xf(this,this.stylesheets);else if(this.unsuspend){var e=this.unsuspend;this.unsuspend=null,e()}}}var Yf=null;function Xf(e,t){e.stylesheets=null,e.unsuspend!==null&&(e.count++,Yf=new Map,t.forEach(Zf,e),Yf=null,Jf.call(e))}function Zf(e,t){if(!(t.state.loading&4)){var n=Yf.get(e);if(n)var r=n.get(null);else{n=new Map,Yf.set(e,n);for(var i=e.querySelectorAll(`link[data-precedence],style[data-precedence]`),a=0;a<i.length;a++){var o=i[a];(o.nodeName===`LINK`||o.getAttribute(`media`)!==`not all`)&&(n.set(o.dataset.precedence,o),r=o)}r&&n.set(null,r)}i=t.instance,o=i.getAttribute(`data-precedence`),a=n.get(o)||r,a===r&&n.set(null,i),n.set(o,i),this.count++,r=Jf.bind(this),i.addEventListener(`load`,r),i.addEventListener(`error`,r),a?a.parentNode.insertBefore(i,a.nextSibling):(e=e.nodeType===9?e.head:e,e.insertBefore(i,e.firstChild)),t.state.loading|=4}}var Qf={$$typeof:S,Provider:null,Consumer:null,_currentValue:de,_currentValue2:de,_threadCount:0};function $f(e,t,n,r,i,a,o,s,c){this.tag=1,this.containerInfo=e,this.pingCache=this.current=this.pendingChildren=null,this.timeoutHandle=-1,this.callbackNode=this.next=this.pendingContext=this.context=this.cancelPendingCommit=null,this.callbackPriority=0,this.expirationTimes=at(-1),this.entangledLanes=this.shellSuspendCounter=this.errorRecoveryDisabledLanes=this.expiredLanes=this.warmLanes=this.pingedLanes=this.suspendedLanes=this.pendingLanes=0,this.entanglements=at(0),this.hiddenUpdates=at(null),this.identifierPrefix=r,this.onUncaughtError=i,this.onCaughtError=a,this.onRecoverableError=o,this.pooledCache=null,this.pooledCacheLanes=0,this.formState=c,this.incompleteTransitions=new Map}function ep(e,t,n,r,i,a,o,s,c,l,u,d){return e=new $f(e,t,n,o,c,l,u,d,s),t=1,!0===a&&(t|=24),a=hi(3,null,null,t),e.current=a,a.stateNode=e,t=pa(),t.refCount++,e.pooledCache=t,t.refCount++,a.memoizedState={element:r,isDehydrated:n,cache:t},Ka(a),e}function tp(e){return e?(e=pi,e):pi}function np(e,t,n,r,i,a){i=tp(i),r.context===null?r.context=i:r.pendingContext=i,r=Ja(t),r.payload={element:n},a=a===void 0?null:a,a!==null&&(r.callback=a),n=Ya(e,r,t),n!==null&&(hu(n,e,t),Xa(n,e,t))}function rp(e,t){if(e=e.memoizedState,e!==null&&e.dehydrated!==null){var n=e.retryLane;e.retryLane=n!==0&&n<t?n:t}}function ip(e,t){rp(e,t),(e=e.alternate)&&rp(e,t)}function ap(e){if(e.tag===13||e.tag===31){var t=ui(e,67108864);t!==null&&hu(t,e,67108864),ip(e,67108864)}}function op(e){if(e.tag===13||e.tag===31){var t=pu();t=dt(t);var n=ui(e,t);n!==null&&hu(n,e,t),ip(e,t)}}var sp=!0;function cp(e,t,n,r){var i=T.T;T.T=null;var a=E.p;try{E.p=2,up(e,t,n,r)}finally{E.p=a,T.T=i}}function lp(e,t,n,r){var i=T.T;T.T=null;var a=E.p;try{E.p=8,up(e,t,n,r)}finally{E.p=a,T.T=i}}function up(e,t,n,r){if(sp){var i=dp(r);if(i===null)wd(e,t,r,fp,n),Cp(e,r);else if(Tp(i,e,t,n,r))r.stopPropagation();else if(Cp(e,r),t&4&&-1<Sp.indexOf(e)){for(;i!==null;){var a=Et(i);if(a!==null)switch(a.tag){case 3:if(a=a.stateNode,a.current.memoizedState.isDehydrated){var o=et(a.pendingLanes);if(o!==0){var s=a;for(s.pendingLanes|=2,s.entangledLanes|=2;o;){var c=1<<31-qe(o);s.entanglements[1]|=c,o&=~c}rd(a),!(G&6)&&(tu=Fe()+500,id(0,!1))}}break;case 31:case 13:s=ui(a,2),s!==null&&hu(s,a,2),bu(),ip(a,2)}if(a=dp(r),a===null&&wd(e,t,r,fp,n),a===i)break;i=a}i!==null&&r.stopPropagation()}else wd(e,t,r,null,n)}}function dp(e){return e=dn(e),pp(e)}var fp=null;function pp(e){if(fp=null,e=Tt(e),e!==null){var t=o(e);if(t===null)e=null;else{var n=t.tag;if(n===13){if(e=s(t),e!==null)return e;e=null}else if(n===31){if(e=c(t),e!==null)return e;e=null}else if(n===3){if(t.stateNode.current.memoizedState.isDehydrated)return t.tag===3?t.stateNode.containerInfo:null;e=null}else t!==e&&(e=null)}}return fp=e,null}function mp(e){switch(e){case`beforetoggle`:case`cancel`:case`click`:case`close`:case`contextmenu`:case`copy`:case`cut`:case`auxclick`:case`dblclick`:case`dragend`:case`dragstart`:case`drop`:case`focusin`:case`focusout`:case`input`:case`invalid`:case`keydown`:case`keypress`:case`keyup`:case`mousedown`:case`mouseup`:case`paste`:case`pause`:case`play`:case`pointercancel`:case`pointerdown`:case`pointerup`:case`ratechange`:case`reset`:case`resize`:case`seeked`:case`submit`:case`toggle`:case`touchcancel`:case`touchend`:case`touchstart`:case`volumechange`:case`change`:case`selectionchange`:case`textInput`:case`compositionstart`:case`compositionend`:case`compositionupdate`:case`beforeblur`:case`afterblur`:case`beforeinput`:case`blur`:case`fullscreenchange`:case`focus`:case`hashchange`:case`popstate`:case`select`:case`selectstart`:return 2;case`drag`:case`dragenter`:case`dragexit`:case`dragleave`:case`dragover`:case`mousemove`:case`mouseout`:case`mouseover`:case`pointermove`:case`pointerout`:case`pointerover`:case`scroll`:case`touchmove`:case`wheel`:case`mouseenter`:case`mouseleave`:case`pointerenter`:case`pointerleave`:return 8;case`message`:switch(Ie()){case Le:return 2;case Re:return 8;case ze:case Be:return 32;case Ve:return 268435456;default:return 32}default:return 32}}var hp=!1,gp=null,_p=null,vp=null,yp=new Map,bp=new Map,xp=[],Sp=`mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset`.split(` `);function Cp(e,t){switch(e){case`focusin`:case`focusout`:gp=null;break;case`dragenter`:case`dragleave`:_p=null;break;case`mouseover`:case`mouseout`:vp=null;break;case`pointerover`:case`pointerout`:yp.delete(t.pointerId);break;case`gotpointercapture`:case`lostpointercapture`:bp.delete(t.pointerId)}}function wp(e,t,n,r,i,a){return e===null||e.nativeEvent!==a?(e={blockedOn:t,domEventName:n,eventSystemFlags:r,nativeEvent:a,targetContainers:[i]},t!==null&&(t=Et(t),t!==null&&ap(t)),e):(e.eventSystemFlags|=r,t=e.targetContainers,i!==null&&t.indexOf(i)===-1&&t.push(i),e)}function Tp(e,t,n,r,i){switch(t){case`focusin`:return gp=wp(gp,e,t,n,r,i),!0;case`dragenter`:return _p=wp(_p,e,t,n,r,i),!0;case`mouseover`:return vp=wp(vp,e,t,n,r,i),!0;case`pointerover`:var a=i.pointerId;return yp.set(a,wp(yp.get(a)||null,e,t,n,r,i)),!0;case`gotpointercapture`:return a=i.pointerId,bp.set(a,wp(bp.get(a)||null,e,t,n,r,i)),!0}return!1}function Ep(e){var t=Tt(e.target);if(t!==null){var n=o(t);if(n!==null){if(t=n.tag,t===13){if(t=s(n),t!==null){e.blockedOn=t,mt(e.priority,function(){op(n)});return}}else if(t===31){if(t=c(n),t!==null){e.blockedOn=t,mt(e.priority,function(){op(n)});return}}else if(t===3&&n.stateNode.current.memoizedState.isDehydrated){e.blockedOn=n.tag===3?n.stateNode.containerInfo:null;return}}}e.blockedOn=null}function Dp(e){if(e.blockedOn!==null)return!1;for(var t=e.targetContainers;0<t.length;){var n=dp(e.nativeEvent);if(n===null){n=e.nativeEvent;var r=new n.constructor(n.type,n);un=r,n.target.dispatchEvent(r),un=null}else return t=Et(n),t!==null&&ap(t),e.blockedOn=n,!1;t.shift()}return!0}function Op(e,t,n){Dp(e)&&n.delete(t)}function kp(){hp=!1,gp!==null&&Dp(gp)&&(gp=null),_p!==null&&Dp(_p)&&(_p=null),vp!==null&&Dp(vp)&&(vp=null),yp.forEach(Op),bp.forEach(Op)}function Ap(e,n){e.blockedOn===n&&(e.blockedOn=null,hp||(hp=!0,t.unstable_scheduleCallback(t.unstable_NormalPriority,kp)))}var jp=null;function Mp(e){jp!==e&&(jp=e,t.unstable_scheduleCallback(t.unstable_NormalPriority,function(){jp===e&&(jp=null);for(var t=0;t<e.length;t+=3){var n=e[t],r=e[t+1],i=e[t+2];if(typeof r!=`function`){if(pp(r||n)===null)continue;break}var a=Et(n);a!==null&&(e.splice(t,3),t-=3,Ds(a,{pending:!0,data:i,method:n.method,action:r},r,i))}}))}function Np(e){function t(t){return Ap(t,e)}gp!==null&&Ap(gp,e),_p!==null&&Ap(_p,e),vp!==null&&Ap(vp,e),yp.forEach(t),bp.forEach(t);for(var n=0;n<xp.length;n++){var r=xp[n];r.blockedOn===e&&(r.blockedOn=null)}for(;0<xp.length&&(n=xp[0],n.blockedOn===null);)Ep(n),n.blockedOn===null&&xp.shift();if(n=(e.ownerDocument||e).$$reactFormReplay,n!=null)for(r=0;r<n.length;r+=3){var i=n[r],a=n[r+1],o=i[_t]||null;if(typeof a==`function`)o||Mp(n);else if(o){var s=null;if(a&&a.hasAttribute(`formAction`)){if(i=a,o=a[_t]||null)s=o.formAction;else if(pp(i)!==null)continue}else s=o.action;typeof s==`function`?n[r+1]=s:(n.splice(r,3),r-=3),Mp(n)}}}function Pp(){function e(e){e.canIntercept&&e.info===`react-transition`&&e.intercept({handler:function(){return new Promise(function(e){return i=e})},focusReset:`manual`,scroll:`manual`})}function t(){i!==null&&(i(),i=null),r||setTimeout(n,20)}function n(){if(!r&&!navigation.transition){var e=navigation.currentEntry;e&&e.url!=null&&navigation.navigate(e.url,{state:e.getState(),info:`react-transition`,history:`replace`})}}if(typeof navigation==`object`){var r=!1,i=null;return navigation.addEventListener(`navigate`,e),navigation.addEventListener(`navigatesuccess`,t),navigation.addEventListener(`navigateerror`,t),setTimeout(n,100),function(){r=!0,navigation.removeEventListener(`navigate`,e),navigation.removeEventListener(`navigatesuccess`,t),navigation.removeEventListener(`navigateerror`,t),i!==null&&(i(),i=null)}}}function Fp(e){this._internalRoot=e}Ip.prototype.render=Fp.prototype.render=function(e){var t=this._internalRoot;if(t===null)throw Error(i(409));var n=t.current;np(n,pu(),e,t,null,null)},Ip.prototype.unmount=Fp.prototype.unmount=function(){var e=this._internalRoot;if(e!==null){this._internalRoot=null;var t=e.containerInfo;np(e.current,2,null,e,null,null),bu(),t[vt]=null}};function Ip(e){this._internalRoot=e}Ip.prototype.unstable_scheduleHydration=function(e){if(e){var t=pt();e={blockedOn:null,target:e,priority:t};for(var n=0;n<xp.length&&t!==0&&t<xp[n].priority;n++);xp.splice(n,0,e),n===0&&Ep(e)}};var Lp=n.version;if(Lp!==`19.2.8`)throw Error(i(527,Lp,`19.2.8`));E.findDOMNode=function(e){var t=e._reactInternals;if(t===void 0)throw typeof e.render==`function`?Error(i(188)):(e=Object.keys(e).join(`,`),Error(i(268,e)));return e=d(t),e=e===null?null:p(e),e=e===null?null:e.stateNode,e};var Rp={bundleType:0,version:`19.2.8`,rendererPackageName:`react-dom`,currentDispatcherRef:T,reconcilerVersion:`19.2.8`};if(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__<`u`){var zp=__REACT_DEVTOOLS_GLOBAL_HOOK__;if(!zp.isDisabled&&zp.supportsFiber)try{We=zp.inject(Rp),Ge=zp}catch{}}e.createRoot=function(e,t){if(!a(e))throw Error(i(299));var n=!1,r=``,o=Xs,s=Zs,c=Qs;return t!=null&&(!0===t.unstable_strictMode&&(n=!0),t.identifierPrefix!==void 0&&(r=t.identifierPrefix),t.onUncaughtError!==void 0&&(o=t.onUncaughtError),t.onCaughtError!==void 0&&(s=t.onCaughtError),t.onRecoverableError!==void 0&&(c=t.onRecoverableError)),t=ep(e,1,!1,null,null,n,r,null,o,s,c,Pp),e[vt]=t.current,Sd(e),new Fp(t)}})),g=o(((e,t)=>{function n(){if(!(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__>`u`||typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE!=`function`))try{__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(n)}catch(e){console.error(e)}}n(),t.exports=h()})),_=c(u(),1),v=g(),y=`modulepreload`,b=function(e){return`/interview/`+e},x={},ee=function(e,t,n){let r=Promise.resolve();if(t&&t.length>0){let e=document.getElementsByTagName(`link`),i=document.querySelector(`meta[property=csp-nonce]`),a=i?.nonce||i?.getAttribute(`nonce`);function o(e){return Promise.all(e.map(e=>Promise.resolve(e).then(e=>({status:`fulfilled`,value:e}),e=>({status:`rejected`,reason:e}))))}function s(e){return import.meta.resolve?import.meta.resolve(e):new URL(e,import.meta.url).href}r=o(t.map(t=>{if(t=b(t,n),t=s(t),t in x)return;x[t]=!0;let r=t.endsWith(`.css`);for(let n=e.length-1;n>=0;n--){let i=e[n];if(i.href===t&&(!r||i.rel===`stylesheet`))return}let i=document.createElement(`link`);if(i.rel=r?`stylesheet`:y,r||(i.as=`script`),i.crossOrigin=``,i.href=t,a&&i.setAttribute(`nonce`,a),document.head.appendChild(i),r)return new Promise((e,n)=>{i.addEventListener(`load`,e),i.addEventListener(`error`,()=>n(Error(`Unable to preload CSS for ${t}`)))})}))}function i(e){let t=new Event(`vite:preloadError`,{cancelable:!0});if(t.payload=e,window.dispatchEvent(t),!t.defaultPrevented)throw e}return r.then(t=>{for(let e of t||[])e.status===`rejected`&&i(e.reason);return e().catch(i)})},S=/^(?:[a-z][a-z0-9+.-]*:|[\\/]{2})/i,C=/^[\\/]{2}/;function te(e,t){return t+e.replace(/\\/g,`/`)}var ne=`popstate`;function re(e){return typeof e==`object`&&!!e&&`pathname`in e&&`search`in e&&`hash`in e&&`state`in e&&`key`in e}function ie(e={}){function t(e,t){let n=t.state?.masked,{pathname:r,search:i,hash:a}=n||e.location;return ce(``,{pathname:r,search:i,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||`default`,n?{pathname:e.location.pathname,search:e.location.search,hash:e.location.hash}:void 0)}function n(e,t){return typeof t==`string`?t:le(t)}return T(t,n,null,e)}function w(e,t){if(e===!1||e==null)throw Error(t)}function ae(e,t){if(!e){typeof console<`u`&&console.warn(t);try{throw Error(t)}catch{}}}function oe(){return Math.random().toString(36).substring(2,10)}function se(e,t){return{usr:e.state,key:e.key,idx:t,masked:e.mask?{pathname:e.pathname,search:e.search,hash:e.hash}:void 0}}function ce(e,t,n=null,r,i){return{pathname:typeof e==`string`?e:e.pathname,search:``,hash:``,...typeof t==`string`?ue(t):t,state:n,key:t&&t.key||r||oe(),mask:i}}function le({pathname:e=`/`,search:t=``,hash:n=``}){return t&&t!==`?`&&(e+=t.charAt(0)===`?`?t:`?`+t),n&&n!==`#`&&(e+=n.charAt(0)===`#`?n:`#`+n),e}function ue(e){let t={};if(e){let n=e.indexOf(`#`);n>=0&&(t.hash=e.substring(n),e=e.substring(0,n));let r=e.indexOf(`?`);r>=0&&(t.search=e.substring(r),e=e.substring(0,r)),e&&(t.pathname=e)}return t}function T(e,t,n,r={}){let{window:i=document.defaultView,v5Compat:a=!1}=r,o=i.history,s=`POP`,c=null,l=u();l??(l=0,o.replaceState({...o.state,idx:l},``));function u(){return(o.state||{idx:null}).idx}function d(){s=`POP`;let e=u(),t=e==null?null:e-l;l=e,c&&c({action:s,location:h.location,delta:t})}function f(e,t){s=`PUSH`;let r=re(e)?e:ce(h.location,e,t);n&&n(r,e),l=u()+1;let d=se(r,l),f=h.createHref(r.mask||r);try{o.pushState(d,``,f)}catch(e){if(e instanceof DOMException&&e.name===`DataCloneError`)throw e;i.location.assign(f)}a&&c&&c({action:s,location:h.location,delta:1})}function p(e,t){s=`REPLACE`;let r=re(e)?e:ce(h.location,e,t);n&&n(r,e),l=u();let i=se(r,l),d=h.createHref(r.mask||r);o.replaceState(i,``,d),a&&c&&c({action:s,location:h.location,delta:0})}function m(e){return E(i,e)}let h={get action(){return s},get location(){return e(i,o)},listen(e){if(c)throw Error(`A history only accepts one active listener`);return i.addEventListener(ne,d),c=e,()=>{i.removeEventListener(ne,d),c=null}},createHref(e){return t(i,e)},createURL:m,encodeLocation(e){let t=m(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:f,replace:p,go(e){return o.go(e)}};return h}function E(e,t,n=!1){let r=`http://localhost`;e&&(r=e.location.origin===`null`?e.location.href:e.location.origin),w(r,`No window.location.(origin|href) available to create URL`);let i=typeof t==`string`?t:le(t);return i=i.replace(/ $/,`%20`),!n&&C.test(i)&&(i=r+i),new URL(i,r)}function de(e,t,n=`/`){return fe(e,t,n,!1)}function fe(e,t,n,r,i){let a=ke((typeof t==`string`?ue(t):t).pathname||`/`,n);if(a==null)return null;let o=i??pe(e),s=null,c=Oe(a);for(let e=0;s==null&&e<o.length;++e)s=we(o[e],c,r);return s}function pe(e){let t=me(e);return O(t),t}function me(e,t=[],n=[],r=``,i=!1){let a=(e,a,o=i,s)=>{let c={relativePath:s===void 0?e.path||``:s,caseSensitive:e.caseSensitive===!0,childrenIndex:a,route:e};if(c.relativePath.startsWith(`/`)){if(!c.relativePath.startsWith(r)&&o)return;w(c.relativePath.startsWith(r),`Absolute route path "${c.relativePath}" nested under path "${r}" is not valid. An absolute child route path must start with the combined path of all its parent routes.`),c.relativePath=c.relativePath.slice(r.length)}let l=Le([r,c.relativePath]),u=n.concat(c);e.children&&e.children.length>0&&(w(e.index!==!0,`Index routes must not have child routes. Please remove all child routes from route path "${l}".`),me(e.children,t,u,l,o)),(e.path!=null||e.index)&&t.push({path:l,score:Se(l,e.index),routesMeta:u.map((e,t)=>{let[n,r]=De(e.relativePath,e.caseSensitive,t===u.length-1);return{...e,matcher:n,compiledParams:r}})})};return e.forEach((e,t)=>{if(e.path===``||!e.path?.includes(`?`))a(e,t);else for(let n of D(e.path))a(e,t,!0,n)}),t}function D(e){let t=e.split(`/`);if(t.length===0)return[];let[n,...r]=t,i=n.endsWith(`?`),a=n.replace(/\?$/,``);if(r.length===0)return i?[a,``]:[a];let o=D(r.join(`/`)),s=[];return s.push(...o.map(e=>e===``?a:[a,e].join(`/`))),i&&s.push(...o),s.map(t=>e.startsWith(`/`)&&t===``?`/`:t)}function O(e){e.sort((e,t)=>e.score===t.score?Ce(e.routesMeta.map(e=>e.childrenIndex),t.routesMeta.map(e=>e.childrenIndex)):t.score-e.score)}var he=/^:[\w-]+$/,ge=3,_e=2,ve=1,ye=10,be=-2,xe=e=>e===`*`;function Se(e,t){let n=e.split(`/`),r=n.length;return n.some(xe)&&(r+=be),t&&(r+=_e),n.filter(e=>!xe(e)).reduce((e,t)=>e+(he.test(t)?ge:t===``?ve:ye),r)}function Ce(e,t){return e.length===t.length&&e.slice(0,-1).every((e,n)=>e===t[n])?e[e.length-1]-t[t.length-1]:0}function we(e,t,n=!1){let{routesMeta:r}=e,i={},a=`/`,o=[];for(let e=0;e<r.length;++e){let s=r[e],c=e===r.length-1,l=a===`/`?t:t.slice(a.length)||`/`,u={path:s.relativePath,caseSensitive:s.caseSensitive,end:c},d=s.matcher&&s.compiledParams?Ee(u,l,s.matcher,s.compiledParams):Te(u,l),f=s.route;if(!d&&c&&n&&!r[r.length-1].route.index&&(d=Te({path:s.relativePath,caseSensitive:s.caseSensitive,end:!1},l)),!d)return null;Object.assign(i,d.params),o.push({params:i,pathname:Le([a,d.pathname]),pathnameBase:ze(Le([a,d.pathnameBase])),route:f}),d.pathnameBase!==`/`&&(a=Le([a,d.pathnameBase]))}return o}function Te(e,t){typeof e==`string`&&(e={path:e,caseSensitive:!1,end:!0});let[n,r]=De(e.path,e.caseSensitive,e.end);return Ee(e,t,n,r)}function Ee(e,t,n,r){let i=t.match(n);if(!i)return null;let a=i[0],o=Re(a,1),s=i.slice(1);return{params:r.reduce((e,{paramName:t,isOptional:n},r)=>{if(t===`*`){let e=s[r]||``;o=Re(a.slice(0,a.length-e.length),1)}let i=s[r];return e[t]=n&&!i?void 0:(i||``).replace(/%2F/g,`/`),e},{}),pathname:a,pathnameBase:o,pattern:e}}function De(e,t=!1,n=!0){ae(e===`*`||!e.endsWith(`*`)||e.endsWith(`/*`),`Route path "${e}" will be treated as if it were "${e.replace(/\*$/,`/*`)}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${e.replace(/\*$/,`/*`)}".`);let r=[],i=`^`+e.replace(/\/*\*?$/,``).replace(/^\/*/,`/`).replace(/[\\.*+^${}|()[\]]/g,`\\$&`).replace(/\/:([\w-]+)(\?)?/g,(e,t,n,i,a)=>{if(r.push({paramName:t,isOptional:n!=null}),n){let t=a.charAt(i+e.length);return t&&t!==`/`?`/([^\\/]*)`:`(?:/([^\\/]*))?`}return`/([^\\/]+)`}).replace(/\/([\w-]+)\?(\/|$)/g,`(/$1)?$2`);return e.endsWith(`*`)?(r.push({paramName:`*`}),i+=e===`*`||e===`/*`?`(.*)$`:`(?:\\/(.+)|\\/*)$`):n?i+=`\\/*$`:e!==``&&e!==`/`&&(i+=`(?:(?=\\/|$))`),[new RegExp(i,t?void 0:`i`),r]}function Oe(e){try{return e.split(`/`).map(e=>decodeURIComponent(e).replace(/\//g,`%2F`)).join(`/`)}catch(t){return ae(!1,`The URL path "${e}" could not be decoded because it is a malformed URL segment. This is probably due to a bad percent encoding (${t}).`),e}}function ke(e,t){if(t===`/`)return e;if(!e.toLowerCase().startsWith(t.toLowerCase()))return null;let n=t.endsWith(`/`)?t.length-1:t.length,r=e.charAt(n);return r&&r!==`/`?null:e.slice(n)||`/`}function Ae(e,t=`/`){let{pathname:n,search:r=``,hash:i=``}=typeof e==`string`?ue(e):e,a;return n?(n=Ie(n),a=n.startsWith(`/`)||n.startsWith(`\\`)?je(n.substring(1),`/`):je(n,t)):a=t,{pathname:a,search:Be(r),hash:Ve(i)}}function je(e,t){let n=Re(t).split(`/`);return e.split(`/`).forEach(e=>{e===`..`?n.length>1&&n.pop():e!==`.`&&n.push(e)}),n.length>1?n.join(`/`):`/`}function Me(e,t,n,r){return`Cannot include a '${e}' character in a manually specified \`to.${t}\` field [${JSON.stringify(r)}].  Please separate it out to the \`to.${n}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`}function Ne(e){return e.filter((e,t)=>t===0||e.route.path&&e.route.path.length>0)}function Pe(e){let t=Ne(e);return t.map((e,n)=>n===t.length-1?e.pathname:e.pathnameBase)}function Fe(e,t,n,r=!1){let i;typeof e==`string`?i=ue(e):(i={...e},w(!i.pathname||!i.pathname.includes(`?`),Me(`?`,`pathname`,`search`,i)),w(!i.pathname||!i.pathname.includes(`#`),Me(`#`,`pathname`,`hash`,i)),w(!i.search||!i.search.includes(`#`),Me(`#`,`search`,`hash`,i)));let a=e===``||i.pathname===``,o=a?`/`:i.pathname,s;if(o==null)s=n;else{let e=t.length-1;if(!r&&o.startsWith(`..`)){let t=o.split(`/`);for(;t[0]===`..`;)t.shift(),--e;i.pathname=t.join(`/`)}s=e>=0?t[e]:`/`}let c=Ae(i,s),l=o&&o!==`/`&&o.endsWith(`/`),u=(a||o===`.`)&&n.endsWith(`/`);return!c.pathname.endsWith(`/`)&&(l||u)&&(c.pathname+=`/`),c}var Ie=e=>e.replace(/[\\/]{2,}/g,`/`),Le=e=>Ie(e.join(`/`));function Re(e,t=0){let n=e.length;for(;n>t&&e.charCodeAt(n-1)===47;)n--;return n===e.length?e:e.slice(0,n)}var ze=e=>Re(e).replace(/^\/*/,`/`),Be=e=>!e||e===`?`?``:e.startsWith(`?`)?e:`?`+e,Ve=e=>!e||e===`#`?``:e.startsWith(`#`)?e:`#`+e,He=class{constructor(e,t,n,r=!1){this.status=e,this.statusText=t||``,this.internal=r,n instanceof Error?(this.data=n.toString(),this.error=n):this.data=n}};function Ue(e){return e!=null&&typeof e.status==`number`&&typeof e.statusText==`string`&&typeof e.internal==`boolean`&&`data`in e}function We(e){return Le(e.map(e=>e.route.path).filter(Boolean))||`/`}var Ge=typeof window<`u`&&window.document!==void 0&&window.document.createElement!==void 0;function Ke(e,t){let n=e;if(typeof n!=`string`||!S.test(n))return{absoluteURL:void 0,isExternal:!1,to:n};let r=n,i=!1;if(Ge)try{let e=new URL(window.location.href),r=C.test(n)?new URL(te(n,e.protocol)):new URL(n),a=ke(r.pathname,t);r.origin===e.origin&&a!=null?n=a+r.search+r.hash:i=!0}catch{ae(!1,`<Link to="${n}"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.`)}return{absoluteURL:r,isExternal:i,to:n}}Object.getOwnPropertyNames(Object.prototype).sort().join(`\0`);var qe=new URL(`http://localhost`);function Je(e){if(e.createURL)return e.createURL(`/`);try{return new URL(e.createHref(`/`),qe)}catch{return qe}}function Ye(e,t){return e.origin===t.origin&&(e.origin!==`null`||e.protocol===t.protocol&&e.host===t.host)}function Xe(e,t){if(e.startsWith(`//`))return!0;let n=t.protocol.toLowerCase();return e.toLowerCase().startsWith(n)?t.host===``||e.slice(n.length).startsWith(`//`):!1}function Ze(e,t,n,r){let i=null;try{i=e==null?null:new URL(e,n)}catch{}let a=new URL(t,n),o=i!=null&&!Ye(i,n),s=!Ye(a,n);if(r===`reject`){if(o||s)throw Error(`External navigation is not allowed`)}else if(s&&(i==null||!Xe(e,i)||!Ye(i,a)))throw Error(`External navigation is not allowed`)}var Qe=[`POST`,`PUT`,`PATCH`,`DELETE`];new Set(Qe);var $e=[`GET`,...Qe];new Set($e);var et=[`about:`,`blob:`,`chrome:`,`chrome-untrusted:`,`content:`,`data:`,`devtools:`,`file:`,`filesystem:`,`javascript:`];function tt(e){try{return et.includes(new URL(e).protocol)}catch{return!1}}var nt=_.createContext(null);nt.displayName=`DataRouter`;var rt=_.createContext(null);rt.displayName=`DataRouterState`;var it=_.createContext(!1);function at(){return _.useContext(it)}var ot=_.createContext({isTransitioning:!1});ot.displayName=`ViewTransition`;var st=_.createContext(new Map);st.displayName=`Fetchers`;var ct=_.createContext(null);ct.displayName=`Await`;var lt=_.createContext(null);lt.displayName=`Navigation`;var ut=_.createContext(null);ut.displayName=`Location`;var dt=_.createContext({outlet:null,matches:[],isDataRoute:!1});dt.displayName=`Route`;var ft=_.createContext(null);ft.displayName=`RouteError`;var pt=`REACT_ROUTER_ERROR`,mt=`REDIRECT`,ht=`ROUTE_ERROR_RESPONSE`;function gt(e){if(e.startsWith(`${pt}:${mt}:{`))try{let t=JSON.parse(e.slice(28));if(typeof t==`object`&&t&&typeof t.status==`number`&&typeof t.statusText==`string`&&typeof t.location==`string`&&typeof t.reloadDocument==`boolean`&&typeof t.replace==`boolean`)return t}catch{}}function _t(e){if(e.startsWith(`${pt}:${ht}:{`))try{let t=JSON.parse(e.slice(40));if(typeof t==`object`&&t&&typeof t.status==`number`&&typeof t.statusText==`string`)return new He(t.status,t.statusText,t.data)}catch{}}function vt(e,{relative:t}={}){w(yt(),`useHref() may be used only in the context of a <Router> component.`);let{basename:n,navigator:r}=_.useContext(lt),{hash:i,pathname:a,search:o}=Et(e,{relative:t}),s=a;return n!==`/`&&(s=a===`/`?n:Le([n,a])),r.createHref({pathname:s,search:o,hash:i})}function yt(){return _.useContext(ut)!=null}function bt(){return w(yt(),`useLocation() may be used only in the context of a <Router> component.`),_.useContext(ut).location}var xt=`You should call navigate() in a React.useEffect(), not when your component is first rendered.`;function St(e){_.useContext(lt).static||_.useLayoutEffect(e)}function Ct(){let{isDataRoute:e}=_.useContext(dt);return e?Ut():wt()}function wt(){w(yt(),`useNavigate() may be used only in the context of a <Router> component.`);let e=_.useContext(nt),{basename:t,navigator:n}=_.useContext(lt),{matches:r}=_.useContext(dt),{pathname:i}=bt(),a=JSON.stringify(Pe(r)),o=_.useRef(!1);return St(()=>{o.current=!0}),_.useCallback((r,s={})=>{if(ae(o.current,xt),!o.current)return;if(typeof r==`number`){n.go(r);return}let c=Fe(r,JSON.parse(a),i,s.relative===`path`);e==null&&t!==`/`&&(c.pathname=c.pathname===`/`?t:Le([t,c.pathname])),Ze(typeof r==`string`?r:le(r),n.createHref(c),Je(n),`reject`),(s.replace?n.replace:n.push)(c,s.state,s)},[t,n,a,i,e])}_.createContext(null);function Tt(){let{matches:e}=_.useContext(dt);return e[e.length-1]?.params??{}}function Et(e,{relative:t}={}){let{matches:n}=_.useContext(dt),{pathname:r}=bt(),i=JSON.stringify(Pe(n));return _.useMemo(()=>Fe(e,JSON.parse(i),r,t===`path`),[e,i,r,t])}function Dt(e,t){return Ot(e,t)}function Ot(e,t,n){w(yt(),`useRoutes() may be used only in the context of a <Router> component.`);let{navigator:r}=_.useContext(lt),{matches:i}=_.useContext(dt),a=i[i.length-1],o=a?a.params:{},s=a?a.pathname:`/`,c=a?a.pathnameBase:`/`,l=a&&a.route;{let e=l&&l.path||``;Gt(s,!l||e.endsWith(`*`)||e.endsWith(`*?`),`You rendered descendant <Routes> (or called \`useRoutes()\`) at "${s}" (under <Route path="${e}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
 
-Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}/*`}">.`)}let u=bt(),d;if(t){let e=typeof t==`string`?ue(t):t;w(c===`/`||e.pathname?.startsWith(c),`When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${c}" but pathname "${e.pathname}" was given in the \`location\` prop.`),d=e}else d=u;let f=d.pathname||`/`,p=f;if(c!==`/`){let e=c.replace(/^\//,``).split(`/`);p=`/`+f.replace(/^\//,``).split(`/`).slice(e.length).join(`/`)}let m=n&&n.state.matches.length?n.state.matches.map(e=>Object.assign(e,{route:n.manifest[e.route.id]||e.route})):de(e,{pathname:p});ae(l||m!=null,`No routes matched location "${d.pathname}${d.search}${d.hash}" `),ae(m==null||m[m.length-1].route.element!==void 0||m[m.length-1].route.Component!==void 0||m[m.length-1].route.lazy!==void 0,`Matched leaf route at location "${d.pathname}${d.search}${d.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);let h=Ft(m&&m.map(e=>Object.assign({},e,{params:Object.assign({},o,e.params),pathname:Le([c,r.encodeLocation?r.encodeLocation(e.pathname.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathname]),pathnameBase:e.pathnameBase===`/`?c:Le([c,r.encodeLocation?r.encodeLocation(e.pathnameBase.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathnameBase])})),i,n);return t&&h?_.createElement(ut.Provider,{value:{location:{pathname:`/`,search:``,hash:``,state:null,key:`default`,mask:void 0,...d},navigationType:`POP`}},h):h}function kt(){let e=Ht(),t=Ue(e)?`${e.status} ${e.statusText}`:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,r=`rgba(200,200,200, 0.5)`,i={padding:`0.5rem`,backgroundColor:r},a={padding:`2px 4px`,backgroundColor:r},o=null;return console.error(`Error handled by React Router default ErrorBoundary:`,e),o=_.createElement(_.Fragment,null,_.createElement(`p`,null,`💿 Hey developer 👋`),_.createElement(`p`,null,`You can provide a way better UX than this when your app throws errors by providing your own `,_.createElement(`code`,{style:a},`ErrorBoundary`),` or`,` `,_.createElement(`code`,{style:a},`errorElement`),` prop on your route.`)),_.createElement(_.Fragment,null,_.createElement(`h2`,null,`Unexpected Application Error!`),_.createElement(`h3`,{style:{fontStyle:`italic`}},t),n?_.createElement(`pre`,{style:i},n):null,o)}var At=_.createElement(kt,null),jt=class extends _.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){return t.location!==e.location||t.revalidation!==`idle`&&e.revalidation===`idle`?{error:e.error,location:e.location,revalidation:e.revalidation}:{error:e.error===void 0?t.error:e.error,location:t.location,revalidation:e.revalidation||t.revalidation}}componentDidCatch(e,t){this.props.onError?this.props.onError(e,t):console.error(`React Router caught the following error during render`,e)}render(){let e=this.state.error;if(this.context&&typeof e==`object`&&e&&`digest`in e&&typeof e.digest==`string`){let t=_t(e.digest);t&&(e=t)}let t=e===void 0?this.props.children:_.createElement(dt.Provider,{value:this.props.routeContext},_.createElement(ft.Provider,{value:e,children:this.props.component}));return this.context?_.createElement(Nt,{error:e},t):t}};jt.contextType=it;var Mt=new WeakMap;function Nt({children:e,error:t}){let{basename:n,navigator:r}=_.useContext(lt);if(typeof t==`object`&&t&&`digest`in t&&typeof t.digest==`string`){let e=gt(t.digest);if(e){let i=Mt.get(t);if(i)throw i;let a=Ke(e.location,n),o=a.absoluteURL||a.to;if(Ze(e.location,o,Je(r),`allow-explicit`),tt(o))throw Error(`Invalid redirect location`);if(Ge&&!Mt.get(t)){if(a.isExternal||e.reloadDocument)window.location.href=o;else{let n=Promise.resolve().then(()=>window.__reactRouterDataRouter.navigate(a.to,{replace:e.replace}));throw Mt.set(t,n),n}}return _.createElement(`meta`,{httpEquiv:`refresh`,content:`0;url=${o}`})}}return e}function Pt({routeContext:e,match:t,children:n}){let r=_.useContext(nt);return r&&r.static&&r.staticContext&&(t.route.errorElement||t.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=t.route.id),_.createElement(dt.Provider,{value:e},n)}function Ft(e,t=[],n){let r=n?.state;if(e==null){if(!r)return null;if(r.errors)e=r.matches;else if(t.length===0&&!r.initialized&&r.matches.length>0)e=r.matches;else return null}let i=e,a=r?.errors;if(a!=null){let e=i.findIndex(e=>e.route.id&&a?.[e.route.id]!==void 0);w(e>=0,`Could not find a matching route for errors on route IDs: ${Object.keys(a).join(`,`)}`),i=i.slice(0,Math.min(i.length,e+1))}let o=!1,s=-1;if(n&&r){o=r.renderFallback;for(let e=0;e<i.length;e++){let t=i[e];if((t.route.HydrateFallback||t.route.hydrateFallbackElement)&&(s=e),t.route.id){let{loaderData:e,errors:a}=r,c=t.route.loader&&!e.hasOwnProperty(t.route.id)&&(!a||a[t.route.id]===void 0);if(t.route.lazy||c){n.isStatic&&(o=!0),i=s>=0?i.slice(0,s+1):[i[0]];break}}}}let c=n?.onError,l=r&&c?(e,t)=>{c(e,{location:r.location,params:r.matches?.[0]?.params??{},pattern:We(r.matches),errorInfo:t})}:void 0;return i.reduceRight((e,n,c)=>{let u,d=!1,f=null,p=null;r&&(u=a&&n.route.id?a[n.route.id]:void 0,f=n.route.errorElement||At,o&&(s<0&&c===0?(Gt(`route-fallback`,!1,"No `HydrateFallback` element provided to render during initial hydration"),d=!0,p=null):s===c&&(d=!0,p=n.route.hydrateFallbackElement||null)));let m=t.concat(i.slice(0,c+1)),h=()=>{let t;return t=u?f:d?p:n.route.Component?_.createElement(n.route.Component,null):n.route.element?n.route.element:e,_.createElement(Pt,{match:n,routeContext:{outlet:e,matches:m,isDataRoute:r!=null},children:t})};return r&&(n.route.ErrorBoundary||n.route.errorElement||c===0)?_.createElement(jt,{location:r.location,revalidation:r.revalidation,component:f,error:u,children:h(),routeContext:{outlet:null,matches:m,isDataRoute:!0},onError:l}):h()},null)}function It(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function Lt(e){let t=_.useContext(nt);return w(t,It(e)),t}function Rt(e){let t=_.useContext(rt);return w(t,It(e)),t}function zt(e){let t=_.useContext(dt);return w(t,It(e)),t}function Bt(e){let t=zt(e),n=t.matches[t.matches.length-1];return w(n.route.id,`${e} can only be used on routes that contain a unique "id"`),n.route.id}function Vt(){return Bt(`useRouteId`)}function Ht(){let e=_.useContext(ft),t=Rt(`useRouteError`),n=Bt(`useRouteError`);return e===void 0?t.errors?.[n]:e}function Ut(){let{router:e}=Lt(`useNavigate`),t=Bt(`useNavigate`),n=_.useRef(!1);return St(()=>{n.current=!0}),_.useCallback(async(r,i={})=>{ae(n.current,xt),n.current&&(typeof r==`number`?await e.navigate(r):await e.navigate(r,{fromRouteId:t,...i}))},[e,t])}var Wt={};function Gt(e,t,n){!t&&!Wt[e]&&(Wt[e]=!0,ae(!1,n))}_.memo(Kt);function Kt({routes:e,manifest:t,future:n,state:r,isStatic:i,onError:a}){return Ot(e,void 0,{manifest:t,state:r,isStatic:i,onError:a,future:n})}function qt({to:e,replace:t,state:n,relative:r}){w(yt(),`<Navigate> may be used only in the context of a <Router> component.`);let{static:i,navigator:a}=_.useContext(lt);ae(!i,`<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.`);let{matches:o}=_.useContext(dt),{pathname:s}=bt(),c=Ct(),l=Fe(e,Pe(o),s,r===`path`);Ze(typeof e==`string`?e:le(e),a.createHref(l),Je(a),`reject`);let u=JSON.stringify(l);return _.useEffect(()=>{c(JSON.parse(u),{replace:t,state:n,relative:r})},[c,u,r,t,n]),null}function k(e){w(!1,`A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.`)}function Jt({basename:e=`/`,children:t=null,location:n,navigationType:r=`POP`,navigator:i,static:a=!1,useTransitions:o}){w(!yt(),`You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`);let s=e.replace(/^\/*/,`/`),c=_.useMemo(()=>({basename:s,navigator:i,static:a,useTransitions:o,future:{}}),[s,i,a,o]);typeof n==`string`&&(n=ue(n));let{pathname:l=`/`,search:u=``,hash:d=``,state:f=null,key:p=`default`,mask:m}=n,h=_.useMemo(()=>{let e=ke(l,s);return e==null?null:{location:{pathname:e,search:u,hash:d,state:f,key:p,mask:m},navigationType:r}},[s,l,u,d,f,p,r,m]);return ae(h!=null,`<Router basename="${s}"> is not able to match the URL "${l}${u}${d}" because it does not start with the basename, so the <Router> won't render anything.`),h==null?null:_.createElement(lt.Provider,{value:c},_.createElement(ut.Provider,{children:t,value:h}))}function Yt({children:e,location:t}){return Dt(Xt(e),t)}_.Component;function Xt(e,t=[]){let n=[];return _.Children.forEach(e,(e,r)=>{if(!_.isValidElement(e))return;let i=[...t,r];if(e.type===_.Fragment){n.push.apply(n,Xt(e.props.children,i));return}w(e.type===k,`[${typeof e.type==`string`?e.type:e.type.name}] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`),w(!e.props.index||!e.props.children,`An index route cannot have child routes.`);let a={id:e.props.id||i.join(`-`),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,middleware:e.props.middleware,loader:e.props.loader,action:e.props.action,hydrateFallbackElement:e.props.hydrateFallbackElement,HydrateFallback:e.props.HydrateFallback,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:e.props.hasErrorBoundary===!0||e.props.ErrorBoundary!=null||e.props.errorElement!=null,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(a.children=Xt(e.props.children,i)),n.push(a)}),n}var Zt=`get`,Qt=`application/x-www-form-urlencoded`;function $t(e){return typeof HTMLElement<`u`&&e instanceof HTMLElement}function en(e){return $t(e)&&e.tagName.toLowerCase()===`button`}function tn(e){return $t(e)&&e.tagName.toLowerCase()===`form`}function nn(e){return $t(e)&&e.tagName.toLowerCase()===`input`}function rn(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}function an(e,t){return e.button===0&&(!t||t===`_self`)&&!rn(e)}var on=null;function sn(){if(on===null)try{new FormData(document.createElement(`form`),0),on=!1}catch{on=!0}return on}var cn=new Set([`application/x-www-form-urlencoded`,`multipart/form-data`,`text/plain`]);function ln(e){return e!=null&&!cn.has(e)?(ae(!1,`"${e}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${Qt}"`),null):e}function un(e,t){let n,r,i,a,o;if(tn(e)){let o=e.getAttribute(`action`);r=o?ke(o,t):null,n=e.getAttribute(`method`)||Zt,i=ln(e.getAttribute(`enctype`))||Qt,a=new FormData(e)}else if(en(e)||nn(e)&&(e.type===`submit`||e.type===`image`)){let o=e.form;if(o==null)throw Error(`Cannot submit a <button> or <input type="submit"> without a <form>`);let s=e.getAttribute(`formaction`)||o.getAttribute(`action`);if(r=s?ke(s,t):null,n=e.getAttribute(`formmethod`)||o.getAttribute(`method`)||Zt,i=ln(e.getAttribute(`formenctype`))||ln(o.getAttribute(`enctype`))||Qt,a=new FormData(o,e),!sn()){let{name:t,type:n,value:r}=e;if(n===`image`){let e=t?`${t}.`:``;a.append(`${e}x`,`0`),a.append(`${e}y`,`0`)}else t&&a.append(t,r)}}else if($t(e))throw Error(`Cannot submit element that is not <form>, <button>, or <input type="submit|image">`);else n=Zt,r=null,i=Qt,o=e;return a&&i===`text/plain`&&(o=a,a=void 0),{action:r,method:n.toLowerCase(),encType:i,formData:a,body:o}}Object.getOwnPropertyNames(Object.prototype).sort().join(`\0`);function dn(e,t){if(e===!1||e==null)throw Error(t)}function fn(e,t,n,r){let i=typeof e==`string`?new URL(e,typeof window>`u`?`server://singlefetch/`:window.location.origin):e;return i.pathname=n?i.pathname.endsWith(`/`)?`${i.pathname}_.${r}`:`${i.pathname}.${r}`:i.pathname===`/`?`_root.${r}`:t&&ke(i.pathname,t)===`/`?`${Re(t)}/_root.${r}`:`${Re(i.pathname)}.${r}`,i}async function pn(e,t){if(e.id in t)return t[e.id];try{let n=await ee(()=>import(e.module),[]);return t[e.id]=n,n}catch(t){return console.error(`Error loading route module \`${e.module}\`, reloading page...`),console.error(t),window.__reactRouterContext&&window.__reactRouterContext.isSpaMode,window.location.reload(),new Promise(()=>{})}}function mn(e){return e!=null&&typeof e.page==`string`}function hn(e){return e==null?!1:e.href==null?e.rel===`preload`&&typeof e.imageSrcSet==`string`&&typeof e.imageSizes==`string`:typeof e.rel==`string`&&typeof e.href==`string`}async function gn(e,t,n){return xn((await Promise.all(e.map(async e=>{let r=t.routes[e.route.id];if(r){let e=await pn(r,n);return e.links?e.links():[]}return[]}))).flat(1).filter(hn).filter(e=>e.rel===`stylesheet`||e.rel===`preload`).map(e=>e.rel===`stylesheet`?{...e,rel:`prefetch`,as:`style`}:{...e,rel:`prefetch`}))}function _n(e,t,n,r,i,a){let o=(e,t)=>!n[t]||e.route.id!==n[t].route.id,s=(e,t)=>n[t].pathname!==e.pathname||n[t].route.path?.endsWith(`*`)&&n[t].params[`*`]!==e.params[`*`];return a===`assets`?t.filter((e,t)=>o(e,t)||s(e,t)):a===`data`?t.filter((t,a)=>{let c=r.routes[t.route.id];if(!c||!c.hasLoader)return!1;if(o(t,a)||s(t,a))return!0;if(t.route.shouldRevalidate){let r=t.route.shouldRevalidate({currentUrl:new URL(i.pathname+i.search+i.hash,window.origin),currentParams:n[0]?.params||{},nextUrl:new URL(e,window.origin),nextParams:t.params,defaultShouldRevalidate:!0});if(typeof r==`boolean`)return r}return!0}):[]}function vn(e,t,{includeHydrateFallback:n}={}){return yn(e.map(e=>{let r=t.routes[e.route.id];if(!r)return[];let i=[r.module];return r.clientActionModule&&(i=i.concat(r.clientActionModule)),r.clientLoaderModule&&(i=i.concat(r.clientLoaderModule)),n&&r.hydrateFallbackModule&&(i=i.concat(r.hydrateFallbackModule)),r.imports&&(i=i.concat(r.imports)),i}).flat(1))}function yn(e){return[...new Set(e)]}function bn(e){let t={},n=Object.keys(e).sort();for(let r of n)t[r]=e[r];return t}function xn(e,t){let n=new Set,r=new Set(t);return e.reduce((e,i)=>{if(t&&!mn(i)&&i.as===`script`&&i.href&&r.has(i.href))return e;let a=JSON.stringify(bn(i));return n.has(a)||(n.add(a),e.push({key:a,link:i})),e},[])}function Sn(){let e=_.useContext(nt);return dn(e,`You must render this element inside a <DataRouterContext.Provider> element`),e}function Cn(){let e=_.useContext(rt);return dn(e,`You must render this element inside a <DataRouterStateContext.Provider> element`),e}var wn=_.createContext(void 0);wn.displayName=`FrameworkContext`;function Tn(){let e=_.useContext(wn);return dn(e,`You must render this element inside a <HydratedRouter> element`),e}function En(e,t){let n=_.useContext(wn),[r,i]=_.useState(!1),[a,o]=_.useState(!1),{onFocus:s,onBlur:c,onMouseEnter:l,onMouseLeave:u,onTouchStart:d}=t,f=_.useRef(null);_.useEffect(()=>{if(e===`render`&&o(!0),e===`viewport`){let e=new IntersectionObserver(e=>{e.forEach(e=>{o(e.isIntersecting)})},{threshold:.5});return f.current&&e.observe(f.current),()=>{e.disconnect()}}},[e]),_.useEffect(()=>{if(r){let e=setTimeout(()=>{o(!0)},100);return()=>{clearTimeout(e)}}},[r]);let p=()=>{i(!0)},m=()=>{i(!1),o(!1)};return n?e===`intent`?[a,f,{onFocus:Dn(s,p),onBlur:Dn(c,m),onMouseEnter:Dn(l,p),onMouseLeave:Dn(u,m),onTouchStart:Dn(d,p)}]:[a,f,{}]:[!1,f,{}]}function Dn(e,t){return n=>{e&&e(n),n.defaultPrevented||t(n)}}function On({page:e,...t}){let n=at(),{nonce:r}=Tn(),{router:i}=Sn(),a=_.useMemo(()=>de(i.routes,e,i.basename),[i.routes,e,i.basename]);return a?(t.nonce==null&&r&&(t={...t,nonce:r}),n?_.createElement(An,{page:e,matches:a,...t}):_.createElement(jn,{page:e,matches:a,...t})):null}function kn(e){let{manifest:t,routeModules:n}=Tn(),[r,i]=_.useState([]);return _.useEffect(()=>{let r=!1;return gn(e,t,n).then(e=>{r||i(e)}),()=>{r=!0}},[e,t,n]),r}function An({page:e,matches:t,...n}){let r=bt(),{future:i}=Tn(),{basename:a}=Sn(),o=_.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=fn(e,a,i.v8_trailingSlashAwareDataRequests,`rsc`),o=!1,s=[];for(let e of t)typeof e.route.shouldRevalidate==`function`?o=!0:s.push(e.route.id);return o&&s.length>0&&n.searchParams.set(`_routes`,s.join(`,`)),[n.pathname+n.search]},[a,i.v8_trailingSlashAwareDataRequests,e,r,t]);return _.createElement(_.Fragment,null,o.map(e=>_.createElement(`link`,{key:e,rel:`prefetch`,as:`fetch`,href:e,...n})))}function jn({page:e,matches:t,...n}){let r=bt(),{future:i,manifest:a,routeModules:o}=Tn(),{basename:s}=Sn(),{loaderData:c,matches:l}=Cn(),u=_.useMemo(()=>_n(e,t,l,a,r,`data`),[e,t,l,a,r]),d=_.useMemo(()=>_n(e,t,l,a,r,`assets`),[e,t,l,a,r]),f=_.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=new Set,l=!1;if(t.forEach(e=>{let t=a.routes[e.route.id];t&&t.hasLoader&&(!u.some(t=>t.route.id===e.route.id)&&e.route.id in c&&o[e.route.id]?.shouldRevalidate||t.hasClientLoader?l=!0:n.add(e.route.id))}),n.size===0)return[];let d=fn(e,s,i.v8_trailingSlashAwareDataRequests,`data`);return l&&n.size>0&&d.searchParams.set(`_routes`,t.filter(e=>n.has(e.route.id)).map(e=>e.route.id).join(`,`)),[d.pathname+d.search]},[s,i.v8_trailingSlashAwareDataRequests,c,r,a,u,t,e,o]),p=_.useMemo(()=>vn(d,a),[d,a]),m=kn(d);return _.createElement(_.Fragment,null,f.map(e=>_.createElement(`link`,{key:e,rel:`prefetch`,as:`fetch`,href:e,...n})),p.map(e=>_.createElement(`link`,{key:e,rel:`modulepreload`,href:e,...n})),m.map(({key:e,link:t})=>_.createElement(`link`,{key:e,nonce:n.nonce,...t,crossOrigin:t.crossOrigin??n.crossOrigin})))}function Mn(...e){return t=>{e.forEach(e=>{typeof e==`function`?e(t):e!=null&&(e.current=t)})}}_.Component;var Nn=typeof window<`u`&&window.document!==void 0&&window.document.createElement!==void 0;try{Nn&&(window.__reactRouterVersion=`7.18.3`)}catch{}function Pn({basename:e,children:t,useTransitions:n,window:r}){let i=_.useRef();i.current??=ie({window:r,v5Compat:!0});let a=i.current,[o,s]=_.useState({action:a.action,location:a.location}),c=_.useCallback(e=>{n===!1?s(e):_.startTransition(()=>s(e))},[n]);return _.useLayoutEffect(()=>a.listen(c),[a,c]),_.createElement(Jt,{basename:e,children:t,location:o.location,navigationType:o.action,navigator:a,useTransitions:n})}var Fn=_.forwardRef(function({onClick:e,discover:t=`render`,prefetch:n=`none`,relative:r,reloadDocument:i,replace:a,mask:o,state:s,target:c,to:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f,...p},m){let{basename:h,navigator:g,useTransitions:v}=_.useContext(lt),y=typeof l==`string`&&S.test(l),b=Ke(l,h);l=b.to;let x=vt(l,{relative:r}),ee=bt(),C=null;if(o){let e=Fe(o,[],ee.mask?ee.mask.pathname:`/`,!0);h!==`/`&&(e.pathname=e.pathname===`/`?h:Le([h,e.pathname])),C=g.createHref(e)}let[te,ne,re]=En(n,p),ie=Bn(l,{replace:a,mask:o,state:s,target:c,preventScrollReset:u,relative:r,viewTransition:d,defaultShouldRevalidate:f,useTransitions:v});function w(t){e&&e(t),t.defaultPrevented||ie(t)}let ae=!(b.isExternal||i),oe=_.createElement(`a`,{...p,...re,href:(ae?C:void 0)||b.absoluteURL||x,onClick:ae?w:e,ref:Mn(m,ne),target:c,"data-discover":!y&&t===`render`?`true`:void 0});return te&&!y?_.createElement(_.Fragment,null,oe,_.createElement(On,{page:x})):oe});Fn.displayName=`Link`;var In=_.forwardRef(function({"aria-current":e=`page`,caseSensitive:t=!1,className:n=``,end:r=!1,style:i,to:a,viewTransition:o,children:s,...c},l){let u=Et(a,{relative:c.relative}),d=bt(),f=_.useContext(rt),{navigator:p,basename:m}=_.useContext(lt),h=f!=null&&Gn(u)&&o===!0,g=p.encodeLocation?p.encodeLocation(u).pathname:u.pathname,v=d.pathname,y=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;t||(v=v.toLowerCase(),y=y?y.toLowerCase():null,g=g.toLowerCase()),y&&m&&(y=ke(y,m)||y);let b=g!==`/`&&g.endsWith(`/`)?g.length-1:g.length,x=v===g||!r&&v.startsWith(g)&&v.charAt(b)===`/`,ee=y!=null&&(y===g||!r&&y.startsWith(g)&&y.charAt(g.length)===`/`),S={isActive:x,isPending:ee,isTransitioning:h},C=x?e:void 0,te;te=typeof n==`function`?n(S):[n,x?`active`:null,ee?`pending`:null,h?`transitioning`:null].filter(Boolean).join(` `);let ne=typeof i==`function`?i(S):i;return _.createElement(Fn,{...c,"aria-current":C,className:te,ref:l,style:ne,to:a,viewTransition:o},typeof s==`function`?s(S):s)});In.displayName=`NavLink`;var Ln=_.forwardRef(({discover:e=`render`,fetcherKey:t,navigate:n,reloadDocument:r,replace:i,state:a,method:o=Zt,action:s,onSubmit:c,relative:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f,...p},m)=>{let{useTransitions:h}=_.useContext(lt),g=Un(),v=Wn(s,{relative:l}),y=o.toLowerCase()===`get`?`get`:`post`,b=typeof s==`string`&&S.test(s);return _.createElement(`form`,{ref:m,method:y,action:v,onSubmit:r?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let r=e.nativeEvent.submitter,s=r?.getAttribute(`formmethod`)||o,p=()=>g(r||e.currentTarget,{fetcherKey:t,method:s,navigate:n,replace:i,state:a,relative:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f});h&&n!==!1?_.startTransition(()=>p()):p()},...p,"data-discover":!b&&e===`render`?`true`:void 0})});Ln.displayName=`Form`;function Rn(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function zn(e){let t=_.useContext(nt);return w(t,Rn(e)),t}function Bn(e,{target:t,replace:n,mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,defaultShouldRevalidate:c,useTransitions:l}={}){let u=Ct(),d=bt(),f=Et(e,{relative:o});return _.useCallback(p=>{if(an(p,t)){p.preventDefault();let t=n===void 0?le(d)===le(f):n,m=()=>u(e,{replace:t,mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,defaultShouldRevalidate:c});l?_.startTransition(()=>m()):m()}},[d,u,f,n,r,i,t,e,a,o,s,c,l])}var Vn=0,Hn=()=>`__${String(++Vn)}__`;function Un(){let{router:e}=zn(`useSubmit`),{basename:t}=_.useContext(lt),n=Vt(),r=e.fetch,i=e.navigate;return _.useCallback(async(e,a={})=>{let{action:o,method:s,encType:c,formData:l,body:u}=un(e,t);if(a.navigate===!1){let e=a.fetcherKey||Hn();await r(e,n,a.action||o,{defaultShouldRevalidate:a.defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,flushSync:a.flushSync})}else await i(a.action||o,{defaultShouldRevalidate:a.defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,replace:a.replace,state:a.state,fromRouteId:n,flushSync:a.flushSync,viewTransition:a.viewTransition})},[r,i,t,n])}function Wn(e,{relative:t}={}){let{basename:n}=_.useContext(lt),r=_.useContext(dt);w(r,`useFormAction must be used inside a RouteContext`);let[i]=r.matches.slice(-1),a={...Et(e||`.`,{relative:t})},o=bt();if(e==null){a.search=o.search;let e=new URLSearchParams(a.search),t=e.getAll(`index`);if(t.some(e=>e===``)){e.delete(`index`),t.filter(e=>e).forEach(t=>e.append(`index`,t));let n=e.toString();a.search=n?`?${n}`:``}}return(!e||e===`.`)&&i.route.index&&(a.search=a.search?a.search.replace(/^\?/,`?index&`):`?index`),n!==`/`&&(a.pathname=a.pathname===`/`?n:Le([n,a.pathname])),le(a)}function Gn(e,{relative:t}={}){let n=_.useContext(ot);w(n!=null,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:r}=zn(`useViewTransitionState`),i=Et(e,{relative:t});if(!n.isTransitioning)return!1;let a=ke(n.currentLocation.pathname,r)||n.currentLocation.pathname,o=ke(n.nextLocation.pathname,r)||n.nextLocation.pathname;return Te(i.pathname,o)!=null||Te(i.pathname,a)!=null}var Kn=[`HTML`,`CSS`,`JavaScript`,`TypeScript`,`React`,`React Router`,`Next.js`,`Redux`,`Git`,`Docker`,`Kubernetes`,`CI/CD`,`Webpack`,`Networks`],qn=[{question:`Для чего используется тег <link>?`,shortAnswer:'Тег `<link>` используется для подключения внешних ресурсов к HTML-документу. Чаще всего применяется для CSS через `rel="stylesheet"`.',longAnswer:'Тег `<link>` — это HTML-элемент, который позволяет подключать внешние ресурсы к веб-странице. Используется только в секции `<head>`. Кроме стилей, с помощью `<link>` подключают favicon (`rel="icon"`), предварительную загрузку шрифтов (`rel="preload"`), preconnect к внешним доменам и canonical-ссылки для SEO. В отличие от `<script>`, `<link>` не имеет закрывающего тега и не блокирует парсинг DOM, хотя загрузка CSS может блокировать рендеринг.',codeExample:`<link rel="stylesheet" href="styles.css">`,skills:[`HTML`],keywords:[`#link`,`#head`],difficulty:2,rating:3},{question:`В чём разница между семантическими тегами и <div>?`,shortAnswer:"Семантические теги (`<header>`, `<nav>`, `<main>`, `<article>`) описывают смысл блока, тогда как `<div>` — это нейтральный контейнер без смысловой нагрузки.",longAnswer:"Семантическая разметка улучшает доступность (screen reader понимает структуру страницы), SEO (поисковые боты лучше индексируют контент) и читаемость кода для разработчиков. `<div>` стоит использовать только тогда, когда ни один семантический тег не подходит по смыслу — например, для чисто стилевого обёртывания элементов. Пример типичной структуры страницы: `<header>` — шапка, `<nav>` — навигация, `<main>` — основной контент, `<article>` — самостоятельный блок контента, `<aside>` — боковая панель, `<footer>` — подвал.",codeExample:`<header>...</header>
-<main>
-  <article>...</article>
-  <aside>...</aside>
-</main>
-<footer>...</footer>`,skills:[`HTML`],keywords:[`#semantics`,`#accessibility`],difficulty:2,rating:4},{question:`Для чего нужны data-* атрибуты?`,shortAnswer:"`data-*` атрибуты позволяют хранить произвольные кастомные данные прямо в HTML-элементе, не нарушая валидность разметки.",longAnswer:'Атрибуты вида `data-name="value"` предназначены для хранения дополнительной информации, которую JavaScript может читать через `element.dataset.name`. Это удобно для связи разметки с логикой без создания дополнительных CSS-классов или глобальных переменных — например, для хранения ID элемента, состояния компонента или параметров для аналитики. В отличие от нестандартных атрибутов, `data-*` официально поддерживается спецификацией HTML5 и не вызывает ошибок валидации.',codeExample:`<button data-user-id="42">Delete</button>
+Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}/*`}">.`)}let u=bt(),d;if(t){let e=typeof t==`string`?ue(t):t;w(c===`/`||e.pathname?.startsWith(c),`When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${c}" but pathname "${e.pathname}" was given in the \`location\` prop.`),d=e}else d=u;let f=d.pathname||`/`,p=f;if(c!==`/`){let e=c.replace(/^\//,``).split(`/`);p=`/`+f.replace(/^\//,``).split(`/`).slice(e.length).join(`/`)}let m=n&&n.state.matches.length?n.state.matches.map(e=>Object.assign(e,{route:n.manifest[e.route.id]||e.route})):de(e,{pathname:p});ae(l||m!=null,`No routes matched location "${d.pathname}${d.search}${d.hash}" `),ae(m==null||m[m.length-1].route.element!==void 0||m[m.length-1].route.Component!==void 0||m[m.length-1].route.lazy!==void 0,`Matched leaf route at location "${d.pathname}${d.search}${d.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);let h=Ft(m&&m.map(e=>Object.assign({},e,{params:Object.assign({},o,e.params),pathname:Le([c,r.encodeLocation?r.encodeLocation(e.pathname.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathname]),pathnameBase:e.pathnameBase===`/`?c:Le([c,r.encodeLocation?r.encodeLocation(e.pathnameBase.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathnameBase])})),i,n);return t&&h?_.createElement(ut.Provider,{value:{location:{pathname:`/`,search:``,hash:``,state:null,key:`default`,mask:void 0,...d},navigationType:`POP`}},h):h}function kt(){let e=Ht(),t=Ue(e)?`${e.status} ${e.statusText}`:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,r=`rgba(200,200,200, 0.5)`,i={padding:`0.5rem`,backgroundColor:r},a={padding:`2px 4px`,backgroundColor:r},o=null;return console.error(`Error handled by React Router default ErrorBoundary:`,e),o=_.createElement(_.Fragment,null,_.createElement(`p`,null,`💿 Hey developer 👋`),_.createElement(`p`,null,`You can provide a way better UX than this when your app throws errors by providing your own `,_.createElement(`code`,{style:a},`ErrorBoundary`),` or`,` `,_.createElement(`code`,{style:a},`errorElement`),` prop on your route.`)),_.createElement(_.Fragment,null,_.createElement(`h2`,null,`Unexpected Application Error!`),_.createElement(`h3`,{style:{fontStyle:`italic`}},t),n?_.createElement(`pre`,{style:i},n):null,o)}var At=_.createElement(kt,null),jt=class extends _.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){return t.location!==e.location||t.revalidation!==`idle`&&e.revalidation===`idle`?{error:e.error,location:e.location,revalidation:e.revalidation}:{error:e.error===void 0?t.error:e.error,location:t.location,revalidation:e.revalidation||t.revalidation}}componentDidCatch(e,t){this.props.onError?this.props.onError(e,t):console.error(`React Router caught the following error during render`,e)}render(){let e=this.state.error;if(this.context&&typeof e==`object`&&e&&`digest`in e&&typeof e.digest==`string`){let t=_t(e.digest);t&&(e=t)}let t=e===void 0?this.props.children:_.createElement(dt.Provider,{value:this.props.routeContext},_.createElement(ft.Provider,{value:e,children:this.props.component}));return this.context?_.createElement(Nt,{error:e},t):t}};jt.contextType=it;var Mt=new WeakMap;function Nt({children:e,error:t}){let{basename:n,navigator:r}=_.useContext(lt);if(typeof t==`object`&&t&&`digest`in t&&typeof t.digest==`string`){let e=gt(t.digest);if(e){let i=Mt.get(t);if(i)throw i;let a=Ke(e.location,n),o=a.absoluteURL||a.to;if(Ze(e.location,o,Je(r),`allow-explicit`),tt(o))throw Error(`Invalid redirect location`);if(Ge&&!Mt.get(t)){if(a.isExternal||e.reloadDocument)window.location.href=o;else{let n=Promise.resolve().then(()=>window.__reactRouterDataRouter.navigate(a.to,{replace:e.replace}));throw Mt.set(t,n),n}}return _.createElement(`meta`,{httpEquiv:`refresh`,content:`0;url=${o}`})}}return e}function Pt({routeContext:e,match:t,children:n}){let r=_.useContext(nt);return r&&r.static&&r.staticContext&&(t.route.errorElement||t.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=t.route.id),_.createElement(dt.Provider,{value:e},n)}function Ft(e,t=[],n){let r=n?.state;if(e==null){if(!r)return null;if(r.errors)e=r.matches;else if(t.length===0&&!r.initialized&&r.matches.length>0)e=r.matches;else return null}let i=e,a=r?.errors;if(a!=null){let e=i.findIndex(e=>e.route.id&&a?.[e.route.id]!==void 0);w(e>=0,`Could not find a matching route for errors on route IDs: ${Object.keys(a).join(`,`)}`),i=i.slice(0,Math.min(i.length,e+1))}let o=!1,s=-1;if(n&&r){o=r.renderFallback;for(let e=0;e<i.length;e++){let t=i[e];if((t.route.HydrateFallback||t.route.hydrateFallbackElement)&&(s=e),t.route.id){let{loaderData:e,errors:a}=r,c=t.route.loader&&!e.hasOwnProperty(t.route.id)&&(!a||a[t.route.id]===void 0);if(t.route.lazy||c){n.isStatic&&(o=!0),i=s>=0?i.slice(0,s+1):[i[0]];break}}}}let c=n?.onError,l=r&&c?(e,t)=>{c(e,{location:r.location,params:r.matches?.[0]?.params??{},pattern:We(r.matches),errorInfo:t})}:void 0;return i.reduceRight((e,n,c)=>{let u,d=!1,f=null,p=null;r&&(u=a&&n.route.id?a[n.route.id]:void 0,f=n.route.errorElement||At,o&&(s<0&&c===0?(Gt(`route-fallback`,!1,"No `HydrateFallback` element provided to render during initial hydration"),d=!0,p=null):s===c&&(d=!0,p=n.route.hydrateFallbackElement||null)));let m=t.concat(i.slice(0,c+1)),h=()=>{let t;return t=u?f:d?p:n.route.Component?_.createElement(n.route.Component,null):n.route.element?n.route.element:e,_.createElement(Pt,{match:n,routeContext:{outlet:e,matches:m,isDataRoute:r!=null},children:t})};return r&&(n.route.ErrorBoundary||n.route.errorElement||c===0)?_.createElement(jt,{location:r.location,revalidation:r.revalidation,component:f,error:u,children:h(),routeContext:{outlet:null,matches:m,isDataRoute:!0},onError:l}):h()},null)}function It(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function Lt(e){let t=_.useContext(nt);return w(t,It(e)),t}function Rt(e){let t=_.useContext(rt);return w(t,It(e)),t}function zt(e){let t=_.useContext(dt);return w(t,It(e)),t}function Bt(e){let t=zt(e),n=t.matches[t.matches.length-1];return w(n.route.id,`${e} can only be used on routes that contain a unique "id"`),n.route.id}function Vt(){return Bt(`useRouteId`)}function Ht(){let e=_.useContext(ft),t=Rt(`useRouteError`),n=Bt(`useRouteError`);return e===void 0?t.errors?.[n]:e}function Ut(){let{router:e}=Lt(`useNavigate`),t=Bt(`useNavigate`),n=_.useRef(!1);return St(()=>{n.current=!0}),_.useCallback(async(r,i={})=>{ae(n.current,xt),n.current&&(typeof r==`number`?await e.navigate(r):await e.navigate(r,{fromRouteId:t,...i}))},[e,t])}var Wt={};function Gt(e,t,n){!t&&!Wt[e]&&(Wt[e]=!0,ae(!1,n))}_.memo(Kt);function Kt({routes:e,manifest:t,future:n,state:r,isStatic:i,onError:a}){return Ot(e,void 0,{manifest:t,state:r,isStatic:i,onError:a,future:n})}function qt({to:e,replace:t,state:n,relative:r}){w(yt(),`<Navigate> may be used only in the context of a <Router> component.`);let{static:i,navigator:a}=_.useContext(lt);ae(!i,`<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.`);let{matches:o}=_.useContext(dt),{pathname:s}=bt(),c=Ct(),l=Fe(e,Pe(o),s,r===`path`);Ze(typeof e==`string`?e:le(e),a.createHref(l),Je(a),`reject`);let u=JSON.stringify(l);return _.useEffect(()=>{c(JSON.parse(u),{replace:t,state:n,relative:r})},[c,u,r,t,n]),null}function k(e){w(!1,`A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.`)}function Jt({basename:e=`/`,children:t=null,location:n,navigationType:r=`POP`,navigator:i,static:a=!1,useTransitions:o}){w(!yt(),`You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`);let s=e.replace(/^\/*/,`/`),c=_.useMemo(()=>({basename:s,navigator:i,static:a,useTransitions:o,future:{}}),[s,i,a,o]);typeof n==`string`&&(n=ue(n));let{pathname:l=`/`,search:u=``,hash:d=``,state:f=null,key:p=`default`,mask:m}=n,h=_.useMemo(()=>{let e=ke(l,s);return e==null?null:{location:{pathname:e,search:u,hash:d,state:f,key:p,mask:m},navigationType:r}},[s,l,u,d,f,p,r,m]);return ae(h!=null,`<Router basename="${s}"> is not able to match the URL "${l}${u}${d}" because it does not start with the basename, so the <Router> won't render anything.`),h==null?null:_.createElement(lt.Provider,{value:c},_.createElement(ut.Provider,{children:t,value:h}))}function Yt({children:e,location:t}){return Dt(Xt(e),t)}_.Component;function Xt(e,t=[]){let n=[];return _.Children.forEach(e,(e,r)=>{if(!_.isValidElement(e))return;let i=[...t,r];if(e.type===_.Fragment){n.push.apply(n,Xt(e.props.children,i));return}w(e.type===k,`[${typeof e.type==`string`?e.type:e.type.name}] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`),w(!e.props.index||!e.props.children,`An index route cannot have child routes.`);let a={id:e.props.id||i.join(`-`),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,middleware:e.props.middleware,loader:e.props.loader,action:e.props.action,hydrateFallbackElement:e.props.hydrateFallbackElement,HydrateFallback:e.props.HydrateFallback,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:e.props.hasErrorBoundary===!0||e.props.ErrorBoundary!=null||e.props.errorElement!=null,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(a.children=Xt(e.props.children,i)),n.push(a)}),n}var Zt=`get`,Qt=`application/x-www-form-urlencoded`;function $t(e){return typeof HTMLElement<`u`&&e instanceof HTMLElement}function en(e){return $t(e)&&e.tagName.toLowerCase()===`button`}function tn(e){return $t(e)&&e.tagName.toLowerCase()===`form`}function nn(e){return $t(e)&&e.tagName.toLowerCase()===`input`}function rn(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}function an(e,t){return e.button===0&&(!t||t===`_self`)&&!rn(e)}var on=null;function sn(){if(on===null)try{new FormData(document.createElement(`form`),0),on=!1}catch{on=!0}return on}var cn=new Set([`application/x-www-form-urlencoded`,`multipart/form-data`,`text/plain`]);function ln(e){return e!=null&&!cn.has(e)?(ae(!1,`"${e}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${Qt}"`),null):e}function un(e,t){let n,r,i,a,o;if(tn(e)){let o=e.getAttribute(`action`);r=o?ke(o,t):null,n=e.getAttribute(`method`)||Zt,i=ln(e.getAttribute(`enctype`))||Qt,a=new FormData(e)}else if(en(e)||nn(e)&&(e.type===`submit`||e.type===`image`)){let o=e.form;if(o==null)throw Error(`Cannot submit a <button> or <input type="submit"> without a <form>`);let s=e.getAttribute(`formaction`)||o.getAttribute(`action`);if(r=s?ke(s,t):null,n=e.getAttribute(`formmethod`)||o.getAttribute(`method`)||Zt,i=ln(e.getAttribute(`formenctype`))||ln(o.getAttribute(`enctype`))||Qt,a=new FormData(o,e),!sn()){let{name:t,type:n,value:r}=e;if(n===`image`){let e=t?`${t}.`:``;a.append(`${e}x`,`0`),a.append(`${e}y`,`0`)}else t&&a.append(t,r)}}else if($t(e))throw Error(`Cannot submit element that is not <form>, <button>, or <input type="submit|image">`);else n=Zt,r=null,i=Qt,o=e;return a&&i===`text/plain`&&(o=a,a=void 0),{action:r,method:n.toLowerCase(),encType:i,formData:a,body:o}}Object.getOwnPropertyNames(Object.prototype).sort().join(`\0`);function dn(e,t){if(e===!1||e==null)throw Error(t)}function fn(e,t,n,r){let i=typeof e==`string`?new URL(e,typeof window>`u`?`server://singlefetch/`:window.location.origin):e;return i.pathname=n?i.pathname.endsWith(`/`)?`${i.pathname}_.${r}`:`${i.pathname}.${r}`:i.pathname===`/`?`_root.${r}`:t&&ke(i.pathname,t)===`/`?`${Re(t)}/_root.${r}`:`${Re(i.pathname)}.${r}`,i}async function pn(e,t){if(e.id in t)return t[e.id];try{let n=await ee(()=>import(e.module),[]);return t[e.id]=n,n}catch(t){return console.error(`Error loading route module \`${e.module}\`, reloading page...`),console.error(t),window.__reactRouterContext&&window.__reactRouterContext.isSpaMode,window.location.reload(),new Promise(()=>{})}}function mn(e){return e!=null&&typeof e.page==`string`}function hn(e){return e==null?!1:e.href==null?e.rel===`preload`&&typeof e.imageSrcSet==`string`&&typeof e.imageSizes==`string`:typeof e.rel==`string`&&typeof e.href==`string`}async function gn(e,t,n){return xn((await Promise.all(e.map(async e=>{let r=t.routes[e.route.id];if(r){let e=await pn(r,n);return e.links?e.links():[]}return[]}))).flat(1).filter(hn).filter(e=>e.rel===`stylesheet`||e.rel===`preload`).map(e=>e.rel===`stylesheet`?{...e,rel:`prefetch`,as:`style`}:{...e,rel:`prefetch`}))}function _n(e,t,n,r,i,a){let o=(e,t)=>!n[t]||e.route.id!==n[t].route.id,s=(e,t)=>n[t].pathname!==e.pathname||n[t].route.path?.endsWith(`*`)&&n[t].params[`*`]!==e.params[`*`];return a===`assets`?t.filter((e,t)=>o(e,t)||s(e,t)):a===`data`?t.filter((t,a)=>{let c=r.routes[t.route.id];if(!c||!c.hasLoader)return!1;if(o(t,a)||s(t,a))return!0;if(t.route.shouldRevalidate){let r=t.route.shouldRevalidate({currentUrl:new URL(i.pathname+i.search+i.hash,window.origin),currentParams:n[0]?.params||{},nextUrl:new URL(e,window.origin),nextParams:t.params,defaultShouldRevalidate:!0});if(typeof r==`boolean`)return r}return!0}):[]}function vn(e,t,{includeHydrateFallback:n}={}){return yn(e.map(e=>{let r=t.routes[e.route.id];if(!r)return[];let i=[r.module];return r.clientActionModule&&(i=i.concat(r.clientActionModule)),r.clientLoaderModule&&(i=i.concat(r.clientLoaderModule)),n&&r.hydrateFallbackModule&&(i=i.concat(r.hydrateFallbackModule)),r.imports&&(i=i.concat(r.imports)),i}).flat(1))}function yn(e){return[...new Set(e)]}function bn(e){let t={},n=Object.keys(e).sort();for(let r of n)t[r]=e[r];return t}function xn(e,t){let n=new Set,r=new Set(t);return e.reduce((e,i)=>{if(t&&!mn(i)&&i.as===`script`&&i.href&&r.has(i.href))return e;let a=JSON.stringify(bn(i));return n.has(a)||(n.add(a),e.push({key:a,link:i})),e},[])}function Sn(){let e=_.useContext(nt);return dn(e,`You must render this element inside a <DataRouterContext.Provider> element`),e}function Cn(){let e=_.useContext(rt);return dn(e,`You must render this element inside a <DataRouterStateContext.Provider> element`),e}var wn=_.createContext(void 0);wn.displayName=`FrameworkContext`;function Tn(){let e=_.useContext(wn);return dn(e,`You must render this element inside a <HydratedRouter> element`),e}function En(e,t){let n=_.useContext(wn),[r,i]=_.useState(!1),[a,o]=_.useState(!1),{onFocus:s,onBlur:c,onMouseEnter:l,onMouseLeave:u,onTouchStart:d}=t,f=_.useRef(null);_.useEffect(()=>{if(e===`render`&&o(!0),e===`viewport`){let e=new IntersectionObserver(e=>{e.forEach(e=>{o(e.isIntersecting)})},{threshold:.5});return f.current&&e.observe(f.current),()=>{e.disconnect()}}},[e]),_.useEffect(()=>{if(r){let e=setTimeout(()=>{o(!0)},100);return()=>{clearTimeout(e)}}},[r]);let p=()=>{i(!0)},m=()=>{i(!1),o(!1)};return n?e===`intent`?[a,f,{onFocus:Dn(s,p),onBlur:Dn(c,m),onMouseEnter:Dn(l,p),onMouseLeave:Dn(u,m),onTouchStart:Dn(d,p)}]:[a,f,{}]:[!1,f,{}]}function Dn(e,t){return n=>{e&&e(n),n.defaultPrevented||t(n)}}function On({page:e,...t}){let n=at(),{nonce:r}=Tn(),{router:i}=Sn(),a=_.useMemo(()=>de(i.routes,e,i.basename),[i.routes,e,i.basename]);return a?(t.nonce==null&&r&&(t={...t,nonce:r}),n?_.createElement(An,{page:e,matches:a,...t}):_.createElement(jn,{page:e,matches:a,...t})):null}function kn(e){let{manifest:t,routeModules:n}=Tn(),[r,i]=_.useState([]);return _.useEffect(()=>{let r=!1;return gn(e,t,n).then(e=>{r||i(e)}),()=>{r=!0}},[e,t,n]),r}function An({page:e,matches:t,...n}){let r=bt(),{future:i}=Tn(),{basename:a}=Sn(),o=_.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=fn(e,a,i.v8_trailingSlashAwareDataRequests,`rsc`),o=!1,s=[];for(let e of t)typeof e.route.shouldRevalidate==`function`?o=!0:s.push(e.route.id);return o&&s.length>0&&n.searchParams.set(`_routes`,s.join(`,`)),[n.pathname+n.search]},[a,i.v8_trailingSlashAwareDataRequests,e,r,t]);return _.createElement(_.Fragment,null,o.map(e=>_.createElement(`link`,{key:e,rel:`prefetch`,as:`fetch`,href:e,...n})))}function jn({page:e,matches:t,...n}){let r=bt(),{future:i,manifest:a,routeModules:o}=Tn(),{basename:s}=Sn(),{loaderData:c,matches:l}=Cn(),u=_.useMemo(()=>_n(e,t,l,a,r,`data`),[e,t,l,a,r]),d=_.useMemo(()=>_n(e,t,l,a,r,`assets`),[e,t,l,a,r]),f=_.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=new Set,l=!1;if(t.forEach(e=>{let t=a.routes[e.route.id];t&&t.hasLoader&&(!u.some(t=>t.route.id===e.route.id)&&e.route.id in c&&o[e.route.id]?.shouldRevalidate||t.hasClientLoader?l=!0:n.add(e.route.id))}),n.size===0)return[];let d=fn(e,s,i.v8_trailingSlashAwareDataRequests,`data`);return l&&n.size>0&&d.searchParams.set(`_routes`,t.filter(e=>n.has(e.route.id)).map(e=>e.route.id).join(`,`)),[d.pathname+d.search]},[s,i.v8_trailingSlashAwareDataRequests,c,r,a,u,t,e,o]),p=_.useMemo(()=>vn(d,a),[d,a]),m=kn(d);return _.createElement(_.Fragment,null,f.map(e=>_.createElement(`link`,{key:e,rel:`prefetch`,as:`fetch`,href:e,...n})),p.map(e=>_.createElement(`link`,{key:e,rel:`modulepreload`,href:e,...n})),m.map(({key:e,link:t})=>_.createElement(`link`,{key:e,nonce:n.nonce,...t,crossOrigin:t.crossOrigin??n.crossOrigin})))}function Mn(...e){return t=>{e.forEach(e=>{typeof e==`function`?e(t):e!=null&&(e.current=t)})}}_.Component;var Nn=typeof window<`u`&&window.document!==void 0&&window.document.createElement!==void 0;try{Nn&&(window.__reactRouterVersion=`7.18.3`)}catch{}function Pn({basename:e,children:t,useTransitions:n,window:r}){let i=_.useRef();i.current??=ie({window:r,v5Compat:!0});let a=i.current,[o,s]=_.useState({action:a.action,location:a.location}),c=_.useCallback(e=>{n===!1?s(e):_.startTransition(()=>s(e))},[n]);return _.useLayoutEffect(()=>a.listen(c),[a,c]),_.createElement(Jt,{basename:e,children:t,location:o.location,navigationType:o.action,navigator:a,useTransitions:n})}var Fn=_.forwardRef(function({onClick:e,discover:t=`render`,prefetch:n=`none`,relative:r,reloadDocument:i,replace:a,mask:o,state:s,target:c,to:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f,...p},m){let{basename:h,navigator:g,useTransitions:v}=_.useContext(lt),y=typeof l==`string`&&S.test(l),b=Ke(l,h);l=b.to;let x=vt(l,{relative:r}),ee=bt(),C=null;if(o){let e=Fe(o,[],ee.mask?ee.mask.pathname:`/`,!0);h!==`/`&&(e.pathname=e.pathname===`/`?h:Le([h,e.pathname])),C=g.createHref(e)}let[te,ne,re]=En(n,p),ie=Bn(l,{replace:a,mask:o,state:s,target:c,preventScrollReset:u,relative:r,viewTransition:d,defaultShouldRevalidate:f,useTransitions:v});function w(t){e&&e(t),t.defaultPrevented||ie(t)}let ae=!(b.isExternal||i),oe=_.createElement(`a`,{...p,...re,href:(ae?C:void 0)||b.absoluteURL||x,onClick:ae?w:e,ref:Mn(m,ne),target:c,"data-discover":!y&&t===`render`?`true`:void 0});return te&&!y?_.createElement(_.Fragment,null,oe,_.createElement(On,{page:x})):oe});Fn.displayName=`Link`;var In=_.forwardRef(function({"aria-current":e=`page`,caseSensitive:t=!1,className:n=``,end:r=!1,style:i,to:a,viewTransition:o,children:s,...c},l){let u=Et(a,{relative:c.relative}),d=bt(),f=_.useContext(rt),{navigator:p,basename:m}=_.useContext(lt),h=f!=null&&Gn(u)&&o===!0,g=p.encodeLocation?p.encodeLocation(u).pathname:u.pathname,v=d.pathname,y=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;t||(v=v.toLowerCase(),y=y?y.toLowerCase():null,g=g.toLowerCase()),y&&m&&(y=ke(y,m)||y);let b=g!==`/`&&g.endsWith(`/`)?g.length-1:g.length,x=v===g||!r&&v.startsWith(g)&&v.charAt(b)===`/`,ee=y!=null&&(y===g||!r&&y.startsWith(g)&&y.charAt(g.length)===`/`),S={isActive:x,isPending:ee,isTransitioning:h},C=x?e:void 0,te;te=typeof n==`function`?n(S):[n,x?`active`:null,ee?`pending`:null,h?`transitioning`:null].filter(Boolean).join(` `);let ne=typeof i==`function`?i(S):i;return _.createElement(Fn,{...c,"aria-current":C,className:te,ref:l,style:ne,to:a,viewTransition:o},typeof s==`function`?s(S):s)});In.displayName=`NavLink`;var Ln=_.forwardRef(({discover:e=`render`,fetcherKey:t,navigate:n,reloadDocument:r,replace:i,state:a,method:o=Zt,action:s,onSubmit:c,relative:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f,...p},m)=>{let{useTransitions:h}=_.useContext(lt),g=Un(),v=Wn(s,{relative:l}),y=o.toLowerCase()===`get`?`get`:`post`,b=typeof s==`string`&&S.test(s);return _.createElement(`form`,{ref:m,method:y,action:v,onSubmit:r?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let r=e.nativeEvent.submitter,s=r?.getAttribute(`formmethod`)||o,p=()=>g(r||e.currentTarget,{fetcherKey:t,method:s,navigate:n,replace:i,state:a,relative:l,preventScrollReset:u,viewTransition:d,defaultShouldRevalidate:f});h&&n!==!1?_.startTransition(()=>p()):p()},...p,"data-discover":!b&&e===`render`?`true`:void 0})});Ln.displayName=`Form`;function Rn(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function zn(e){let t=_.useContext(nt);return w(t,Rn(e)),t}function Bn(e,{target:t,replace:n,mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,defaultShouldRevalidate:c,useTransitions:l}={}){let u=Ct(),d=bt(),f=Et(e,{relative:o});return _.useCallback(p=>{if(an(p,t)){p.preventDefault();let t=n===void 0?le(d)===le(f):n,m=()=>u(e,{replace:t,mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,defaultShouldRevalidate:c});l?_.startTransition(()=>m()):m()}},[d,u,f,n,r,i,t,e,a,o,s,c,l])}var Vn=0,Hn=()=>`__${String(++Vn)}__`;function Un(){let{router:e}=zn(`useSubmit`),{basename:t}=_.useContext(lt),n=Vt(),r=e.fetch,i=e.navigate;return _.useCallback(async(e,a={})=>{let{action:o,method:s,encType:c,formData:l,body:u}=un(e,t);if(a.navigate===!1){let e=a.fetcherKey||Hn();await r(e,n,a.action||o,{defaultShouldRevalidate:a.defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,flushSync:a.flushSync})}else await i(a.action||o,{defaultShouldRevalidate:a.defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,replace:a.replace,state:a.state,fromRouteId:n,flushSync:a.flushSync,viewTransition:a.viewTransition})},[r,i,t,n])}function Wn(e,{relative:t}={}){let{basename:n}=_.useContext(lt),r=_.useContext(dt);w(r,`useFormAction must be used inside a RouteContext`);let[i]=r.matches.slice(-1),a={...Et(e||`.`,{relative:t})},o=bt();if(e==null){a.search=o.search;let e=new URLSearchParams(a.search),t=e.getAll(`index`);if(t.some(e=>e===``)){e.delete(`index`),t.filter(e=>e).forEach(t=>e.append(`index`,t));let n=e.toString();a.search=n?`?${n}`:``}}return(!e||e===`.`)&&i.route.index&&(a.search=a.search?a.search.replace(/^\?/,`?index&`):`?index`),n!==`/`&&(a.pathname=a.pathname===`/`?n:Le([n,a.pathname])),le(a)}function Gn(e,{relative:t}={}){let n=_.useContext(ot);w(n!=null,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:r}=zn(`useViewTransitionState`),i=Et(e,{relative:t});if(!n.isTransitioning)return!1;let a=ke(n.currentLocation.pathname,r)||n.currentLocation.pathname,o=ke(n.nextLocation.pathname,r)||n.nextLocation.pathname;return Te(i.pathname,o)!=null||Te(i.pathname,a)!=null}var Kn=[`HTML`,`CSS`,`JavaScript`,`TypeScript`,`React`,`React Router`,`Next.js`,`Redux`,`Git`,`Docker`,`Kubernetes`,`CI/CD`,`Webpack`,`Networks`],qn=[{question:`Как выглядит базовая структура HTML страницы?`,shortAnswer:`Базовая структура HTML страницы начинается с \`<!DOCTYPE html>\` для указания типа документа. Затем идет тег \`<html>\`, внутри которого находятся два ключевых раздела: \`<head>\` (для метаинформации, стилей, ссылок на ресурсы) и \`<body>\` (для контента, который виден пользователю). Например:
 
-// JS
-button.dataset.userId; // "42"`,skills:[`HTML`],keywords:[`#data-attribute`,`#dataset`],difficulty:2,rating:2},{question:`В чём разница между box-sizing: content-box и border-box?`,shortAnswer:"`content-box` (по умолчанию) не учитывает padding и border в указанной ширине/высоте элемента, а `border-box` включает их.",longAnswer:"При `content-box` свойство `width` определяет только размер контента, поэтому фактическая ширина элемента = width + padding + border. Это усложняет вёрстку, так как добавление padding «раздвигает» элемент за пределы ожидаемых размеров. `border-box` решает эту проблему: указанная ширина уже включает padding и border, поэтому элемент всегда занимает ровно столько места, сколько задано. Именно поэтому в большинстве CSS-reset файлов применяют `* { box-sizing: border-box; }`.",codeExample:`* {
+\`<!DOCTYPE html>
+<html>
+<head>
+<title>Моя первая страница</title>
+</head>
+<body>
+<h1>Привет, мир!</h1>
+</body>
+</html>\``,longAnswer:'HTML (HyperText Markup Language) используется для создания структуры веб-страниц. Любая HTML-страница начинается с объявления типа документа `<!DOCTYPE html>`, которое сообщает браузеру, что используется последняя версия HTML (HTML5).\nСтруктура страницы организована в тегах:\n\n- `<html>`: корневой элемент страницы. Внутри него находится весь содержимый HTML-код.\n\n- `<head>`: секция для метаинформации. Здесь размещаются:\n\n- `<title>`: заголовок страницы, отображаемый в вкладке браузера.\n\n- `<meta>`: метатеги, например, для указания кодировки (`<meta charset="UTF-8">`).\n\n- Подключение стилей (`<link>`) или скриптов (`<script>`).\n\n- `<body>`: секция, содержащая видимый контент страницы, например, текст, изображения, кнопки и так далее.\n\nПример базовой структуры:\n\n`<meta charset="UTF-8">` задает кодировку UTF-8, чтобы корректно отображать текст.\n`<meta name="viewport" content="width=device-width, initial-scale=1.0">` помогает адаптировать страницу для мобильных устройств.\n\nСоздание базовой структуры страницы — это первый шаг при разработке веб-приложения. Например, если вы хотите создать визитку или лендинг, вы начнете с описанной структуры. Она также служит основой для добавления стилей (CSS) и логики (JavaScript).',codeExample:`<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Базовая HTML страница</title>
+  </head>
+  <body>
+    <h1>Добро пожаловать!</h1>
+    <p>Это пример базовой структуры HTML.</p>
+  </body>
+</html>`,skills:[`HTML`]},{question:`Что такое мета-теги?`,shortAnswer:'Мета-теги — это элементы в `<head>` HTML-документа, которые содержат метаинформацию, то есть данные о самой странице. Они не отображаются пользователю напрямую, но влияют на индексацию в поисковых системах, корректное отображение страницы и взаимодействие с социальными сетями.\nНапример, `<meta charset="UTF-8">` задает кодировку, а `<meta name="description" content="Описание страницы">` предоставляет поисковикам описание страницы.',longAnswer:`Мета-теги (от слова "метаинформация") — это специальные теги, которые размещаются внутри секции \`<head>\` HTML-документа и предоставляют браузерам, поисковым системам и другим сервисам информацию о странице.
+Основные виды мета-тегов:
+
+- Кодировка:
+
+Этот тег задает кодировку символов, чтобы текст корректно отображался. UTF-8 поддерживает большинство языков и символов.
+
+- Адаптивность для мобильных устройств:
+
+Этот тег помогает странице адаптироваться к размерам экрана, особенно на мобильных устройствах.
+
+- Описание страницы:
+
+Используется для улучшения SEO (поисковой оптимизации). Поисковые системы часто отображают это описание в результатах поиска.
+
+- Ключевые слова:
+
+Сейчас используется редко, так как поисковики больше опираются на контент страницы.
+
+- Автор:
+
+Указывает автора страницы.
+
+- Социальные сети:
+Например, для корректного отображения ссылки в соцсетях:
+
+Эти теги используются Facebook, Twitter и другими платформами для формирования красивой карточки при публикации ссылки.
+
+Пример использования:
+
+SEO: Помогает поисковым системам лучше индексировать страницу.
+Мобильные устройства: Делает сайт удобным для просмотра на разных экранах.
+Социальные сети: Улучшает представление ссылки при её публикации.
+Мета-теги важны на всех этапах разработки: от создания лендингов до сложных веб-приложений.`,codeExample:`<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Это описание страницы для поисковых систем.">
+
+<meta name="keywords" content="HTML, мета-теги, фронтенд">
+
+<meta name="author" content="Имя автора">
+
+<meta property="og:title" content="Название страницы">
+<meta property="og:description" content="Описание для соцсетей">
+<meta property="og:image" content="ссылка_на_изображение">
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Учебная страница о мета-тегах.">
+    <meta name="author" content="Иван Иванов">
+    <title>Мета-теги в HTML</title>
+  </head>
+  <body>
+    <h1>Пример использования мета-тегов</h1>
+  </body>
+</html>`,skills:[`HTML`]},{question:`Для чего используется тег <link>?`,shortAnswer:'Тег `<link>` используется для подключения внешних ресурсов к HTML-документу. Чаще всего он применяется для подключения CSS-стилей. Тег располагается внутри секции `<head>` и не отображается на странице.\nПример:\n\n`<link rel="stylesheet" href="styles.css">\n`\nЭтот код подключает файл стилей `styles.css` к странице.',longAnswer:"Тег `<link>` — это HTML-элемент, который позволяет подключать внешние ресурсы к веб-странице. Он используется только в секции `<head>` и не отображается на самой странице.\nОсновные атрибуты тега `<link>`:\n• `rel` (relationship): указывает тип связи между текущим документом и подключаемым ресурсом.\n• `stylesheet` — для подключения CSS-файлов.\n• `icon` — для указания фавикона.\n• `href` (hyperlink reference): путь к подключаемому файлу. Это может быть относительный или абсолютный URL.\n• `type` (опционально): MIME-тип ресурса, например, `text/css`.\nПримеры использования:\n\n- Подключение CSS-файла:\n\nЭто наиболее распространенное использование тега `<link>`. Он связывает внешний файл стилей с HTML-документом.\n\n- Указание фавикона:\n\nЭтот тег указывает браузеру, какой значок показывать на вкладке страницы.\n\n- Подключение других ресурсов:\nНапример, подключение шрифтов:\n\nПолный пример:\n\nТег `<link>` позволяет разделить структуру и стили веб-страницы. Это удобно для управления стилями (CSS) и улучшает производительность, поскольку браузеры могут кэшировать подключенные файлы. Например, при разработке сайта подключение шрифтов и CSS через `<link>` помогает быстро изменить внешний вид без изменения HTML.",codeExample:`<link rel="stylesheet" href="styles.css">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример с тегом link</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <h1>Пример подключения ресурсов</h1>
+  </body>
+</html>`,skills:[`HTML`]},{question:`Что такое атрибут в html?`,shortAnswer:`Атрибут в HTML — это дополнительная информация, которая задает свойства элемента. Он указывается внутри открывающего тега в формате имя="значение".
+Например, атрибут href в теге <a> задает ссылку, а src в <img> указывает путь к изображению. Атрибуты влияют на внешний вид или функциональность элементов, но их значения не видны на самой странице.
+Пример:
+
+\`<a href="https://example.com">Перейти на сайт</a>\``,longAnswer:`Атрибуты в HTML предоставляют дополнительную информацию элементам, помогая настроить их свойства или поведение. Атрибуты пишутся в открывающем теге элемента и состоят из имени и значения, разделенных знаком \`=\`.
+Основные принципы:
+
+- Атрибуты указываются только в открывающем теге.
+
+- Значения атрибутов заключаются в кавычки (двойные или одинарные).
+
+- У одного элемента может быть несколько атрибутов, которые перечисляются через пробел.
+
+Примеры популярных атрибутов:
+
+- \`href\` — для ссылок:
+
+Указывает адрес, куда ведет ссылка.
+
+- \`src\` — для изображений:
+
+Указывает путь к изображению.
+
+- \`alt\` — альтернативный текст для изображения:
+
+Показывается, если изображение не загрузилось.
+
+- \`id\` и \`class\` — для идентификации и стилизации:
+
+\`id\` должен быть уникальным на странице, а \`class\` используется для группировки элементов.
+
+- \`disabled\` — логический атрибут, который делает элемент неактивным:
+
+Пример с несколькими атрибутами:
+
+- \`href\`: адрес ссылки.
+
+- \`target="_blank"\`: открытие в новой вкладке.
+
+- \`title\`: подсказка при наведении курсора.
+
+Практическое применение:
+Атрибуты используются для управления поведением и отображением HTML-элементов. Например, вы можете настроить кнопку так, чтобы она была неактивной (атрибут \`disabled\`), добавить стили через \`class\` или подключить внешние ресурсы через \`src\` и \`href\`.
+Пример на практике:
+
+Атрибуты делают элементы гибкими и функциональными, что позволяет создавать сложные и интерактивные веб-страницы.`,codeExample:`<a href="https://example.com">Перейти</a>
+
+<img src="image.jpg" alt="Описание изображения">
+
+<img src="image.jpg" alt="Описание изображения">
+
+<div id="main" class="container"></div>
+
+<button disabled>Кнопка</button>
+
+<a href="https://example.com" target="_blank" title="Откроется в новом окне">Ссылка</a>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Пример атрибутов</title>
+  </head>
+  <body>
+    <h1 id="main-title" class=  itle">Заголовок</h1>
+    <a href="https://example.com" target="_blank">Перейти на сайт</a>
+    <img src="image.jpg" alt="Картинка">
+  </body>
+</html>`,skills:[`HTML`]},{question:`Как можно создать телефонную ссылку?`,shortAnswer:'Для создания телефонной ссылки используется тег `<a>` с атрибутом `href`, значение которого начинается с `tel:`.\nНапример:\n\n`<a href=el:+1234567890">Позвонить</a>`\nКогда пользователь нажимает на эту ссылку, устройство автоматически предложит совершить звонок на указанный номер. Это особенно полезно для мобильных пользователей.',longAnswer:`Телефонная ссылка в HTML — это гиперссылка, которая использует схему \`tel:\` для указания телефонного номера. Такая ссылка позволяет инициировать звонок при клике, если устройство поддерживает эту функцию (например, смартфон или компьютер с установленной телефонной программой).
+Как работает телефонная ссылка:
+
+- Формат ссылки:
+Атрибут \`href\` содержит номер телефона в формате \`tel:номер\`. Номер можно записывать с кодом страны, чтобы он был универсальным.
+Пример:
+
+- Поддержка дополнительных символов:
+Можно добавлять символы:
+
+- Пробелы, тире и скобки игнорируются устройством.
+
+- Для пауз или дополнительных действий используют запятые \`,\` (пауза) или точку с запятой \`;\` (ожидание).
+
+- Текст ссылки:
+Текст между тегами \`<a>\` виден пользователю и может быть произвольным.
+
+Полный пример:
+
+Практическое применение:
+
+- Мобильные сайты: Удобно для пользователей, которые хотят быстро связаться с компанией.
+
+- Поддержка клиентов: На страницах с контактами можно использовать телефонные ссылки для улучшения пользовательского опыта.
+
+Советы:
+
+- Указывайте номер телефона в международном формате, чтобы ссылка работала на любых устройствах.
+
+- Убедитесь, что текст ссылки понятен и мотивирует пользователя совершить действие (например, "Позвонить").
+
+- Телефонные ссылки улучшают удобство использования сайта, особенно для мобильных пользователей, и помогают напрямую взаимодействовать с аудиторией.`,codeExample:`<a href=  el:+1234567890">Позвонить</a>
+
+<a href=  el:+1234567890,123">Позвонить с добавочным номером</a>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Телефонная ссылка</title>
+  </head>
+  <body>
+    <p>Для связи с нами нажмите:</p>
+    <a href=  el:+1234567890">Позвонить нам</a>
+  </body>
+</html>`,skills:[`HTML`]},{question:`Расскажите как работает браузер?`,shortAnswer:`Браузер — это программа, которая загружает HTML, CSS, JavaScript и другие ресурсы с веб-сервера, интерпретирует их и отображает страницу для пользователя. Он работает поэтапно:
+
+- Загрузка: Получение ресурсов (HTML, CSS, JS, изображения) через HTTP/HTTPS.
+
+- Парсинг: HTML превращается в дерево DOM, а CSS — в CSSOM.
+
+- Рендеринг: DOM и CSSOM объединяются в рендер-дерево, которое используется для отображения элементов на экране.
+
+- JavaScript: Выполняются скрипты, которые могут изменить страницу (например, обновить DOM).
+
+- Отрисовка: Браузер рассчитывает расположение элементов (layout) и отображает их (paint).`,longAnswer:`Работа браузера можно разделить на несколько ключевых этапов, каждый из которых играет свою роль в создании и отображении веб-страницы.
+
+- Загрузка ресурсов
+
+Когда вы вводите URL в адресной строке:
+
+- Браузер отправляет запрос к серверу через протоколы HTTP/HTTPS.
+
+- Сервер возвращает HTML-документ.
+
+- Браузер анализирует HTML, находит ссылки на другие ресурсы (CSS, JavaScript, изображения) и загружает их.
+
+- Парсинг HTML и создание DOM
+
+HTML-документ разбивается на элементы и узлы, из которых строится Document Object Model (DOM) — иерархическая структура страницы.
+Пример DOM для HTML:
+
+DOM-структура:
+
+- Парсинг CSS и создание CSSOM
+
+Загруженные стили превращаются в CSS Object Model (CSSOM), представляющее стили элементов.
+Пример:
+
+CSSOM содержит правила для каждого элемента.
+
+- Создание рендер-дерева
+
+DOM и CSSOM объединяются в рендер-дерево, которое содержит только видимые элементы страницы с их стилями. Невидимые элементы (например, с \`display: none\`) исключаются.
+
+- Вычисление расположения (layout)
+
+Браузер рассчитывает, где на экране должны располагаться элементы. Например, высота и ширина блоков, положение текста и изображений.
+
+- Отрисовка (paint)
+
+Браузер рисует элементы на экране с учётом их стилей, цветов и теней.
+
+- Обработка JavaScript
+
+JavaScript выполняется в движке (например, V8 для Chrome). Скрипты могут изменять DOM или CSSOM, что иногда вызывает перерасчёт layout или повторную отрисовку.
+Пример:
+
+- Оптимизация через композитинг
+
+Современные браузеры используют композитинг для разделения слоёв (например, анимаций) и их независимой обработки, что ускоряет рендеринг.
+Поток работы браузера (упрощённо):
+
+- Получение HTML → Парсинг → DOM
+
+- Получение CSS → Парсинг → CSSOM
+
+- DOM + CSSOM → Рендер-дерево → Layout → Paint
+
+- Отображение страницы пользователю
+
+Пример взаимодействия ресурсов:
+HTML:
+
+CSS (\`styles.css\`):
+
+JavaScript (\`script.js\`):
+
+Оптимизация работы браузера:
+
+- Минимизируйте количество запросов: Объединяйте файлы CSS и JS.
+
+- Используйте асинхронную загрузку: Для JavaScript добавляйте атрибут \`async\` или \`defer\`.
+
+- Минифицируйте файлы: Уменьшайте размер ресурсов.
+
+- Избегайте блокирующего JavaScript и CSS: Это ускоряет отображение страницы.
+
+Браузер — сложная система, которая проделывает огромную работу за миллисекунды, чтобы отобразить веб-страницу. Понимание его работы помогает создавать быстрые и оптимизированные веб-приложения.`,codeExample:`<html>
+  <body>
+    <h1>Привет, мир!</h1>
+  </body>
+</html>
+
+<html>
+ └── <body>
+      └── <h1>
+           └── "Привет, мир!"
+
+body {
+  font-size: 16px;
+}
+h1 {
+  color: red;
+}
+
+document.querySelector("h1").style.color = "blue";
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Привет, мир!</h1>
+    <script src="script.js"><\/script>
+  </body>
+</html>
+
+h1 {
+  color: red;
+}
+
+document.querySelector("h1").textContent = "Привет, JavaScript!";`,skills:[`HTML`]},{question:`Какие есть этапы рендеринга html страницы?`,shortAnswer:`- Парсинг HTML
+
+- Браузер начинает парсить HTML-документ и строить DOM-дерево (Document Object Model), представляющее иерархическую структуру всех элементов страницы.
+
+- Если браузер находит \`<script>\`, он приостанавливает парсинг, загружает и выполняет скрипт, что может изменить структуру DOM.
+
+- Загрузка внешних ресурсов
+
+- Во время парсинга HTML браузер обнаруживает ссылки на внешние ресурсы (CSS, изображения, шрифты, скрипты) и начинает их загружать параллельно.
+
+- CSS загружается и парсится, формируя CSSOM (CSS Object Model).
+
+- Построение рендер-дерева
+
+- DOM и CSSOM объединяются для создания рендер-дерева, которое представляет собой структуру элементов, подлежащих отображению на экране с примененными стилями.
+
+- Вычисление геометрии (Layout)
+
+- Браузер вычисляет размеры и положение каждого элемента на странице, основываясь на рендер-дереве. Этот процесс называется layout или reflow.
+
+- Отрисовка (Painting)
+
+- Браузер преобразует рендер-дерево в пиксели на экране, рисуя текст, цвета, изображения, тени и другие графические элементы.
+
+- Композиция (Compositing)
+
+- Некоторые элементы могут быть отрисованы в отдельных слоях для улучшения производительности (например, анимации или фиксированные элементы). На этапе композиции браузер объединяет эти слои в одно изображение для отображения на экране.
+
+- Интерфейс пользователя (UI)
+
+- Браузер обрабатывает пользовательские события (клики, прокрутка, ввод данных и т.д.).
+
+- JavaScript может изменять DOM, что может запустить повторные этапы layout и painting.`,longAnswer:`- Парсинг HTML
+
+- Браузер начинает парсить HTML-документ и строить DOM-дерево (Document Object Model), представляющее иерархическую структуру всех элементов страницы.
+
+- Если браузер находит \`<script>\`, он приостанавливает парсинг, загружает и выполняет скрипт, что может изменить структуру DOM.
+
+- Загрузка внешних ресурсов
+
+- Во время парсинга HTML браузер обнаруживает ссылки на внешние ресурсы (CSS, изображения, шрифты, скрипты) и начинает их загружать параллельно.
+
+- CSS загружается и парсится, формируя CSSOM (CSS Object Model).
+
+- Построение рендер-дерева
+
+- DOM и CSSOM объединяются для создания рендер-дерева, которое представляет собой структуру элементов, подлежащих отображению на экране с примененными стилями.
+
+- Вычисление геометрии (Layout)
+
+- Браузер вычисляет размеры и положение каждого элемента на странице, основываясь на рендер-дереве. Этот процесс называется layout или reflow.
+
+- Отрисовка (Painting)
+
+- Браузер преобразует рендер-дерево в пиксели на экране, рисуя текст, цвета, изображения, тени и другие графические элементы.
+
+- Композиция (Compositing)
+
+- Некоторые элементы могут быть отрисованы в отдельных слоях для улучшения производительности (например, анимации или фиксированные элементы). На этапе композиции браузер объединяет эти слои в одно изображение для отображения на экране.
+
+- Интерфейс пользователя (UI)
+
+- Браузер обрабатывает пользовательские события (клики, прокрутка, ввод данных и т.д.).
+
+- JavaScript может изменять DOM, что может запустить повторные этапы layout и painting.`,skills:[`HTML`]},{question:`Какие есть виды подключения CSS в HTML?`,shortAnswer:"Существует три основных способа подключения CSS к HTML: встроенный, внутренний и внешний. Встроенный CSS применяет стили непосредственно к элементу с помощью атрибута `style`. Внутренний CSS размещается внутри тега `<style>` в `<head>` HTML-документа и применяется ко всем элементам на странице. Внешний CSS хранится в отдельном файле с расширением `.css`, который подключается к HTML через тег `<link>` в `<head>`, что позволяет использовать одни и те же стили на нескольких страницах.",longAnswer:`В HTML есть три основных способа подключения CSS, каждый из которых имеет свои преимущества и используется в разных ситуациях.
+Встроенный CSS: Этот метод включает использование атрибута \`style\` прямо внутри HTML-элемента. Например:
+\`<h1 style="color: blue;">Привет, мир!</h1>\`
+Встроенный CSS удобен для быстрого применения стилей к отдельным элементам, но может привести к неэффективному коду, если его использовать слишком часто.
+Внутренний CSS: Стили задаются внутри тега \`<style>\`, который размещается в \`<head>\` документа. Например:
+
+Внутренний CSS удобен, когда вы хотите, чтобы стили применялись только к одной странице. Однако он не подходит для больших проектов, так как требует дублирования кода на разных страницах.
+Внешний CSS: Этот метод подразумевает создание отдельного CSS-файла, который подключается к HTML-документу с помощью тега \`<link>\`. Например:
+
+Внешний CSS является наиболее предпочтительным методом для больших проектов, так как позволяет разделить структуру HTML и стили. Это облегчает поддержку и изменение стилей, так как достаточно внести изменения в одном месте, и они применятся ко всем страницам, использующим этот файл.
+Каждый из этих методов может быть полезен в зависимости от контекста. В большинстве случаев рекомендуется использовать внешний CSS для организации кода и улучшения его читаемости.`,codeExample:`<head>
+  <style>
+    body {
+      background-color: lightgray;
+    }
+    h1 {
+      color: green;
+    }
+  </style>
+</head>
+
+<head><link rel="stylesheet" href="styles.css"></head>`,skills:[`HTML`]},{question:`Что такое DOCTYPE и зачем он нужен?`,shortAnswer:`\`<!DOCTYPE>\` — это инструкция для браузера, которая сообщает, в каком режиме он должен обрабатывать HTML-код. Без этого браузер может работать в режиме совместимости (quirks mode), что может привести к неправильному отображению страницы. Современные страницы обычно используют \`<!DOCTYPE html>\` для включения стандартного режима, который поддерживает современные веб-технологии.
+Пример:
+
+\`<!DOCTYPE html>
+<html>
+<head>
+<title>Пример</title>
+</head>
+<body>
+<h1>Привет, мир!</h1>
+</body>
+</html>\``,longAnswer:`\`<!DOCTYPE>\` — это инструкция для браузера, которая сообщает, какую версию спецификации HTML использовать при обработке страницы. Она не является HTML-тегом и не отображается в интерфейсе страницы.
+Веб-страницы могут отображаться по-разному в зависимости от того, включён ли режим стандартов или режим совместимости:
+
+- Режим стандартов: Браузер рендерит страницу в соответствии с современными стандартами HTML и CSS.
+
+- Режим совместимости (quirks mode): Браузер имитирует устаревшее поведение для старых веб-страниц.
+
+Почему это важно?
+Если декларация \`<!DOCTYPE>\` отсутствует, браузеры могут неправильно интерпретировать код страницы, особенно при использовании CSS. Например, размеры блоков и обработка таблиц могут отличаться.
+Пример:
+Минимальная HTML-страница:
+
+История \`<!DOCTYPE>\`
+HTML 4.01:
+Декларация была более сложной, так как включала ссылки на DTD (Document Type Definition). Пример:
+
+Это указывало браузеру на строгий режим без устаревших элементов.
+HTML5:
+Упрощённая форма \`<!DOCTYPE html>\`, так как HTML5 больше не использует DTD.
+
+Как работает \`<!DOCTYPE>\`?
+Когда браузер видит декларацию \`<!DOCTYPE>\`, он:
+
+- Переходит в режим стандартов.
+
+- Интерпретирует HTML и CSS в соответствии с современными спецификациями.
+
+Если \`<!DOCTYPE>\` отсутствует, браузер включает режим совместимости, где поддерживается устаревшее поведение. Это может привести к визуальным и функциональным ошибкам.
+
+Практический пример:
+Без \`<!DOCTYPE>\`:
+
+- Браузер может интерпретировать ширину блока с \`width: 100px;\` как включая отступы (margin) и границы (border).
+С \`<!DOCTYPE>\`:
+
+- Браузер интерпретирует только содержимое блока в соответствии с CSS-бокс-моделью.
+
+\`<!DOCTYPE>\` нужен для того, чтобы браузер правильно рендерил страницу в современном режиме стандартов. Это обязательная часть любого HTML-документа, которая задаёт основу для корректного отображения и работы вашего сайта.`,codeExample:`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Документ</title>
+</head>
+<body>
+  <h1>Пример страницы</h1>
+</body>
+</html>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`,skills:[`HTML`]},{question:`Какие есть виды списков в HTML?`,shortAnswer:'В HTML существует три основных вида списков: нумерованные списки (`<ol>`), ненумерованные списки (`<ul>`) и списки определений (`<dl>`). Нумерованные списки используют числа или буквы для обозначения каждого элемента, ненумерованные — маркеры, а списки определений содержат пары "термин-описание".',longAnswer:'HTML предоставляет три вида списков для структурирования данных:\nНумерованный список (`<ol>`) — используется, когда важен порядок элементов. Элементы списка заключаются в теги `<li>`, а список целиком в `<ol>`. По умолчанию элементы нумеруются числами, но можно изменить стиль на римские цифры или буквы через атрибут `type`.\n\nНенумерованный список (`<ul>`) — используется, когда порядок элементов не важен. В этом списке элементы также заключены в `<li>`, но вместо чисел используются маркеры (точки, квадраты).\n\nСписок определений (`<dl>`) — применяется для создания пар "термин-описание". Термины заключаются в тег `<dt>`, а описания — в `<dd>`.\n\nЭти списки используются для организации информации на страницах, улучшая их читаемость и доступность.',codeExample:`<ol>
+  <li>Первый элемент</li>
+  <li>Второй элемент</li>
+  <li>Третий элемент</li> 
+</ol>
+
+<ul>  
+  <li>Элемент 1</li>  
+  <li>Элемент 2</li>  
+  <li>Элемент 3</li> 
+</ul>
+
+<dl>  
+  <dt>HTML</dt>  
+  <dd>Язык гипертекстовой разметки</dd>  
+  <dt>CSS</dt>  
+  <dd>Каскадные таблицы стилей</dd> 
+</dl>`,skills:[`HTML`]},{question:`Как вставить видео в HTML?`,shortAnswer:"Для вставки видео в HTML используется тег `<video>`. Внутри него указываются источники видео через тег `<source>`, а также можно добавить атрибуты, такие как `controls` для отображения элементов управления, `autoplay` для автоматического воспроизведения и `loop` для повторного воспроизведения.",longAnswer:"В HTML5 добавили поддержку видео без необходимости использования сторонних плагинов, таких как Flash. Тег `<video>` позволяет встраивать видеофайлы на страницу.\nОн поддерживает несколько атрибутов для управления поведением видео:\n\n- `controls` — показывает панель управления (плей, пауза, перемотка).\n\n- `autoplay` — автоматически начинает воспроизведение видео при загрузке страницы.\n\n- `loop` — заставляет видео проигрываться в цикле.\n\n- `muted` — выключает звук видео по умолчанию.\n\nПример:\n\nВнутри тега `<video>` можно указывать несколько источников (`<source>`), чтобы обеспечить поддержку разных форматов видео в различных браузерах. Если браузер не поддерживает HTML5 видео, отображается альтернативный текст.",codeExample:`<video width="400" controls>  
+  <source src="video.mp4" type="video/mp4">  
+  <source src="video.ogg" type="video/ogg">  Ваш браузер не поддерживает видео. 
+</video>`,skills:[`HTML`]},{question:`Как вставить аудио в HTML?`,shortAnswer:"Для вставки аудио в HTML используется тег `<audio>`. Как и в случае с видео, можно указывать несколько форматов аудиофайлов через тег `<source>`, а атрибуты `controls`, `autoplay`, и `loop` управляют воспроизведением аудио.",longAnswer:`Тег \`<audio>\` в HTML5 позволяет встраивать аудиофайлы на веб-страницу. Как и в случае с видео, можно использовать атрибуты для управления поведением аудиофайла:
+
+- \`controls\` — добавляет панель управления для пользователя.
+
+- \`autoplay\` — автоматически начинает воспроизведение аудио.
+
+- \`loop\` — повторяет аудиофайл по кругу.
+
+- \`muted\` — заглушает звук аудио по умолчанию.
+
+Пример:
+
+Этот код вставляет аудиофайл с кнопками управления воспроизведением. Как и с видео, несколько \`<source>\` позволяют поддерживать различные форматы аудио для разных браузеров.`,codeExample:`<audio controls>  
+  <source src="audio.mp3" type="audio/mpeg">  
+  <source src="audio.ogg" type="audio/ogg">  
+  Ваш браузер не поддерживает аудио. 
+</audio>`,skills:[`HTML`]},{question:`Для чего используется тег <iframe>?`,shortAnswer:"Тег `<iframe>` используется для встраивания на страницу содержимого с другого веб-ресурса, например, другого сайта, видео с YouTube или карты. Он создает окно внутри текущей страницы, где загружается внешний ресурс. `<iframe>` полезен для интеграции стороннего контента, сохраняя при этом основную структуру страницы.",longAnswer:'Тег `<iframe>` (от англ. "inline frame") позволяет вставлять в веб-страницу другой документ, например, содержимое другой веб-страницы, видео или карты. Это создает окно внутри текущей страницы, где загружается внешний ресурс. Применяется для встраивания видео с YouTube, карт с Google Maps, документов и других сайтов.\nПример:\n\nЭтот код встраивает сайт `example.com` на вашу страницу. Важно учитывать, что не все сайты разрешают встраивание через `<iframe>` по соображениям безопасности (например, некоторые сайты используют заголовок `X-Frame-Options` для защиты).\n\nАтрибуты `width` и `height` задают размеры окна.\n\nОсновное преимущество использования `<iframe>` — возможность интеграции внешнего контента без изменения основного кода страницы. Однако с ним следует быть осторожным из-за потенциальных уязвимостей в безопасности, связанных с загрузкой внешнего контента.',codeExample:`<iframe src="https://www.example.com" width="600" height="400"></iframe>`,skills:[`HTML`]},{question:`Какой тег используется для создания ссылок в HTML?`,shortAnswer:"Для создания ссылок в HTML используется тег `<a>`. Он имеет атрибут `href`, который задает URL, на который будет вести ссылка. Внутри тега `<a>` размещается текст или другой элемент, по которому пользователь сможет кликнуть, чтобы перейти по ссылке.",longAnswer:'Тег `<a>` (anchor) используется для создания гиперссылок в HTML-документах. Этот тег связывает текст или элемент на странице с другим документом, файлом или веб-страницей. Основным атрибутом является `href`, который указывает путь к ресурсу, на который ведет ссылка.\nПример:\n\nЗдесь при клике на текст "Перейти на сайт" браузер перейдет по указанному URL. С помощью атрибута `target="_blank"` можно открыть ссылку в новой вкладке, а `rel=\noopener noreferrer"` добавляется для повышения безопасности при использовании `target="_blank"`.\nТег `<a>` также можно использовать для создания якорных ссылок внутри одной страницы. Это достигается путем установки идентификатора (`id`) для элемента, на который вы хотите сделать ссылку, и использования `href` с этим идентификатором.\nПример якорной ссылки:',codeExample:`<a href="https://www.example.com">Перейти на сайт</a>
+
+<a href="#section1">Перейти к секции 1</a> 
+<div id="section1">Это секция 1</div>`,skills:[`HTML`]},{question:`Что за тег <picture>? Чем он отличается от тега <img>?`,shortAnswer:"Тег `<picture>` позволяет задавать несколько источников изображений для разных условий, таких как ширина экрана или формат изображения, чтобы браузер выбрал наиболее подходящее. Тег `<img>` используется для простого вставления одного изображения. Разница в том, что `<picture>` дает больше гибкости для адаптивных изображений.",longAnswer:"Тег `<picture>` в HTML используется для предоставления нескольких версий одного и того же изображения, чтобы браузер мог выбрать наиболее подходящее в зависимости от условий, таких как размер экрана или поддержка форматов изображений. Это особенно полезно для адаптивных сайтов, когда на разных устройствах нужны изображения разного размера или качества. Внутри тега `<picture>` могут быть несколько `<source>` с атрибутами `media` и `type`, которые задают условия для выбора изображения. Если ни одно из условий не выполняется, отображается изображение, указанное в теге `<img>`, который является обязательным внутри `<picture>`.\nПример:\n\nЗдесь, если ширина экрана больше 800 пикселей, загружается изображение `large.jpg`. Если ширина экрана больше 400 пикселей, но меньше 800, загружается `medium.jpg`. Для всех остальных случаев используется `small.jpg`. Тег `<img>`, в отличие от `<picture>`, просто отображает одно изображение и не может адаптироваться под различные условия.\nИспользование `<picture>` позволяет улучшить производительность сайта, загружая меньшие изображения на мобильные устройства и избегая лишней нагрузки на сеть.",codeExample:`<picture>  
+  <source media="(min-width: 800px)" srcset="large.jpg">  
+  <source media="(min-width: 400px)" srcset="medium.jpg">  
+  <img src="small.jpg" alt="Пример изображения"> 
+</picture>`,skills:[`HTML`]},{question:`Что такое Canvas?`,shortAnswer:"`<canvas>` — это HTML-тег, который используется для рисования 2D и 3D графики через JavaScript. Сам по себе `<canvas>` не содержит графики; для её создания используется JavaScript API. Этот элемент полезен для анимаций, игр и динамического рендеринга изображений, но он требует программирования для каждой детали.",longAnswer:'`<canvas>` — это тег HTML5, который предоставляет пространство для рисования графики с помощью JavaScript. Сам по себе `<canvas>` не содержит никакого контента, кроме "холста", на котором можно рисовать. Для этого используется JavaScript и его API для рендеринга 2D или 3D графики. С помощью этого API можно рисовать фигуры, изображения, текст и даже создавать анимации.\nПример использования:\n\nЭтот код создает элемент `<canvas>` размером 500x500 пикселей и рисует на нем синий квадрат с помощью JavaScript. Одним из преимуществ `<canvas>` является его гибкость, но это требует больших усилий по сравнению с другими графическими решениями, так как все элементы рисуются программно и не могут быть интерактивными без дополнительного кода.\n`<canvas>` часто используется для создания сложных графических интерфейсов, таких как игры, визуализации данных или интерактивные анимации, где требуется высокая производительность и контроль над каждым пикселем.',codeExample:`<canvas id="myCanvas" width="500" height="500"></canvas> 
+
+<script>  
+  const canvas = document.getElementById('myCanvas');  
+  const ctx = canvas.getContext('2d');  
+  ctx.fillStyle = 'blue';  
+  ctx.fillRect(50, 50, 100, 100); // Рисуем синий квадрат 
+<\/script>`,skills:[`HTML`]},{question:`Что такое SVG?`,shortAnswer:`SVG (Scalable Vector Graphics) — это формат векторной графики, который позволяет отображать изображения, масштабируемые без потери качества. SVG используется для создания логотипов, иконок, диаграмм и других графических элементов, которые остаются четкими при любом разрешении. Элементы SVG можно анимировать и управлять ими через CSS и JavaScript.`,longAnswer:`SVG (Scalable Vector Graphics) — это XML-формат для создания двухмерной векторной графики, который поддерживается всеми современными браузерами. В отличие от растровой графики (например, PNG или JPEG), SVG хранит информацию об объектах в виде геометрических фигур (линий, кругов, многоугольников), что позволяет масштабировать изображения без потери качества. Это делает SVG идеальным для логотипов, иконок и других графических элементов, которые должны выглядеть четко на устройствах с разными разрешениями.
+Пример использования:
+
+Этот код создает красный круг с черной рамкой. SVG поддерживает не только простые фигуры, но и текст, сложные пути и трансформации. Кроме того, SVG элементы можно стилизовать и анимировать с помощью CSS и управлять ими через JavaScript.
+SVG активно используется для создания интерактивных элементов на веб-страницах, таких как графики, схемы или интерактивные карты. В отличие от \`<canvas>\`, SVG является частью DOM, поэтому каждый элемент можно манипулировать так же, как и другими HTML элементами.`,codeExample:`<svg width="100" height="100">  
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill=ed" /> 
+</svg>`,skills:[`HTML`]},{question:`С помощью каких тегов можно сверстать таблицу?`,shortAnswer:"Для создания таблицы в HTML используются теги `<table>`, `<tr>`, `<td>`, `<th>`, `<thead>`, `<tbody>` и `<tfoot>`. Тег `<table>` создает саму таблицу, `<tr>` — строку, `<td>` — ячейку, а `<th>` — заголовочную ячейку. Дополнительные теги, такие как `<thead>`, `<tbody>`, и `<tfoot>`, позволяют структурировать таблицу на разделы.",longAnswer:`Таблицы в HTML создаются с помощью нескольких ключевых тегов:
+
+- \`<table>\` — основной тег, который оборачивает всю таблицу.
+
+- \`<tr>\` (table row) — задает строку таблицы.
+
+- \`<td>\` (table data) — определяет ячейку с данными.
+
+- \`<th>\` (table header) — используется для заголовочных ячеек в строках или столбцах, обычно отображается жирным шрифтом.
+
+Пример простой таблицы:
+
+Этот код создает таблицу с двумя столбцами: "Имя" и "Возраст". В каждой строке таблицы данные размещаются в ячейках \`<td>\`, а заголовки — в \`<th>\`.
+Для улучшения структуры таблицы также можно использовать дополнительные теги:
+
+- \`<thead>\` — группирует строки, содержащие заголовки столбцов.
+
+- \`<tbody>\` — группирует строки с основным контентом таблицы.
+
+- \`<tfoot>\` — группирует строки в нижней части таблицы, обычно для подведения итогов.
+
+Пример с использованием всех тегов:
+
+Таблицы в HTML используются для представления табличных данных и не должны применяться для выравнивания элементов на странице. Их правильное использование помогает структурировать данные и улучшить их восприятие.`,codeExample:`<table>  
+  <tr>    
+    <th>Имя</th>    
+    <th>Возраст</th>  
+  </tr>  
+  <tr>    
+    <td>Алиса</td>    
+    <td>25</td>  
+  </tr>  
+  <tr>    
+    <td>Боб</td>    
+    <td>30</td>  
+  </tr> 
+</table>
+
+<table>  
+  <thead>    
+    <tr>      
+      <th>Имя</th>      
+      <th>Возраст</th>    
+    </tr>  
+  </thead>  
+  <tbody>    
+    <tr>      
+      <td>Алиса</td>      
+      <td>25</td>    
+    </tr>    
+    <tr>      
+      <td>Боб</td>      
+      <td>30</td>    
+    </tr>  
+  </tbody>  
+  <tfoot>    
+    <tr>      
+      <td>Итого</td>      
+      <td>55</td>    
+    </tr> 
+  </tfoot>
+</table>`,skills:[`HTML`]},{question:`Для чего нужен тег <head>?`,shortAnswer:"Тег `<head>` используется для хранения информации о веб-странице, которая не отображается непосредственно на экране. В него включают мета-теги, ссылки на стили и скрипты, заголовок страницы (через тег `<title>`), и другие элементы, необходимые для правильной работы сайта. Все, что находится внутри `<head>`, не отображается на веб-странице напрямую, но используется браузером для обработки страницы.",longAnswer:'Тег `<head>` — это один из обязательных элементов HTML-документа, который содержит информацию, не видимую пользователям, но важную для браузеров и поисковых систем. Внутри `<head>` можно размещать мета-теги, такие как `<meta charset="UTF-8">` для указания кодировки, `<meta name="description" content="Описание страницы">` для SEO, ссылки на файлы стилей (`<link>`) и скрипты (`<script>`), а также задавать заголовок страницы через тег `<title>`.\nПример использования:\n\nЭтот код включает метаданные о странице, файл стилей, подключает внешний JavaScript и задает заголовок страницы "Моя страница", который отображается на вкладке браузера. Без правильной конфигурации `<head>`, страница может некорректно отображаться или работать, а также будет иметь низкую производительность в поисковых системах.',codeExample:`<head>  
+  <meta charset="UTF-8">  
+  <meta name="description" content="Описание страницы">  
+  <title>Моя страница</title>  
+  <link rel="stylesheet" href="styles.css">  
+  <script src="script.js"><\/script> 
+</head>`,skills:[`HTML`]},{question:`Какие основные различия между блочными и строчными элементами?`,shortAnswer:"Блочные элементы занимают всю ширину доступного пространства, начиная с новой строки (например, `<div>`, `<h1>`, `<p>`), а строчные элементы занимают только необходимое место и располагаются на одной линии с другими элементами (например, `<span>`, `<a>`, `<strong>`). Блочные элементы могут содержать как другие блочные, так и строчные элементы, в то время как строчные обычно содержат только текст или другие строчные элементы.",longAnswer:'Блочные и строчные элементы имеют разные свойства отображения, что определяет их поведение на странице. Блочные элементы всегда начинаются с новой строки и занимают всю ширину родительского контейнера, даже если их содержимое занимает меньше места. Например, `<div>`, `<h1>`, `<p>` — это блочные элементы. Они часто используются для создания основных блоков страницы.\nСтрочные элементы, напротив, располагаются в одной строке с другими элементами и занимают только то пространство, которое требуется для их контента. Примеры строчных элементов: `<span>`, `<a>`, `<strong>`. Они часто применяются для стилизации отдельных слов или частей текста, не нарушая общего потока контента.\nПример:\n\nЗдесь `<p>` — блочный элемент, который создает новый параграф, а `<strong>` — строчный элемент, который выделяет слово "важный", не прерывая текстового потока.\nРазница между этими элементами важна для правильного построения макета страницы и использования CSS для их стилизации. Например, блочные элементы легко управляются через свойства ширины и высоты, а строчные требуют применения специальных стилей, таких как `display: block;`, чтобы изменить их поведение.',codeExample:`<p>Это <strong>важный</strong> текст внутри параграфа.</p>`,skills:[`HTML`]},{question:`Для чего нужен тег <noscript>?`,shortAnswer:"Тег `<noscript>` отображает содержимое, если у пользователя отключен JavaScript или его браузер не поддерживает скрипты. Это полезно для обеспечения доступности сайта для всех пользователей, включая тех, кто не может использовать JavaScript. Внутри `<noscript>` можно размещать альтернативные версии контента или инструкции для пользователей.",longAnswer:"Тег `<noscript>` — это HTML-тег, который позволяет разработчикам отображать сообщение или альтернативный контент для пользователей, у которых отключен JavaScript. В современных веб-приложениях JavaScript часто используется для динамического изменения содержимого страницы, работы с API и выполнения других интерактивных задач. Однако не все пользователи имеют включенный JavaScript или используют браузеры, поддерживающие скрипты. В таких случаях `<noscript>` помогает предоставлять важные сообщения или базовую функциональность.\nПример использования:\n\nЭтот код показывает сообщение пользователю, если его браузер не поддерживает JavaScript или он отключен. Тег `<noscript>` часто используется для отображения предупреждений, инструкций или даже упрощенных версий контента, чтобы пользователь мог взаимодействовать с сайтом, даже если он не поддерживает скрипты.\nИспользование тега `<noscript>` улучшает доступность веб-страницы и показывает заботу о пользователях, у которых по каким-либо причинам отключены возможности JavaScript.",codeExample:`<noscript>  
+  <p>Ваш браузер не поддерживает JavaScript или он отключен. Пожалуйста, включите JavaScript для      полноценной работы сайта.</p> 
+</noscript>`,skills:[`HTML`]},{question:`Для чего нужны data-атрибуты?`,shortAnswer:"Data-атрибуты — это пользовательские атрибуты, начинающиеся с `data-`, которые позволяют хранить дополнительные данные в HTML-элементах. Эти данные могут быть использованы JavaScript для динамической обработки элементов на странице. Data-атрибуты удобны для передачи данных без необходимости изменения структуры HTML или использования скрытых полей.",longAnswer:"Data-атрибуты — это механизм хранения пользовательских данных в HTML-элементах с помощью атрибутов, начинающихся с `data-`. Например, `data-id`, `data-name`, и т.д. Эти атрибуты не влияют на отображение контента, но позволяют хранить информацию, которую можно легко извлечь с помощью JavaScript и использовать для работы с элементами страницы.\nПример использования:\n\nВ этом примере кнопка содержит два data-атрибута: `data-product-id` и `data-category`. JavaScript может получить доступ к этим значениям следующим образом:\n\nData-атрибуты удобны для передачи информации от HTML в JavaScript без необходимости использовать дополнительные элементы или усложнять HTML-разметку. Они активно применяются в динамических интерфейсах, для управления событиями и хранения уникальных данных, связанных с элементом.",codeExample:`<button data-product-id="12345" data-category="books">Купить книгу</button>
+
+const button = document.querySelector('button'); 
+const productId = button.getAttribute('data-product-id'); 
+console.log(productId); // 12345`,skills:[`HTML`]},{question:`Как изменить стандартное поведение тега <a>, так чтобы ссылка открывалась в новой вкладке?`,shortAnswer:'Чтобы ссылка открывалась в новой вкладке, нужно добавить атрибут `target="_blank"` к тегу `<a>`. Это стандартный способ указать браузеру, что ссылка должна быть открыта в новом окне или вкладке. Для повышения безопасности также рекомендуется добавить атрибут `rel=\noopener noreferrer"`.',longAnswer:'По умолчанию, ссылки, созданные с помощью тега `<a>`, открываются в той же вкладке. Однако вы можете изменить это поведение, добавив атрибут `target="_blank"`. Этот атрибут говорит браузеру открыть ссылку в новой вкладке или окне.\nПример:\n\nКогда пользователь нажимает на эту ссылку, она открывается в новой вкладке. Однако использование `target="_blank"` создает потенциальную уязвимость для безопасности, поскольку новая вкладка может получить доступ к `window.opener` объекта, что теоретически\nможет позволить манипуляции с исходной страницей. Чтобы предотвратить это, добавляют атрибут `rel=\noopener noreferrer"`:\n\nЭто сочетание атрибутов — рекомендуемая практика для защиты сайтов и пользователей.',codeExample:`<a href="https://example.com" target="_blank">Перейти на сайт</a>
+
+<a href="https://example.com" target="_blank" rel=
+oopener noreferrer">Перейти на сайт</a>`,skills:[`HTML`]},{question:`Что нужно сделать, чтобы отправить почту в HTML?`,shortAnswer:"Чтобы отправить письмо через HTML, можно использовать ссылку с атрибутом `href`, который содержит протокол `mailto:`. Это откроет почтовое приложение пользователя с готовым черновиком письма. В ссылке можно указать адрес, тему и текст письма.",longAnswer:`HTML позволяет создавать ссылки для отправки писем с помощью протокола \`mailto:\`. Когда пользователь кликает на такую ссылку, его почтовый клиент (например, Outlook, Gmail или другой) открывается с заранее заполненными полями "Кому", "Тема" и даже "Тело письма" (по желанию).
+Пример базовой ссылки:
+
+Когда пользователь нажмет на эту ссылку, его почтовый клиент откроется с полем "Кому", автоматически заполненным на \`example@example.com\`.
+Можно также добавить тему и текст письма:
+
+Этот код создаст письмо с темой "Привет" и текстом "Текст письма". Однако важно понимать, что для отправки писем необходимо, чтобы на устройстве был настроен почтовый клиент. Этот метод не подходит для серверной отправки писем, которая обычно требует серверного кода или внешних сервисов.`,codeExample:`<a href="mailto:example@example.com">Отправить письмо</a>
+
+<a href="mailto:example@example.com?subject=Привет&body=Текст письма">Отправить письмо</a>`,skills:[`HTML`]},{question:`Что такое атрибут alt у тега <img> и почему он важен?`,shortAnswer:"Атрибут `alt` у тега `<img>` используется для предоставления текстового описания изображения. Это важно для пользователей, которые не могут видеть изображение, например, для людей с нарушениями зрения или когда изображение не загружается. Также поисковые системы используют этот текст для индексации изображений, что улучшает SEO.",longAnswer:'Атрибут `alt` (альтернативный текст) у тега `<img>` предназначен для описания содержания изображения. Это особенно полезно для людей с нарушениями зрения, которые используют экранные читалки, чтобы понимать, что изображено на картинке. Если изображение не может быть загружено, текст из атрибута `alt` отображается вместо изображения, что помогает пользователям понять контекст.\nПример использования:\n\nВ этом примере, если изображение `logo.png` не загружается, пользователи увидят текст "Логотип компании XYZ". Атрибут `alt` также полезен для SEO, так как поисковые системы анализируют этот текст для определения содержимого изображений, что может помочь в индексации страницы.\nПравильное использование атрибута `alt` — это важный аспект веб-доступности, который обеспечивает лучший опыт для всех пользователей и повышает видимость сайта в поисковых системах.',codeExample:`<img src="logo.png" alt="Логотип компании XYZ">`,skills:[`HTML`]},{question:`Зачем для тега <script> добавляют атрибуты async и defer?`,shortAnswer:`Атрибуты async и defer у тега <script> используются для управления тем, как и когда браузер загружает и выполняет JavaScript. async загружает скрипт асинхронно и выполняет его сразу после загрузки, не дожидаясь завершения загрузки всей страницы. defer также загружает скрипт асинхронно, но откладывает его выполнение до полной загрузки HTML-документа, что предотвращает блокировку рендеринга страницы.`,longAnswer:`При добавлении скриптов на страницу важно учитывать, как они могут повлиять на производительность и пользовательский опыт. По умолчанию, когда браузер встречает тег \`<script>\`, он приостанавливает рендеринг страницы, чтобы загрузить и выполнить скрипт, что может замедлить отображение контента.
+Атрибут \`async\` позволяет браузеру загружать скрипт асинхронно, что значит, что загрузка скрипта не блокирует рендеринг страницы. Как только скрипт загружен, он выполняется сразу, даже если HTML-документ еще не полностью загружен.
+Пример:
+
+Атрибут \`defer\`, в свою очередь, также загружает скрипт асинхронно, но откладывает его выполнение до тех пор, пока весь HTML-документ не будет загружен. Это позволяет гарантировать, что скрипт выполняется только после полной загрузки страницы.
+Пример:
+
+Использование этих атрибутов позволяет оптимизировать время загрузки и улучшить пользовательский опыт, особенно на страницах с большим количеством скриптов или при наличии тяжелых JavaScript-фреймворков.`,codeExample:`<script src="script.js" async><\/script>
+
+<script src="script.js" defer><\/script>`,skills:[`HTML`]},{question:`Какие есть виды подключения JavaScript к HTML?`,shortAnswer:'JavaScript можно подключать к HTML-тексту тремя основными способами: встроенно, через внешний файл и через атрибуты тегов. Встроенный JavaScript помещается внутри тега `<script>` в HTML-документе. Внешний JavaScript-файл подключается с помощью тега `<script src="file.js">`. Также можно использовать атрибуты, такие как `onclick` для обработки событий напрямую в HTML.',longAnswer:"Существует несколько способов подключения JavaScript к HTML, и каждый из них имеет свои особенности и преимущества:\nВстроенный JavaScript: Этот способ подразумевает написание JavaScript-кода непосредственно внутри HTML-документа в пределах тега `<script>`. Это удобно для небольших скриптов, так как весь код находится в одном месте.\n\nВнешний JavaScript-файл: Для более сложных приложений рекомендуется хранить JavaScript-код в отдельном файле. Это упрощает управление кодом и повторное использование. Чтобы подключить внешний файл, используется атрибут `src` в теге `<script>`.\n\nОбработчики событий в HTML: JavaScript также можно подключать с помощью атрибутов, таких как `onclick`, `onmouseover` и других. Это позволяет выполнять JavaScript-код в ответ на события, связанные с элементами HTML.\n\nКаждый из этих способов имеет свои преимущества. Встроенный код прост для использования, но не подходит для больших проектов.\nВнешние файлы помогают поддерживать порядок, а обработчики событий позволяют быстро добавлять интерактивность к элементам на странице. Правильный выбор подхода зависит от размера проекта и структуры вашего кода.",codeExample:`<script>
+  console.log("Hello, World!");
+<\/script>
+
+<script src="script.js"><\/script>
+
+<button onclick="alert('Hello!')">Нажми меня</button>`,skills:[`HTML`]},{question:`Что такое доступность (accessibility)?`,shortAnswer:`Доступность (accessibility) — это практика создания веб-сайтов, которые могут использовать все пользователи, включая людей с ограниченными возможностями. Это включает улучшения, такие как использование правильных заголовков, текста для экранных читалок, цветовые контрасты и навигация с клавиатуры. Цель — обеспечить доступ к информации и функциональности всем пользователям, независимо от их возможностей.`,longAnswer:`Доступность веб-сайтов (или a11y) — это набор методов и практик, которые позволяют пользователям с ограниченными возможностями эффективно взаимодействовать с веб-сайтом. Ограничения могут включать проблемы со зрением, слухом, двигательные или когнитивные нарушения. Для того чтобы сайт был доступным, разработчики должны учитывать несколько аспектов:
+
+- Текстовые альтернативы для изображений: Например, атрибут \`alt\` для изображений важен для пользователей экранных читалок.
+
+- Навигация с клавиатуры: Все элементы на сайте должны быть доступны без использования мыши.
+
+- Правильная структура заголовков: Это помогает экранным читалкам и пользователям лучше понимать и ориентироваться на странице.
+
+- Контраст цветов: Тексты и элементы интерфейса должны быть легко различимы для людей с дальтонизмом или другими нарушениями зрения.
+
+Доступность также регулируется рядом стандартов, таких как WCAG (Web Content Accessibility Guidelines). Соблюдение этих стандартов делает сайт более инклюзивным и улучшает взаимодействие всех пользователей с контентом.`,skills:[`HTML`]},{question:`SEO - для чего нужно, как достигается?`,shortAnswer:`SEO (Search Engine Optimization) — это набор методов, которые помогают улучшить позиции сайта в результатах поиска. Это достигается за счет правильной структуры сайта, использования релевантных ключевых слов, оптимизации изображений, повышения скорости загрузки и обеспечения доступности. SEO помогает привлечь больше посетителей за счет повышения видимости в поисковых системах, таких как Google.`,longAnswer:`SEO (поисковая оптимизация) — это процесс оптимизации веб-сайта для улучшения его видимости в органических (неоплаченных) результатах поисковых систем. Поисковые системы, такие как Google, индексируют страницы и определяют их релевантность с помощью сложных алгоритмов, учитывая такие факторы, как качество контента, структура сайта и пользовательский опыт.
+
+Основные методы SEO включают:
+
+- Ключевые слова: Важно использовать релевантные запросы пользователей в заголовках, мета-описаниях и тексте страницы.
+
+- Качественный контент: Регулярное добавление полезного и оригинального контента помогает повысить рейтинг в поисковых системах.
+
+- Внутренняя и внешняя оптимизация: Внутренние ссылки, правильная структура заголовков (\`<h1>\`, \`<h2>\`), мета-теги и описания помогают улучшить видимость сайта.
+
+- Оптимизация изображений: Использование сжатых изображений и атрибута \`alt\` помогает как с производительностью, так и с SEO.
+
+- Улучшение скорости загрузки страницы: Быстрая загрузка страниц важна как для SEO, так и для пользовательского опыта.
+
+SEO помогает привлечь больше органического трафика, улучшает видимость сайта и его рейтинг в поисковых системах.`,skills:[`HTML`]},{question:`Какие теги были введены в HTML5?`,shortAnswer:"HTML5 добавил множество новых семантических тегов, таких как `<header>`, `<footer>`, `<article>`, `<section>`, которые помогают улучшить структуру и читаемость кода. Были также добавлены теги для мультимедийных элементов, такие как `<audio>`, `<video>`, и улучшена поддержка форм с новыми атрибутами. Эти изменения делают HTML5 более мощным и удобным для создания современных веб-сайтов.",longAnswer:"HTML5 принес множество улучшений в язык HTML, включая новые семантические теги, мультимедийные элементы и атрибуты для форм, которые делают веб-разработку более интуитивной и эффективной. Вот некоторые из самых значимых изменений:\nСемантические теги: HTML5 добавил теги, которые помогают лучше описывать структуру веб-страницы. Например:\n\n- `<header>`: используется для верхней части страницы или раздела.\n\n- `<footer>`: обозначает нижнюю часть страницы или раздела.\n\n- `<article>`: для самостоятельных частей контента, таких как статьи или записи блога.\n\n- `<section>`: для логически связанных разделов страницы.\n\n- `<nav>`: для навигационных ссылок. Эти теги улучшают доступность, так как помогают как поисковым системам, так и экранным читалкам лучше понимать структуру страницы.\n\nМультимедийные элементы: HTML5 ввел теги `<audio>` и `<video>`, которые позволяют напрямую вставлять мультимедийный контент на страницу без использования сторонних плагинов.\n\nНовые атрибуты для форм: HTML5 также улучшил формы, добавив атрибуты, такие как `placeholder`, типы ввода (например, `email`, `date`, `number`), и элемент `<datalist>`, который позволяет создавать выпадающие списки с предсказанными значениями.\nЭти нововведения делают HTML5 более мощным инструментом для создания современных веб-сайтов, улучшая семантику и доступность, а также упрощая интеграцию мультимедийного контента.",codeExample:`<audio controls>    
+  <source src="audio.mp3" type="audio/mpeg"> 
+</audio> 
+<video controls>    
+  <source src="video.mp4" type="video/mp4"> 
+</video>`,skills:[`HTML`]},{question:`Как работает перерендеринг элементов, когда используются атрибуты data- и как они могут влиять на производительность?`,shortAnswer:"Атрибуты `data-` сами по себе не вызывают перерендеринг, но если они изменяются и связаны с состоянием компонента, это может привести к обновлению компонента в React. Чрезмерное использование или частое изменение `data-` атрибутов может негативно сказаться на производительности, так как может приводить к ненужным перерисовкам.",longAnswer:`Атрибуты \`data-*\` в HTML позволяют разработчикам хранить пользовательские данные непосредственно в элементах. Эти атрибуты часто используются в JavaScript для доступа к дополнительной информации, связанной с элементами, что может быть полезно для динамического изменения содержимого или поведения веб-страниц.
+Когда в JavaScript происходит изменение значений этих атрибутов, это может вызвать перерендеринг связанных элементов, особенно в таких фреймворках, как React. В зависимости от реализации, изменения могут привести к повторному вычислению виртуального DOM и его синхронизации с реальным DOM, что может сказаться на производительности. Чем больше элементов необходимо перерендерить, тем больше ресурсов это потребует, и это может замедлить работу приложения.
+Для оптимизации производительности при использовании атрибутов \`data-*\` стоит учитывать следующее:
+
+- Минимизировать количество изменений: Старайтесь избегать частого изменения значений атрибутов, особенно в больших списках элементов.
+
+- Использовать методы батчинга: Объединение нескольких изменений в одно обновление может уменьшить количество перерендерингов.
+
+- Внедрять мемоизацию: В некоторых случаях можно использовать мемоизацию, чтобы предотвратить ненужные вычисления и рендеры.
+
+Таким образом, правильное управление использованием атрибутов \`data-*\` может существенно улучшить производительность веб-приложений.`,skills:[`HTML`]},{question:`Как работает Shadow DOM? Какие преимущества он дает для разработки веб-компонентов?`,shortAnswer:`Shadow DOM создает изолированное дерево DOM для веб-компонента, которое скрыто от остальной части документа.
+Плюсы:
+
+- Изолирует стили и разметку.
+
+- Упрощает повторное использование.
+
+- Инкапсулирует логику.`,longAnswer:`Shadow DOM — это технология, которая позволяет создавать "теневой" DOM внутри элемента, обеспечивая изоляцию его содержимого и стилей от основного документа. Это позволяет разработчикам создавать веб-компоненты, которые могут содержать собственные стили и элементы, не затрагивая другие части страницы. Shadow DOM делает элементы более независимыми и переиспользуемыми.
+Когда вы создаете Shadow DOM для элемента, например, с помощью метода \`attachShadow()\`, создается новый контекст, который не наследует стили и скрипты от внешнего документа. Вот пример кода, который демонстрирует создание Shadow DOM:
+
+Преимущества Shadow DOM:
+
+- Изоляция стилей: Стили внутри Shadow DOM не конфликтуют с глобальными стилями, что делает его идеальным для разработки компонентов.
+
+- Инкапсуляция: Все, что находится внутри Shadow DOM, скрыто от внешнего окружения, что уменьшает вероятность конфликтов и ошибок.
+
+- Переиспользуемость: Компоненты с Shadow DOM могут быть легко переиспользованы в разных частях приложения, обеспечивая консистентность и упрощая поддержку.
+
+Таким образом, Shadow DOM является мощным инструментом для разработки веб-компонентов, который обеспечивает инкапсуляцию и защиту от конфликтов стилей.`,codeExample:`class MyElement extends HTMLElement {    
+  constructor() {        
+    super();        
+    const shadow = this.attachShadow({ mode: 'open' });        
+    shadow.innerHTML = \`            
+      <style>                
+        p {                    
+          color: blue;                
+        }            
+      </style>            
+      <p>Hello from Shadow DOM!</p>        
+    \`;    
+  } 
+} 
+
+customElements.define('my-element', MyElement);`,skills:[`HTML`]},{question:`Что такое Progressive Enhancement и Graceful Degradation? Как HTML может поддерживать оба подхода?`,shortAnswer:`Progressive Enhancement и Graceful Degradation — это два подхода к веб-разработке, направленные на создание адаптивных и доступных веб-приложений.
+Progressive Enhancement: Старт с базовой версии и добавление улучшений для современных браузеров.
+Graceful Degradation: Старт с полной версии и адаптация для старых браузеров.`,longAnswer:`Progressive Enhancement и Graceful Degradation — это два основных подхода к разработке веб-приложений, которые помогают обеспечить их доступность и совместимость с различными устройствами и браузерами.
+
+- Progressive Enhancement: Этот подход начинается с базовой функциональности, которая доступна на всех устройствах и браузерах. На первом этапе разрабатывается простая версия приложения с использованием HTML, которая обеспечивает основной контент и структуру. Затем добавляются стили с помощью CSS и, наконец, более сложные функции с помощью JavaScript. Это обеспечивает доступность для всех пользователей, независимо от их устройства или браузера. Например, если вы создаете форму, она будет работать с базовыми HTML-элементами, а для более новых браузеров будут добавлены стили и валидация с помощью JavaScript.
+
+- Graceful Degradation: В этом подходе сначала разрабатывается полная версия приложения с использованием современных технологий, таких как CSS и JavaScript. Затем разработчик работает над тем, чтобы приложение было доступно для менее продвинутых браузеров или устройств, которые могут не поддерживать все функции. Например, если вы создаете интерактивный элемент с помощью JavaScript, вы можете предоставить простой текстовый альтернативный вариант для пользователей, которые не могут использовать JavaScript.
+
+HTML как основа:
+HTML поддерживает оба подхода, обеспечивая основную структуру и содержание. Например, вы можете использовать HTML для создания формы, которая будет работать на всех устройствах. Затем вы можете добавить CSS для улучшения внешнего вида и JavaScript для добавления интерактивности. Это позволяет разработчикам создавать доступные и адаптивные веб-приложения, которые обеспечивают хорошее взаимодействие с пользователями, независимо от их технологий.
+Таким образом, эти подходы помогают создать веб-приложения, которые хорошо работают на всех устройствах и обеспечивают лучший пользовательский опыт.`,skills:[`HTML`]},{question:`Какие есть способы оптимизации загрузки изображений в HTML? Что такое форматы изображений WebP и AVIF?`,shortAnswer:`Способы оптимизации загрузки изображений в HTML:
+
+- Сжатие изображений
+
+- Адаптивные размеры
+
+- Ленивая загрузка
+
+Форматы изображений:
+
+- WebP: высокое сжатие и качество, поддерживает как растровые, так и анимированные изображения.
+
+- AVIF: еще более эффективное сжатие и лучшее качество по сравнению с WebP.`,longAnswer:`Оптимизация загрузки изображений — это важная часть веб-разработки, так как изображения могут занимать значительное количество времени для загрузки и сильно влиять на производительность страниц. Вот некоторые основные методы оптимизации загрузки изображений в HTML:
+Сжатие изображений: Используйте инструменты для сжатия изображений без потери качества. Это позволяет уменьшить размер файла и ускорить загрузку. Форматы, такие как JPEG и PNG, могут быть сжаты без значительного ухудшения качества.
+Адаптивные размеры изображений: Используйте атрибуты \`srcset\` и \`sizes\` в теге \`<img>\` для предоставления различных размеров изображений в зависимости от устройства. Это позволяет загружать более мелкие изображения на мобильных устройствах и более крупные на десктопах:
+
+Ленивая загрузка (Lazy loading): Используйте атрибут \`loading="lazy"\` в теге \`<img>\` для отложенной загрузки изображений, которые не находятся в области видимости экрана. Это помогает экономить ресурсы и ускоряет первоначальную загрузку страницы:
+
+Современные форматы изображений: WebP и AVIF — это современные форматы, которые обеспечивают лучшее сжатие по сравнению с традиционными форматами, такими как JPEG и PNG.
+WebP: Формат изображений от Google, который поддерживает как сжатие с потерями, так и без потерь. Он обеспечивает меньший размер файла при аналогичном качестве изображения.
+AVIF: Новый формат, основанный на кодеке AV1, который также предлагает отличное сжатие и поддержку HDR. Он может обеспечивать еще меньшие размеры файлов по сравнению с WebP при сохранении высокого качества.
+Вот пример использования формата WebP в HTML:
+
+Эти методы оптимизации и современные форматы изображений помогают улучшить производительность веб-приложений, сокращая время загрузки и повышая пользовательский опыт.`,codeExample:`<img src="image-small.jpg" srcset="image-medium.jpg 600w, image-large.jpg 1200w" sizes="(max-width: 600px) 100vw, 50vw" alt="Example image">
+
+<img src="image.jpg" loading="lazy" alt="Example image">
+
+<picture>    
+  <source srcset="image.webp" type="image/webp">    
+  <img src="image.jpg" alt="Example image"> 
+</picture>`,skills:[`HTML`]},{question:`Что такое ARIA (Accessible Rich Internet Applications), и как правильно использовать атрибуты ARIA для улучшения доступности?`,shortAnswer:`ARIA (Accessible Rich Internet Applications) — это набор атрибутов, который помогает разработчикам улучшать доступность сложных веб-приложений для людей с ограниченными возможностями. Атрибуты ARIA могут быть добавлены к HTML-элементам, чтобы описать их роли, состояния и свойства для экранных читалок и других вспомогательных технологий. Например, атрибуты ARIA могут помочь определить, что элемент является кнопкой или заголовком, и предоставить информацию о его состоянии (например, "раскрыто" или "закрыто"). Правильное использование ARIA делает контент более понятным и доступным для всех пользователей.`,longAnswer:'ARIA (Accessible Rich Internet Applications) — это спецификация, разработанная для улучшения доступности веб-приложений, особенно тех, которые используют динамические интерфейсы и интерактивные элементы, такие как кнопки, вкладки и выпадающие списки. С помощью атрибутов ARIA разработчики могут предоставить дополнительные сведения о функциональности и состоянии этих элементов, что облегчает пользователям с ограниченными возможностями взаимодействие с веб-приложениями.\nКлючевые аспекты использования ARIA:\nРоли (role): Атрибут `role` определяет тип элемента и его функцию. Например, если вы создаете пользовательский элемент, который должен вести себя как кнопка, вы можете использовать `role="button"`:\n\nСостояния (aria-attributes): Атрибуты, такие как `aria-expanded`, `aria-pressed` и `aria-hidden`, помогают сообщать о состоянии элементов. Например, для раскрывающегося меню можно использовать:\n\nЗначения (aria-label, aria-labelledby, aria-describedby): Эти атрибуты помогают обеспечить дополнительное описание элемента. Например:\n\nПрименение:\nВажно помнить, что атрибуты ARIA не могут заменить семантический HTML. Они должны использоваться в дополнение к стандартным элементам HTML, а не вместо них. Например, вместо использования `div` с `role="button"` лучше использовать элемент `<button>`, который уже является семантически корректным.\nВот пример правильного использования ARIA в форме:\n\nТаким образом, правильное применение ARIA помогает сделать веб-приложения более доступными, что важно для обеспечения равного доступа ко всем онлайн-ресурсам.',codeExample:`<div role="button" tabindex="0">Нажми меня</div>
+
+<button aria-expanded="false">Меню</button>
+
+<button aria-label="Закрыть окно">X</button>
+
+<form>    
+  <label for="username">Имя пользователя:</label>    
+  <input type=  ext" id="username" aria-required=  rue" />    
+  <button type="submit" aria-label="Отправить форму">Отправить</button> 
+</form>`,skills:[`HTML`]},{question:`Как работают форматы ввода и валидация данных в HTML5? В чем различие между встроенной и кастомной валидацией?`,shortAnswer:'HTML5 предоставляет различные форматы ввода, такие как `<input type="email">`, `<input type="url">` и `<input type=\number">`, которые автоматически проверяют вводимые данные на соответствие определенным критериям. Встроенная валидация происходит автоматически при отправке формы, и браузер уведомляет пользователя об ошибках, если данные не соответствуют формату. Кастомная валидация, с другой стороны, позволяет разработчикам создавать свои собственные правила проверки данных с помощью JavaScript, что дает больше контроля и гибкости.',longAnswer:`HTML5 ввел множество новых типов ввода и улучшил механизм валидации данных в формах. Это позволяет разработчикам создавать более интерактивные и удобные веб-приложения с меньшими затратами времени на написание пользовательского кода.
+Форматы ввода в HTML5:
+Некоторые новые типы ввода включают:
+
+- \`<input type="email">\`: Проверяет, что введенное значение имеет формат email (например, user@example.com).
+
+- \`<input type="url">\`: Проверяет, что введенное значение соответствует формату URL (например, https://example.com).
+
+- \`<input type=
+umber">\`: Ограничивает ввод только числами и может включать атрибуты для задания диапазона (например, \`min\` и \`max\`).
+
+Встроенная валидация:
+HTML5 обеспечивает встроенную валидацию форм, которая происходит автоматически при отправке. Если данные не соответствуют установленным требованиям (например, неправильный формат email), браузер покажет сообщение об ошибке и предотвратит отправку формы. Например:
+
+Если пользователь введет неверный email, браузер уведомит его об этом.
+Кастомная валидация:
+Кастомная валидация позволяет разработчикам добавлять собственные правила проверки данных. Это делается с помощью JavaScript и событий, таких как \`submit\` или \`input\`. Например, вы можете создать проверку на основе определенного условия:
+
+Сравнение:
+
+- Встроенная валидация: Автоматическая проверка данных на соответствие заданным типам, без необходимости писать дополнительный код.
+
+- Кастомная валидация: Позволяет создавать более сложные и специфичные проверки, которые не могут быть выполнены стандартными средствами.
+
+Оба подхода могут использоваться вместе для обеспечения наилучшего пользовательского опыта и повышения качества вводимых данных.`,codeExample:`<form>    
+  <label for="email">Email:</label>    
+  <input type="email" id="email" required>    
+  <button type="submit">Отправить</button> 
+</form>
+
+const form = document.querySelector('form'); 
+form.addEventListener('submit', function(event) {    
+  const email = document.getElementById('email').value;    
+  if (!email.endsWith('@example.com')) {        
+    alert('Email должен заканчиваться на @example.com');        
+    event.preventDefault(); // предотвращает отправку формы    
+  } 
+});`,skills:[`HTML`]},{question:`Как работают Content Security Policy (CSP) заголовки и атрибуты вроде integrity в теге <script>?`,shortAnswer:"Content Security Policy (CSP) — это механизм безопасности, который помогает предотвратить различные типы атак, такие как XSS (Cross-Site Scripting), ограничивая, какие ресурсы могут загружаться на странице. Заголовок CSP определяет, откуда разрешено загружать скрипты, стили и другие ресурсы.\nАтрибут `integrity` в теге `<script>` используется для проверки целостности загружаемого скрипта, чтобы убедиться, что он не был изменен. Если хэш скрипта не совпадает с указанным значением, браузер отклонит его загрузку.",longAnswer:"Content Security Policy (CSP) — это мощный инструмент безопасности, который позволяет веб-разработчикам контролировать, какие ресурсы могут загружаться и исполняться на их страницах. CSP помогает предотвратить атаки типа Cross-Site Scripting (XSS) и другие угрозы безопасности, создавая политики для загрузки ресурсов.\nПример использования CSP:\nCSP настраивается через HTTP-заголовок `Content-Security-Policy`. Вот пример:\n\nЭтот заголовок говорит браузеру разрешать загрузку ресурсов только с того же источника (`'self'`) или с доверенного CDN. Это ограничивает возможности злоумышленников загрузить вредоносный скрипт.\nАтрибут `integrity`:\nАтрибут `integrity` используется в тегах `<script>` и `<link>` для проверки целостности загружаемого ресурса. Он содержит хэш значения файла, который должен совпадать с хэшом загруженного ресурса. Пример:\n\nЕсли браузер не может проверить, что загружаемый скрипт совпадает с указанным хэшем, он не загрузит его. Это предотвращает возможность внедрения измененного или вредоносного кода.\nОбъединение CSP и `integrity`:\nИспользование CSP в сочетании с атрибутом `integrity` создает мощный уровень защиты для веб-приложений. Это позволяет не только контролировать, откуда могут загружаться ресурсы, но и проверять их целостность перед выполнением. Это особенно важно в современных веб-приложениях, где часто используются сторонние библиотеки и фреймворки.\nТаким образом, понимание и правильное применение CSP и атрибута `integrity` помогает разработчикам защищать свои приложения от множества распространенных уязвимостей.",codeExample:`Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com;
+
+<script src="https://trusted.cdn.com/script.js"        
+  integrity="sha384-oqVuAfXRKap7fdgcCY5Dn4Q3U8d6X7Ww1yq1GZ7E4j6Ic1ZrPy1X99AY2p3a8HnB"                 
+  crossorigin="anonymous">
+<\/script>`,skills:[`HTML`]},{question:`Как можно улучшить безопасность HTML-страницы от CSRF, XSS-атак и других?`,shortAnswer:`HTML-страницы могут быть защищены с помощью различных мер, таких как использование заголовков безопасности (например, Content Security Policy), правильная валидация данных и защита от XSS-атак. Эти меры помогают ограничить доступ к ресурсам и предотвращают внедрение вредоносного кода. Также важно соблюдать принципы безопасного кодирования и использовать HTTPS для защиты данных пользователей. Эти подходы помогают минимизировать риски безопасности на веб-сайте.`,longAnswer:`Безопасность веб-страниц — это критически важный аспект разработки, который требует внимания на всех уровнях. Существует множество методов, которые могут помочь повысить безопасность HTML-страниц и защитить их от угроз, таких как XSS (Cross-Site Scripting), CSRF (Cross-Site Request Forgery) и другие.
+Ключевые аспекты безопасности HTML-страниц:
+Content Security Policy (CSP):
+CSP — это механизм, который позволяет веб-разработчикам контролировать, какие ресурсы могут загружаться и исполняться на их страницах. Например, используя заголовок CSP, можно разрешить загрузку скриптов только с определенных источников:
+
+Валидация данных:
+Важно проверять вводимые пользователем данные, чтобы избежать внедрения вредоносного кода. Встроенные механизмы валидации форм в HTML5 и кастомные проверки на JavaScript могут помочь предотвратить атаки XSS:
+
+Использование HTTPS:
+Шифрование данных с помощью HTTPS защищает информацию, передаваемую между клиентом и сервером, и предотвращает перехват данных злоумышленниками.
+Безопасные заголовки:
+Кроме CSP, существуют и другие заголовки, такие как \`X-Content-Type-Options\`, \`X-Frame-Options\` и \`X-XSS-Protection\`, которые помогают защитить страницы от различных атак.
+Аутентификация и авторизация:
+Защита страниц от несанкционированного доступа через механизмы аутентификации, такие как OAuth, и авторизации помогает ограничить доступ к важным ресурсам.
+Применяя эти меры, разработчики могут значительно повысить безопасность HTML-страниц и защитить своих пользователей от потенциальных угроз.`,codeExample:`Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com;
+
+const userInput = document.querySelector('#input').value; 
+if (/<script>/.test(userInput)) {    
+  alert('Недопустимый ввод!'); 
+}`,skills:[`HTML`]},{question:`Что такое <template> и <slot>, как их использовать при создании кастомных элементов и динамических структур на странице?`,shortAnswer:"`<template>` — это специальный элемент HTML, который позволяет создавать фрагменты кода, которые не отображаются на странице до тех пор, пока они не будут активированы с помощью JavaScript. Элемент `<slot>` используется в кастомных элементах для определения места, где можно вставить содержимое, переданное элементу. Эти элементы помогают разработчикам создавать более гибкие и переиспользуемые компоненты, которые могут динамически изменять свое содержимое в зависимости от контекста.",longAnswer:'HTML5 ввел элементы `<template>` и `<slot>`, которые значительно упрощают создание динамических интерфейсов и кастомных элементов. Эти инструменты помогают разработчикам эффективно управлять содержимым страницы и создавать переиспользуемые компоненты.\nЭлемент `<template>`:\nЭтот элемент используется для определения фрагмента HTML, который не будет отображаться на странице, пока он не будет активирован. Это полезно для создания динамического содержимого без непосредственного отображения в DOM. Пример:\n\nЧтобы использовать этот шаблон, можно получить его с помощью JavaScript и клонировать:\n\nЭлемент `<slot>`:\nЭтот элемент используется внутри кастомных элементов для указания мест, куда может быть вставлено пользовательское содержимое. Это позволяет создать гибкие компоненты, которые могут принимать разные виды контента. Пример кастомного элемента с использованием слота:\n\nВ этом примере содержимое с атрибутом `slot="header"` будет вставлено в заголовок, а остальное содержимое — в основной параграф.\nПрименение:\nИспользование `<template>` и `<slot>` позволяет разработчикам создавать мощные и переиспользуемые компоненты, которые могут быть динамически настроены в зависимости от контекста. Это делает разработку более эффективной и упрощает управление содержимым на страницах.\nТаким образом, эти инструменты помогают создать более чистый, организованный и эффективный код, что делает их важными для современных веб-приложений.',codeExample:`<template id="myTemplate">    
+  <div class="item">Элемент списка</div> 
+</template>
+
+const template = document.getElementById('myTemplate').content; 
+const clone = document.importNode(template, true); 
+document.body.appendChild(clone);
+
+<template id="myComponent">    
+  <div>        
+    <h1><slot name="header"></slot></h1>        
+    <p><slot></slot></p>    
+  </div> 
+</template> 
+
+<my-component>    
+  <span slot="header">Заголовок</span>    
+  Это содержимое будет вставлено в основной слот. 
+</my-component>`,skills:[`HTML`]},{question:`Что делают метатеги <meta charset="UTF-8">, <meta viewport>, <meta http-equiv>?`,shortAnswer:'Метатеги — это элементы HTML, которые предоставляют информацию о странице браузеру и поисковым системам. Например, `<meta charset="UTF-8">` задает кодировку символов, что важно для корректного отображения текста. `<meta name="viewport">` используется для управления отображением страницы на мобильных устройствах, позволяя адаптировать содержимое под размеры экрана. Метатеги, такие как `<meta http-equiv>`, могут задавать параметры, связанные с заголовками HTTP, что также способствует оптимизации страницы.',longAnswer:'Метатеги играют важную роль в оптимизации и правильном отображении веб-страниц. Они находятся в разделе `<head>` HTML-документа и предоставляют информацию, которая может быть использована браузерами, поисковыми системами и другими клиентами.\nКодировка символов:\nИспользование `<meta charset="UTF-8">` задает кодировку символов для документа. UTF-8 является наиболее распространенной кодировкой и поддерживает множество языков и символов, что обеспечивает корректное отображение текста.\n\nНастройки для мобильных устройств:\nАтрибут `<meta name="viewport">` управляет размерами и масштабом страницы на мобильных устройствах. Это особенно важно для адаптивного дизайна. Пример:\n`<meta name="viewport" content="width=device-width, initial-scale=1.0">`\nЭто указывает браузеру, что ширина страницы должна соответствовать ширине устройства, и устанавливает начальный масштаб.\nHTTP заголовки:\nМетатеги, такие как `<meta http-equiv="X-UA-Compatible" content="IE=edge">`, могут указывать браузерам, как обрабатывать страницу. Этот тег помогает обеспечить совместимость с новейшими стандартами HTML и CSS:\n\nSEO и социальные медиа:\nМетатеги также используются для SEO и социальных медиа. Например, `<meta name="description" content="Описание страницы">` предоставляет краткое описание страницы для поисковых систем. Теги Open Graph (`<meta property="og:title">`, `<meta property="og:description">`) помогают оптимизировать содержимое при публикации ссылок на социальных платформах.\nИспользование правильных метатегов не только улучшает производительность и доступность страницы, но и способствует лучшему SEO, что может увеличить видимость сайта в поисковых системах. Это делает их важной частью разработки веб-страниц, особенно в условиях современных стандартов и требований.',codeExample:`<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">`,skills:[`HTML`]},{question:`Что такое microdata, и как она используется для структурирования данных на странице? В чем преимущества перед JSON-LD и RDFa?`,shortAnswer:"Microdata — это формат, встроенный в HTML, который помогает структурировать данные на странице, чтобы поисковые системы и другие сервисы могли легко их распознать и интерпретировать. Используя атрибуты вроде `itemprop` и `itemscope`, разработчики могут описывать сущности, например, товары или статьи. В отличие от JSON-LD, который хранится отдельно от основного HTML-кода, microdata добавляется непосредственно в разметку страницы, что может быть проще для интеграции, но менее гибко для изменения. RDFa — это другая альтернатива, которая может интегрироваться с любыми HTML-элементами.",longAnswer:`Microdata — это технология, встроенная в HTML5, которая используется для структурирования данных на веб-странице, чтобы поисковые системы и приложения могли лучше понимать ее содержимое. Она помогает описывать сущности, такие как люди, продукты, события и места, и связывать их с определенными атрибутами и значениями, которые поисковые системы могут индексировать.
+Пример использования microdata:
+Представим, что на веб-странице есть информация о книге. С помощью microdata мы можем описать основные свойства книги:
+
+Здесь \`itemscope\` указывает, что элемент содержит данные о книге, а \`itemprop\` определяет свойства, такие как имя, автор и дата публикации.
+Преимущества microdata перед JSON-LD и RDFa:
+Microdata:
+Встраивается непосредственно в HTML, что упрощает его использование в существующей разметке. Это может быть полезно, если разработчик хочет интегрировать семантические данные без добавления отдельного блока кода, как в JSON-LD.
+JSON-LD:
+JSON-LD хранится отдельно от HTML и передается в виде скрипта. Он более гибок для работы с большими объемами структурированных данных и проще для автоматического генерации и изменения.
+RDFa:
+Это другой способ семантической разметки, который интегрируется с любыми HTML-элементами. RDFa может быть более универсален, так как не зависит от специфических атрибутов, как microdata.
+Microdata полезна для встраивания семантических данных непосредственно в HTML, но JSON-LD считается более гибким и поддерживается поисковыми системами, такими как Google. Выбор между этими методами зависит от сложности данных и требований к проекту.`,codeExample:`<div itemscope itemtype="http://schema.org/Book">   
+  <h2 itemprop=
+ame">Название книги</h2>   
+  <span itemprop="author">Автор книги</span>   
+  <span itemprop="datePublished">2024</span> 
+</div>`,skills:[`HTML`]},{question:`Как работает HTML Custom Elements API, и как можно создать и зарегистрировать собственные элементы?`,shortAnswer:"HTML Custom Elements API позволяет разработчикам создавать собственные HTML-элементы, которые ведут себя как стандартные элементы, но могут иметь свою уникальную логику и стиль. Чтобы создать кастомный элемент, необходимо определить класс, который наследует от `HTMLElement`, и зарегистрировать его с помощью `customElements.define()`. Эти элементы могут быть использованы на странице так же, как и стандартные HTML-теги. Custom Elements расширяют возможности HTML, делая его более гибким для современных веб-приложений.",longAnswer:`HTML Custom Elements API — это часть спецификации Web Components, которая позволяет разработчикам создавать свои собственные HTML-элементы с кастомной логикой и поведением. Custom Elements позволяют определять новые типы элементов, которые могут быть переиспользуемы в любом месте приложения, улучшая структуру и модульность кода.
+Создание кастомного элемента:
+Для создания кастомного элемента необходимо выполнить три шага:
+
+- Создать класс, наследующий от \`HTMLElement\`:
+
+- Зарегистрировать элемент в браузере с помощью \`customElements.define()\`:
+
+- Использовать кастомный элемент на странице:
+
+После регистрации элемент \`my-custom-element\` можно использовать в любом месте HTML-страницы, как обычный тег.
+Преимущества кастомных элементов:
+
+- Инкапсуляция логики: Логика поведения элемента полностью изолирована в классе, что делает код более организованным и модульным.
+
+- Повторное использование: Создав кастомный элемент, его можно использовать многократно в разных частях приложения, что снижает дублирование кода.
+
+Custom Elements — это инструмент для создания переиспользуемых компонентов в веб-приложениях. Они делают HTML более гибким, позволяя разработчикам определять новые элементы с уникальными функциями и поведением.`,codeExample:`class MyCustomElement extends HTMLElement {    
+  constructor() {        
+    super();        
+    this.innerHTML = "<p>Это кастомный элемент</p>";    
+  } 
+}
+
+customElements.define('my-custom-element', MyCustomElement);
+
+<my-custom-element></my-custom-element>`,skills:[`HTML`]},{question:`Как управлять фокусом на странице с помощью атрибутов tabindex и методов, таких как focus()?`,shortAnswer:'Атрибут `tabindex` управляет порядком, в котором элементы на странице получают фокус при навигации с клавиатуры. Элементы с положительным значением `tabindex` получают фокус в порядке возрастания числа, элементы с `tabindex="0"` — в порядке их появления, а отрицательные значения делают элемент недоступным для фокусировки с клавиатуры. Метод `focus()` в JavaScript позволяет программно устанавливать фокус на элементе. Это важно для обеспечения доступности и удобства управления для пользователей с особыми потребностями.',longAnswer:'Фокус на веб-странице — это механизм, который определяет, какой элемент активен и готов для взаимодействия с пользователем. Это важно для навигации по странице с клавиатуры и для обеспечения доступности веб-контента для людей с ограниченными возможностями.\nАтрибут `tabindex`:\nАтрибут `tabindex` управляет тем, в каком порядке элементы на странице будут получать фокус при использовании клавиши `Tab`. Значения `tabindex` могут быть:\n\n- Положительные значения: Элементы с положительным `tabindex` получают фокус первыми, в порядке возрастания значения. Например, элемент с `tabindex="1"` получит фокус перед элементом с `tabindex="2"`.\n\n- Значение `0`: Элементы с `tabindex="0"` участвуют в стандартной навигации по фокусу, но не имеют приоритета.\n\n- Отрицательные значения: Элементы с отрицательным `tabindex`, такие как `tabindex="-1"`, не могут быть сфокусированы с клавиатуры, но на них можно установить фокус программно с помощью JavaScript.\n\nПример использования `tabindex`:\n\nВ этом примере порядок фокуса будет: Кнопка 1, Кнопка 2, Кнопка 3, так как `tabindex` определяет последовательность.\nМетод `focus()`:\nВ JavaScript метод `focus()` позволяет программно установить фокус на элементе. Это полезно для управления фокусом при изменении интерфейса или при необходимости обратить внимание пользователя на определенный элемент:\n\nПример использования `focus()` для улучшения доступности: Когда пользователь закрывает модальное окно, можно вернуть фокус на элемент, с которого оно было открыто:\n\nУправление фокусом с помощью `tabindex` и методов, таких как `focus()`, важно для обеспечения доступности и улучшения пользовательского опыта. Это особенно критично для пользователей, которые полагаются на клавиатуру для навигации по страницам, таких как люди с ограниченными возможностями.',codeExample:`<button tabindex="1">Кнопка 1</button> 
+<button tabindex="3">Кнопка 3</button> 
+<button tabindex="2">Кнопка 2</button>
+
+document.getElementById('myButton').focus();
+
+button.addEventListener('click', function() {
+  modal.close();    
+  button.focus(); // Возвращаем фокус на кнопку после закрытия 
+});`,skills:[`HTML`]},{question:`Как работают fallback-механизмы в HTML5 для старых браузеров и какие техники следует применять для кроссбраузерной совместимости?`,shortAnswer:"HTML5 предлагает новые теги и функции, которые не всегда поддерживаются старыми браузерами. Чтобы страницы корректно работали в таких браузерах, используются fallback-механизмы — альтернативный контент или теги, которые подхватываются, если основной функционал недоступен. Например, для видео можно использовать элемент `<object>` или ссылку для скачивания файла, если `<video>` не поддерживается. Для кроссбраузерной совместимости также применяются полифилы и шимы — скрипты, добавляющие поддержку современных функций в старых браузерах.",longAnswer:`Fallback-механизмы и кроссбраузерная совместимость — это важные аспекты разработки, которые обеспечивают доступность функционала веб-страниц в разных браузерах, включая старые версии.
+Пример fallback для \`<video>\`:
+
+В данном примере, если браузер не поддерживает \`<video>\`, пользователь увидит текст и ссылку на скачивание видео.
+Fallback для CSS:
+Если CSS-свойство не поддерживается, можно использовать устаревшие или альтернативные стили:
+
+Кроссбраузерная совместимость:
+Для достижения совместимости часто применяют:
+
+- Полифилы: Это скрипты, которые добавляют поддержку современных функций в старые браузеры. Например, полифил для \`fetch()\` или \`Promise\`.
+
+- Шимы: Похожи на полифилы, но заменяют недоступные функции альтернативными.
+
+Пример полифила для \`fetch()\`: Если браузер не поддерживает \`fetch()\`, можно использовать полифил:
+
+Техники кроссбраузерной совместимости:
+
+- Progressive Enhancement (прогрессивное улучшение): Базовая функциональность для всех, улучшенная функциональность для новых браузеров.
+
+- Graceful Degradation (плавное ухудшение): Сначала разрабатываются функции для современных браузеров, а затем добавляются fallback-механизмы для старых.
+
+- Использование feature detection (определение поддерживаемых функций): Вместо проверки версии браузера проверяются конкретные возможности:
+
+Использование fallback-механизмов и полифилов важно для обеспечения работоспособности веб-страниц на устройствах с разной поддержкой современных стандартов. Это помогает сделать сайт доступным для большего числа пользователей.`,codeExample:`<video controls>  
+  <source src="video.mp4" type="video/mp4">  
+  <source src="video.ogv" type="video/ogg">  Your browser does not support the video tag.  
+  <a href="video.mp4">Download the video</a> 
+</video>
+
+.example {  
+  background: rgb(255, 0, 0); /* старый синтаксис */  
+  background: linear-gradient(red, yellow); /* новый синтаксис */ 
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"><\/script>
+
+if ('querySelector' in document) {    
+  // код для современных браузеров 
+}`,skills:[`HTML`]},{question:`Что такое CORS (Cross-Origin Resource Sharing), и как он относится к встроенным элементам типа <iframe>, <img>, и <script>?`,shortAnswer:"CORS — это механизм, который позволяет ограничить или разрешить обмен данными между разными доменами. Браузеры по умолчанию запрещают запросы к ресурсам с другого домена для обеспечения безопасности. Чтобы разрешить такие запросы, сервер должен отправить специальные заголовки. Элементы, такие как `<iframe>`, `<img>` и `<script>`, могут загружать ресурсы с других доменов, но для некоторых операций, например, доступа к содержимому `<iframe>` из другого домена, требуется поддержка CORS.",longAnswer:"CORS (Cross-Origin Resource Sharing) — это политика безопасности веб-браузеров, которая предотвращает выполнение кросс-доменных HTTP-запросов, если сервер явно не разрешил их. Она нужна для защиты веб-приложений от атак типа CSRF (Cross-Site Request Forgery) и XSS (Cross-Site Scripting).\nКак работает CORS:\nКогда браузер пытается получить ресурс с другого домена, он отправляет предварительный запрос (preflight) с заголовком `OPTIONS`, чтобы узнать, разрешает ли сервер доступ. Если сервер разрешает запросы с другого домена, он отправляет ответ с заголовком `Access-Control-Allow-Origin`, в котором указан разрешенный домен (или символ `*`, что означает любой домен).\nПример заголовков CORS:\n`Access-Control-Allow-Origin: https://example.com Access-Control-Allow-Methods: GET, POST`\nЭти заголовки позволяют браузеру понять, что запросы с домена `https://example.com` могут быть выполнены.\nCORS и встроенные элементы:\n\n- `<iframe>`: Без поддержки CORS, доступ к содержимому iframe с другого домена будет заблокирован. Это защита от манипуляций с контентом, загружаемым из сторонних источников.\n\n- `<img>` и `<script>`: Эти теги могут загружать ресурсы с других доменов без ограничений, но доступ к загруженным данным (например, к пикселям изображения) будет блокирован, если сервер не поддерживает CORS.\n\nПример использования CORS с `fetch()`:\n\nCORS важен для обеспечения безопасности веб-приложений, позволяя контролировать, какие домены могут обращаться к ресурсам. Разработчикам необходимо правильно настраивать заголовки на сервере для разрешения или ограничения доступа с других доменов.",codeExample:`fetch('https://api.example.com/data', {  
+  method: 'GET',  
+  headers: {    
+    'Origin': 'https://mywebsite.com'  
+  } 
+}) 
+.then(response => response.json()) 
+.then(data => console.log(data)) 
+.catch(error => console.error('Ошибка:', error));`,skills:[`HTML`]},{question:`Как использовать атрибут srcset с тегом <img>?`,shortAnswer:'Атрибут `srcset` у тега `<img>` позволяет задать несколько версий изображения с разными разрешениями или размерами. Браузер автоматически выбирает наиболее подходящую версию в зависимости от плотности пикселей экрана и ширины экрана. В комбинации с атрибутом `loading="lazy"` можно использовать ленивую загрузку изображений для оптимизации производительности страницы.',longAnswer:'Атрибут `srcset` используется с `<img>` для указания нескольких версий одного и того же изображения, чтобы браузер мог выбрать наиболее подходящее изображение для текущего устройства. Формат использования может включать разные размеры изображений (например, `image-1x.jpg 1x, image-2x.jpg 2x`) или разные ширины (`image-small.jpg 500w, image-large.jpg 1000w`).\nВ зависимости от устройства, браузер загружает изображение с нужным разрешением или размером, обеспечивая оптимальную производительность.\nАтрибут `loading="lazy"` позволяет браузеру загружать изображения только тогда, когда они попадают в поле видимости пользователя. Это сокращает время загрузки страницы и уменьшает количество загружаемых данных.\nПример использования:\n\nВ этом примере браузер выберет подходящее изображение в зависимости от ширины экрана и загрузит его, когда оно станет видимым.',codeExample:`<img src="image-default.jpg" 
+    srcset="image-500w.jpg 500w, image-1000w.jpg 1000w" 
+    sizes="(max-width: 600px) 480px, 800px"
+    loading="lazy" 
+    alt="Описание изображения">`,skills:[`HTML`]},{question:`Как реализовать ленивую загрузку (lazy loading) элементов на странице с помощью атрибута loading? Какие есть альтернативные методы?`,shortAnswer:'Ленивая загрузка — это техника, которая позволяет откладывать загрузку изображений или фреймов до тех пор, пока они не появятся в видимой области экрана. Атрибут `loading="lazy"` в теге `<img>` или `<iframe>` автоматически откладывает загрузку элемента. Это сокращает время начальной загрузки страницы и снижает использование трафика. Альтернативные методы включают использование Intersection Observer API для более гибкого контроля над загрузкой элементов.',longAnswer:`Ленивая загрузка (lazy loading) — это метод оптимизации производительности, который позволяет загружать ресурсы только тогда, когда они нужны пользователю, то есть когда они попадают в видимую область экрана (viewport). Это полезно для страниц с большим количеством изображений или видео, где загрузка всех ресурсов сразу может замедлить начальную загрузку страницы.
+Атрибут \`loading\`:
+HTML5 добавил нативную поддержку ленивой загрузки для элементов \`<img>\` и \`<iframe>\` с помощью атрибута \`loading\`.
+
+При использовании этого атрибута браузер автоматически загружает изображение только тогда, когда оно будет находиться в видимой области экрана.
+Преимущества \`loading="lazy"\`:
+
+- Простота использования: Добавление атрибута требует минимальных изменений в коде.
+
+- Улучшенная производительность: Ускоряет рендеринг страницы, так как уменьшает количество загружаемых ресурсов.
+
+- Поддержка браузерами: Современные браузеры поддерживают этот атрибут, что делает его доступным для использования без сторонних библиотек.
+
+Альтернативные методы:
+Intersection Observer API: Этот API предоставляет больше контроля над тем, когда элементы должны загружаться. Он отслеживает, когда элемент попадает в видимую область, и запускает загрузку ресурса.
+
+Отложенная загрузка с помощью JavaScript: Можно вручную отложить загрузку, меняя значение атрибута \`src\` у изображений или элементов \`<iframe>\` только когда они становятся видимыми.
+Ленивая загрузка помогает сократить время загрузки страницы и экономить трафик пользователя. Хотя атрибут \`loading="lazy"\` — это удобное и простое решение, более сложные сценарии можно реализовать с помощью Intersection Observer для тонкой настройки процесса загрузки.`,codeExample:`<img src="image.jpg" alt="Lazy loaded image" loading="lazy">
+
+const img = document.querySelector('img'); 
+const observer = new IntersectionObserver((entries, observer) => {  
+  entries.forEach(entry => {    
+    if (entry.isIntersecting) {      
+      entry.target.src = entry.target.dataset.src;      
+      observer.unobserve(entry.target);    
+    }  
+  }); 
+}); 
+observer.observe(img);`,skills:[`HTML`]},{question:`Как работает элемент <dialog> и API для управления модальными окнами? Какие особенности его использования?`,shortAnswer:"Элемент `<dialog>` позволяет создавать встроенные модальные окна на веб-странице без необходимости использования сторонних библиотек. У него есть методы `.showModal()` для отображения окна в модальном режиме и `.close()` для его закрытия. Одной из особенностей является встроенная поддержка модальности и блокировки фокуса на элементах внутри диалога, что делает его удобным для создания интерактивных всплывающих окон. Он также поддерживает атрибуты для настройки внешнего вида и поведения.",longAnswer:`Элемент \`<dialog>\` появился в HTML5 и предназначен для создания модальных или немодальных диалогов, таких как всплывающие окна. Его ключевая задача — отображать окно поверх основного контента, при этом управляя фокусом пользователя.
+Основные методы и атрибуты элемента:
+Метод \`.showModal()\`: Открывает модальное окно, блокируя взаимодействие с остальными элементами страницы до его закрытия.
+
+Окно становится модальным, и пользователь не сможет взаимодействовать с элементами страницы вне диалога.
+Метод \`.close()\`: Закрывает диалоговое окно.
+
+Атрибут \`open\`: Если указан, делает диалог видимым без модальности (немодальный режим).
+
+Особенности использования:
+
+- Фокусировка: Когда диалог открыт в модальном режиме, фокус остаётся внутри него, что улучшает доступность (a11y) и делает взаимодействие с интерфейсом более предсказуемым для пользователей.
+
+- Закрытие по умолчанию: Если пользователю нужно закрыть диалог по нажатию на клавишу "Esc" или при клике вне окна, это поведение можно обработать через события.
+
+Примеры использования:
+
+Элемент \`<dialog>\` позволяет упрощать разработку модальных окон и улучшать их доступность, а также поддерживает модальное поведение без использования сложных библиотек.`,codeExample:`<dialog id="myDialog">This is a modal dialog</dialog> 
+
+<script> document.getElementById('myDialog').showModal();<\/script>
+
+document.getElementById('myDialog').close();
+
+<dialog open>This is an open dialog</dialog>
+
+<dialog id="myDialog">  
+  <p>Example of dialog content.</p>  
+  <button onclick=  his.closest('dialog').close()">Close</button> 
+</dialog> 
+<button onclick="document.getElementById('myDialog').showModal()">Open Dialog</button>`,skills:[`HTML`]},{question:`Что такое HTML Imports и почему они были отклонены стандартом? Какие современные альтернативы существуют для организации модулей?`,shortAnswer:"HTML Imports — это экспериментальная технология, которая позволяла загружать и включать HTML-файлы в другие документы с помощью тега `<link>`. Она была отклонена из-за слабой поддержки и наличия альтернативных стандартов, таких как JavaScript модули и Web Components. Современные альтернативы включают ES-модули (import/export) и технологии, основанные на шаблонах и компонентах, такие как React и Web Components.",longAnswer:`HTML Imports был предложен как способ модульного подключения HTML-кода в другие документы. С помощью тега \`<link>\` можно было загружать внешний HTML-файл и включать его содержимое на страницу:
+
+Однако, эта технология не получила широкого признания и была отклонена из-за ряда причин:
+
+- Ограниченная поддержка браузерами: HTML Imports поддерживался только в некоторых браузерах, таких как Chrome, что делало его непригодным для кроссбраузерных проектов.
+
+- Сложности с производительностью: Импорт HTML-файлов мог приводить к увеличению времени загрузки и сложности управления зависимостями.
+
+- Лучшие альтернативы: Стандарт ECMAScript (ES6) предложил более универсальные модули на основе JavaScript, которые лучше справляются с задачей разделения и повторного использования кода.
+
+Современные альтернативы:
+
+- ES-модули (JavaScript): Это стандартизированный способ организации и загрузки кода. С помощью директивы \`import/export\` можно разделять код на модули, которые легко подключать друг к другу.
+
+- Web Components: Компоненты на основе стандарта Web Components позволяют создавать кастомные элементы, содержащие HTML, CSS и JavaScript, что делает их отличной альтернативой для создания модульного интерфейса.
+
+Таким образом, HTML Imports не получил поддержку в силу появления более совершенных стандартов, таких как ES-модули и Web Components, которые обеспечивают гибкость и мощь для создания модульных приложений.`,codeExample:`<link rel="import" href="header.html">
+
+// module.js 
+export const myFunction = () => { console.log("Hello, World!"); }; 
+// main.js 
+import { myFunction } from './module.js'; 
+myFunction();
+
+class MyComponent extends HTMLElement {  
+  connectedCallback() {    
+    this.innerHTML = \`<p>Custom component content</p>\`;  
+  } 
+} 
+customElements.define('my-component', MyComponent);`,skills:[`HTML`]},{question:`Какие существуют методы оптимизации производительности рендеринга HTML, такие как минимизация перерисовок и рефлоу?`,shortAnswer:"Оптимизация рендеринга включает минимизацию операций рефлоу (перестройка структуры документа) и перерисовки (обновление визуальных изменений). Это достигается за счёт уменьшения частоты изменений DOM, использования буферизации изменений через `requestAnimationFrame` и CSS-трансформаций, которые не вызывают рефлоу. Также важно уменьшать количество тяжёлых операций, таких как изменение размера и положения элементов.",longAnswer:`Процесс рендеринга HTML включает несколько этапов: построение DOM-дерева, рендер-дерева, вычисление стилей и их применение, а также процессы рефлоу и перерисовки.
+
+- Рефлоу (Reflow): Это процесс, при котором браузер пересчитывает положение и размер всех элементов на странице при изменении DOM или CSS. Это одна из самых затратных операций.
+
+- Перерисовка (Repaint): Это процесс обновления видимой части страницы без изменения её структуры (например, изменение цвета фона).
+
+Частые рефлоу и перерисовки могут значительно замедлить работу страницы, особенно на мобильных устройствах с низкой производительностью.
+Методы оптимизации:
+
+- Минимизация изменений в DOM: Изменение большого числа элементов в DOM по отдельности вызывает рефлоу и перерисовку для каждого изменения. Лучше сгруппировать изменения или использовать фрагменты DOM для вставки нескольких элементов одновременно.
+
+- Использование CSS-трансформаций: Изменения через \`transform\` и \`opacity\` обычно не вызывают рефлоу, поскольку они не требуют пересчета положения элементов.
+
+- Буферизация изменений с помощью \`requestAnimationFrame\`: Это позволяет браузеру выполнять обновления перед следующей перерисовкой экрана, предотвращая частые перерисовки.
+
+- Избегание чтения свойств, вызывающих рефлоу: Такие свойства, как \`offsetHeight\` или \`clientWidth\`, вызывают рефлоу, так как браузеру нужно пересчитать их значения. Вместо этого старайтесь кешировать результаты или использовать такие свойства реже.
+
+Таким образом, минимизация рефлоу и перерисовок может значительно повысить производительность страницы, особенно при работе с динамическим контентом и анимациями.`,codeExample:`const fragment = document.createDocumentFragment(); 
+for (let i = 0; i < 100; i++) {  
+  const div = document.createElement('div');  
+  fragment.appendChild(div); 
+} 
+document.body.appendChild(fragment);
+
+.animate {  transform: translateX(100px); /* Быстрая анимация без рефлоу */ }
+
+let element = document.getElementById('myElement'); 
+requestAnimationFrame(() => {  element.style.left = '100px'; });`,skills:[`HTML`]},{question:`Как реализовать многоязычную поддержку (i18n) в HTML? Какие атрибуты и техники используются для этого?`,shortAnswer:'Для многоязычной поддержки в HTML используются атрибуты `lang` и `dir`. Атрибут `lang` указывает язык содержимого (например, `lang="en"` для английского), а `dir` — направление текста (например, `dir=tl"` для языков, которые читаются справа налево). Для управления динамической локализацией часто используют JavaScript и библиотеки вроде i18next, позволяющие менять язык интерфейса в зависимости от предпочтений пользователя.',longAnswer:`Многоязычная поддержка (или интернационализация, i18n) позволяет отображать содержимое веб-страницы на нескольких языках, чтобы сделать сайт доступным для пользователей из разных стран. Основные техники включают использование атрибутов HTML и сторонних инструментов для динамической смены языка.
+Атрибут \`lang\`: Этот атрибут используется для указания языка содержимого элемента или всей страницы. Он помогает поисковым системам, а также экранным читалкам правильно интерпретировать содержимое.
+
+Атрибут \`dir\`: Устанавливает направление текста. Например, для арабского или иврита используется \`dir=tl"\` (right-to-left), что меняет направление текста на странице.
+
+Локализация с использованием JavaScript: Для динамической смены языка в зависимости от выбора пользователя или настроек браузера можно использовать библиотеки вроде i18next. Эти библиотеки позволяют хранить переводы в JSON-файлах и подставлять соответствующие значения на страницу.
+
+Для более сложных приложений часто применяется динамическая локализация, где на основе пользовательских настроек язык и направления текста могут меняться в реальном времени.`,codeExample:`<html lang="en">  
+  <body>    
+    <p lang="fr">Bonjour!</p> <!-- Этот абзац на французском -->  
+  </body> 
+</html>
+
+<p dir=tl">هذا نص عربي</p> <!-- Текст на арабском -->
+
+import i18next from 'i18next'; 
+i18next.init({  
+  resources: {    
+    en: { translation: { "welcome": "Welcome" } },    
+    fr: { translation: { "welcome": "Bienvenue" } }  
+  },  
+  lng: "en", // Язык по умолчанию 
+}); 
+document.getElementById('welcome').innerText = i18next.t('welcome');`,skills:[`HTML`]},{question:`Как использовать элемент <canvas> для рисования графики на стороне клиента? В каких сценариях это применимо?`,shortAnswer:"Элемент `<canvas>` используется для рисования графики с помощью JavaScript на веб-странице. С его помощью можно создавать как простые фигуры, так и сложные анимации и игры. Он не имеет встроенного содержания, и все графические элементы рисуются динамически через методы, такие как `fillRect()` для рисования прямоугольников и `beginPath()` для создания линий и кривых.",longAnswer:"Элемент `<canvas>` — это HTML5-элемент, который предоставляет место для рисования с использованием JavaScript. В отличие от других HTML-элементов, `<canvas>` не отображает содержимое напрямую, а представляет собой контейнер, в котором с помощью скриптов можно рисовать графику. Для работы с ним используется API `CanvasRenderingContext2D`, которое предоставляет методы для рисования фигур, линий, текста и изображений.\nПример простого использования `<canvas>`:\n\nС помощью методов контекста можно рисовать как простые формы, так и более сложные элементы:\n\n- Прямоугольники: `fillRect(x, y, width, height)` рисует заполненный прямоугольник.\n\n- Линии и кривые: Для создания пути используется `beginPath()`, после чего можно добавлять линии через `moveTo()` и `lineTo()`.\n\nПример рисования круга:\n\nСценарии использования:\n\n- Игры и анимации: `<canvas>` часто используется для создания игр, так как позволяет быстро обновлять графику и поддерживает динамическое взаимодействие.\n\n- Визуализация данных: Его также применяют для создания графиков и диаграмм.\n\n- Редактирование изображений: С помощью `<canvas>` можно манипулировать изображениями (например, обрезка, фильтры и т.д.).\n\nЭлемент `<canvas>` мощный инструмент для создания интерактивной графики в браузере, предоставляя широкий набор методов для работы с 2D-контентом.",codeExample:`<canvas id="myCanvas" width="200" height="200"></canvas> 
+<script>  
+  const canvas = document.getElementById('myCanvas');  
+  const ctx = canvas.getContext('2d');  // Рисуем прямоугольник  
+  ctx.fillStyle = 'green';  
+  ctx.fillRect(10, 10, 150, 100); 
+<\/script>
+
+ctx.beginPath(); 
+ctx.arc(100, 100, 50, 0, Math.PI * 2); 
+ctx.stroke();`,skills:[`HTML`]},{question:`Что такое HTML5 History API и как его использовать для управления навигацией без перезагрузки страницы?`,shortAnswer:"HTML5 History API позволяет изменять URL в браузере без перезагрузки страницы, сохраняя историю переходов. Основные методы API — `pushState()`, `replaceState()` и событие `popstate`. Они позволяют динамически менять состояние страницы, обновляя URL, что делает навигацию в одностраничных приложениях (SPA) более плавной и интерактивной.",longAnswer:`HTML5 History API — это набор методов для управления историей навигации в браузере без перезагрузки страницы. В традиционных веб-приложениях каждый переход по ссылке ведет к загрузке новой страницы. С помощью History API можно динамически изменять содержимое и URL страницы без ее полной перезагрузки, что делает взаимодействие более плавным, особенно в одностраничных приложениях (SPA).
+Основные методы History API:
+
+- \`history.pushState(state, title, url)\`: Добавляет новый элемент в историю браузера с обновленным URL. Этот метод не перезагружает страницу, но позволяет изменять адресную строку.
+
+- \`history.replaceState(state, title, url)\`: Заменяет текущий элемент истории без добавления нового, что полезно, когда нужно изменить URL, но не сохранять новый шаг в истории.
+
+- \`window.onpopstate\`: Это событие срабатывает при переходе назад или вперед в истории. Его можно использовать для обновления содержимого страницы при таких переходах.
+
+History API активно используется в современных фреймворках, таких как React и Vue, чтобы управлять маршрутизацией в SPA. Это позволяет сделать навигацию более интерактивной и ускорить отклик приложения.`,codeExample:`history.pushState({page: 1}, "Title", "/new-url");
+
+history.replaceState({page: 2}, "Title", "/another-url");
+
+window.onpopstate = function(event) {  
+  console.log("location: " + document.location + ", state: " + JSON.stringify(event.state)); 
+};`,skills:[`HTML`]},{question:`Что такое Content Delivery Network (CDN) и как правильно подключать ресурсы HTML через CDN для повышения производительности?`,shortAnswer:`Content Delivery Network (CDN) — это сеть серверов, расположенных по всему миру, которые хранят копии статических ресурсов веб-сайта, таких как изображения, CSS и JavaScript. Подключение ресурсов через CDN позволяет загружать их с ближайшего сервера, что ускоряет время загрузки страницы и снижает нагрузку на основной сервер. Для подключения через CDN обычно используют URL внешних ресурсов, например:
+
+\`<script src="https://cdn.example.com/library.js"><\/script>\``,longAnswer:`Content Delivery Network (CDN) — это распределенная сеть серверов, которая используется для хранения и доставки контента, такого как изображения, стили, скрипты и видео, пользователям на основе их географического местоположения. Основная цель CDN — улучшить производительность сайта за счет уменьшения времени загрузки, так как ресурсы загружаются с ближайшего к пользователю сервера.
+Преимущества использования CDN:
+
+- Ускорение загрузки страниц: Поскольку CDN хранит копии файлов на серверах по всему миру, пользователи могут загружать ресурсы с сервера, который ближе всего к ним, что уменьшает задержки.
+
+- Снижение нагрузки на основной сервер: За счет распределения трафика на множество серверов уменьшается нагрузка на исходный сервер, что позволяет ему обрабатывать больше запросов.
+
+- Надежность: Если один сервер в сети CDN выйдет из строя, запросы перенаправляются на другие доступные серверы, что повышает устойчивость сайта.
+
+Пример подключения ресурса через CDN:
+
+В этом примере библиотека jQuery загружается с сервера CDN, что улучшает время отклика для пользователей по всему миру. Многие популярные библиотеки и фреймворки, такие как Bootstrap и React, также предоставляются через CDN, что упрощает их подключение.
+Правильное использование CDN:
+
+- Кеширование: CDN поддерживает кеширование ресурсов, что позволяет пользователям загружать их быстрее при повторных посещениях сайта.
+
+- Резервное подключение: Важно также предусмотреть fallback на случай, если CDN временно недоступен. Например, можно указать локальный путь к файлу, если загрузка с CDN не удалась:
+
+Использование CDN значительно улучшает производительность и надежность сайтов, особенно при обслуживании глобальной аудитории.`,codeExample:`<!-- Подключение библиотеки jQuery через CDN --> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>
+
+<script src="https://cdn.example.com/library.js"><\/script> <script>
+  if(!window.library){
+    document.write('<script src="/local/library.js"><""/script>');
+  }
+<\/script>`,skills:[`HTML`]},{question:`Как интегрировать веб-шрифты (например, Google Fonts) в HTML и какие факторы влияют на производительность загрузки?`,shortAnswer:"Веб-шрифты, такие как Google Fonts, можно подключить через элемент `<link>` в разделе `<head>` HTML или использовать CSS `@import`. Однако шрифты могут замедлять рендеринг страницы, поэтому важно оптимизировать их загрузку. Основные факторы, влияющие на производительность, включают количество стилей шрифтов, их формат и стратегию загрузки (например, `font-display: swap`, чтобы избежать блокировки рендеринга текста).",longAnswer:`Интеграция веб-шрифтов (например, Google Fonts) — это простой процесс, который позволяет использовать внешние шрифты на вашем сайте. Это делается через HTML и CSS. Один из самых популярных способов подключения веб-шрифтов — использование Google Fonts через тег \`<link>\` в HTML или директиву \`@import\` в CSS.
+Пример интеграции через HTML:
+
+Пример через CSS:
+
+При использовании веб-шрифтов важно учитывать производительность, так как браузер должен загрузить шрифты перед тем, как начать отображать текст. Вот несколько факторов, влияющих на скорость загрузки:
+
+- Количество шрифтов и их стилей: Чем больше шрифтов и их вариаций (например, жирность или курсив), тем больше данных нужно загрузить.
+
+- Формат шрифтов: Поддержка различных форматов (WOFF, WOFF2, TTF) важна для кроссбраузерной совместимости. WOFF2 — более сжатый и предпочтительный формат.
+
+- Стратегии загрузки: Использование свойства \`font-display: swap\` позволяет браузеру сначала отобразить текст с fallback-шрифтом, а затем заменить его на загруженный веб-шрифт. Это предотвращает пустое пространство на странице во время загрузки шрифта.
+
+Пример оптимизации с помощью \`font-display\`:
+
+Правильная интеграция и оптимизация шрифтов улучшают пользовательский опыт, ускоряя загрузку страниц и предотвращая задержки в отображении текста.`,codeExample:`<head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "Roboto";
+  src: url(oboto.woff2") format("woff2");
+  font-display: swap;
+}`,skills:[`HTML`]},{question:`Что такое webmanifest и как он используется для создания Progressive Web Apps (PWA)?`,shortAnswer:`Webmanifest — это файл в формате JSON, который используется для определения метаданных веб-приложения. Он позволяет настроить иконки приложения, название, тему и поведение при добавлении на главный экран устройства. В PWA webmanifest помогает сделать веб-приложение похожим на нативное мобильное приложение, улучшая пользовательский опыт.`,longAnswer:`Webmanifest — это файл, используемый в Progressive Web Apps (PWA) для описания метаданных приложения. Этот файл сообщает браузеру и устройству важную информацию, такую как название приложения, иконки, цветовая схема и параметры отображения, когда приложение установлено на устройство пользователя.
+Файл манифеста имеет формат JSON и содержит ключевые поля, такие как:
+
+- \`name\`: Полное название приложения.
+
+- \`short_name\`: Короткое название, используемое при установке.
+
+- \`icons\`: Список иконок в разных разрешениях для отображения на экране.
+
+- \`start_url\`: URL, с которого начинается приложение при открытии.
+
+- \`display\`: Определяет, как приложение будет выглядеть (например, \`standalone\` для запуска в полном экране без браузерного интерфейса).
+
+- \`background_color\` и \`theme_color\`: Цвета фона и темы, которые используются при установке приложения.
+
+Пример простого манифеста:
+
+Этот манифест позволяет пользователям добавлять веб-приложение на главный экран их устройства, при этом оно будет вести себя как нативное приложение, с запуском в отдельном окне и собственными иконками.
+В контексте PWA, webmanifest — это важный компонент, который делает веб-приложение доступным в оффлайн-режиме и позволяет пользователям взаимодействовать с ним так, как если бы это было нативное мобильное приложение.`,codeExample:`{  
+  
+ame": "My Awesome App",  
+  "short_name": "AwesomeApp",  
+  "start_url": "/index.html",  
+  "display": "standalone",  
+  "background_color": "#ffffff",  
+    heme_color": "#000000",  
+  "icons": [    
+    {      
+      "src": "/images/icon-192x192.png",      
+      "sizes": "192x192",      
+        ype": "image/png"    
+    }  
+  ] 
+}`,skills:[`HTML`]},{question:`Как реализовать поддержку темной темы (dark mode) с помощью HTML и CSS? Какие метатеги и медиавыражения используются?`,shortAnswer:"Темную тему можно реализовать с помощью CSS-медиавыражения `prefers-color-scheme`, которое определяет предпочтения пользователя относительно цветовой схемы (светлой или темной). В зависимости от предпочтений браузера применяются соответствующие стили. Также можно настроить переключение темы вручную с помощью JavaScript и CSS-классов.",longAnswer:`Поддержка темной темы в веб-приложениях позволяет пользователям автоматически переключаться между светлой и темной темой на основе их системных настроек. Это достигается с помощью CSS-медиавыражения \`prefers-color-scheme\`. Это медиавыражение проверяет, какую цветовую схему предпочитает пользовательская система (светлую или темную), и применяет соответствующие стили.
+Пример использования медиавыражения для темной темы:
+
+Это позволяет автоматически применять темную тему, если устройство пользователя настроено на темную цветовую схему.
+Для мануального переключения между темами с помощью кнопки можно использовать JavaScript. Например, можно хранить состояние темы в \`localStorage\` и динамически менять классы в DOM.
+Пример с JavaScript для ручного переключения темы:
+
+С помощью этого кода можно сохранить выбор пользователя и применить его при следующем посещении страницы.
+Также можно использовать метатеги, такие как \`theme-color\`, для изменения цветовой схемы браузера:
+
+Эти метатеги настраивают цветовую схему интерфейса браузера в зависимости от темы. Поддержка темной темы делает веб-приложения более адаптивными и улучшает пользовательский опыт.`,codeExample:`/* Стиль по умолчанию (светлая тема) */ 
+body {  
+  background-color: white;  
+  color: black; 
+} 
+/* Темная тема */ 
+@media (prefers-color-scheme: dark) {  
+  body {    
+    background-color: black;    
+    color: white;  
+  } 
+}
+
+const toggleTheme = () => {  
+  const theme = document.body.classList.toggle('dark') ? 'dark' : 'light';    
+  localStorage.setItem('theme', theme); 
+}; 
+  
+document.addEventListener('DOMContentLoaded', () => {  
+  const savedTheme = localStorage.getItem('theme');  
+  if (savedTheme) {    
+    document.body.classList.add(savedTheme);  
+  } 
+});
+
+<meta name=  heme-color" content="#000000" media="(prefers-color-scheme: dark)"> 
+<meta name=  heme-color" content="#ffffff" media="(prefers-color-scheme: light)">`,skills:[`HTML`]},{question:`Какие способы оптимизации изображений на веб-странице вы знаете?`,shortAnswer:"Оптимизация изображений включает несколько методов: сжатие изображений (использование форматов WebP, JPEG или PNG), загрузка изображений только по мере необходимости (ленивая загрузка), выбор адаптивных изображений с разными размерами для разных устройств, использование CDN для быстрой доставки и добавление атрибута `alt` для повышения доступности.",longAnswer:`Оптимизация изображений — это важный аспект повышения производительности сайта. Несколько ключевых методов включают:
+Сжатие изображений: Использование инструментов для сжатия изображений (например, TinyPNG) уменьшает их размер без заметной потери качества. Для веб-страниц рекомендуется использовать современные форматы изображений, такие как WebP, которые обеспечивают лучшее сжатие, чем традиционные форматы, такие как JPEG или PNG.
+Адаптивные изображения: Вы можете предоставлять изображения разных размеров для разных экранов, используя атрибут \`srcset\`:
+
+Это позволяет загружать изображения, соответствующие разрешению устройства, экономя трафик.
+Ленивая загрузка (lazy loading): Изображения загружаются только тогда, когда они попадают в область видимости пользователя. Это можно сделать с помощью атрибута \`loading="lazy"\`:
+
+Использование CDN: Хранение изображений на Content Delivery Network (CDN) позволяет доставлять их быстрее, так как запросы будут обрабатываться ближайшими серверами.
+Оптимизация через CSS и SVG: Иногда можно заменить растровые изображения векторными (SVG), особенно для иконок и простых графиков.
+Эти методы помогают значительно сократить время загрузки страницы и улучшить SEO.`,codeExample:`<img src="small.jpg" srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w" alt="Example Image">
+
+<img src="image.jpg" loading="lazy" alt="Example Image">`,skills:[`HTML`]},{question:`Как вы понимаете Web Accessibility (веб-доступность) и почему она важна?`,shortAnswer:`Web Accessibility (веб-доступность) означает, что веб-сайты и приложения должны быть доступны для использования людьми с различными ограничениями, такими как нарушения зрения, слуха или подвижности. Это важно, так как делает интернет доступным для всех пользователей, включая тех, кто использует специальные устройства, такие как экранные читалки.`,longAnswer:`Web Accessibility (веб-доступность) — это концепция создания веб-сайтов и приложений, которые могут использоваться людьми с различными ограничениями, включая нарушение зрения, слуха, подвижности и когнитивных функций. Принципы веб-доступности включают адаптацию интерфейсов для работы с ассистивными технологиями, такими как экранные читалки, и обеспечение того, чтобы все элементы веб-страницы были доступными с клавиатуры.
+Почему это важно?
+
+- Инклюзивность: Около 15% населения мира имеют какую-либо форму инвалидности. Обеспечение доступности веб-сайтов делает интернет более инклюзивным для всех пользователей.
+
+- Законодательство: Во многих странах существуют законы и стандарты (например, WCAG), которые требуют соблюдения принципов веб-доступности. Несоблюдение этих стандартов может привести к юридическим последствиям.
+
+- Лучшая производительность: Создание доступного сайта часто приводит к улучшению общей производительности и пользовательского опыта, так как такие сайты, как правило, более структурированы и удобны в использовании.
+
+Основные практики доступности:
+
+- Альтернативный текст для изображений: Добавление \`alt\`-текста к изображениям, чтобы экранные читалки могли описать их людям с нарушением зрения.
+
+- Фокусируемые элементы: Убедитесь, что все интерактивные элементы доступны через клавиатуру (например, кнопки, ссылки).
+
+- Контраст цветов: Использование достаточного контраста между текстом и фоном для улучшения читаемости.
+
+Пример простого улучшения доступности:
+
+Доступность в интернете делает его удобным для всех пользователей, включая людей с ограничениями, и способствует созданию более качественных и инклюзивных продуктов.`,codeExample:`<img src="image.jpg" alt="Описание изображения">`,skills:[`HTML`]},{question:`Какие ключевые метрики используются для оценки производительности веб-сайта?`,shortAnswer:`Ключевые метрики для оценки производительности веб-сайта включают First Contentful Paint (FCP), который измеряет, когда впервые отображается содержимое; Largest Contentful Paint (LCP), измеряющий, когда основной контент страницы становится видимым; First Input Delay (FID), который показывает, насколько быстро сайт реагирует на первое взаимодействие пользователя; и Cumulative Layout Shift (CLS), который измеряет стабильность макета страницы. Эти метрики помогают оценить, насколько быстро и стабильно загружается веб-сайт.`,longAnswer:`Для оценки производительности веб-сайта разработчики используют несколько ключевых метрик, которые помогают измерить, насколько быстро и эффективно страница загружается и реагирует на действия пользователя. Вот основные метрики, которые чаще всего применяются:
+
+- First Contentful Paint (FCP): FCP измеряет время, когда браузер начинает рендерить первый элемент на странице (текст, изображение, блок). Это важно, поскольку показывает, когда пользователь видит первые визуальные изменения на странице. Чем быстрее FCP, тем лучше пользователь воспринимает загрузку сайта.
+
+- Largest Contentful Paint (LCP): LCP измеряет время, за которое основной контент страницы становится видимым (например, крупное изображение или текст). Хороший LCP — это показатель быстрой загрузки важного контента. Метрика помогает понять, как долго пользователю ждать до появления основной информации.
+
+- First Input Delay (FID): FID измеряет время от первого взаимодействия пользователя (например, нажатие кнопки) до момента, когда браузер реагирует на это действие. Высокий FID может быть вызван тяжелыми JavaScript-операциями, блокирующими интерфейс. Улучшение FID делает сайт более отзывчивым.
+
+- Cumulative Layout Shift (CLS): CLS измеряет стабильность макета страницы при её загрузке. Если элементы неожиданно перемещаются при загрузке (например, из-за поздней загрузки шрифтов или изображений), это вызывает негативный опыт у пользователя. Хороший CLS показывает, что страница не "прыгает" во время рендеринга.
+
+Пример значений CLS:
+
+Эти метрики составляют основу для оценки пользовательского опыта и служат ориентирами для улучшения производительности сайта, что делает его более быстрым и удобным для пользователей.`,codeExample:`<style>
+  img { width: 100%; height: auto; } /* Указание размеров предотвращает скачки */ 
+</style>`,skills:[`HTML`]},{question:`Какие техники используются для критического CSS и ленивой загрузки стилей?`,shortAnswer:`Критический CSS — это набор стилей, необходимых для первоначального отображения страницы, которые встраиваются в HTML, чтобы избежать задержки загрузки. Оставшиеся стили загружаются асинхронно. Ленивая загрузка стилей включает использование JavaScript для динамического подключения или загрузки CSS по условию, что позволяет загружать стили по мере необходимости.`,longAnswer:'Критический CSS включает стили, необходимые для отображения контента, находящегося "выше сгиба" (above the fold), и встраивается непосредственно в HTML-документ, чтобы ускорить первую отрисовку.\nПосле этого оставшиеся стили можно загружать асинхронно, используя атрибуты `rel="preload"` или `media="print"` с последующим изменением на `media="all"`, чтобы отложить их применение до загрузки страницы. Это предотвращает блокировку отрисовки основной страницы, а после полной загрузки позволяет сделать стили активными для всех устройств.\nЛенивая загрузка стилей позволяет подключать CSS-файлы по мере необходимости: например, с помощью JavaScript для загрузки стилей при скроллинге к определенной секции или используя атрибут `media` для подключения стилей при выполнении заданного условия.\nТакже можно применять сборщики и инструменты, такие как `Webpack` и `critical`, которые автоматически выделяют критические стили и упрощают процесс оптимизации.\nПример использования ленивой загрузки:\n\nВ этом примере стили загружаются асинхронно, так как `media="print"` изначально предотвращает их применение к экранному отображению. После загрузки атрибут изменяется на `media="all"`, и стили начинают применяться ко всем типам устройств.',codeExample:`<link rel="stylesheet" href="styles.css" media="print" onload=  his.media='all'">`,skills:[`HTML`]},{question:`Как использовать PHP с функциями HTML5?`,shortAnswer:`PHP используется для динамического генерирования HTML5 контента, включая создание мультимедийных элементов, работу с localStorage, и обработку форм. PHP может генерировать HTML5 элементы, такие как формы, видео или аудио теги, и передавать данные в JavaScript для работы с новыми функциями HTML5, такими как местное хранилище.`,longAnswer:`PHP может работать с HTML5, генерируя динамическое содержимое на серверной стороне, которое используется для улучшения клиентской стороны с помощью новых возможностей HTML5. Вот несколько примеров:
+Динамическое создание мультимедийных элементов: PHP может генерировать видео и аудио теги для HTML5. Пример:
+
+Интерактивность с localStorage: PHP может передавать данные в JavaScript, который затем использует API HTML5 для сохранения данных в \`localStorage\`. Пример PHP и JavaScript:
+
+Обработка форм HTML5: PHP обрабатывает формы с новыми полями HTML5 (например, \`email\`, \`tel\`), проводя серверную валидацию и предоставляя результаты. Пример:
+
+PHP удобно работает с новыми возможностями HTML5, обеспечивая динамичное генерирование контента и обработку форм с дополнительными функциями.`,codeExample:`echo "<video controls>
+         <source src='video.mp4' type='video/mp4'>
+         Your browser does not support the video tag.
+       </video>";
+
+echo "<script>
+        localStorage.setItem('user', 'JohnDoe');
+        alert(localStorage.getItem('user'));
+      <\/script>";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Проверка данных формы
+      if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+          echo "Email is valid!";
+      } else {
+          echo "Invalid email!";
+      }
+}`,skills:[`HTML`]},{question:`Какой механизм используют для встраивания одной веб страницы в другую?`,shortAnswer:`Для встраивания веб-страниц используют iframe (встроенный фрейм). Это HTML-элемент, который создает отдельное окно внутри страницы для показа другого документа. Также можно использовать компоненты фронтенд-фреймворков или серверные включения (SSI), но iframe - самый простой и универсальный способ.`,longAnswer:`iframe (Inline Frame) - это HTML-элемент, который позволяет встроить одну HTML-страницу в другую. Он создает независимое окно просмотра внутри родительской страницы
+Основные атрибуты iframe: src (адрес встраиваемой страницы), width и height (размеры), frameborder (границы)
+Пример iframe:
+
+Преимущества iframe: полная изоляция стилей и скриптов, простота использования, поддержка кросс-доменных ресурсов
+Недостатки: проблемы с SEO, возможные проблемы безопасности, сложность управления размерами контента
+Альтернативы: компоненты React/Vue/Angular для повторного использования UI, AJAX-загрузка контента, Server Side Includes (SSI) для статических сайтов`,codeExample:`<iframe src="https://example.com" width="600" height="400"></iframe>`,skills:[`HTML`]},{question:`Как сделать так, чтобы картинка подгружалась с сервера только тогда, когда пользователь до нее долистал?`,shortAnswer:'Используют ленивую загрузку (lazy loading). Для этого добавляют атрибут `loading="lazy"` в `<img>` или используют Intersection Observer в JavaScript.',longAnswer:`HTML-атрибут \`loading="lazy"\` (поддерживается в современных браузерах):
+
+Браузер сам загрузит изображение, когда оно появится в зоне видимости.
+Intersection Observer API (если нужен больший контроль):
+
+В HTML разметке:`,codeExample:`<img src="image.jpg" loading="lazy" alt="Пример">
+
+const img = document.querySelector('img.lazy');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.src = entry.target.dataset.src;
+      observer.unobserve(entry.target);
+    }
+  });
+});
+observer.observe(img);
+
+<img data-src=eal-image.jpg" class="lazy" alt="Ленивая загрузка">`,skills:[`HTML`]},{question:`Расскажи все про оптимизацию загрузки сайтов`,shortAnswer:`Оптимизация загрузки сайтов — это способы сделать страницы быстрее. Основные методы: сжатие изображений, минификация CSS/JS, кэширование, ленивая загрузка (lazy load) и использование CDN. Чем быстрее сайт, тем лучше пользовательский опыт и выше позиции в поисковиках.`,longAnswer:`Оптимизация загрузки сайтов включает множество техник, направленных на уменьшение времени отклика и улучшение производительности.
+
+- Сжатие изображений
+Большие изображения замедляют загрузку. Используйте форматы WebP или AVIF, которые обеспечивают высокое качество при меньшем размере. Инструменты вроде Squoosh или ImageOptim помогают сжать картинки без потерь.
+
+- Минификация CSS и JavaScript
+Удаление пробелов, комментариев и сокращение кода уменьшает размер файлов. Для этого подходят Webpack, Vite или онлайн-инструменты вроде UglifyJS.
+
+- Кэширование
+Браузеры могут сохранять статические файлы (CSS, JS, изображения), чтобы не загружать их повторно. Настройте HTTP-заголовки \`Cache-Control\` и \`Expires\` на сервере.
+
+- Ленивая загрузка (Lazy Load)
+Изображения и другие ресурсы загружаются только когда они попадают в область видимости экрана. В HTML это делается через атрибут \`loading="lazy"\` для \`<img>\`.
+
+- Использование CDN
+Content Delivery Network (CDN) — это сеть серверов, которые доставляют контент пользователю с ближайшего к нему узла. Это ускоряет загрузку, особенно для глобальной аудитории.
+
+- Оптимизация шрифтов
+Подключайте только нужные начертания шрифтов и используйте \`font-display: swap\`, чтобы текст отображался сразу, даже если шрифт ещё не загрузился.
+
+Пример кода для lazy load:
+
+Скрипт может заменить \`src\` на \`data-src\`, когда изображение появляется в viewport.`,codeExample:`<img src="placeholder.jpg" data-src=eal-image.jpg" loading="lazy" alt="Пример">`,skills:[`HTML`]},{question:`Как интегрировать карты в веб-приложение?`,shortAnswer:`Для интеграции карт используйте JavaScript API картографических сервисов (Google Maps, Yandex Maps, Leaflet). Инициализируйте карту в компоненте, добавьте маркеры и обработчики событий.`,longAnswer:`Популярные решения:
+
+- Google Maps JavaScript API
+
+- Yandex Maps API
+
+- Leaflet (open-source)
+
+- Mapbox GL JS
+
+Базовая интеграция:
+
+React-интеграция:
+Используйте библиотеки-обертки:
+
+- \`@react-google-maps/api\`
+
+- \`react-yandex-maps\`
+
+- \`react-leaflet\`
+
+Ключевые функции:
+
+- Добавление маркеров
+
+- Рисование фигур и зон
+
+- Геокодирование адресов
+
+- Маршрутизация и направления
+
+- Кастомные стили карт
+
+Оптимизация:
+
+- Ленивая загрузка карт
+
+- Кластеризация маркеров
+
+- Оптимизация производительности
+
+- Кэширование запросов`,codeExample:`<div id="map" style="width: 100%; height: 400px;"></div>
+
+<script>
+  const map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 55.76, lng: 37.64 },
+    zoom: 10
+  });
+  
+  new google.maps.Marker({
+    position: { lat: 55.76, lng: 37.64 },
+    map: map,
+    title: 'Hello World!'
+  });
+<\/script>`,skills:[`HTML`]},{question:`Какие действия триггерят reflow, repaint. И как можно избежать частого reflow?`,shortAnswer:"Reflow происходит, когда меняется структура страницы или размеры элементов, и браузеру нужно пересчитать расположение. Repaint вызывается, когда меняется внешний вид (например, цвет), но размеры остаются прежними. Частые reflow замедляют работу страницы, поэтому их стараются минимизировать — например, группируя изменения в DOM или используя `classList`, а не менять стили по одному.",longAnswer:`Что такое Reflow и Repaint
+
+- Reflow — это перерасчет геометрии элементов: размеров, позиций, структуры. Например, при изменении ширины блока или добавлении нового элемента.
+
+- Repaint — это перерисовка внешнего вида без пересчета позиций. Например, смена фона или цвета текста.
+
+Действия, вызывающие Reflow
+
+- Изменение размеров элемента (\`width\`, \`height\`, \`margin\`, \`padding\`).
+
+- Добавление или удаление узлов в DOM.
+
+- Использование методов вроде \`offsetWidth\`, \`getComputedStyle\` (они вынуждают браузер вычислить актуальное состояние).
+
+- Изменение шрифтов, контента текста.
+
+Как избегать частых Reflow
+
+- Группировать несколько изменений сразу:
+
+- Использовать \`classList.add/remove\`, а не менять каждый стиль отдельно.
+
+- Работать с элементом вне DOM (через \`documentFragment\`) и потом вставлять целиком.
+
+- Использовать \`requestAnimationFrame\` для анимаций.
+
+Вывод
+Reflow — дорогая операция, и его стоит минимизировать при работе с динамическим контентом. Чем меньше браузеру приходится пересчитывать расположение элементов, тем быстрее работает страница.`,codeExample:`element.style.cssText = "width: 100px; height: 100px; color: red;";`,skills:[`HTML`]},{question:`Что происходит в браузере после получения HTML-страницы от сервера?`,shortAnswer:"После получения HTML браузер начинает его разбирать и строить `DOM`. По ходу парсинга он находит ресурсы (CSS, JS, изображения, шрифты) и запускает их загрузку. Когда CSS загружен и распарсен, строится `CSSOM`, затем из `DOM + CSSOM` собирается дерево рендеринга. Дальше браузер рассчитывает размеры и позиции элементов (layout) и рисует их (paint), а затем может “склеивать” слои (composite). Скрипты и стили могут блокировать некоторые шаги, из-за чего первая отрисовка откладывается.",longAnswer:`После того как браузер получил HTML, он проходит несколько стадий, и часть из них идёт параллельно.
+1) Разбор HTML и построение DOM
+Браузер читает HTML потоково и строит дерево узлов.
+
+- Что делает: токенизация → парсинг → создание \`DOM\`.
+
+- Побочный эффект: по мере чтения HTML браузер “находит” внешние ресурсы:
+
+- \`<link rel="stylesheet" href="...">\`
+
+- \`<script src="...">\`
+
+- \`<img src="...">\`
+
+- шрифты из \`@font-face\` и т.д.
+
+2) Параллельная загрузка ресурсов
+Пока \`DOM\` строится, браузер старается заранее качать то, что понадобится для рендера.
+
+- Preload scanner: браузер может заранее просканировать HTML и начать загрузки ещё до полного построения DOM.
+
+- Приоритет: CSS и критические ресурсы обычно получают более высокий приоритет, чем, например, “декоративные” картинки.
+
+3) Построение CSSOM и применение стилей
+Когда CSS загружен, браузер парсит его в структуру правил.
+
+- Определение: CSSOM — объектная модель CSS, представление стилей в виде дерева/структур, удобной для вычисления итоговых стилей.
+
+- Пока \`CSSOM\` не готов, браузер обычно не делает полноценную первую отрисовку (чтобы не показать страницу без стилей).
+
+4) Сборка Render Tree
+Далее браузер объединяет информацию из \`DOM\` и \`CSSOM\`.
+
+- Определение: Render Tree — дерево элементов, которые реально участвуют в визуальном отображении (например, \`display: none\` туда не попадает).
+
+- На этом шаге вычисляются “итоговые” стили (computed styles) для отображаемых узлов.
+
+5) Layout (расчёт геометрии)
+Браузер определяет, где и какого размера будут элементы.
+
+- вычисление размеров, координат, переносов строк
+
+- учёт шрифтов, размеров контейнеров, flex/grid и т.п.
+
+6) Paint и Composite
+Браузер рисует пиксели и при необходимости склеивает слои.
+
+- Paint: отрисовка текста, фонов, границ, теней и т.д.
+
+- Composite: сборка слоёв (например, при \`transform\`, \`opacity\`) в финальную картинку на экране.
+
+Мини-пример: почему это важно фронтендеру
+Если поставить тяжёлый \`<script>\` в \`<head>\` без \`defer/async\`, он может остановить парсинг HTML и задержать появление контента:
+
+Вывод: после получения HTML браузер строит \`DOM\`, загружает и парсит CSS в \`CSSOM\`, собирает \`Render Tree\`, делает \`layout\`, затем \`paint/composite\`. Понимание этих стадий помогает объяснять “почему страница медленно показывает контент”.`,codeExample:`<head>
+  <script src="/heavy.js"><\/script>
+</head>`,skills:[`HTML`]},{question:`Что такое критический путь рендеринга браузера?`,shortAnswer:"Критический путь рендеринга — это последовательность шагов и ресурсов, которые нужны браузеру, чтобы показать страницу пользователю. Обычно он включает построение `DOM`, `CSSOM`, создание `Render Tree`, `layout` и `paint`. Если на пути есть блокирующие ресурсы (часто CSS и синхронный JS), браузер откладывает первую отрисовку. Оптимизация критического пути — это уменьшение объёма и количества блокирующих ресурсов и перенос некритичных загрузок.",longAnswer:`Критический путь рендеринга (Critical Rendering Path) описывает “минимально необходимую цепочку”, без которой браузер не сможет отрисовать первый экран.
+Определение
+Определение: Критический путь рендеринга — набор операций и зависимостей (ресурсы + шаги), которые должны завершиться, чтобы браузер смог выполнить первую отрисовку.
+Из чего обычно состоит путь
+Перед первой отрисовкой браузеру обычно нужно:
+
+- Построить \`DOM\` из HTML.
+
+- Загрузить и распарсить CSS → построить \`CSSOM\`.
+
+- Собрать \`Render Tree\` из \`DOM + CSSOM\`.
+
+- Выполнить \`layout\` (геометрия).
+
+- Выполнить \`paint\` (рисование), иногда \`composite\`.
+
+Что чаще всего “блокирует” критический путь
+
+- CSS как render-blocking
+
+- Пока стили не готовы, браузер не хочет рисовать страницу “голой”.
+
+- Синхронный JS в неподходящем месте
+
+- \`<script>\` без \`defer/async\` может остановить парсинг HTML.
+
+- Скрипт может запросить стили/размеры (\`getComputedStyle\`, \`offsetHeight\`) и вынудить браузер синхронно “догонять” расчёты.
+
+Как обычно оптимизируют (идея, без “магии”)
+
+- Уменьшают и дробят CSS:
+
+- критические стили для первого экрана — быстрее,
+
+- остальное — позже.
+
+- Скрипты делают неблокирующими:
+
+- \`defer\` для большинства скриптов,
+
+- \`async\` для независимых.
+
+- Откладывают некритичные ресурсы:
+
+- изображения ниже первого экрана (\`loading="lazy"\`),
+
+- аналитика/виджеты — после первого рендера.
+
+Мини-пример: \`defer\` как типичная оптимизация
+
+\`defer\` позволяет браузеру продолжать строить \`DOM\`, а скрипт выполнится позже, когда HTML уже распарсен.
+Вывод: критический путь рендеринга — это то, что влияет на скорость появления первого полезного контента. Его оптимизация почти всегда сводится к уменьшению блокирующих CSS/JS и переносу второстепенных вещей “после первого экрана”.`,codeExample:`<script src="/app.js" defer><\/script>`,skills:[`HTML`]},{question:`В каком порядке браузер строит DOM и CSSOM?`,shortAnswer:"`DOM` строится по мере парсинга HTML — потоково, сверху вниз. `CSSOM` строится после загрузки и парсинга CSS-файлов, которые браузер находит в HTML. Эти процессы могут идти параллельно: DOM продолжает строиться, пока качается CSS. Но для создания `Render Tree` и первой корректной отрисовки обычно нужен уже готовый `CSSOM`, поэтому стили считаются блокирующими рендер.",longAnswer:`Важно разделять “строим” и “можем отрисовать”.
+1) DOM: потоково при чтении HTML
+Браузер читает HTML и сразу добавляет узлы в \`DOM\`.
+
+- порядок: от начала документа к концу
+
+- если встречается \`<script>\` без \`defer/async\`, парсинг DOM может остановиться до выполнения скрипта
+
+2) CSSOM: после загрузки CSS
+Когда браузер встречает CSS, он начинает загрузку и затем парсит его в \`CSSOM\`.
+
+- Определение: CSSOM — структура, содержащая CSS-правила и позволяющая вычислить итоговые стили.
+
+- CSS может грузиться параллельно с построением DOM, но CSSOM появится только после получения и парсинга CSS.
+
+3) Ключевая зависимость: Render Tree требует и DOM, и CSSOM
+Даже если \`DOM\` уже частично готов, браузеру для визуального дерева обычно нужен и \`CSSOM\`.
+
+- \`Render Tree\` строится из:
+
+- узлов DOM, которые отображаются,
+
+- рассчитанных стилей на основе CSSOM
+
+4) Что это означает на практике
+
+- \`DOM\` может быть “почти готов”, но отрисовка задерживается из-за CSS.
+
+- Неправильно подключённые стили (много, тяжёлые, в начале) могут сдвинуть \`FCP/LCP\`.
+
+- Скрипт может зависеть от CSS (например, измерять размеры), и тогда браузеру придётся синхронно дождаться стилей.
+
+Мини-пример зависимости от стилей
+
+Вывод: браузер строит \`DOM\` во время парсинга HTML, а \`CSSOM\` — после загрузки и парсинга CSS. Для корректной визуальной сборки (render tree → layout → paint) обычно нужны оба, поэтому CSS часто влияет на скорость первого рендера.`,codeExample:`// запрос размеров может заставить браузер завершить расчёты стилей/лейаута
+const h = document.querySelector('.card').offsetHeight;`,skills:[`HTML`]},{question:`Как происходит парсинг HTML и построение DOM-дерева?`,shortAnswer:`Браузер читает HTML-документ последовательно, символ за символом. Он разбивает текст на токены и на их основе создаёт узлы DOM. Каждый HTML-тег становится узлом дерева. В результате формируется иерархическая структура, отражающая вложенность элементов страницы.`,longAnswer:`Парсинг HTML — это фундаментальный процесс, без которого браузер не может отобразить страницу.
+Определение
+DOM (Document Object Model) — это объектное представление HTML-документа в виде дерева, с которым может работать JavaScript.
+Этапы парсинга HTML
+
+- Токенизация
+HTML-код разбивается на токены:
+
+- открывающие теги
+
+- закрывающие теги
+
+- текстовые узлы
+
+- Создание узлов
+Для каждого токена создаётся соответствующий DOM-узел.
+
+- Формирование иерархии
+Узлы добавляются в дерево с учётом вложенности тегов.
+
+- Обработка ошибок
+Браузер умеет исправлять некорректный HTML, автоматически закрывая или переставляя теги.
+
+Пример
+HTML:
+
+Результат:
+
+- \`div\` — родительский узел
+
+- \`p\` — дочерний узел
+
+- \`Текст\` — текстовый узел
+
+Взаимодействие с JavaScript
+DOM-дерево доступно через \`document\`, что позволяет:
+
+- читать элементы
+
+- изменять структуру страницы
+
+- добавлять и удалять узлы
+
+Вывод
+Парсинг HTML и построение DOM — основа работы браузера. Понимание этого процесса помогает осознанно работать с DOM и избегать неэффективных операций.`,codeExample:`<div>
+  <p>Текст</p>
+</div>`,skills:[`HTML`]},{question:`Какие атрибуты загрузки скриптов существуют в HTML?`,shortAnswer:"HTML предоставляет атрибуты `async` и `defer` для управления загрузкой скриптов. По умолчанию скрипты загружаются и выполняются синхронно, блокируя парсинг HTML. Атрибут `async` позволяет загружать скрипт асинхронно и выполнять его сразу после загрузки. Атрибут `defer` откладывает выполнение скрипта до завершения парсинга HTML.",longAnswer:`Способ подключения скриптов напрямую влияет на скорость загрузки и корректность работы страницы.
+Определение
+Атрибуты загрузки скриптов — это параметры тега \`<script>\`, которые определяют, когда и как загружается и выполняется JavaScript-код.
+Основные варианты загрузки
+
+- Синхронная загрузка (по умолчанию)
+
+- Парсинг HTML останавливается
+
+- Скрипт загружается и сразу выполняется
+
+- async
+
+- Скрипт загружается параллельно с HTML
+
+- Выполняется сразу после загрузки
+
+- Порядок выполнения между несколькими \`async\`-скриптами не гарантирован
+
+- defer
+
+- Скрипт загружается параллельно
+
+- Выполняется после полного парсинга HTML
+
+- Порядок выполнения сохраняется
+
+Пример
+
+\`analytics.js\` выполнится сразу после загрузки, а \`app.js\` — после построения DOM.
+Вывод
+Правильный выбор атрибутов загрузки скриптов помогает ускорить загрузку страницы и избежать ошибок, связанных с доступом к DOM.`,codeExample:`<script src="analytics.js" async><\/script>
+<script src="app.js" defer><\/script>`,skills:[`HTML`]},{question:`Чем отличаются async и defer при подключении скриптов?`,shortAnswer:"`async` и `defer` позволяют загружать скрипты без блокировки HTML, но ведут себя по-разному. `async` выполняет скрипт сразу после загрузки, независимо от состояния DOM. `defer` выполняет скрипт только после завершения парсинга HTML. Также `defer` сохраняет порядок выполнения скриптов, а `async` — нет.",longAnswer:`Оба атрибута используются для оптимизации загрузки JavaScript, но подходят для разных задач.
+Основное различие
+\`async\` ориентирован на независимые скрипты, а \`defer\` — на скрипты, работающие с DOM.
+Поведение async
+
+- Скрипт загружается параллельно HTML
+
+- Выполняется сразу после загрузки
+
+- Может выполниться до завершения построения DOM
+
+- Не гарантирует порядок выполнения
+
+Поведение defer
+
+- Скрипт загружается параллельно HTML
+
+- Выполняется после завершения парсинга HTML
+
+- DOM полностью доступен
+
+- Порядок выполнения сохраняется
+
+Пример использования
+
+\`vendor.js\` выполнится перед \`app.js\`, даже если загрузится позже.
+Практические рекомендации
+
+- \`async\` — аналитика, трекеры, независимые скрипты
+
+- \`defer\` — основной код приложения, работа с DOM
+
+Вывод
+Выбор между \`async\` и \`defer\` зависит от того, нужен ли доступ к DOM и важен ли порядок выполнения скриптов.`,codeExample:`<script src="vendor.js" defer><\/script>
+<script src="app.js" defer><\/script>`,skills:[`HTML`]},{question:`Как влияет синхронная загрузка скриптов на рендеринг страницы?`,shortAnswer:`Синхронные скрипты блокируют парсинг HTML до момента их загрузки и выполнения. Пока скрипт не выполнится, браузер не может продолжить построение DOM. Это замедляет первый рендер страницы и может вызывать задержки отображения контента. Чем больше таких скриптов, тем хуже воспринимаемая производительность.`,longAnswer:`По умолчанию все скрипты в HTML загружаются синхронно, если не указаны специальные атрибуты.
+Что означает синхронная загрузка
+Синхронная загрузка означает, что браузер:
+
+- останавливает парсинг HTML
+
+- загружает JavaScript-файл
+
+- выполняет код
+
+- только после этого продолжает обработку HTML
+
+Почему это блокирует рендеринг
+
+- Остановка парсинга DOM
+Пока скрипт не выполнен, DOM-дерево не может быть построено полностью.
+
+- Блокировка render tree
+Без DOM и CSSOM браузер не может сформировать render tree.
+
+- Задержка первого отображения
+Пользователь дольше видит пустую страницу или частично загруженный контент.
+
+Пример
+
+Текст внутри \`<p>\` не будет обработан, пока \`heavy.js\` не загрузится и не выполнится.
+Практические рекомендации
+
+- Использовать \`defer\` для основного кода
+
+- Выносить критичные скрипты в конец HTML
+
+- Минимизировать и объединять JavaScript-файлы
+
+Вывод
+Синхронные скрипты сильно влияют на скорость рендеринга и должны использоваться только там, где это действительно необходимо.`,codeExample:`<script src="heavy.js"><\/script>
+<p>Контент страницы</p>`,skills:[`HTML`]},{question:`В какой момент браузер получает HTML и как формируются DOM и CSSOM?`,shortAnswer:`HTML браузер получает после выполнения HTTP-запроса к серверу. Сразу после получения он начинает парсинг документа. В процессе парсинга формируется DOM-дерево. Параллельно браузер загружает CSS и строит CSSOM. Эти структуры используются для дальнейшего рендеринга страницы.`,longAnswer:`После установки сетевого соединения браузер начинает получать данные, из которых затем формируется визуальное представление страницы.
+Получение HTML
+HTML приходит в ответ на HTTP-запрос. Браузер не ждет загрузки всего документа целиком, а начинает обрабатывать его по мере получения данных.
+Формирование DOM
+DOM создается в процессе парсинга HTML:
+
+- HTML разбирается токен за токеном.
+
+- Для каждого элемента создается узел DOM.
+
+- Узлы связываются в древовидную структуру.
+
+DOM представляет логическую структуру документа и используется JavaScript для работы с элементами страницы.
+Формирование CSSOM
+CSSOM создается отдельно на основе CSS-файлов и inline-стилей:
+
+- Браузер загружает все CSS-ресурсы.
+
+- Каждый CSS-файл парсится в объектную модель.
+
+- CSSOM описывает, какие стили применяются к каким элементам.
+
+Связь DOM и CSSOM
+DOM и CSSOM объединяются для построения render tree, которая используется при отрисовке страницы. Без CSSOM браузер не может корректно отобразить элементы, поэтому CSS блокирует рендеринг.
+Вывод
+HTML используется для построения DOM, CSS — для создания CSSOM. Эти структуры формируются на раннем этапе загрузки страницы и являются основой для дальнейшего рендеринга и работы JavaScript.`,skills:[`HTML`]},{question:`Чем DOM отличается от Shadow DOM?`,shortAnswer:`DOM — это общее дерево элементов страницы, доступное для JavaScript и CSS. Shadow DOM — это изолированное поддерево, привязанное к конкретному элементу. Стили и разметка внутри Shadow DOM не влияют на остальную страницу. Это позволяет создавать переиспользуемые и защищенные компоненты. Shadow DOM активно используется в Web Components.`,longAnswer:`В браузере существует несколько уровней работы с разметкой, и Shadow DOM был введен для решения проблем глобальности DOM и CSS.
+Обычный DOM
+DOM представляет собой единую структуру документа:
+
+- все элементы находятся в одном дереве
+
+- CSS по умолчанию глобален
+
+- JavaScript может получить доступ к любому узлу
+
+Это удобно, но в больших приложениях приводит к конфликтам стилей и непредсказуемому поведению.
+Shadow DOM
+Shadow DOM создает изолированное поддерево внутри элемента:
+
+- стили внутри не протекают наружу
+
+- внешние стили не влияют на содержимое Shadow DOM
+
+- структура скрыта от прямого обхода DOM
+
+Пример создания Shadow DOM:
+
+Основные различия
+Ключевые отличия можно описать так:
+
+- DOM глобален, Shadow DOM изолирован
+
+- CSS в DOM влияет на всю страницу, в Shadow DOM — только на компонент
+
+- Shadow DOM предназначен для компонентного подхода
+
+Вывод
+Shadow DOM решает проблему изоляции разметки и стилей. Он особенно полезен при создании переиспользуемых UI-компонентов и лежит в основе Web Components.`,codeExample:`const host = document.querySelector('#app')
+const shadowRoot = host.attachShadow({ mode: 'open' })
+
+shadowRoot.innerHTML = \`<p>Shadow content</p>\``,skills:[`HTML`]},{question:`Что входит в базовую структуру HTML-документа?`,shortAnswer:"Базовая структура HTML-документа включает `<!DOCTYPE>`, корневой элемент `<html>`, а также секции `<head>` и `<body>`.\n`<!DOCTYPE>` сообщает браузеру, что используется современный стандарт HTML.\nВ `<head>` размещаются метаданные, а в `<body>` — контент страницы.\nБез этой структуры документ может отображаться некорректно.",longAnswer:`HTML-документ имеет строгую минимальную структуру, которая нужна браузеру для корректного парсинга и рендеринга страницы.
+Определение
+Базовая структура HTML-документа — это минимальный набор элементов, который определяет тип документа, его метаданные и отображаемый контент.
+Основные элементы структуры
+Перед отображением страницы браузер последовательно обрабатывает следующие части:
+
+- \`<!DOCTYPE html>\`
+
+- Указывает, что документ соответствует стандарту HTML5
+
+- Включает стандартный режим рендеринга (standards mode)
+
+- \`<html>\`
+
+- Корневой элемент всего документа
+
+- Обычно содержит атрибут \`lang\`, например \`lang=u"\`
+
+- \`<head>\`
+
+- Содержит служебную информацию
+
+- Включает:
+
+- \`<meta charset="UTF-8">\`
+
+- \`<title>\`
+
+- \`<meta name="viewport">\`
+
+- ссылки на стили и другие ресурсы
+
+- \`<body>\`
+
+- Содержит весь визуальный и интерактивный контент страницы
+
+- Именно этот контент видит пользователь
+
+Пример минимальной структуры
+
+Вывод
+Базовая структура HTML — это фундамент любой веб-страницы. Без нее браузер не сможет корректно интерпретировать документ, что напрямую влияет на отображение, доступность и SEO.`,codeExample:`<!DOCTYPE html>
+<html lang=u">
+  <head>
+    <meta charset="UTF-8">
+    <title>Заголовок страницы</title>
+  </head>
+  <body>
+    <h1>Контент страницы</h1>
+  </body>
+</html>`,skills:[`HTML`]},{question:`Что такое семантическая верстка и для чего она используется?`,shortAnswer:"Семантическая верстка — это использование HTML-тегов по их смысловому назначению.\nОна помогает браузерам и поисковым системам лучше понимать структуру страницы.\nТакже она улучшает доступность для скринридеров.\nВместо универсальных `<div>` используются теги вроде `<header>`, `<main>`, `<article>`.",longAnswer:`HTML предоставляет теги, которые описывают не внешний вид, а смысл содержимого. Семантическая верстка строится на использовании именно таких элементов.
+Определение
+Семантическая верстка — это подход к HTML-разметке, при котором элементы выбираются исходя из их смысловой роли, а не визуального оформления.
+Примеры семантических тегов
+На практике семантика реализуется через специализированные HTML-элементы:
+
+- \`<header>\` — шапка страницы или раздела
+
+- \`<nav>\` — навигация
+
+- \`<main>\` — основной контент страницы
+
+- \`<section>\` — логический раздел
+
+- \`<article>\` — независимый контентный блок
+
+- \`<footer>\` — подвал страницы или секции
+
+Чем лучше семантика
+Использование семантических тегов дает несколько преимуществ:
+
+- Улучшает читаемость HTML-кода
+
+- Помогает поисковым системам понимать структуру страницы
+
+- Повышает доступность для screen reader
+
+- Упрощает поддержку и развитие проекта
+
+Пример
+
+Вывод
+Семантическая верстка делает HTML-документ осмысленным. Это улучшает доступность, SEO и качество поддержки кода, поэтому должна использоваться по умолчанию.`,codeExample:`<main>
+  <article>
+    <header>
+      <h1>Заголовок статьи</h1>
+    </header>
+    <p>Текст статьи</p>
+  </article>
+</main>`,skills:[`HTML`]},{question:`Как семантическая верстка влияет на SEO?`,shortAnswer:`Семантическая верстка помогает поисковым системам лучше понимать структуру и смысл контента.
+Поисковые роботы используют HTML-теги для определения важности блоков страницы.
+Правильные теги улучшают индексацию и могут положительно влиять на ранжирование.
+Сама по себе семантика не гарантирует высокий SEO, но является важной основой.`,longAnswer:`Поисковые системы анализируют HTML-код страницы, чтобы понять, какой контент на ней размещен и какую роль он играет.
+Как поисковики используют семантику
+При индексации страницы поисковые роботы обращают внимание на:
+
+- Структуру документа
+
+- Иерархию заголовков
+
+- Типы контентных блоков
+
+- Основной и вспомогательный контент
+
+Семантические теги дают поисковику дополнительные сигналы о назначении элементов.
+Примеры влияния
+
+- \`<main>\` помогает определить основной контент страницы
+
+- \`<article>\` указывает на самостоятельную единицу контента
+
+- \`<nav>\` отделяет навигацию от основного текста
+
+- \`<header>\` и \`<footer>\` помогают выделить служебные зоны
+
+Почему это важно
+Если страница сверстана только с помощью \`<div>\`, поисковику сложнее понять ее структуру.
+Семантическая разметка снижает неоднозначность интерпретации контента.
+Пример
+
+Вывод
+Семантическая верстка не заменяет SEO-оптимизацию, но создает правильный фундамент. Она улучшает понимание страницы поисковыми системами и повышает качество индексации.`,codeExample:`<article>
+  <h1>Как работает кеширование</h1>
+  <p>Основной текст статьи</p>
+</article>`,skills:[`HTML`]},{question:`Что такое base URL (base tag) и для чего он используется?`,shortAnswer:"`<base>` задает базовый URL для всех относительных ссылок на странице.\nОн указывается внутри `<head>`.\nПосле его задания браузер использует его как основу для путей.\nЭто упрощает работу с ссылками и ресурсами.",longAnswer:`В HTML существует специальный тег, который влияет на то, как браузер интерпретирует относительные пути.
+Определение
+base tag — это HTML-тег, который задает базовый URL для всех относительных ссылок в документе.
+Как работает base tag
+После указания \`<base>\` браузер:
+
+- Берет указанный URL как базовый
+
+- Применяет его ко всем относительным ссылкам
+
+- Использует его для \`<a>\`, \`<img>\`, \`<link>\`, \`<script>\`
+
+Пример:
+
+Фактический URL будет:
+\`https://example.com/app/page.html\`
+Где применяется
+\`<base>\` используется:
+
+- В SPA с вложенными роутами
+
+- В проектах с относительными путями
+
+- При генерации HTML на сервере
+
+Ограничения и риски
+
+- В документе может быть только один \`<base>\`
+
+- Может неожиданно повлиять на все ссылки
+
+- Требует аккуратного использования
+
+Вывод
+\`base\` — мощный, но опасный инструмент. Он упрощает работу с относительными путями, но требует строгого контроля, чтобы не сломать навигацию.`,codeExample:`<head>
+  <base href="https://example.com/app/">
+</head>
+
+<a href="page.html"></a>`,skills:[`HTML`]},{question:`Зачем использовать семантические теги с точки зрения доступности и поддержки кода?`,shortAnswer:`Семантические теги делают структуру страницы понятной не только для разработчиков, но и для вспомогательных технологий. Скринридеры используют их для навигации по странице. Такой HTML легче читать и поддерживать. Семантика снижает количество костылей и улучшает качество кода. Это важная основа доступных интерфейсов.`,longAnswer:`Семантические теги описывают смысл содержимого, а не только его внешний вид.
+Что такое семантические теги
+Семантические теги — это HTML-элементы, которые явно указывают роль контента.
+Примеры:
+
+- \`header\` — вводная часть страницы или секции
+
+- \`nav\` — навигация
+
+- \`main\` — основной контент
+
+- \`section\` — логический раздел
+
+- \`article\` — самостоятельный блок контента
+
+- \`footer\` — подвал
+
+Влияние на доступность
+С точки зрения accessibility семантика критически важна.
+Преимущества:
+
+- скринридеры понимают структуру страницы
+
+- пользователи могут быстро перемещаться между разделами
+
+- уменьшается необходимость в \`aria\`-атрибутах
+
+Влияние на поддержку кода
+Для разработчиков семантическая разметка:
+
+- делает HTML самодокументируемым
+
+- упрощает чтение и ревью
+
+- снижает риск ошибок при доработках
+
+Пример:
+
+Вывод
+Семантические теги улучшают доступность интерфейсов и делают код более понятным и поддерживаемым.`,codeExample:`<nav>
+  <!-- навигация -->
+</nav>
+<main>
+  <article>
+    <!-- контент -->
+  </article>
+</main>`,skills:[`HTML`]},{question:`Какую роль семантическая вёрстка играет для поисковых систем?`,shortAnswer:`Семантическая вёрстка помогает поисковым системам лучше понимать структуру и смысл страницы. Поисковые роботы используют теги для определения главного контента, навигации и второстепенных блоков. Это улучшает качество индексации. Семантика не гарантирует высокий рейтинг, но создаёт правильную основу для SEO. Она повышает предсказуемость обработки страницы.`,longAnswer:`Поисковые системы анализируют HTML-код, чтобы определить, какой контент является наиболее важным.
+Как поисковики используют семантику
+Семантические теги помогают поисковым роботам:
+
+- определить основной контент страницы
+
+- отличить навигацию от содержимого
+
+- понять иерархию разделов
+
+Например:
+
+- \`main\` указывает главный контент
+
+- \`article\` обозначает самостоятельный материал
+
+- \`header\` и \`footer\` задают контекст
+
+Практическая польза для SEO
+Семантическая вёрстка:
+
+- улучшает корректность индексации
+
+- снижает вероятность неправильной интерпретации страницы
+
+- облегчает работу с микроразметкой
+
+Важно:
+
+- семантика дополняет SEO, но не заменяет контент и ссылки
+
+- неправильная структура может ухудшить понимание страницы
+
+Связь с доступностью
+Поисковые роботы и скринридеры анализируют структуру схожим образом, поэтому улучшение доступности часто положительно влияет и на SEO.
+Вывод
+Семантическая вёрстка помогает поисковым системам правильно интерпретировать структуру и смысл страницы, улучшая качество индексации.`,skills:[`HTML`]},{question:`Какие браузеры необходимо поддерживать в современных frontend-проектах и почему?`,shortAnswer:`В современных проектах обычно поддерживаются последние версии Chrome, Edge, Firefox и Safari. Эти браузеры покрывают большинство пользователей. Поддержка старых браузеров увеличивает сложность и стоимость разработки. Решение о поддержке всегда зависит от требований бизнеса. Чем шире поддержка, тем больше ограничений в коде.`,longAnswer:`Выбор поддерживаемых браузеров напрямую влияет на архитектуру frontend-приложения и используемые технологии.
+Базовый набор браузеров
+В большинстве коммерческих проектов поддерживаются:
+
+- Chrome
+
+- Edge (Chromium)
+
+- Firefox
+
+- Safari
+
+Это объясняется их высокой долей рынка и регулярными обновлениями.
+Почему не поддерживают старые браузеры
+Поддержка устаревших браузеров:
+
+- ограничивает использование современных API
+
+- требует полифиллов и костылей
+
+- усложняет тестирование и поддержку
+
+Поэтому такие браузеры поддерживаются только при строгих требованиях заказчика.
+Как принимается решение
+Обычно учитываются:
+
+- аналитика пользователей
+
+- требования заказчика
+
+- корпоративные стандарты
+
+- стоимость поддержки
+
+Инструменты для совместимости
+Для кроссбраузерности применяются:
+
+- transpilation через сборщик
+
+- polyfill для missing API
+
+- автопрефиксы для CSS
+
+Краткий вывод
+Поддержка браузеров — это компромисс между охватом пользователей и сложностью разработки.`,skills:[`HTML`]},{question:`Что изменится, если заменить div на span с точки зрения отображения и отступов?`,shortAnswer:"`div` — блочный элемент, а `span` — строчный. `div` занимает всю доступную ширину и начинается с новой строки. `span` располагается внутри строки и не ломает поток текста. Вертикальные margin у `span` не работают так же, как у `div`. Замена может существенно изменить внешний вид страницы.",longAnswer:`Разница между \`div\` и \`span\` напрямую связана с их типом отображения и участием в потоке документа.
+Определение
+div — блочный элемент, предназначенный для структурирования layout.
+span — строчный элемент, используемый для выделения части текста или inline-контента.
+Поведение в потоке документа
+При замене \`div\` на \`span\` изменяется следующее:
+
+- элемент перестаёт начинаться с новой строки
+
+- ширина больше не растягивается на весь контейнер
+
+- элемент становится частью строки текста
+
+Работа с отступами
+С точки зрения margin:
+
+- у \`div\` корректно работают все margin
+
+- у \`span\` вертикальные \`margin-top\` и \`margin-bottom\` визуально не влияют на layout
+
+- горизонтальные margin у \`span\` применяются нормально
+
+Практический пример
+
+Во втором случае элемент будет вести себя как часть текста, даже при одинаковых стилях.
+Краткий вывод
+Замена \`div\` на \`span\` меняет модель layout элемента и может сломать отступы и структуру страницы.`,codeExample:`<div class="box">Текст</div>
+<span class="box">Текст</span>`,skills:[`HTML`]},{question:`Чем принципиально отличается div от span?`,shortAnswer:"`div` и `span` отличаются типом отображения. `div` является блочным элементом, `span` — строчным. `div` используется для построения структуры страницы. `span` применяется для локального выделения текста или inline-элементов. Их поведение в layout принципиально разное.",longAnswer:`Несмотря на внешнюю простоту, различие между \`div\` и \`span\` является фундаментальным для HTML-вёрстки.
+Основное различие
+Ключевое отличие заключается в значении свойства \`display\`:
+
+- \`div\` имеет \`display: block\`
+
+- \`span\` имеет \`display: inline\`
+
+Последствия этого различия
+Из-за этого:
+
+- \`div\` всегда начинается с новой строки
+
+- \`div\` занимает всю доступную ширину
+
+- \`span\` располагается внутри строки
+
+- \`span\` подстраивается под содержимое
+
+Назначение элементов
+Чаще всего:
+
+- \`div\` используется для контейнеров, секций и layout
+
+- \`span\` используется для стилизации части текста или иконок
+
+Возможность изменения поведения
+Оба элемента можно изменить через CSS:
+
+Однако семантическое назначение элементов от этого не меняется.
+Краткий вывод
+\`div\` и \`span\` отличаются типом отображения и ролью в layout, и выбор между ними должен быть осознанным.`,codeExample:`span {
+  display: block;
+}`,skills:[`HTML`]},{question:`Почему поведение CSS и JavaScript может отличаться в разных браузерах?`,shortAnswer:`Разные браузеры используют разные движки. Реализация стандартов может отличаться. Некоторые API поддерживаются не полностью или по-разному. Также влияют баги конкретных браузеров. Поэтому поведение CSS и JavaScript может различаться.`,longAnswer:`Несовпадения в поведении браузеров — нормальная часть frontend-разработки.
+Разные движки
+Основные браузерные движки:
+
+- Blink — Chrome, Edge
+
+- Gecko — Firefox
+
+- WebKit — Safari
+
+Каждый движок по-своему реализует спецификации.
+Реализация стандартов
+Причины различий:
+
+- неполная поддержка стандартов
+
+- разная интерпретация спецификаций
+
+- экспериментальные API
+
+- устаревшие реализации
+
+CSS-особенности
+В CSS различия проявляются в:
+
+- flexbox и grid
+
+- отступах и размерах
+
+- дефолтных стилях
+
+JavaScript-особенности
+В JS отличия связаны с:
+
+- поддержкой новых API
+
+- обработкой событий
+
+- таймингами и оптимизациями
+
+Краткий вывод
+Кроссбраузерные различия возникают из-за разных движков и реализаций стандартов, поэтому их нужно учитывать и тестировать.`,skills:[`HTML`]},{question:`Какие особенности чаще всего возникают при работе с Safari?`,shortAnswer:`Safari часто отличается поведением CSS и JavaScript по сравнению с Chromium-браузерами. У него есть ограничения и баги в layout, событиях и работе с API. Некоторые современные возможности появляются позже или работают иначе. Это требует дополнительного тестирования и обходных решений. Safari остаётся критичным браузером из-за iOS-экосистемы.`,longAnswer:`Safari основан на движке WebKit, и его поведение имеет ряд характерных особенностей, которые важно учитывать при разработке.
+Особенности CSS
+При работе со стилями часто возникают следующие проблемы:
+
+- нестабильное поведение flexbox и grid в сложных layout
+
+- отличия в расчётах \`height\`, \`min-height\` и \`vh\`
+
+- особенности работы \`position: sticky\`
+
+- различия в дефолтных стилях элементов
+
+Особенности JavaScript
+В JavaScript чаще всего сталкиваются с:
+
+- задержкой поддержки новых API
+
+- отличиями в работе \`Date\`, \`Intl\`, \`IntersectionObserver\`
+
+- проблемами с \`requestAnimationFrame\`
+
+- ограничениями WebKit в оптимизациях
+
+Мобильный Safari
+Особенно много нюансов связано с iOS:
+
+- адресная строка влияет на \`100vh\`
+
+- ограниченный доступ к системным API
+
+- строгие правила автоплея медиа
+
+- особенности обработки touch-событий
+
+Инструменты отладки
+Отладка Safari сложнее, потому что:
+
+- DevTools менее функциональны
+
+- удалённая отладка iOS требует macOS
+
+- воспроизведение багов может быть нестабильным
+
+Практические рекомендации
+На практике обычно:
+
+- тестируют Safari отдельно
+
+- избегают edge-case CSS-решений
+
+- используют проверенные polyfill
+
+- закладывают время на Safari-фиксы
+
+Краткий вывод
+Safari требует отдельного внимания из-за особенностей WebKit и iOS, и его поведение нужно учитывать на этапе проектирования интерфейса.`,skills:[`HTML`]},{question:`Как семантическая разметка влияет на доступность интерфейса?`,shortAnswer:"Семантическая разметка помогает браузерам и вспомогательным технологиям понимать назначение элементов страницы. Скринридеры могут корректно озвучивать контент и навигацию, если используются теги `header`, `nav`, `main`, `section`, `article`. Это делает интерфейс доступным для пользователей с ограничениями. Также семантика улучшает структуру документа и поддержку кода.",longAnswer:`Семантическая разметка — это использование HTML-элементов по их смыслу, а не только по визуальному поведению.
+1) Что такое семантическая разметка
+Определение: Semantic HTML — использование HTML-тегов, которые отражают смысл и роль содержимого страницы.
+Примеры:
+
+- \`header\` — шапка страницы
+
+- \`nav\` — навигация
+
+- \`main\` — основной контент
+
+- \`article\` — самостоятельный блок контента
+
+- \`footer\` — подвал
+
+2) Как это помогает доступности
+Семантика влияет на:
+
+- Скринридеры:
+
+- могут распознавать разделы страницы
+
+- позволяют быстро переходить между областями
+
+- Навигацию с клавиатуры:
+
+- корректная структура упрощает перемещение
+
+- Accessibility API:
+
+- браузер передаёт корректные роли элементам
+
+3) Что происходит без семантики
+Если использовать только \`div\`:
+
+- Скринридер не понимает структуру.
+
+- Навигация усложняется.
+
+- Требуется больше ARIA-атрибутов.
+
+Пример:
+
+Лучше, чем:
+
+4) Дополнительные преимущества
+
+- Улучшение SEO.
+
+- Упрощение поддержки.
+
+- Более читаемый код.
+
+Вывод: семантическая разметка напрямую влияет на доступность, потому что помогает браузеру и вспомогательным технологиям правильно интерпретировать структуру страницы.`,codeExample:`<nav>
+  <a href="/">Главная</a>
+</nav>
+
+<div class="menu">
+  <a href="/">Главная</a>
+</div>`,skills:[`HTML`]},{question:`Как реализовать offline-first и recovery-сценарий при потере сети?`,shortAnswer:`Offline-first — это архитектурный подход, при котором приложение проектируется так, чтобы работать в первую очередь локально, а синхронизация с сервером происходит при наличии сети. Для реализации используются Service Workers для кэширования критических ресурсов и перехвата сетевых запросов. Данные пользователя сохраняются локально в IndexedDB или localStorage. При восстановлении соединения фоновые задачи (например, Background Sync API) отправляют накопленные данные на сервер, обеспечивая recovery-сценарий.`,longAnswer:`Offline-first — это парадигма разработки, которая ставит локальную работу приложения в приоритет, а связь с сервером рассматривает как опциональное улучшение. Это критически важно для мобильных приложений и веб-приложений, работающих в условиях нестабильного интернета.
+
+Ключевые компоненты реализации
+
+- Service Worker: Скрипт, работающий в фоне браузера. Он выступает в роли прокси-сервера, перехватывая сетевые запросы. Его основная задача в offline-first — обслуживать запросы из кэша, когда сеть недоступна.
+
+- Кэширование (Cache API): Используется для хранения статических ресурсов (HTML, CSS, JS, изображения) и даже ответов API. Стратегии кэширования (например, Cache-First, Network-First) определяют, откуда брать данные в первую очередь.
+
+- Локальное хранилище данных (IndexedDB): Для сохранения пользовательских данных (форм, настроек, состояния приложения) используется IndexedDB — мощная клиентская NoSQL база данных. Она предпочтительнее localStorage для работы с большими объемами структурированных данных.
+
+- Фоновая синхронизация (Background Sync API): Позволяет отложить отправку данных на сервер до момента восстановления сети. Пользователь может совершить действие офлайн, а Service Worker отправит его позже, автоматически.
+
+Практический пример: Сохранение заметки офлайн
+
+Рассмотрим простое приложение для заметок. При потере сети, новая заметка должна сохраниться локально, а при восстановлении соединения — отправиться на сервер.
+
+Recovery-сценарий и обработка конфликтов
+
+Восстановление (recovery) — это не просто отправка накопленных данных. Необходимо предусмотреть:
+
+- Очередь операций: Данные для отправки должны храниться в порядке их создания.
+
+- Обработку конфликтов: Если данные на сервере изменились, пока клиент был офлайн, нужна стратегия разрешения конфликтов (например, "последний выигрывает" или ручное слияние).
+
+- Уведомление пользователя: Интерфейс должен информировать о статусе синхронизации ("Синхронизация...", "Все данные актуальны").
+
+Вывод: Подход offline-first с recovery-сценарием стоит применять в приложениях, где непрерывность работы критична (мобильные приложения, инструменты для полевых работ, редакторы). Он значительно улучшает пользовательский опыт, делая приложение устойчивым к сбоям сети.`,codeExample:`// 1. Регистрация Service Worker в основном скрипте
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+
+// 2. Сохранение заметки в IndexedDB при отправке формы
+async function saveNote(noteData) {
+  // Проверяем онлайн-статус
+  if (!navigator.onLine) {
+    // Сохраняем в локальную базу
+    await saveToIndexedDB('pendingNotes', noteData);
+    // Регистрируем задачу на фоновую синхронизацию
+    if ('sync' in registration) {
+      await registration.sync.register('sync-notes');
+    }
+    alert('Заметка сохранена локально и будет отправлена позже.');
+  } else {
+    // Если онлайн — отправляем сразу
+    await sendToServer(noteData);
+  }
+}
+
+// 3. В Service Worker (sw.js) обрабатываем фоновую синхронизацию
+self.addEventListener('sync', event => {
+  if (event.tag === 'sync-notes') {
+    event.waitUntil(syncNotes()); // Функция отправки данных из IndexedDB
+  }
+});
+
+// 4. Стратегия кэширования для статических файлов (Cache-First)
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});`,skills:[`HTML`]},{question:`Как решать проблемы изменения структуры данных в localStorage между версиями приложения?`,shortAnswer:`Для решения проблем изменения структуры данных в localStorage между версиями приложения необходимо внедрить систему версионирования схемы данных. При запуске приложения следует проверять сохранённую версию данных и применять последовательность функций-миграций для преобразования старого формата в новый. Это позволяет пользователям сохранять свои данные после обновления приложения без потерь. Ключевые шаги: хранение версии, написание миграций, их безопасное выполнение и откат при ошибках.`,longAnswer:`При разработке клиентских веб-приложений, которые используют \`localStorage\` для сохранения состояния, данных пользователя или настроек, рано или поздно возникает необходимость изменить структуру этих данных — добавить новое поле, переименовать существующее или изменить тип значения. Если просто выпустить новую версию приложения, старые данные, сохранённые у пользователей в браузере, могут стать нечитаемыми или привести к ошибкам, что испортит пользовательский опыт. Поэтому нужен механизм плавного обновления данных.
+Основная стратегия: версионирование и миграции
+Идея заключается в том, чтобы хранить вместе с данными номер их версии (например, \`dataVersion: 1\`). При каждом изменении структуры, которое ломает обратную совместимость, версия увеличивается. При запуске приложение проверяет текущую сохранённую версию и, если она меньше ожидаемой, последовательно применяет функции-миграции, которые преобразуют данные из формата версии N в формат версии N+1.
+Практическая реализация
+Рассмотрим пример на JavaScript. Допустим, мы храним объект настроек пользователя. В версии 1 у нас было поле \`userName\`, а в версии 2 мы хотим разбить его на \`firstName\` и \`lastName\`.
+
+Где применяется и важные аспекты
+Такой подход критически важен для любого приложения, которое хранит состояние на клиенте и планирует долгосрочное развитие. Он применяется не только в \`localStorage\`, но и при работе с IndexedDB, файловыми форматами или даже API сервера (хотя там миграции обычно происходят на стороне БД). Ключевые моменты для надёжности:
+
+- Идемпотентность миграций: Миграцию можно применить несколько раз без изменения результата.
+- Обработка ошибок: Если миграция падает, нужно иметь стратегию отката (например, не перезаписывать исходные данные, пока миграция не завершится успешно).
+- Резервное копирование: Перед миграцией можно сохранить сырые данные в отдельном ключе на случай, если что-то пойдёт не так.
+- Тестирование: Миграции должны быть покрыты тестами с реальными данными старых версий.
+Вывод: Используйте версионирование данных и пошаговые миграции, когда ваше приложение развивается и меняет структуру клиентских данных. Это обеспечивает беспроблемное обновление для пользователей и избавляет от необходимости принудительного сброса их localStorage при каждом релизе.`,codeExample:`// Константа с текущей версией схемы данных в приложении
+const CURRENT_DATA_VERSION = 2;
+
+// Функция для получения данных из localStorage
+function getAppData() {
+  const rawData = localStorage.getItem('myAppData');
+  if (!rawData) {
+    // Если данных нет, возвращаем данные по умолчанию с актуальной версией
+    return { dataVersion: CURRENT_DATA_VERSION, firstName: '', lastName: '' };
+  }
+  
+  let data = JSON.parse(rawData);
+  // Если версия не указана, считаем её устаревшей (например, версия 0)
+  const storedVersion = data.dataVersion || 0;
+  
+  // Применяем миграции, если версия устарела
+  if (storedVersion < CURRENT_DATA_VERSION) {
+    data = runMigrations(data, storedVersion);
+  }
+  
+  return data;
+}
+
+// Коллекция функций-миграций
+const migrations = {
+  // Миграция с версии 0 на версию 1 (если версия не хранилась)
+  0: (data) => {
+    // Добавляем поле dataVersion
+    data.dataVersion = 1;
+    return data;
+  },
+  // Миграция с версии 1 на версию 2
+  1: (data) => {
+    // Разбиваем userName на firstName и lastName
+    if (data.userName) {
+      const parts = data.userName.split(' ');
+      data.firstName = parts[0] || '';
+      data.lastName = parts.slice(1).join(' ') || '';
+      delete data.userName;
+    } else {
+      data.firstName = '';
+      data.lastName = '';
+    }
+    data.dataVersion = 2;
+    return data;
+  }
+};
+
+function runMigrations(data, fromVersion) {
+  let migratedData = { ...data };
+  for (let v = fromVersion; v < CURRENT_DATA_VERSION; v++) {
+    if (migrations[v]) {
+      migratedData = migrations[v](migratedData);
+    } else {
+      console.error(\`Migration from version \${v} not found!\`);
+      // В случае ошибки можно сбросить данные или выбросить исключение
+      break;
+    }
+  }
+  // Сохраняем обновлённые данные обратно в хранилище
+  localStorage.setItem('myAppData', JSON.stringify(migratedData));
+  return migratedData;
+}`,skills:[`HTML`]},{question:`Какие ограничения есть у браузера при работе с файловой системой через JavaScript?`,shortAnswer:`JavaScript в браузере не имеет прямого доступа к файловой системе пользователя из соображений безопасности. Это предотвращает чтение или запись файлов без явного разрешения пользователя. Для работы с файлами используются специальные API, такие как File System Access API, которые требуют взаимодействия с пользователем (например, через диалог выбора файла). Также можно использовать ограниченное хранилище (например, IndexedDB) для данных приложения, но не для произвольных файлов на диске.`,longAnswer:`Браузеры выполняют JavaScript в строгой песочнице (sandbox), которая изолирует веб-страницы от операционной системы и файловой системы пользователя. Это фундаментальный принцип безопасности, предотвращающий вредоносным сайтам красть или повреждать файлы.
+
+Основные ограничения
+
+- Нет прямого доступа к путям файлов: JavaScript не может читать или записывать файлы по произвольным путям (например, \`C:/Users/...\`).
+
+- Требуется явное действие пользователя: Работа с файлами возможна только после взаимодействия пользователя, например, через элемент \`<input type="file">\` или вызов диалога выбора файла.
+
+- Доступ только к выбранным файлам: Даже после выбора, скрипт получает доступ только к конкретным выбранным файлам, а не ко всей директории.
+
+- Ограниченное постоянное хранилище: Для сохранения данных между сессиями используются API вроде IndexedDB или localStorage, но они имеют квоты (обычно несколько мегабайт) и не предоставляют доступ к реальной файловой системе.
+
+Современные API для работы с файлами
+
+С появлением File System Access API (ранее известного как Native File System API) у разработчиков появилась возможность запрашивать у пользователя разрешение на доступ к конкретным файлам или директориям и сохранять это разрешение для последующих сессий.
+
+Где применяется
+
+Ограниченный доступ к файловой системе используется во всех веб-приложениях, которые работают с файлами: онлайн-редакторы (текстовые, графические), инструменты для обработки данных, IDE в браузере (например, CodeSandbox, StackBlitz). Безопасная модель позволяет пользователям контролировать, к каким файлам получает доступ сайт.
+
+Вывод: Ограничения доступа к файловой системе — это ключевой элемент безопасности браузера, защищающий пользователей. Для легитимной работы с файлами следует использовать современные API, которые запрашивают явное разрешение и предоставляют контролируемый доступ только к выбранным ресурсам.`,codeExample:`// Пример запроса на выбор файла
+async function pickFile() {
+  try {
+    // Открываем диалог выбора файла
+    [fileHandle] = await window.showOpenFilePicker();
+    // Получаем сам файл
+    const file = await fileHandle.getFile();
+    const contents = await file.text();
+    console.log(contents);
+  } catch (err) {
+    console.error('Пользователь отменил выбор или произошла ошибка:', err);
+  }
+}
+
+// Пример записи в файл (требуется разрешение на запись)
+async function saveFile(contents) {
+  const options = {
+    types: [{
+      description: 'Text files',
+      accept: {'text/plain': ['.txt']},
+    }],
+  };
+  const handle = await window.showSaveFilePicker(options);
+  const writable = await handle.createWritable();
+  await writable.write(contents);
+  await writable.close();
+}`,skills:[`HTML`]},{question:`Почему при скачивании больших файлов через fetch возникает проблема переполнения памяти?`,shortAnswer:`При обычном вызове методов fetch().then(res => res.json()) или res.blob() браузер загружает весь ответ в память перед тем, как передать его в ваш код. Если файл весит гигабайты, он целиком помещается в оперативную память, что может исчерпать доступные ресурсы и привести к падению вкладки или приложения. Чтобы избежать этого, нужно работать с ответом как с потоком (stream), обрабатывая данные по частям по мере их поступления с сервера, не накапливая их все сразу.`,longAnswer:`Когда вы используете \`fetch\` для получения данных, браузер по умолчанию буферизует весь ответ тела (body) в памяти. Это удобно для небольших JSON-ответов или изображений, но становится проблемой для больших файлов, таких как видео, архивы или дампы баз данных.
+
+Почему происходит переполнение памяти?
+
+Методы \`response.json()\`, \`response.text()\` или \`response.blob()\` читают всё тело ответа и преобразуют его в соответствующий формат, полностью сохраняя результат в памяти JavaScript. Если файл размером 2 ГБ, то перед обработкой в вашем коде браузер должен выделить как минимум 2 ГБ оперативной памяти под этот буфер. Это может превысить лимиты памяти, доступные для вкладки браузера, и привести к ошибке "out of memory" или просто к зависанию.
+
+Решение: Использование Streams API
+
+Современный API \`fetch\` возвращает объект \`Response\`, у которого свойство \`body\` является \`ReadableStream\`. Этот поток позволяет читать данные чанками (кусками) по мере их поступления с сервера. Вы можете обрабатывать каждый чанк и сразу освобождать память, не дожидаясь загрузки всего файла.
+
+Практический пример
+
+Вот как можно скачать большой файл и сохранить его на диск пользователя с помощью потоков, избегая переполнения памяти:
+
+Где это применяется?
+
+- Стриминг видео или аудио в веб-приложениях.
+
+- Загрузка и предварительный просмотр больших логов или CSV-файлов.
+
+- Постепенная обработка данных с сервера (например, прогрессивная загрузка JSON).
+
+- Клиентская обработка файлов, которые не помещаются в память целиком (шифрование, хэширование).
+
+Вывод: Используйте Streams API через \`response.body\` при работе с потенциально большими ответами от сервера, чтобы обрабатывать данные по частям и избегать переполнения памяти. Это критически важно для создания отзывчивых веб-приложений, работающих с большими объёмами данных.`,codeExample:`async function downloadLargeFile(url, filename) {
+  // Запрашиваем ресурс
+  const response = await fetch(url);
+  // Получаем поток из тела ответа
+  const readableStream = response.body;
+  
+  // Создаём поток для записи в файл через File System Access API
+  // (в реальном коде нужна проверка поддержки браузером)
+  const fileStream = await createWritableStream(filename);
+  
+  // Потоково копируем данные из ответа в файл
+  await readableStream.pipeTo(fileStream);
+  
+  console.log('Файл сохранён!');
+}
+
+// Упрощённая функция для демонстрации (в реальности используйте showSaveFilePicker)
+async function createWritableStream(filename) {
+  // Для примера: создаём объект Blob и ссылку для скачивания
+  // Это не потоковое сохранение на диск, а демонстрация обработки чанков.
+  const chunks = [];
+  const writer = {
+    write(chunk) {
+      // Обрабатываем каждый чанк данных
+      chunks.push(chunk);
+      // Здесь можно, например, отправлять чанк в WebSocket
+      // или вычислять хэш-сумму на лету
+      console.log(\`Получено \${chunk.byteLength} байт\`);
+    },
+    close() {
+      // В конце собираем файл (для примера, в реальности так делать не нужно)
+      const blob = new Blob(chunks);
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+  };
+  return writer;
+}`,skills:[`HTML`]},{question:`Какие способы существуют для скачивания больших файлов в браузере без загрузки в память?`,shortAnswer:"Основной способ — использование Streams API вместе с Fetch API для поточной обработки данных. Это позволяет читать и обрабатывать файл по частям, не загружая его целиком в память. Также можно использовать атрибут `download` у ссылки или заголовок `Content-Disposition: attachment` для прямого скачивания файла сервером. Для очень больших файлов иногда применяют Service Workers для кэширования частей файла.",longAnswer:`При скачивании больших файлов в браузере ключевая задача — избежать загрузки всего файла в оперативную память (RAM) пользователя, что может привести к падению производительности или краху вкладки. Традиционный подход с \`XMLHttpRequest\` или простым \`fetch()\` загружает весь ответ в память как Blob или строку, что неприемлемо для гигабайтных файлов. Современные API предоставляют механизмы для потоковой обработки.
+
+1. Использование Fetch API с Streams
+
+Fetch API может возвращать ответ как читаемый поток (\`ReadableStream\`). Вы можете обрабатывать данные по мере их поступления с сервера, например, сразу записывать их на диск пользователя (если браузер поддерживает File System Access API) или выполнять поточную обработку.
+
+2. Прямое скачивание через ссылку или iframe
+
+Самый простой и безопасный для памяти способ — заставить браузер обрабатывать файл как загрузку. Это можно сделать, создав ссылку с атрибутом \`download\` или используя iframe. Файл сохраняется напрямую в папку загрузок, минуя память JavaScript.
+
+Этот метод работает, если сервер отправляет правильный заголовок \`Content-Disposition: attachment\`.
+
+3. File System Access API (экспериментальный)
+
+В современных браузерах (Chrome, Edge) можно использовать File System Access API для создания файла на диске пользователя и потоковой записи в него данных через Fetch. Это позволяет скачивать файлы любого размера, записывая их на диск по частям.
+
+4. Разбиение на части (chunked download)
+
+Если сервер поддерживает диапазоны байтов (заголовок \`Accept-Ranges: bytes\`), можно скачивать файл по частям с помощью заголовка \`Range\`. Каждую часть можно обрабатывать отдельно, а затем объединить на клиенте (например, с помощью File System Access API).
+
+Вывод: Для скачивания больших файлов без загрузки в память предпочтительно использовать потоковые API (Fetch + Streams) в сочетании с File System Access API для прямой записи на диск. Если требуется максимальная совместимость, подойдёт метод с созданием ссылки или iframe, который перекладывает задачу скачивания на браузер.`,codeExample:`async function downloadLargeFile(url) {
+  const response = await fetch(url);
+  const reader = response.body.getReader();
+  const chunks = [];
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    // value — это Uint8Array (чанк данных)
+    chunks.push(value);
+    // Здесь можно отправлять чанки дальше, например, в другой поток
+  }
+  // Объединять чанки в памяти не стоит для очень больших файлов
+  // Лучше использовать WritableStream для записи на диск
+}
+
+// Способ 1: Создание временной ссылки
+const link = document.createElement('a');
+link.href = 'https://example.com/large-file.zip';
+link.download = 'file.zip';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+
+// Способ 2: Использование iframe
+const iframe = document.createElement('iframe');
+iframe.style.display = 'none';
+iframe.src = 'https://example.com/large-file.zip';
+document.body.appendChild(iframe);
+// Файл начнёт скачиваться
+
+async function saveLargeFileStream(url, fileName) {
+  const response = await fetch(url);
+  const fileHandle = await window.showSaveFilePicker({
+    suggestedName: fileName
+  });
+  const writableStream = await fileHandle.createWritable();
+  await response.body.pipeTo(writableStream); // Потоковая передача!
+  console.log('Файл сохранён на диск.');
+}
+
+async function downloadInChunks(url, chunkSize = 1024 * 1024) {
+  // Сначала узнаем размер файла
+  const headResponse = await fetch(url, { method: 'HEAD' });
+  const totalSize = parseInt(headResponse.headers.get('Content-Length'), 10);
+  
+  for (let start = 0; start < totalSize; start += chunkSize) {
+    const end = Math.min(start + chunkSize - 1, totalSize - 1);
+    const response = await fetch(url, {
+      headers: { 'Range': \`bytes=\${start}-\${end}\` }
+    });
+    const chunk = await response.arrayBuffer();
+    // Обработка каждого чанка
+  }
+}`,skills:[`HTML`]},{question:`Как браузер обрабатывает скачивание файлов (download через ссылку)?`,shortAnswer:"Когда пользователь кликает на ссылку с атрибутом `download`, браузер инициирует GET-запрос на указанный URL. Если сервер отвечает с корректными заголовками (например, `Content-Disposition: attachment`), браузер интерпретирует ответ как файл для сохранения, а не для отображения. Затем он показывает стандартное диалоговое окно сохранения файла в локальную файловую систему пользователя. Этот процесс обходит политику безопасности CORS для ссылок с тем же origin.",longAnswer:`Скачивание файлов через ссылки — это фундаментальная возможность веба, позволяющая пользователям сохранять контент на свои устройства. Механизм запускается, когда пользователь взаимодействует с HTML-элементом \`<a>\` (якорь), у которого установлен атрибут \`download\`.
+
+Как это работает
+
+Процесс можно разделить на несколько этапов:
+
+- Инициация запроса: Клик по ссылке с \`download\` заставляет браузер выполнить HTTP GET-запрос на указанный в атрибуте \`href\` URL.
+
+- Обработка ответа сервера: Ключевую роль играет HTTP-заголовок \`Content-Disposition\`. Если сервер отправляет \`Content-Disposition: attachment; filename="example.pdf"\`, браузер понимает, что тело ответа — это файл, который нужно сохранить, а не отобразить в текущей вкладке.
+
+- Сохранение файла: Браузер получает поток данных (бинарных или текстовых) и, следуя политикам безопасности, предлагает пользователю выбрать место для сохранения через системное диалоговое окно.
+
+Практический пример
+
+Рассмотрим простой HTML-код для создания ссылки скачивания:
+
+Во втором примере серверный обработчик (например, на Node.js с Express) должен установить правильные заголовки:
+
+Особенности и ограничения
+
+Атрибут \`download\` имеет ограничения из соображений безопасности. Он не сработает, если файл находится на другом домене (cross-origin), и сервер этого домена не отправляет соответствующие заголовки CORS. В таких случаях браузер просто перейдёт по ссылке, а не предложит скачать файл. Для скачивания данных, сгенерированных на клиенте (например, содержимого текстового редактора), можно использовать JavaScript API \`URL.createObjectURL()\` вместе с объектами \`Blob\`.
+
+Вывод: Механизм скачивания через ссылки прост и эффективен для раздачи статических файлов или файлов, сгенерированных на сервере. Его стоит применять, когда нужно предоставить пользователю простой способ сохранения документа, изображения или архива, не требуя сложной клиентской логики.`,codeExample:`<!-- Ссылка на статический файл на том же сервере -->
+<a href="/files/report.pdf" download="my_report.pdf">
+  Скачать отчёт (PDF)
+</a>
+
+<!-- Ссылка, которая инициирует скачивание через серверный скрипт -->
+<a href="/api/download?id=123" download>Скачать документ</a>
+
+// Пример на Node.js/Express
+app.get('/api/download', (req, res) => {
+  const filePath = path.resolve(__dirname, 'private', 'file123.zip');
+  // Устанавливаем заголовок, указывающий на скачивание
+  res.setHeader('Content-Disposition', 'attachment; filename="archive.zip"');
+  res.sendFile(filePath); // Отправляем файл
+});`,skills:[`HTML`]},{question:`Какие подходы существуют для оптимизации работы с большими файлами на клиенте?`,shortAnswer:`Основные подходы — чтение файлов по частям (chunking) через File API, использование потоков (streams) для постепенной обработки, выгрузка тяжёлых операций в Web Workers, чтобы не блокировать интерфейс, и применение Blob для работы с бинарными данными без загрузки всего файла в память. Также важно использовать виртуализацию для отображения больших списков данных из файла. Эти методы позволяют обрабатывать гигабайты данных без падений производительности.`,longAnswer:`При работе с большими файлами (например, CSV, JSON, логами) в браузере прямая загрузка всего файла в память может привести к зависанию интерфейса или ошибке "out of memory". Поэтому используются специальные техники, которые позволяют обрабатывать данные постепенно, не нагружая основную память и UI-поток.
+
+1. Чтение файла по частям (Chunking)
+
+С помощью \`File\` и \`Blob\` API можно разбить файл на куски (chunks) и читать их последовательно. Метод \`slice()\` (или \`blob.slice()\`) создаёт новый Blob, содержащий часть исходного файла. Это позволяет, например, загружать большой файл на сервер по кускам или обрабатывать его построчно, не загружая целиком.
+
+2. Потоковая обработка (Streams API)
+
+Streams API предоставляет более элегантный способ обработки данных по мере их поступления. Можно создать читаемый поток из файла и преобразовывать данные через цепочку трансформаций. Это особенно полезно для парсинга больших CSV или JSON файлов.
+
+3. Вынос вычислений в Web Workers
+
+Если обработка файла требует интенсивных вычислений (например, сложный парсинг или шифрование), её стоит вынести в Web Worker. Это предотвратит блокировку основного потока и интерфейса пользователя.
+
+4. Виртуализация для отображения
+
+Если из файла извлечены тысячи строк данных, их отображение в DOM может быть медленным. Библиотеки виртуализации (например, react-window) рендерят только видимые элементы, что сильно ускоряет работу.
+
+Вывод: Описанные подходы стоит применять, когда вы работаете с файлами размером от десятков мегабайт и больше. Чтение по частям и потоки подходят для последовательной обработки, Web Workers — для тяжёлых вычислений, а виртуализация — для отображения больших объёмов данных. Это позволяет создавать отзывчивые веб-приложения даже при работе с гигабайтами информации.`,codeExample:`const fileInput = document.getElementById('fileInput');
+fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  const chunkSize = 1024 * 1024; // 1 MB
+  let offset = 0;
+
+  while (offset < file.size) {
+    const chunk = file.slice(offset, offset + chunkSize);
+    // Обработать chunk (например, отправить на сервер или прочитать текст)
+    const text = await chunk.text();
+    console.log(\`Прочитано \${chunk.size} байт\`);
+    offset += chunkSize;
+  }
+});
+
+async function processLargeFile(file) {
+  const stream = file.stream();
+  const reader = stream.getReader();
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    // value — Uint8Array с частью данных
+    // Обработка порции данных
+  }
+}
+
+// main.js
+const worker = new Worker('file-worker.js');
+worker.postMessage({ file: largeFile });
+worker.onmessage = (e) => {
+  console.log('Результат обработки:', e.data);
+};
+
+// file-worker.js
+self.onmessage = async (e) => {
+  const file = e.data.file;
+  // Тяжёлая обработка файла
+  const result = processFile(file);
+  self.postMessage(result);
+};`,skills:[`HTML`]},{question:`Можно ли получить Cookie через JavaScript?`,shortAnswer:"Да, получить Cookie через JavaScript можно, но с ограничениями. Основной способ — использование свойства `document.cookie`. Оно возвращает строку со всеми Cookie, доступными для текущего источника (домена и пути), которые не помечены как HttpOnly. Cookie с флагом HttpOnly защищены от доступа через JavaScript и могут передаваться только по HTTP(S). Это важная мера безопасности для защиты чувствительных данных, таких как сессионные токены.",longAnswer:`Веб-приложения часто используют Cookie для хранения небольших фрагментов данных на стороне клиента, таких как идентификаторы сессии или пользовательские настройки. JavaScript предоставляет интерфейс для взаимодействия с этими данными через свойство \`document.cookie\`.
+
+Как работает document.cookie
+
+При чтении \`document.cookie\` возвращается строка, содержащая все Cookie, доступные для текущей страницы, в формате \`name=value\`, разделённые точкой с запятой. Важно понимать, что доступ ограничен политикой того же источника (Same-Origin Policy). JavaScript может читать и записывать только те Cookie, которые принадлежат текущему домену и пути, и у которых не установлен флаг \`HttpOnly\`.
+
+Пример чтения и записи Cookie
+
+Безопасность и флаг HttpOnly
+
+Флаг \`HttpOnly\` — это критически важный атрибут безопасности. Когда Cookie помечается как HttpOnly (обычно это делается сервером при установке заголовка \`Set-Cookie\`), браузер запрещает любой доступ к ней через JavaScript. Это защищает Cookie от кражи через межсайтовый скриптинг (XSS). Поэтому, хотя JavaScript может читать многие Cookie, самые важные (например, сессионные идентификаторы) часто остаются недоступными.
+
+Практическое применение
+
+- Хранение предпочтений пользователя: Например, темы интерфейса или языковых настроек, которые можно безопасно хранить в клиентских Cookie.
+
+- Отслеживание состояния: Простые флаги или токены для аналитики (с учётом регуляторных требований, таких как GDPR).
+
+- Работа с устаревшими системами: Некоторые старые приложения могут полагаться на клиентские Cookie для передачи данных между страницами.
+
+Вывод: Используйте \`document.cookie\` для работы с некритичными данными на клиенте, но никогда не храните в доступных для JavaScript Cookie конфиденциальную информацию — для этого применяйте флаг HttpOnly и серверные сессии.`,codeExample:`// Чтение всех доступных Cookie
+const allCookies = document.cookie;
+console.log(allCookies); // Вывод: "sessionId=abc123; theme=dark"
+
+// Установка нового Cookie
+// Указываем имя, значение и дополнительные атрибуты, такие как срок действия (expires) или путь (path).
+document.cookie = "username=JohnDoe; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/";
+
+// После установки document.cookie будет содержать и новый Cookie.
+console.log(document.cookie);`,skills:[`HTML`]},{question:`Как JavaScript взаимодействует с рендерингом браузера?`,shortAnswer:`JavaScript выполняется в основном потоке браузера, который также отвечает за рендеринг. Длительные синхронные операции блокируют этот поток, замораживая обновление интерфейса. Браузер использует цикл событий для планирования задач: он выполняет JavaScript, затем вычисляет стили, макет и отрисовывает кадр. Чтобы не мешать рендерингу, тяжелые задачи нужно разбивать на части или выносить в Web Workers.`,longAnswer:`Взаимодействие JavaScript с рендерингом браузера — это ключевой аспект производительности веб-приложений. Оба процесса (выполнение JS и обновление экрана) происходят в одном потоке, называемом основным потоком. Это означает, что они не могут работать одновременно.
+Цикл событий и этапы рендеринга
+Браузер управляет задачами с помощью цикла событий. После выполнения блока JavaScript-кода браузер может выполнить этапы рендеринга, если это необходимо. Основные этапы:
+
+- Style: Пересчёт вычисленных стилей.
+- Layout (или Reflow): Расчёт геометрии и положения элементов.
+- Paint: Заполнение пикселей (растеризация).
+- Composite: Компоновка слоёв для отображения.
+Браузер старается выполнять рендеринг с частотой 60 кадров в секунду. Если выполнение JavaScript занимает больше ~16 мс, кадр будет пропущен, что приведёт к "подтормаживанию" интерфейса.
+Практический пример и проблема
+Рассмотрим код, который синхронно обрабатывает большой массив:
+
+Пока выполняется этот цикл, браузер не может обновить анимацию, обработать клики или перерисовать страницу.
+Способы оптимизации
+Чтобы избежать блокировки, используют:
+
+- Разбиение на части (chunking) с помощью \`setTimeout\` или \`requestIdleCallback\`.
+- Web Workers для выноса вычислений в отдельный поток.
+- Минимизацию операций, вызывающих пересчёт макета (layout thrashing). Например, чтение и запись геометрических свойств в одном цикле заставляет браузер многократно пересчитывать layout.
+Вывод: Понимание этого взаимодействия критично для создания плавных интерфейсов. JavaScript, который выполняется долго, должен уступать управление основному потоку, чтобы браузер мог своевременно рендерить кадры. Для фоновых или сложных вычислений предпочтительно использовать Web Workers.`,codeExample:`// Эта функция блокирует основной поток
+function processLargeArray(data) {
+  for (let i = 0; i < data.length; i++) {
+    // Тяжёлые вычисления
+    data[i] = Math.sqrt(data[i]) * Math.random();
+  }
+  return data;
+}
+
+// Вызов заморозит интерфейс на время выполнения
+const result = processLargeArray(new Array(1000000).fill(10));
+console.log('Готово'); // К этому моменту UI не обновлялся`,skills:[`HTML`]},{question:`Как установить и прочитать Cookie в браузере?`,shortAnswer:"Куки — это небольшие строки данных, которые сервер отправляет браузеру и которые браузер сохраняет и отправляет обратно с последующими запросами. Установить куку можно, присвоив строку свойству `document.cookie`. Прочитать все куки для текущего домена можно, обратившись к тому же свойству `document.cookie`. Важно помнить о параметрах кук, таких как срок действия (expires/max-age), путь (path) и флаг HttpOnly, который запрещает доступ из JavaScript.",longAnswer:`Куки (Cookies) — это механизм хранения небольших фрагментов данных на стороне клиента, который браузер автоматически отправляет на сервер с каждым HTTP-запросом. Они широко используются для аутентификации пользователей, отслеживания сессий, хранения предпочтений (например, темы или языка) и таргетированной рекламы.
+Установка Cookie
+Чтобы установить куку из JavaScript, вы присваиваете строку свойству \`document.cookie\`. Эта строка должна содержать имя, значение и дополнительные атрибуты, разделённые точкой с запятой. Важно: присваивание не перезаписывает все существующие куки, а добавляет или обновляет только указанную.
+
+Чтение Cookie
+Все куки для текущего домена доступны как одна строка через \`document.cookie\`. Чтобы получить значение конкретной куки, эту строку нужно распарсить.
+
+Ключевые атрибуты и применение
+
+- expires и max-age: определяют срок жизни куки. Без них кука будет сессионной и удалится при закрытии браузера.
+- path: указывает путь на сервере, для которого кука будет отправляться. По умолчанию — текущий путь.
+- domain: позволяет указать домен, для которого кука действительна.
+- Secure: кука будет отправляться только по защищённому протоколу HTTPS.
+- HttpOnly: этот атрибут, устанавливаемый сервером, запрещает доступ к куке из JavaScript, что защищает от XSS-атак.
+Куки также могут быть установлены сервером с помощью HTTP-заголовка \`Set-Cookie\` в ответе, что является основным способом для аутентификации.
+Вывод: Используйте куки, когда вам необходимо хранить данные, которые должны автоматически отправляться на сервер с каждым запросом, например, токены аутентификации или идентификаторы сессии. Для хранения больших объёмов данных, не требующих отправки на сервер, предпочтительнее использовать \`localStorage\` или \`sessionStorage\`.`,codeExample:`// Установка простой куки
+document.cookie = "username=JohnDoe";
+
+// Установка куки с параметрами: срок действия, путь и флаг Secure
+const expiryDate = new Date();
+expiryDate.setDate(expiryDate.getDate() + 7); // Кука на 7 дней
+document.cookie = \`sessionId=abc123; expires=\${expiryDate.toUTCString()}; path=/; Secure\`;
+
+// Получение всех кук в виде строки
+const allCookies = document.cookie; // Например: "username=JohnDoe; sessionId=abc123"
+
+// Функция для получения значения по имени
+function getCookie(name) {
+  const cookies = document.cookie.split('; ');
+  for (let cookie of cookies) {
+    const [key, value] = cookie.split('=');
+    if (key === name) return value;
+  }
+  return null;
+}
+
+console.log(getCookie('username')); // Выведет: JohnDoe`,skills:[`HTML`]},{question:`Как requestAnimationFrame связан с Event Loop?`,shortAnswer:`requestAnimationFrame — это API браузера, который ставит колбэк в специальную очередь, связанную с циклом рендеринга. Event Loop управляет выполнением задач из разных очередей: макротасков, микротасков и задач, связанных с отрисовкой. Колбэк requestAnimationFrame выполняется непосредственно перед этапом обновления стилей и компоновки (Layout/Paint) в цикле рендеринга, что обеспечивает плавную анимацию, синхронизированную с частотой обновления экрана.`,longAnswer:`Чтобы понять связь \`requestAnimationFrame\` (rAF) с Event Loop, нужно сначала вспомнить, что Event Loop — это механизм, который непрерывно обрабатывает задачи из разных очередей. Основные фазы Event Loop включают выполнение макротасков (например, \`setTimeout\`), микротасков (например, промисы) и задач, связанных с рендерингом.
+Место rAF в цикле событий
+Колбэк, переданный в \`requestAnimationFrame\`, не попадает в общую очередь макротасков. Вместо этого браузер помещает его в специальную очередь анимационных кадров. Эта очередь обрабатывается на этапе "обновления рендера" (Update the rendering) внутри Event Loop. Этот этап происходит только тогда, когда браузер готовится к перерисовке экрана, обычно синхронизированной с частотой обновления монитора (например, 60 Гц).
+Порядок выполнения
+Типичный цикл для кадра с анимацией выглядит так:
+
+- Выполняются все микротаски (например, обработчики промисов).
+- Выполняется один макротаск (например, колбэк \`setTimeout\`).
+- Наступает фаза обновления рендера. Здесь, если пришло время для отрисовки кадра:
+- Выполняются все колбэки, запланированные через \`requestAnimationFrame\`.
+- Происходят вычисления стилей, компоновка (layout) и отрисовка (paint).
+
+Практический пример
+Рассмотрим код, который анимирует движение элемента. Использование rAF гарантирует, что обновление позиции произойдет непосредственно перед отрисовкой браузером, что минимизирует "дрожание" (jank).
+
+В этом примере функция \`animate\` будет вызываться браузером в оптимальное время для анимации. Если бы мы использовали \`setInterval\`, вызовы могли бы происходить в неподходящие моменты (например, когда браузер занят другими задачами), что привело бы к пропуску кадров или неравномерной анимации.
+Где это применяется
+\`requestAnimationFrame\` — стандартный способ создания плавных анимаций в веб-приложениях. Он используется в библиотеках анимации, игровых движках на Canvas или WebGL, а также для выполнения "тяжелых" вычислений, которые можно разбить на кадры, чтобы не блокировать основной поток надолго.
+Вывод: Используйте \`requestAnimationFrame\`, когда вам нужна плавная, производительная анимация или визуальное обновление, синхронизированное с частотой обновления экрана. Это позволяет браузеру интегрировать ваш код в собственный цикл рендеринга, избегая лишних вычислений и обеспечивая лучший пользовательский опыт.`,codeExample:`const element = document.getElementById('box');
+let position = 0;
+
+function animate() {
+  // Обновляем позицию элемента
+  position += 2;
+  element.style.transform = \`translateX(\${position}px)\`;
+
+  // Запрашиваем следующий кадр анимации
+  if (position < 200) {
+    requestAnimationFrame(animate);
+  }
+}
+
+// Запускаем анимацию
+requestAnimationFrame(animate);`,skills:[`HTML`]},{question:`Что произойдет, если убрать requestAnimationFrame из цикла рендеринга?`,shortAnswer:`Без requestAnimationFrame анимация будет выполняться в произвольные моменты времени, не синхронизированные с частотой обновления экрана браузера. Это может привести к "дрожанию" (jank), пропуску кадров и повышенному потреблению ресурсов процессора. Анимация может работать слишком быстро или слишком медленно в зависимости от нагрузки системы. requestAnimationFrame гарантирует, что функция обновления вызывается перед каждой перерисовкой экрана, обеспечивая плавность.`,longAnswer:`requestAnimationFrame (rAF) — это API браузера, который позволяет планировать выполнение функции перед следующей перерисовкой (repaint) экрана. Его основная цель — синхронизировать выполнение анимационного кода с частотой обновления дисплея устройства (обычно 60 Гц, т.е. 60 кадров в секунду).
+
+Что происходит без requestAnimationFrame?
+
+Если использовать обычный \`setInterval\` или рекурсивный \`setTimeout\` для цикла анимации, возникает несколько проблем:
+
+- Отсутствие синхронизации: Таймеры не привязаны к циклу рендеринга браузера. Ваша функция может быть вызвана в середине фазы рендеринга или когда браузер занят другими задачами (например, обработкой событий или парсингом).
+
+- Пропуск кадров (dropped frames): Если функция вызывается слишком часто, браузер может не успевать отрисовывать изменения, что приводит к "дрожанию" (jank).
+
+- Нагрузка на CPU в фоновых вкладках: Таймеры продолжают работать, даже когда вкладка неактивна, тратя заряд батареи и ресурсы процессора.
+
+- Непредсказуемая скорость: На разных устройствах с разной частотой обновления экрана (например, 120 Гц) анимация будет работать с разной скоростью.
+
+Пример кода: сравнение подходов
+
+Вот простой пример анимации движения элемента. Сначала — проблемная версия с \`setInterval\`:
+
+А теперь правильная версия с \`requestAnimationFrame\`:
+
+Где применяется requestAnimationFrame?
+
+Этот API используется не только для перемещения DOM-элементов. Он критически важен для:
+
+- Canvas-анимаций и игр
+
+- Сложных визуализаций и графиков
+
+- Плавных переходов и параллакс-эффектов
+
+- Собственных библиотек анимации
+
+Браузер автоматически оптимизирует вызовы rAF: приостанавливает их в неактивных вкладках, синхронизирует с VSync и объединяет несколько изменений DOM в одну перерисовку.
+
+Вывод: Всегда используйте requestAnimationFrame для любых визуальных обновлений, которые должны происходить плавно и синхронно с частотой обновления экрана. Это обеспечивает оптимальную производительность, экономию энергии и предотвращает визуальные артефакты. Таймеры (setInterval/setTimeout) подходят только для задач, не связанных с рендерингом.`,codeExample:`// ПЛОХО: использование setInterval
+const element = document.getElementById('box');
+let pos = 0;
+const intervalId = setInterval(() => {
+  pos += 5;
+  element.style.left = pos + 'px';
+  if (pos > 500) clearInterval(intervalId);
+}, 16); // ~60 кадров/сек (1000/16)
+
+// ХОРОШО: использование requestAnimationFrame
+const element = document.getElementById('box');
+let pos = 0;
+function animate() {
+  pos += 5;
+  element.style.left = pos + 'px';
+  if (pos < 500) {
+    requestAnimationFrame(animate);
+  }
+}
+requestAnimationFrame(animate);`,skills:[`HTML`]},{question:`Что происходит при загрузке скрипта без async и defer?`,shortAnswer:`Когда браузер встречает тег`,longAnswer:`Когда браузер загружает HTML-страницу, он последовательно парсит (разбирает) её содержимое, строя DOM-дерево. Встречая обычный тег \`<script>\` без атрибутов \`async\` или \`defer\`, он немедленно приостанавливает процесс парсинга. Это критическое поведение, потому что скрипт может содержать команды, изменяющие DOM (например, \`document.write\`), и браузер должен обеспечить согласованное состояние дерева.
+
+Последовательность событий
+
+- Браузер находит тег \`<script src="app.js">\`.
+
+- Парсинг HTML приостанавливается.
+
+- Браузер начинает загрузку файла скрипта с сервера (если указан \`src\`).
+
+- После полной загрузки скрипт выполняется синхронно.
+
+- Только после завершения выполнения парсинг HTML возобновляется.
+
+Практический пример и последствия
+
+Рассмотрим простую HTML-страницу:
+
+Пока браузер загружает и выполняет \`heavy-script.js\`, пользователь увидит пустой экран. Контент страницы (\`<h1>\`, \`<p>\`) не будет отрисован до завершения работы скрипта. Это приводит к плохому пользовательскому опыту, особенно при медленном соединении.
+
+Где это применяется и как избежать проблем
+
+Такой подход необходим, если скрипту критически важно взаимодействовать с DOM-элементами, расположенными непосредственно перед ним, или если порядок выполнения нескольких скриптов строго задан. Однако в современной разработке для оптимизации производительности рекомендуется:
+
+- Использовать атрибут \`defer\` для скриптов, которым не нужно выполняться немедленно. Они загрузятся параллельно с парсингом, но выполнятся только после полного построения DOM, перед событием \`DOMContentLoaded\`.
+
+- Использовать атрибут \`async\` для независимых скриптов (например, счётчиков аналитики), которые могут выполниться в любой момент после загрузки, не блокируя парсинг.
+
+- Размещать некритичные скрипты перед закрывающим тегом \`</body>\`, чтобы основной контент успел отобразиться.
+
+Вывод: Обычная загрузка скрипта (без async/defer) блокирует парсинг страницы, что может серьёзно ухудшить воспринимаемую скорость загрузки. Используйте её осознанно, только когда требуется строгий порядок выполнения и немедленный доступ к DOM. В большинстве случаев для скриптов, работающих с DOM, предпочтительнее \`defer\`, а для независимых — \`async\`.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+    <title>Пример</title>
+    <script src="heavy-script.js"><\/script>
+</head>
+<body>
+    <h1>Важный заголовок</h1>
+    <p>Этот текст появится с задержкой.</p>
+</body>
+</html>`,skills:[`HTML`]},{question:`Что такое DOM-дерево и как оно устроено?`,shortAnswer:`DOM (Document Object Model) — это программный интерфейс для HTML и XML документов, который представляет документ в виде дерева объектов. Каждый элемент, атрибут и текстовый фрагмент становится узлом (node) этого дерева. Браузер создаёт DOM при загрузке страницы, чтобы JavaScript мог изменять структуру, стиль и содержимое документа. Без DOM скрипты не могли бы взаимодействовать с элементами страницы.`,longAnswer:`DOM (Document Object Model) — это не язык программирования, а стандартный, кроссплатформенный интерфейс, который позволяет программам и скриптам динамически получать доступ и обновлять содержание, структуру и стиль документа. Когда браузер загружает HTML-страницу, он парсит её и строит из элементов, атрибутов и текста древовидную структуру в памяти — DOM-дерево.
+
+Структура DOM-дерева
+
+Дерево состоит из узлов (nodes). Основные типы узлов:
+
+- Документ (Document): корневой узел, представляющий весь документ.
+
+- Элементы (Element nodes): узлы, соответствующие HTML-тегам (например, <div>, <p>).
+
+- Текстовые узлы (Text nodes): содержат текстовое содержимое внутри элементов.
+
+- Атрибуты (Attribute nodes): хотя они и являются частью DOM-спецификации, в большинстве современных API они не представлены как отдельные узлы в дереве, а являются свойствами узлов-элементов.
+
+Узлы связаны отношениями родитель-потомок-сиблинг, образуя иерархию.
+
+Пример HTML и соответствующего DOM
+
+Рассмотрим простой HTML:
+
+DOM-дерево для этого документа будет выглядеть примерно так (в упрощённом виде):
+
+- Документ (Document)
+
+- ├── Элемент: <html>
+
+- │ ├── Элемент: <head>
+
+- │ │ └── Элемент: <title>
+
+- │ │ └── Текстовый узел: "Пример"
+
+- │ └── Элемент: <body>
+
+- │ ├── Элемент: <h1>
+
+- │ │ └── Текстовый узел: "Заголовок"
+
+- │ └── Элемент: <p>
+
+- │ ├── Текстовый узел: "Параграф с "
+
+- │ ├── Элемент: <strong>
+
+- │ │ └── Текстовый узел: "жирным"
+
+- │ └── Текстовый узел: " текстом."
+
+Как используется DOM?
+
+JavaScript получает доступ к DOM через глобальный объект \`document\`. С помощью методов DOM API (например, \`getElementById\`, \`querySelector\`, \`createElement\`) можно находить узлы, создавать новые, изменять их свойства, добавлять или удалять их из дерева. Любое изменение DOM-дерева немедленно отражается на отображаемой странице (этот процесс называется reflow и repaint).
+
+Практический пример кода
+
+Вывод: Понимание DOM-дерева критически важно для любой клиентской разработки на JavaScript, так как это основной способ сделать веб-страницу интерактивной и динамической. DOM служит мостом между статическим HTML и живым, управляемым скриптами интерфейсом.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+    <title>Пример</title>
+</head>
+<body>
+    <h1>Заголовок</h1>
+    <p>Параграф с <strong>жирным</strong> текстом.</p>
+</body>
+</html>
+
+// Находим элемент по id
+const header = document.getElementById('main-header');
+// Изменяем его текстовое содержимое
+header.textContent = 'Новый заголовок';
+
+// Создаём новый элемент
+const newParagraph = document.createElement('p');
+newParagraph.textContent = 'Этот абзац добавлен через JavaScript.';
+
+// Добавляем его в конец тела документа
+document.body.appendChild(newParagraph);
+
+// Меняем стиль элемента
+header.style.color = 'blue';`,skills:[`HTML`]},{question:`Что происходит при добавлении и удалении eventListener?`,shortAnswer:`При добавлении eventListener функция-обработчик регистрируется для указанного события на элементе. При возникновении события эта функция выполняется. Удаление eventListener отменяет эту регистрацию, и функция больше не будет вызываться. Важно удалять слушатели, когда они больше не нужны, особенно для элементов, которые удаляются из DOM, чтобы избежать утечек памяти.`,longAnswer:'Event listeners (слушатели событий) — это функции, которые "слушают" определённые события (например, клик, наведение мыши, ввод с клавиатуры) на элементах DOM и выполняются при их возникновении. Механизм добавления и удаления является ключевым для интерактивности веб-страниц и управления ресурсами.\nДобавление addEventListener\nМетод `addEventListener` регистрирует переданную функцию-обработчик для события на целевом элементе. Вы можете добавить несколько обработчиков для одного и того же события на одном элементе. Обработчик получает объект события (Event), содержащий полезную информацию.\n\nУдаление removeEventListener\nМетод `removeEventListener` удаляет ранее зарегистрированный обработчик. Для успешного удаления необходимо передать те же самые аргументы: тип события и ссылку на ту же самую функцию. Анонимные функции удалить невозможно, поэтому рекомендуется использовать именованные функции.\n\nПрактическое применение и важные аспекты\n\n- Управление памятью: Если элемент удаляется из DOM, но слушатель на нём остаётся, функция и элемент могут не освобождаться сборщиком мусора (утечка памяти). Всегда удаляйте слушатели перед удалением элемента.\n- Параметр options: В современном JavaScript `addEventListener` принимает третий параметр — объект options с настройками вроде `{ once: true }` (выполнить обработчик только один раз) или `{ passive: true }` (для улучшения производительности скролла).\n- Фазы события: Третий параметр может быть булевым значением `useCapture`, определяющим, на какой фазе (захвата или всплытия) будет вызван обработчик.\nВывод: Используйте `removeEventListener` для очистки, когда обработчик события больше не нужен (например, при уничтожении компонента в SPA-фреймворке), чтобы обеспечить предсказуемость поведения приложения и избежать утечек памяти.',codeExample:`const button = document.getElementById('myButton');
+function handleClick(event) {
+    console.log('Кнопка нажата!', event.target);
+}
+// Добавляем слушатель
+button.addEventListener('click', handleClick);
+
+// Удаляем слушатель
+button.removeEventListener('click', handleClick);
+// Теперь handleClick больше не будет вызываться при клике.`,skills:[`HTML`]},{question:`Какие библиотеки используются для карт (Leaflet, OpenLayers, Google Maps)?`,shortAnswer:`Для встраивания карт в веб-приложения чаще всего используют три основные библиотеки: Leaflet, OpenLayers и Google Maps API. Leaflet — это легковесная и простая в использовании библиотека с открытым исходным кодом, идеальная для базовых карт. OpenLayers — более мощное и комплексное решение для сложных ГИС-задач, также с открытым кодом. Google Maps API — проприетарный сервис от Google, предоставляющий богатый функционал, но требующий лицензирования для коммерческого использования.`,longAnswer:`В веб-разработке для создания интерактивных карт существует несколько ключевых библиотек, каждая со своей философией и областью применения. Выбор зависит от требований проекта: нужна ли простота и скорость, расширенный функционал для ГИС или интеграция с популярным сервисом вроде Google.
+Leaflet
+Leaflet — это легковесная (около 42 КБ) библиотека с открытым исходным кодом, которая стала стандартом для многих проектов благодаря своей простоте, хорошей документации и обширному сообществу. Она отлично работает с тайловыми картами (например, OpenStreetMap) и легко расширяется плагинами.
+
+OpenLayers
+OpenLayers — это мощная библиотека с открытым исходным кодом, ориентированная на сложные картографические задачи и ГИС (геоинформационные системы). Она поддерживает огромное количество форматов данных (векторные тайлы, KML, GeoJSON) и предоставляет тонкий контроль над отображением.
+
+Google Maps API
+Google Maps API — это проприетарный сервис от Google, предоставляющий доступ к картам, улицам, спутниковым снимкам и богатому набору сервисов (поиск мест, маршруты). Он требует регистрации ключа API и, для интенсивного использования, оплаты. Интеграция проста, но накладывает ограничения лицензии.
+
+Вывод: Leaflet стоит выбрать для быстрого внедрения простых карт с открытыми данными. OpenLayers подходит для сложных, кастомизируемых ГИС-приложений. Google Maps API — оптимален, когда нужна интеграция с экосистемой Google (улицы, бизнес-данные) и готовый UI, и проект готов к возможным затратам.`,codeExample:`// Пример создания простой карты с Leaflet
+const map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+// Добавление маркера
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('Пример маркера.')
+    .openPopup();
+
+// Пример создания карты с OpenLayers
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+
+const map = new Map({
+    target: 'map',
+    layers: [
+        new TileLayer({
+            source: new OSM()
+        })
+    ],
+    view: new View({
+        center: [0, 0],
+        zoom: 2
+    })
+});
+
+// Пример инициализации карты Google Maps
+function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 51.505, lng: -0.09 },
+        zoom: 13,
+    });
+    new google.maps.Marker({
+        position: { lat: 51.5, lng: -0.09 },
+        map: map,
+        title: "Пример маркера"
+    });
+}`,skills:[`HTML`]},{question:`В чем ограничения Canvas при отображении большого количества объектов?`,shortAnswer:`Canvas — это растровая поверхность для рисования. Основное ограничение при работе с большим количеством объектов — это производительность. Каждый объект нужно перерисовывать каждый кадр, что приводит к высокой нагрузке на CPU. Нет встроенной системы отсечения невидимых областей или оптимизации перерисовки. Для сложных сцен лучше использовать WebGL или SVG.`,longAnswer:`HTML5 Canvas предоставляет низкоуровневый API для рисования графики на лету с помощью JavaScript. Однако, будучи по сути растровым холстом, он имеет ряд фундаментальных ограничений при попытке отобразить сотни или тысячи динамических объектов.
+Основные ограничения производительности
+
+- Отсутствие встроенного DOM: В отличие от SVG, объекты на Canvas не являются отдельными DOM-элементами. Это означает, что нет автоматического отслеживания, какой объект где находится, и нет событий на уровне объекта без дополнительной логики.
+- Полная перерисовка: При любом изменении сцены (движении объектов) обычно требуется очистить весь холст или его часть и перерисовать все объекты заново. Это может стать узким местом.
+- Нет аппаратного ускорения по умолчанию: Стандартное 2D-рисование (context2d) в основном использует CPU. Холст сам по себе может быть ускорен, но операции рисования (fill, stroke) — нет.
+Практические проблемы и пример
+Представьте, что вы создаете игру с 10 000 частиц. На каждом кадре вам нужно обновить позицию каждой частицы и нарисовать её. Код может выглядеть так:
+
+Этот подход быстро приведет к падению частоты кадров, потому что браузер выполняет тысячи вызовов рисования (arc, fill) на CPU.
+Способы оптимизации и альтернативы
+
+- Использование WebGL: Для сложной 2D/3D графики WebGL (через библиотеки like Pixi.js или Three.js) использует GPU, что кардинально повышает производительность.
+- Отсечение областей (clipping): Рисуйте только ту часть сцены, которая видна в viewport.
+- Объединение объектов: Если объекты статичны, нарисуйте их один раз на off-screen canvas, а затем копируйте готовое изображение.
+- Использование спрайтовых листов для уменьшения количества вызовов отрисовки.
+Вывод: Чистый Canvas 2D плохо подходит для отображения тысяч интерактивных, динамически изменяющихся объектов. Для таких задач стоит рассмотреть WebGL или гибридный подход с оптимизацией отрисовки. Canvas идеален для рисования изображений, простой анимации или обработки видео, где перерисовка всей сцены происходит нечасто.`,codeExample:`// Упрощенный пример цикла анимации с частицами
+const particles = []; // Массив из 10000 объектов {x, y, vx, vy}
+
+function animate() {
+    // 1. Очистка всего холста
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 2. Обновление и отрисовка КАЖДОЙ частицы
+    for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    requestAnimationFrame(animate);
+}`,skills:[`HTML`]},{question:`Какие подходы используются для работы с картами во фронтенде?`,shortAnswer:`Для работы с картами во фронтенде чаще всего используются специализированные JavaScript-библиотеки. Leaflet — это легковесная и простая библиотека для базовых карт с поддержкой тайлов. Mapbox GL JS предоставляет современные векторные карты с высокой производительностью и кастомизацией. Google Maps API — популярное коммерческое решение с обширной функциональностью, включая поиск и маршруты. OpenLayers — мощная библиотека для сложных ГИС-задач с поддержкой множества форматов данных.`,longAnswer:`Интеграция карт в веб-интерфейсы стала стандартом для множества приложений — от сервисов доставки до аналитических панелей. Основная задача — отобразить географические данные, обеспечить интерактивность (зум, перемещение, маркеры) и, часто, наложить собственные слои информации. Для этого используются готовые библиотеки, которые абстрагируют сложности работы с тайловыми серверами, проекциями и производительностью рендеринга.
+Популярные библиотеки
+
+- Leaflet: Легковесная (около 42 КБ), простая в освоении. Идеальна для быстрого внедрения базовой карты с маркерами, попапами и векторными слоями (полигоны, линии). Работает с растровыми тайлами от OpenStreetMap и других провайдеров.
+- Mapbox GL JS: Современная библиотека для векторных карт. Карты рисуются на стороне клиента с использованием WebGL, что позволяет динамически стилизовать каждый элемент (дороги, здания) и плавно анимировать переходы. Требует токен доступа.
+- Google Maps JavaScript API Коммерческое, но очень популярное решение. Предоставляет не только картографию, но и готовые сервисы: Places (поиск мест), Directions (построение маршрутов), Street View. Интеграция проста, но имеет лимиты и стоимость.
+- OpenLayers: Мощная библиотека для профессиональных ГИС-приложений. Поддерживает огромное количество источников данных (WMS, GeoJSON, KML) и сложные операции с картами. Имеет более высокий порог входа.
+Пример кода: базовая карта с Leaflet
+
+Этот код создаёт карту, добавляет слой тайлов OpenStreetMap, маркер в центре Москвы и простой полигон. Leaflet автоматически обрабатывает события мыши и касаний для зума и перемещения.
+Критерии выбора подхода
+
+- Leaflet: Выбирайте для простых проектов, когда нужна лёгкость, открытые данные (OSM) и минимальные зависимости.
+- Mapbox GL JS: Подходит для проектов, где важны кастомный дизайн карт, высокая производительность при большом количестве динамических данных и 3D-вид.
+- Google Maps API: Оптимален, если требуется максимальная узнаваемость карт для пользователей, а также интеграция с другими сервисами Google (поиск, маршруты, отзывы).
+- OpenLayers: Используйте в сложных аналитических или корпоративных системах, где необходима работа с профессиональными геоданными и стандартами.
+Вывод: Выбор подхода зависит от требований проекта: для быстрого прототипа или простой карты с маркерами подойдёт Leaflet; для создания уникального, высокопроизводительного картографического интерфейса — Mapbox GL JS; для использования знакомых пользователям карт со встроенными сервисами — Google Maps API; а для сложных ГИС-задач — OpenLayers.`,codeExample:`// 1. Подключите CSS и JS Leaflet в HTML
+// 2. Инициализация карты
+const map = L.map('map-container').setView([55.751244, 37.618423], 10); // Москва, zoom 10
+
+// 3. Добавление слоя тайлов (используем OpenStreetMap)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// 4. Добавление маркера с попапом
+const marker = L.marker([55.751244, 37.618423]).addTo(map);
+marker.bindPopup("КремльМосква").openPopup();
+
+// 5. Добавление простого полигона (треугольник)
+const polygon = L.polygon([
+    [55.75, 37.60],
+    [55.75, 37.65],
+    [55.70, 37.62]
+]).addTo(map);
+polygon.bindPopup("Я — полигон.");`,skills:[`HTML`]},{question:`Как осуществляется работа с Figma в разработке интерфейсов?`,shortAnswer:`Figma — это облачный инструмент для дизайна интерфейсов, который позволяет дизайнерам создавать макеты, прототипы и дизайн-системы. Разработчики получают доступ к макетам через общие ссылки, где могут инспектировать элементы: просматривать стили (CSS-свойства), размеры, отступы и экспортировать ресурсы (иконки, изображения). Для автоматизации процесса часто используются плагины, которые генерируют код или токены дизайн-системы. Такой подход ускоряет вёрстку и обеспечивает соответствие реализации задумке дизайнера.`,longAnswer:`Figma стала стандартным инструментом для дизайна пользовательских интерфейсов благодаря своей совместной облачной природе. В процессе разработки она служит единым источником истины для визуального дизайна, прототипирования и создания дизайн-систем.
+Основные этапы работы разработчика с Figma
+
+- Доступ и ознакомление: Дизайнер предоставляет доступ к файлу через ссылку. Разработчик изучает структуру макетов, страницы, компоненты и варианты состояний.
+- Инспектирование элементов: В режиме инспектора (правая панель) можно выбрать любой слой и увидеть его точные CSS-свойства: размеры, отступы, цвета, тени, параметры шрифтов. Это избавляет от необходимости "измерять" пиксели вручную.
+- Экспорт ресурсов: Иконки, иллюстрации и изображения можно экспортировать в нужных форматах (SVG, PNG, WebP) и разрешениях прямо из интерфейса.
+- Работа с дизайн-системой: Если в Figma настроены компоненты и стили, разработчик может видеть все варианты кнопок, полей ввода и других элементов, а также токены (переменные) для цветов, типографики и spacing.
+Интеграция в процесс разработки
+Для более глубокой интеграции используются плагины и API Figma. Например, плагины могут генерировать React-компоненты, CSS-in-JS объекты или даже целые темы для приложения на основе стилей из Figma. Это сокращает рутинную работу и уменьшает количество ошибок при переносе дизайна в код.
+
+Также Figma позволяет оставлять комментарии прямо на макете, что упрощает обсуждение деталей между членами команды без необходимости переключаться в другие мессенджеры.
+Вывод: Работа с Figma в разработке интерфейсов — это непрерывный процесс инспектирования, извлечения данных и коммуникации, который позволяет точно и быстро переводить визуальный дизайн в рабочий код, особенно при наличии продуманной дизайн-системы.`,codeExample:`// Пример: Использование токенов цвета из Figma в CSS-переменных
+:root {
+  /* Цвета, взятые из стилей Figma */
+  --color-primary: #4361ee;
+  --color-surface: #ffffff;
+  --text-primary: #2b2d42;
+}
+
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  padding: 12px 24px;
+  /* Значения padding могут соответствовать spacing-токенам из Figma */
+}`,skills:[`HTML`]},{question:`Какие проблемы могут возникнуть при увеличении области нажатия у нескольких соседних кнопок?`,shortAnswer:`Увеличение области нажатия (hit area) у соседних кнопок может привести к их перекрытию. Пользователь, нажимая в зоне пересечения, может активировать не ту кнопку, которую хотел. Это вызывает ошибки ввода, раздражение и снижает доступность интерфейса, особенно для людей с моторными нарушениями. Важно проектировать hit area так, чтобы они не пересекались, обеспечивая четкие границы между элементами.`,longAnswer:`Область нажатия (hit area) — это невидимая зона вокруг визуального элемента (например, кнопки), которая реагирует на клик или касание. Её увеличение улучшает доступность, особенно на мобильных устройствах или для пользователей с ограниченной моторикой. Однако, когда несколько кнопок расположены близко друг к другу, увеличение их hit area без учета границ создает серьезные проблемы.
+Основные проблемы
+
+- Непреднамеренная активация: Пользователь может нажать в зоне перекрытия областей, и будет срабатывать та кнопка, которая обработала событие первой (часто это зависит от порядка в DOM или z-index). Это приводит к ошибкам и путанице.
+- Снижение юзабилити: Интерфейс становится непредсказуемым, пользователь теряет уверенность в своих действиях, что увеличивает когнитивную нагрузку и время на выполнение задачи.
+- Проблемы с доступностью (accessibility): Для людей, использующих вспомогательные технологии или имеющих тремор, четкие границы между интерактивными элементами критически важны. Перекрытие областей делает навигацию практически невозможной.
+- Сложности в тестировании и поддержке: Перекрывающиеся hit area сложно отлаживать, так как визуально границы кнопок могут выглядеть корректно, но логика их работы нарушена.
+Пример кода и решение
+Рассмотрим пример двух соседних кнопок с увеличенными, но перекрывающимися областями нажатия.
+
+В этом примере псевдоэлемент \`::after\` расширяет область нажатия каждой кнопки на 10 пикселей во все стороны. Если кнопки расположены вплотную, эти области будут пересекаться. Решение — обеспечить достаточный визуальный отступ (margin) между кнопками, который превышает или равен расширению hit area, либо проектировать hit area так, чтобы они расширялись только в безопасные стороны (например, у левой кнопки — влево и вверх/вниз, у правой — вправо и вверх/вниз).
+Вывод: Увеличивать область нажатия необходимо для улучшения доступности и удобства, но делать это следует осознанно, избегая перекрытия с соседними интерактивными элементами. Ключевой принцип — сохранение минимального безопасного расстояния между hit area или использование логического разделения зон.`,codeExample:`<style>
+  .btn {
+    padding: 10px 20px;
+    margin: 0; /* Убрали отступы для наглядности проблемы */
+    position: relative;
+  }
+  /* Увеличиваем hit area с помощью псевдоэлемента */
+  .btn::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+    /* background: rgba(255,0,0,0.2); */ /* Для визуализации */
+  }
+</style>
+
+<button class="btn" id="btn1">Сохранить</button>
+<button class="btn" id="btn2">Отмена</button>
+
+<script>
+  // При клике в зоне перекрытия сработает только одна кнопка
+  document.getElementById('btn1').addEventListener('click', () => {
+    console.log('Нажата "Сохранить"');
+  });
+  document.getElementById('btn2').addEventListener('click', () => {
+    console.log('Нажата "Отмена"');
+  });
+<\/script>`,skills:[`HTML`]},{question:`Как event используется в обработке касаний и что он содержит?`,shortAnswer:`События касаний в JavaScript представлены объектом TouchEvent. Он содержит списки касаний (touches, targetTouches, changedTouches), которые позволяют отслеживать несколько пальцев одновременно. Каждый объект Touch внутри списка содержит координаты (clientX, clientY), идентификатор касания и целевой элемент. Эти события необходимы для создания интерактивных интерфейсов на мобильных устройствах, таких как масштабирование, перетаскивание или свайпы.`,longAnswer:`В веб-разработке для мобильных устройств и планшетов стандартные события мыши (click, mousedown) недостаточно хорошо подходят для обработки мультитач-жестов. Для этой цели в JavaScript существует специальный тип событий — TouchEvent. Он генерируется при начале, движении и окончании касания сенсорного экрана.
+
+Содержимое объекта TouchEvent
+
+Ключевое свойство TouchEvent — это три списка объектов \`Touch\`:
+
+- \`touches\`: список всех активных касаний на экране в данный момент.
+
+- \`targetTouches\`: список касаний, которые начались на том же целевом элементе, что и текущее событие.
+
+- \`changedTouches\`: список касаний, которые изменились и привели к возникновению данного события (например, новые пальцы для \`touchstart\` или убранные для \`touchend\`).
+
+Объект Touch
+
+Каждый объект в этих списках представляет одно касание пальцем и содержит важные данные:
+
+- \`identifier\`: уникальный числовой ID для отслеживания конкретного пальца на протяжении всего жеста.
+
+- \`target\`: DOM-элемент, на котором началось касание.
+
+- \`clientX / clientY\`: координаты касания относительно окна браузера (viewport).
+
+- \`pageX / pageY\`: координаты относительно всего документа.
+
+- \`screenX / screenY\`: координаты относительно экрана устройства.
+
+- \`radiusX / radiusY\`: примерные размеры области касания (например, для определения силы нажатия).
+
+Типы событий и практическое применение
+
+Основные типы событий касаний:
+
+- \`touchstart\`: палец коснулся экрана.
+
+- \`touchmove\`: палец перемещается по экрану.
+
+- \`touchend\`: палец оторвался от экрана.
+
+- \`touchcancel\`: касание было прервано системой (например, входящий звонок).
+
+Эти события используются для реализации жестов: свайп для навигации, pinch-to-zoom для масштабирования изображений, перетаскивания элементов интерфейса.
+
+Пример кода
+
+Простой пример отслеживания одного касания для перетаскивания элемента:
+
+Вывод: Объект TouchEvent и его содержимое являются фундаментом для создания отзывчивых и интуитивных сенсорных интерфейсов в мобильных веб-приложениях. Его стоит применять всегда, когда требуется точный контроль над мультитач-взаимодействиями, которые нельзя реализовать через события мыши или стандартные CSS-свойства вроде \`touch-action\`.`,codeExample:`let draggable = document.getElementById('box');
+let startX, startY, initialX, initialY;
+
+// Обработка начала касания
+draggable.addEventListener('touchstart', function(event) {
+  // Предотвращаем прокрутку страницы
+  event.preventDefault();
+  // Берем первое касание из списка
+  let touch = event.touches[0];
+  // Запоминаем начальные координаты касания и элемента
+  startX = touch.clientX;
+  startY = touch.clientY;
+  initialX = draggable.offsetLeft;
+  initialY = draggable.offsetTop;
+});
+
+// Обработка движения пальца
+draggable.addEventListener('touchmove', function(event) {
+  event.preventDefault();
+  let touch = event.touches[0];
+  // Вычисляем смещение
+  let deltaX = touch.clientX - startX;
+  let deltaY = touch.clientY - startY;
+  // Применяем новую позицию к элементу
+  draggable.style.left = (initialX + deltaX) + 'px';
+  draggable.style.top = (initialY + deltaY) + 'px';
+});`,skills:[`HTML`]},{question:`Как отследить появление клавиатуры?`,shortAnswer:`На мобильных устройствах клавиатура появляется при фокусе на поле ввода. Это событие можно отследить через изменение размеров визуального вьюпорта (Visual Viewport API) или через событие resize на window. При появлении клавиатуры визуальный вьюпорт уменьшается по высоте. Также можно слушать события focus и blur на элементах ввода, чтобы косвенно определить момент.`,longAnswer:`Отслеживание появления экранной клавиатуры — ключевая задача для создания удобных мобильных интерфейсов. Когда пользователь тапает по полю ввода, система показывает клавиатуру, что изменяет область просмотра контента. Прямого события "keyboardshow" в вебе нет, поэтому разработчики используют косвенные методы.
+
+Основные подходы к отслеживанию
+
+Самый надёжный современный способ — использование Visual Viewport API. Визуальный вьюпорт представляет собой часть окна, которая сейчас отображается на экране (исключая области, перекрытые клавиатурой).
+
+Альтернативные и традиционные методы
+
+- Событие resize на window: На многих мобильных браузерах появление клавиатуры вызывает событие resize основного окна. Однако это поведение не стандартизировано и может приводить к ложным срабатываниям.
+
+- Отслеживание фокуса: Можно слушать события focus и blur на полях ввода. Появление клавиатуры обычно следует сразу за focus. Это не даёт информации о точных размерах, но указывает на контекст.
+
+- Проверка активного элемента: Сочетание document.activeElement (который указывает на поле ввода) и изменения размеров окна даёт более точную картину.
+
+Применять эти техники нужно для автоматической прокрутки к активному полю, изменения макета (например, скрытия нижней панели навигации) или переключения ввода на полноэкранный режим.
+
+Вывод: Используйте Visual Viewport API для наиболее точного и современного отслеживания изменения области просмотра из-за клавиатуры, особенно когда критично точно знать оставшееся пространство для адаптации UI.`,codeExample:`// Пример с использованием Visual Viewport API
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', function(event) {
+    const newHeight = event.target.height;
+    const windowHeight = window.innerHeight;
+    // Если высота визуального вьюпорта значительно меньше высоты окна,
+    // вероятно, клавиатура открыта
+    if (newHeight < windowHeight * 0.7) {
+      console.log('Клавиатура, вероятно, появилась');
+      // Здесь можно, например, прокрутить поле ввода в видимую область
+    } else {
+      console.log('Клавиатура, вероятно, скрыта');
+    }
+  });
+}`,skills:[`HTML`]},{question:`В чем разница между синхронными и асинхронными HTTP-запросами?`,shortAnswer:`Синхронный запрос блокирует выполнение кода до получения ответа от сервера, замораживая интерфейс пользователя. Асинхронный запрос отправляется и выполняется в фоновом режиме, позволяя основному потоку кода продолжать работу и обрабатывать другие события. После получения ответа от сервера вызывается специальная функция-обработчик (callback), что делает приложение отзывчивым. Синхронные запросы считаются устаревшими и почти не используются в современном фронтенде.`,longAnswer:`HTTP-запросы — это основа взаимодействия веб-приложения с сервером. По способу их выполнения они делятся на синхронные и асинхронные, и это различие напрямую влияет на производительность и пользовательский опыт.
+
+Синхронные запросы
+
+Синхронный (или блокирующий) запрос останавливает выполнение скрипта в том месте, где он был вызван. Браузер "замирает" — пользователь не может прокручивать страницу, нажимать кнопки или взаимодействовать с интерфейсом до тех пор, пока сервер не пришлёт ответ. Такой подход был распространён в ранние дни веба, но сейчас считается антипаттерном из-за катастрофического влияния на UX.
+
+Асинхронные запросы
+
+Асинхронный (неблокирующий) запрос отправляется, и управление сразу возвращается основному потоку выполнения. Браузер продолжает обрабатывать пользовательские события, анимацию и другой код. Когда сервер отвечает, срабатывает заранее заданная функция-обработчик (callback), Promise разрешается или выполняется код после ключевого слова \`await\`. Это основа технологии AJAX и современных SPA-фреймворков.
+
+Где применяются
+
+- Асинхронные запросы используются повсеместно: загрузка данных для ленты новостей, отправка форм без перезагрузки страницы, автодополнение поиска, бесконечный скролл.
+
+- Синхронные запросы практически изгнаны из фронтенд-разработки. В редких случаях их можно встретить в служебных скриптах или специфичных серверных средах, где блокировка допустима.
+
+Итог: Всегда используйте асинхронные HTTP-запросы в клиентском JavaScript. Это обязательное условие для создания плавных, отзывчивых веб-приложений, которые не заставляют пользователя ждать. Синхронный подход — это архаичный способ, приводящий к "подвисанию" интерфейса.`,codeExample:`// Пример синхронного запроса (НЕ ИСПОЛЬЗУЙТЕ НА ПРАКТИКЕ)
+const request = new XMLHttpRequest();
+request.open('GET', '/api/data', false); // Третий параметр 'false' делает запрос синхронным
+request.send();
+// Код здесь не выполнится, пока не придет ответ
+console.log(request.responseText);
+
+// Пример асинхронного запроса с использованием Fetch API и async/await
+async function fetchData() {
+  try {
+    // Код не блокируется, пока идет запрос
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    console.log('Данные получены:', data);
+    // Обновляем интерфейс с новыми данными
+  } catch (error) {
+    console.error('Ошибка запроса:', error);
+  }
+}
+// Вызываем функцию. Интерфейс остается отзывчивым.
+fetchData();
+console.log('Эта строка выполнится сразу, не дожидаясь ответа сервера.');`,skills:[`HTML`]},{question:`Как preload и prefetch влияют на загрузку?`,shortAnswer:`Атрибуты preload и prefetch — это подсказки для браузера, указывающие, как загружать ресурсы заранее. Preload говорит браузеру немедленно загрузить критически важный ресурс (например, шрифт или скрипт), который понадобится на текущей странице. Prefetch предлагает браузеру загрузить ресурс для будущей навигации (например, для следующей страницы) в фоновом режиме, когда есть свободная пропускная способность сети. Это позволяет ускорить отображение текущей страницы и сделать переходы между страницами быстрее.`,longAnswer:`Атрибуты \`preload\` и \`prefetch\` — это механизмы, предоставляемые современными браузерами для оптимизации загрузки ресурсов. Они позволяют разработчику явно указать браузеру, какие файлы следует загрузить заранее, до того как они понадобятся, что может значительно улучшить воспринимаемую производительность сайта.
+
+Preload для критических ресурсов
+
+Атрибут \`preload\` используется для ресурсов, которые критически важны для текущей страницы и будут использованы в ближайшее время. Браузер загружает такой ресурс с высоким приоритетом, не блокируя отрисовку страницы. Это особенно полезно для шрифтов, скриптов или стилей, которые обнаруживаются поздно (например, через JavaScript).
+
+В этом примере мы предзагружаем шрифт, указывая тип ресурса через атрибут \`as\`, что помогает браузеру правильно расставить приоритеты и применить политики безопасности (например, CORS).
+
+Prefetch для будущей навигации
+
+Атрибут \`prefetch\` предназначен для ресурсов, которые понадобятся на следующих страницах, на которые пользователь может перейти. Браузер загружает такие ресурсы с низким приоритетом, когда сеть простаивает, чтобы не мешать загрузке текущей страницы.
+
+Этот подход часто используется в одностраничных приложениях (SPA) для предварительной загрузки кода разделов, до которых пользователь может дойти.
+
+Практическое применение и различия
+
+- Preload применяется для текущей страницы: для шрифтов, критических CSS/JS, изображений выше сгиба.
+
+- Prefetch применяется для будущих страниц или действий: для загрузки кода следующего маршрута в SPA, изображений в галерее, которые могут понадобиться.
+
+- Ключевое различие — в приоритете: \`preload\` — высокий, \`prefetch\` — низкий.
+
+Вывод: Используйте \`preload\` для ускорения загрузки критических ресурсов на текущей странице, а \`prefetch\` — для улучшения скорости навигации между страницами, особенно в SPA. Это простые, но мощные инструменты для оптимизации производительности.`,codeExample:`<link rel="preload" href="critical-font.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="prefetch" href=
+ext-page-bundle.js" as="script">`,skills:[`HTML`]},{question:`Что такое валидация и санитизация данных, и чем они отличаются?`,shortAnswer:`Валидация проверяет, соответствуют ли данные заданным правилам (например, формат email). Санитизация очищает или преобразует данные для удаления опасных элементов (например, HTML-тегов). Валидация отвечает на вопрос "правильные ли данные?", а санитизация — "безопасны ли данные?".`,longAnswer:`Основные понятия
+Валидация и санитизация — два ключевых процесса обработки данных, особенно при работе с пользовательским вводом. Валидация проверяет, соответствуют ли данные определённым критериям (например, длина строки, формат email, диапазон чисел). Санитизация же направлена на удаление или преобразование потенциально опасных частей данных, таких как HTML-теги или SQL-инъекции.
+Примеры и различия
+Представьте форму регистрации с полем для имени пользователя. Валидация может проверять, что имя содержит только буквы и цифры, а его длина от 3 до 20 символов. Санитизация удалит любые HTML-теги, которые пользователь мог ввести, чтобы предотвратить XSS-атаки.
+
+Где применяется
+
+- Веб-формы (регистрация, комментарии)
+- API-эндпоинты (проверка входных параметров)
+- Базы данных (защита от SQL-инъекций)
+Валидация обычно выполняется первой, чтобы отсеять заведомо некорректные данные. Санитизация применяется после, чтобы обезопасить данные перед сохранением или отображением.
+Вывод: Валидация и санитизация — взаимодополняющие практики. Валидация гарантирует, что данные имеют ожидаемый формат, а санитизация защищает систему от вредоносного содержимого. Используйте их вместе для надёжной обработки пользовательского ввода.`,codeExample:`// Пример валидации на JavaScript
+function validateUsername(name) {
+  const regex = /^[a-zA-Z0-9]{3,20}$/;
+  return regex.test(name);
+}
+
+// Пример санитизации (удаление HTML-тегов)
+function sanitizeInput(input) {
+  return input.replace(/<[^>]*>/g, '');
+}`,skills:[`HTML`]},{question:`Как работает парсинг URL и зачем он нужен?`,shortAnswer:`Парсинг URL — это разбор адреса на составные части: протокол, домен, порт, путь, параметры и якорь. Это нужно для извлечения данных из адресной строки, навигации и обработки запросов. Например, в JavaScript объект URL позволяет легко получить эти компоненты.`,longAnswer:`Что такое парсинг URL?
+Парсинг URL (Uniform Resource Locator) — это процесс разбора строки адреса на логические компоненты, такие как протокол, хост, порт, путь, query-параметры и фрагмент. Это фундаментальная операция в веб-разработке, так как браузеры и серверы используют URL для идентификации ресурсов и передачи данных.
+Основные компоненты URL
+
+- Протокол (scheme) — например, http, https, ftp.
+- Хост (host) — доменное имя или IP-адрес.
+- Порт (port) — номер порта (по умолчанию 80 для HTTP, 443 для HTTPS).
+- Путь (path) — путь к ресурсу на сервере.
+- Query-параметры (query string) — набор пар ключ=значение, начинается с ?.
+- Фрагмент (fragment) — часть после #, используется для якорей на странице.
+Пример парсинга в JavaScript
+
+Зачем нужен парсинг URL?
+Парсинг URL используется для:
+
+- Извлечения данных из адресной строки (например, параметры поиска).
+- Валидации и нормализации URL перед отправкой запроса.
+- Навигации в одностраничных приложениях (SPA) с помощью React Router или Vue Router.
+- Создания ссылок с динамическими параметрами.
+Вывод: Парсинг URL — это базовая техника, необходимая для работы с веб-адресами. Она применяется в клиентских и серверных приложениях для обработки запросов, маршрутизации и передачи данных. Понимание структуры URL помогает избежать ошибок при работе с HTTP и улучшает безопасность приложений.`,codeExample:`const url = new URL('https://example.com:8080/path/page?name=John&age=30#section');
+console.log(url.protocol); // 'https:'
+console.log(url.hostname); // 'example.com'
+console.log(url.port); // '8080'
+console.log(url.pathname); // '/path/page'
+console.log(url.search); // '?name=John&age=30'
+console.log(url.hash); // '#section'
+// Получение параметров
+console.log(url.searchParams.get('name')); // 'John'`,skills:[`HTML`]},{question:`Какие есть способы защиты от XSS?`,shortAnswer:`XSS (межсайтовый скриптинг) — это атака, при которой злоумышленник внедряет вредоносный скрипт в веб-страницу. Основные способы защиты: экранирование вывода данных, валидация и санитизация ввода, использование Content Security Policy (CSP), установка HttpOnly флага для кук. Также важно избегать опасных функций, таких как innerHTML, и использовать безопасные шаблонизаторы.`,longAnswer:"Что такое XSS и почему это важно?\nXSS (Cross-Site Scripting) — это тип атаки, при котором злоумышленник внедряет вредоносный JavaScript-код в веб-страницу, которая затем выполняется в браузере жертвы. Это может привести к краже кук, перенаправлению на фишинговые сайты или изменению содержимого страницы. Защита от XSS критична для любого веб-приложения, работающего с пользовательскими данными.\nОсновные методы защиты\n\n- Экранирование вывода (Output Escaping): Преобразование специальных символов (например, `<`, `>`, `&`) в их HTML-сущности перед вставкой в страницу. Это предотвращает интерпретацию данных как кода.\n- Валидация и санитизация ввода: Проверка и очистка данных от пользователя на сервере. Например, удаление тегов `<script>` или использование белого списка разрешённых тегов.\n- Content Security Policy (CSP): HTTP-заголовок, который ограничивает источники скриптов, стилей и других ресурсов. Например, `Content-Security-Policy: script-src 'self'` разрешает выполнение только скриптов с того же домена.\n- HttpOnly флаг для кук: Установка флага `HttpOnly` при создании кук предотвращает доступ к ним через JavaScript, что защищает от кражи сессионных данных.\n- Избегание опасных функций: Не использовать `innerHTML`, `document.write()` или `eval()` с пользовательскими данными. Вместо этого применять `textContent` или безопасные шаблонизаторы (например, React автоматически экранирует вывод).\nПример кода\n\nВывод\nЗащита от XSS требует комплексного подхода: экранирование вывода, валидация ввода, использование CSP и безопасных API. Эти методы особенно важны при разработке приложений с пользовательским контентом (формы, комментарии, чаты). Применение этих практик снижает риск атак и повышает доверие пользователей.",codeExample:`// Опасный код (уязвим к XSS)
+const userInput = "<script>alert('XSS')<\/script>";
+document.getElementById('output').innerHTML = userInput;
+
+// Безопасный код (экранирование)
+const safeOutput = userInput.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+document.getElementById('output').textContent = safeOutput;
+
+// Пример CSP в HTML
+// <meta http-equiv="Content-Security-Policy" content="script-src 'self'">`,skills:[`HTML`]},{question:`Какие инструменты используются для анализа ошибок в браузере (например, Chrome DevTools)?`,shortAnswer:`Chrome DevTools — это встроенный набор инструментов для отладки веб-приложений. Он включает консоль для просмотра ошибок, вкладку Network для анализа сетевых запросов, Sources для отладки JavaScript и Elements для просмотра DOM. Эти инструменты помогают разработчикам быстро находить и исправлять ошибки.`,longAnswer:`Что такое Chrome DevTools?
+Chrome DevTools — это набор инструментов для разработчиков, встроенный в браузер Google Chrome. Он позволяет анализировать и отлаживать веб-страницы, выявлять ошибки JavaScript, оптимизировать производительность и изучать сетевые запросы. DevTools незаменим для фронтенд-разработчиков при создании и поддержке веб-приложений.
+Основные инструменты для анализа ошибок
+
+- Console — отображает ошибки, предупреждения и логи JavaScript. Позволяет выполнять код в реальном времени.
+- Sources — предоставляет доступ к исходному коду, позволяет ставить точки останова (breakpoints) и пошагово выполнять код.
+- Network — показывает все сетевые запросы, их статусы, время загрузки и заголовки. Помогает выявить проблемы с API или ресурсами.
+- Elements — позволяет просматривать и редактировать HTML и CSS в реальном времени, что полезно для проверки стилей.
+Пример использования
+Допустим, на странице не загружаются данные. Откройте DevTools (F12), перейдите на вкладку Network и обновите страницу. Вы увидите список запросов. Если запрос к API отмечен красным (статус 404 или 500), это указывает на ошибку на сервере. В консоли при этом может появиться сообщение об ошибке с подробностями.
+
+В консоли DevTools вы увидите текст ошибки, если запрос не удался. Используя вкладку Sources, можно поставить точку останова внутри .catch() и проверить значение error.
+Вывод
+Chrome DevTools — основной инструмент для отладки веб-приложений. Его знание обязательно для любого фронтенд-разработчика, так как он ускоряет поиск и исправление ошибок, а также помогает оптимизировать производительность.`,codeExample:`// Пример кода, который может вызвать ошибку
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Ошибка:', error));`,skills:[`HTML`]},{question:`Как тестировать поле ввода даты?`,shortAnswer:`Тестирование поля ввода даты включает проверку корректных форматов (например, ДД.ММ.ГГГГ), граничных значений (29 февраля в високосный год), недопустимых дат (31 апреля) и специальных случаев (прошлые/будущие даты). Также важно проверить обработку пустого поля, ввод символов и локализацию. Используйте как ручное, так и автоматизированное тестирование с различными сценариями.`,longAnswer:`Основные аспекты тестирования поля ввода даты
+Тестирование поля ввода даты требует проверки множества сценариев, чтобы убедиться в корректной обработке пользовательского ввода. Это включает валидацию формата, граничные значения, обработку ошибок и соответствие бизнес-логике.
+Проверка форматов и валидация
+Убедитесь, что поле принимает только ожидаемые форматы даты (например, ДД.ММ.ГГГГ или ГГГГ-ММ-ДД). Проверьте ввод с разделителями (точки, слеши, дефисы) и без них. Пример теста:
+
+Граничные значения и особые случаи
+
+- Проверьте 29 февраля в високосный и невисокосный год.
+- Тестируйте 31 апреля, 30 февраля и другие несуществующие даты.
+- Включите проверку минимальной и максимальной допустимой даты (например, не ранее 1900 года).
+Обработка ошибок и UX
+Убедитесь, что при вводе некорректной даты отображается понятное сообщение об ошибке. Проверьте поведение при пустом поле, вводе букв или специальных символов. Также важно тестировать локализацию (разные форматы дат в разных странах).
+Автоматизация тестирования
+Для автоматизации используйте инструменты вроде Selenium или Cypress. Пример теста на Cypress:
+
+Вывод: тестирование поля ввода даты необходимо для обеспечения корректной работы приложения, предотвращения ошибок ввода и улучшения пользовательского опыта. Особенно важно в системах с бронированием, финансами или планированием.`,codeExample:`// Пример проверки формата в JavaScript
+function isValidDate(dateString) {
+  const regex = /^""d{2}"".""d{2}"".""d{4}$/;
+  return regex.test(dateString);
+}
+console.log(isValidDate('31.12.2023')); // true
+console.log(isValidDate('2023-12-31')); // false
+
+cy.get('input[type="date"]')
+  .type('2023-12-31')
+  .should('have.value', '2023-12-31');
+cy.get('input[type="date"]')
+  .clear()
+  .type('invalid-date')
+  .should('have.class', 'error');`,skills:[`HTML`]},{question:`Использовался ли logcat и для чего он нужен?`,shortAnswer:`Logcat — это утилита для просмотра системных логов Android. Она позволяет разработчикам отслеживать сообщения от приложений, ошибки и системные события. Используется для отладки через Android Studio или командную строку adb.`,longAnswer:`Что такое logcat?
+Logcat — это инструмент командной строки и встроенная функция Android Studio, которая собирает и отображает системные сообщения, включая логи приложений, ошибки, предупреждения и отладочную информацию. Он необходим для диагностики проблем в работе приложения, таких как краши, утечки памяти или неправильное поведение.
+Как использовать logcat?
+Logcat можно запустить через Android Studio в панели Logcat или через терминал с помощью команды \`adb logcat\`. Вы можете фильтровать сообщения по уровню важности (VERBOSE, DEBUG, INFO, WARN, ERROR) и по тегам, которые задаются в коде приложения.
+Пример использования в коде
+
+Вывод
+Logcat — незаменимый инструмент для отладки Android-приложений, позволяющий быстро находить и исправлять ошибки. Его стоит использовать на всех этапах разработки для мониторинга поведения приложения.`,codeExample:`import android.util.Log;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        Log.d(TAG, "Activity created");
+        try {
+            // some code
+        } catch (Exception e) {
+            Log.e(TAG, "Error occurred", e);
+        }
+    }
+}`,skills:[`HTML`]},{question:`Как тестировать приложения с учетом различий между iOS и Android?`,shortAnswer:`Тестирование мобильных приложений требует учета различий в операционных системах, таких как навигация, разрешения, уведомления и производительность. Для iOS используются Xcode и симулятор, для Android — Android Studio и эмулятор. Важно тестировать на реальных устройствах из-за различий в экранах, версиях ОС и аппаратных особенностях. Также учитываются разные подходы к управлению памятью и энергопотреблением.`,longAnswer:`Основные различия между iOS и Android в тестировании
+При тестировании мобильных приложений необходимо учитывать фундаментальные различия между платформами iOS и Android. iOS имеет закрытую экосистему с ограниченным числом устройств, что упрощает тестирование совместимости, но требует строгого следования гайдлайнам Apple. Android, напротив, открыт и фрагментирован: множество производителей, версий ОС и размеров экранов. Это требует более обширного тестирования на разных устройствах.
+Инструменты и подходы
+Для iOS тестирования используются Xcode с XCTest и симулятор, который не полностью эмулирует поведение реального устройства (например, датчики или производительность). Для Android — Android Studio с Espresso и эмулятор, который лучше имитирует реальные условия. Рекомендуется комбинировать автоматизированное тестирование (UI-тесты, unit-тесты) с ручным тестированием на реальных устройствах.
+Пример кода для UI-теста на iOS (XCTest)
+
+Пример кода для UI-теста на Android (Espresso)
+
+Ключевые аспекты тестирования
+
+- Навигация и жесты: iOS использует жесты (свайпы, 3D Touch), Android — кнопки и жесты (например, Back).
+- Разрешения: iOS запрашивает разрешения в момент использования, Android — при установке или во время работы.
+- Уведомления: Разные API и поведение (например, группировка уведомлений).
+- Производительность: iOS оптимизирован для конкретного железа, Android требует тестирования на разных чипсетах.
+Вывод: тестирование мобильных приложений должно учитывать платформенные особенности, использовать специализированные инструменты и обязательно включать тесты на реальных устройствах для выявления проблем, невидимых в симуляторах.`,codeExample:`import XCTest
+
+class LoginTests: XCTestCase {
+    let app = XCUIApplication()
+
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        app.launch()
+    }
+
+    func testLoginSuccess() {
+        let usernameField = app.textFields["username"]
+        usernameField.tap()
+        usernameField.typeText(  estuser")
+
+        let passwordField = app.secureTextFields["password"]
+        passwordField.tap()
+        passwordField.typeText("password123")
+
+        app.buttons["login"].tap()
+        XCTAssertTrue(app.staticTexts["Welcome"].exists)
+    }
+}
+
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import org.junit.Rule
+import org.junit.Test
+
+class LoginTest {
+    @get:Rule
+    val activityRule = ActivityScenarioRule(LoginActivity::class.java)
+
+    @Test
+    fun testLoginSuccess() {
+        onView(withId(R.id.username)).perform(typeText(  estuser"))
+        onView(withId(R.id.password)).perform(typeText("password123"))
+        onView(withId(R.id.login_button)).perform(click())
+        onView(withText("Welcome")).check(matches(isDisplayed()))
+    }
+}`,skills:[`HTML`]},{question:`Какие инструменты используются для перехвата трафика (например, Charles)?`,shortAnswer:`Для перехвата трафика используются прокси-инструменты, такие как Charles Proxy, Fiddler и Wireshark. Они позволяют просматривать, изменять и анализировать HTTP/HTTPS запросы и ответы. Это помогает отлаживать API, проверять заголовки, куки и тела запросов. Charles особенно популярен среди разработчиков мобильных приложений.`,longAnswer:`Что такое перехват трафика и зачем он нужен?
+Перехват трафика — это процесс мониторинга и анализа сетевых запросов между клиентом (браузером, мобильным приложением) и сервером. Это необходимо для отладки, тестирования безопасности, оптимизации производительности и понимания работы API.
+Основные инструменты
+
+- Charles Proxy — популярный инструмент для macOS и Windows. Позволяет перехватывать HTTP/HTTPS трафик, изменять запросы и ответы в реальном времени, эмулировать медленные соединения.
+- Fiddler — мощный прокси для Windows, поддерживает скриптинг и расширенный анализ.
+- Wireshark — анализатор пакетов для глубокого изучения сетевых протоколов, работает на низком уровне.
+Пример использования Charles Proxy
+Настройка Charles для перехвата HTTPS трафика с мобильного устройства:
+
+После настройки вы можете видеть все запросы, их заголовки, тело, статус ответа. Например, при отладке мобильного приложения можно проверить, какие данные отправляются на сервер и что приходит в ответ.
+Вывод
+Инструменты перехвата трафика незаменимы для отладки клиент-серверного взаимодействия, особенно при разработке мобильных приложений и веб-сервисов. Они помогают быстро находить ошибки в API, проверять безопасность и оптимизировать запросы.`,codeExample:`1. Установите Charles на компьютер.
+2. Включите SSL Proxying: Proxy -> SSL Proxying Settings.
+3. Добавьте запись для *.* (все хосты).
+4. Настройте прокси на устройстве: IP компьютера, порт 8888.
+5. Установите сертификат Charles на устройство для расшифровки HTTPS.
+6. Теперь все запросы отображаются в Charles.`,skills:[`HTML`]},{question:`Какие ограничения есть у симуляторов?`,shortAnswer:`Симуляторы не могут полностью воспроизвести аппаратные особенности реальных устройств, такие как производительность процессора, работа сенсоров или батареи. Они также не поддерживают некоторые API, связанные с оборудованием, например, камеру или GPS. Это может привести к тому, что баги, связанные с реальным окружением, останутся незамеченными. Поэтому симуляторы хороши для начального тестирования, но не заменяют тесты на реальных устройствах.`,longAnswer:`Ограничения симуляторов
+Симуляторы — это программные инструменты, которые имитируют поведение реального устройства или системы, но они имеют ряд ограничений, которые важно учитывать при разработке и тестировании. Основная проблема заключается в том, что симуляторы не могут точно воспроизвести аппаратные характеристики, такие как скорость процессора, объем оперативной памяти или работа сенсоров (акселерометр, гироскоп). Это означает, что производительность приложения в симуляторе может сильно отличаться от реального устройства.
+Примеры ограничений
+
+- Отсутствие поддержки реальных аппаратных API: например, камера, GPS, Bluetooth или NFC могут быть недоступны или работать некорректно.
+- Различия в работе сети: симуляторы часто используют сеть хоста, что не отражает реальные условия мобильной связи.
+- Ограничения по времени работы от батареи: симуляторы не эмулируют энергопотребление, поэтому нельзя проверить, как приложение влияет на заряд батареи.
+Практический пример
+Рассмотрим тестирование приложения для iOS с использованием симулятора Xcode. Код для работы с камерой может выглядеть так:
+
+В симуляторе этот код не сможет получить доступ к камере, что может скрыть ошибки в логике обработки видео. На реальном устройстве камера будет работать, но могут возникнуть проблемы с разрешением или фокусировкой, которые симулятор не покажет.
+Вывод
+Симуляторы полезны для быстрого прототипирования и тестирования логики приложения, но для выявления проблем, связанных с аппаратным обеспечением, производительностью и реальными условиями использования, необходимо проводить тестирование на физических устройствах. Используйте симуляторы для начальной проверки, но всегда дополняйте их тестами на реальном железе.`,codeExample:`import UIKit
+import AVFoundation
+
+class CameraViewController: UIViewController {
+    var captureSession: AVCaptureSession?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // В симуляторе AVCaptureDevice.default(for: .video) вернет nil
+        guard let camera = AVCaptureDevice.default(for: .video) else {
+            print("Камера недоступна в симуляторе")
+            return
+        }
+        // Дальнейшая настройка сессии
+    }
+}`,skills:[`HTML`]},{question:`Как проверять соответствие верстки макетам?`,shortAnswer:`Для проверки соответствия верстки макетам используют инструменты для наложения макета поверх страницы, например, PixelPerfect или PerfectPixel. Также можно сравнивать скриншоты в Figma или использовать встроенные инструменты браузера. Важно проверять отступы, размеры шрифтов, цвета и расположение элементов.`,longAnswer:`Основные методы проверки верстки
+Проверка соответствия верстки макетам — это процесс сравнения готового HTML/CSS кода с дизайн-макетом, созданным в Figma, Sketch или Adobe XD. Основная цель — убедиться, что все элементы расположены правильно, соблюдены отступы, размеры, цвета и типографика.
+Инструменты для проверки
+
+- PixelPerfect — расширение для браузера, которое позволяет наложить изображение макета поверх страницы и настроить прозрачность.
+- PerfectPixel — аналогичный инструмент, поддерживает несколько слоев и автоматическое выравнивание.
+- Figma Mirror — просмотр макета на мобильном устройстве для проверки адаптивности.
+- Встроенные инструменты браузера — инспектор элементов для измерения отступов и размеров.
+Пример использования PixelPerfect
+
+Что проверять
+
+- Отступы (margin/padding) между блоками
+- Размеры шрифтов и межстрочные интервалы
+- Цвета фона, текста и границ
+- Расположение элементов относительно друг друга
+- Адаптивность на разных разрешениях
+Вывод: Использование инструментов для pixel-perfect проверки помогает быстро выявить расхождения и сократить время на правки. Особенно полезно на этапе верстки перед сдачей проекта дизайнеру или заказчику.`,codeExample:`// Установите расширение PixelPerfect для Chrome
+// Откройте страницу с версткой
+// Нажмите на иконку расширения и загрузите скриншот макета
+// Настройте прозрачность и положение, чтобы сравнить слои`,skills:[`HTML`]},{question:`Что такое Perfect Pixel и как он используется?`,shortAnswer:`Perfect Pixel — это подход, при котором вёрстка веб-страницы полностью соответствует дизайн-макету с точностью до пикселя. Он используется для достижения высокой точности визуального представления, особенно в проектах с жёсткими требованиями к дизайну. Для этого разработчики используют инструменты для наложения макета поверх страницы и проверяют размеры, отступы и шрифты.`,longAnswer:`Что такое Perfect Pixel?
+Perfect Pixel (или Pixel Perfect) — это метод вёрстки, при котором каждый элемент веб-страницы визуально совпадает с дизайн-макетом (обычно в формате PSD или Figma) с точностью до одного пикселя. Это означает, что размеры, отступы, цвета, шрифты и расположение элементов должны быть идентичны макету.
+Как это используется?
+Разработчик открывает макет в графическом редакторе или использует специальное расширение браузера (например, PixelPerfect или PerfectPixel), которое накладывает полупрозрачное изображение макета поверх готовой страницы. Затем он сравнивает элементы и корректирует CSS-свойства до полного совпадения.
+Пример подхода
+Допустим, в макете кнопка имеет размер 120x40 пикселей, отступ слева 20px и шрифт Arial 14px. В коде это будет выглядеть так:
+
+После вёрстки разработчик включает расширение, накладывает макет и проверяет, совпадает ли кнопка с изображением. Если нет — корректирует значения.
+Вывод
+Perfect Pixel полезен в проектах, где дизайн строго регламентирован и требуется высокая точность, например, в лендингах или корпоративных сайтах. Однако он может замедлить разработку, поэтому его стоит применять выборочно, когда это действительно необходимо.`,codeExample:`.button {
+  width: 120px;
+  height: 40px;
+  margin-left: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}`,skills:[`HTML`]},{question:`Какие инструменты используются для проверки пиксель-перфекта?`,shortAnswer:`Pixel perfect — это подход, при котором верстка точно соответствует дизайн-макету. Для проверки используют браузерные расширения, например PixelPerfect или PerfectPixel, которые накладывают макет поверх страницы. Также применяют инструменты вроде Zeplin, Figma (режим сравнения) и автоматизированные решения, такие как Percy или Applitools.`,longAnswer:`Что такое pixel perfect и зачем это нужно
+Pixel perfect (пиксель-перфект) — это подход в frontend-разработке, при котором итоговая веб-страца визуально совпадает с дизайн-макетом до каждого пикселя. Это особенно важно в проектах с жесткими требованиями к дизайну, например в корпоративных сайтах или интернет-магазинах, где бренд должен выглядеть единообразно.
+Основные инструменты для проверки
+
+- Браузерные расширения: PerfectPixel (Chrome), PixelPerfect (Firefox) — позволяют загрузить изображение макета и наложить его поверх страницы с регулируемой прозрачностью.
+- Дизайн-инструменты: Figma, Zeplin, Avocode — имеют встроенные режимы сравнения или экспорт с CSS-свойствами.
+- Автоматизированные сервисы: Percy, Applitools, Chromatic — выполняют визуальное регрессионное тестирование, сравнивая скриншоты страниц с эталоном.
+Пример использования расширения PerfectPixel
+
+Когда применять pixel perfect
+Этот подход оправдан в проектах с фиксированным дизайном и высокой требовательностью к точности. Для адаптивных или прототипных сайтов достаточно семантической верстки без жесткого контроля пикселей. Вывод: pixel perfect — полезная техника для финальной проверки, но не всегда обязательная; используйте её при необходимости точного соответствия макету.`,codeExample:`// Установите расширение PerfectPixel из Chrome Web Store
+// Откройте страницу, нажмите на иконку расширения
+// Загрузите PNG-макет и настройте прозрачность (обычно 50%)
+// Сравните положение элементов: отступы, размеры шрифтов, цвета
+// При необходимости отредактируйте CSS в инспекторе браузера`,skills:[`HTML`]},{question:`Какие браузеры необходимо учитывать при тестировании?`,shortAnswer:`При тестировании необходимо учитывать браузеры, которые использует целевая аудитория: Google Chrome, Mozilla Firefox, Safari, Microsoft Edge и, возможно, Opera. Важно проверять последние стабильные версии, а также предыдущие 1-2 версии для каждого браузера. Для мобильных устройств добавляются мобильные версии Safari и Chrome. Решение о поддержке старых браузеров, таких как Internet Explorer, принимается на основе аналитики использования.`,longAnswer:`Какие браузеры учитывать при тестировании
+Выбор браузеров для тестирования зависит от целевой аудитории и статистики использования. Основные браузеры, которые обычно включают в тестирование: Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge. Также может потребоваться Opera и, в редких случаях, Internet Explorer (если аудитория его использует).
+Критерии выбора
+
+- Доля рынка: Используйте данные аналитики (Google Analytics, StatCounter) для определения популярных браузеров среди ваших пользователей.
+- Версии: Тестируйте последнюю стабильную версию и предыдущие 1-2 версии каждого браузера.
+- Мобильные браузеры: Учитывайте мобильные версии Safari (iOS) и Chrome (Android), а также встроенные браузеры.
+- Старые браузеры: Если требуется поддержка старых версий (например, IE11), включите их в тестирование, но это увеличивает затраты.
+Пример подхода
+Для веб-приложения с широкой аудиторией можно использовать следующий список:
+
+Также рекомендуется использовать инструменты для эмуляции старых браузеров, такие как BrowserStack или Sauce Labs.
+Вывод
+Выбор браузеров для тестирования должен основываться на данных об аудитории и требованиях проекта. Оптимально тестировать последние версии популярных браузеров и мобильные версии, чтобы обеспечить качественный пользовательский опыт.`,codeExample:`Браузеры для тестирования:
+- Chrome (последняя версия)
+- Firefox (последняя версия)
+- Safari (последняя версия)
+- Edge (последняя версия)
+- Мобильный Safari (iOS)
+- Мобильный Chrome (Android)`,skills:[`HTML`]},{question:`Как тестировать адаптивность интерфейса?`,shortAnswer:`Адаптивность интерфейса тестируется с помощью эмуляции устройств в браузере, изменения размеров окна и проверки на реальных устройствах. Используются инструменты разработчика Chrome, Firefox и онлайн-сервисы. Важно проверять корректное отображение контента, работу медиа-запросов и отсутствие горизонтальной прокрутки.`,longAnswer:`Основные подходы к тестированию адаптивности
+Тестирование адаптивности интерфейса — это процесс проверки того, как веб-страница отображается и функционирует на различных устройствах с разными размерами экрана, разрешениями и ориентациями. Основная цель — убедиться, что пользовательский интерфейс остается удобным и функциональным на всех устройствах, от мобильных телефонов до широкоформатных мониторов.
+Инструменты и методы
+
+- Эмуляция устройств в браузере: Инструменты разработчика Chrome и Firefox позволяют эмулировать различные устройства, изменять разрешение экрана, DPI и ориентацию. Это быстрый способ проверить базовую адаптивность.
+- Изменение размеров окна браузера: Простой, но эффективный метод — вручную изменять ширину окна браузера, чтобы увидеть, как интерфейс реагирует на изменение размеров.
+- Реальные устройства: Тестирование на физических устройствах (смартфонах, планшетах, ноутбуках) дает наиболее точные результаты, так как учитывает особенности реальных браузеров и операционных систем.
+- Онлайн-сервисы: Сервисы, такие как BrowserStack, Sauce Labs или LambdaTest, предоставляют доступ к реальным устройствам и браузерам в облаке для кросс-браузерного тестирования.
+Что проверять
+
+- Медиа-запросы: Убедитесь, что CSS-медиа-запросы корректно применяются для разных разрешений.
+- Отсутствие горизонтальной прокрутки: Контент не должен выходить за пределы экрана по горизонтали.
+- Читаемость текста: Размер шрифта и межстрочные интервалы должны быть комфортными для чтения.
+- Работа интерактивных элементов: Кнопки, ссылки и формы должны быть доступны для нажатия на сенсорных экранах.
+- Изображения и медиа: Изображения должны масштабироваться и не искажаться.
+Пример кода для проверки медиа-запросов
+
+В этом примере показано, как с помощью медиа-запросов изменять расположение элементов в зависимости от ширины экрана. При тестировании важно проверить, что каждый блок кода применяется в нужном диапазоне разрешений.
+Вывод
+Тестирование адаптивности необходимо для обеспечения качественного пользовательского опыта на всех устройствах. Используйте комбинацию эмуляции, ручного тестирования и проверки на реальных устройствах, чтобы выявить и исправить проблемы до выпуска продукта.`,codeExample:`/* CSS медиа-запросы для разных устройств */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    flex-direction: row;
+  }
+}`,skills:[`HTML`]},{question:`Чем breakpoint отличается от rewrite?`,shortAnswer:`Breakpoint (точка останова) приостанавливает выполнение кода в указанном месте, позволяя пошагово анализировать состояние программы. Rewrite (переопределение) заменяет содержимое HTTP-ответа или запроса на лету, не изменяя исходный код. Breakpoint используется для отладки логики, а rewrite — для тестирования различных сценариев ответов сервера.`,longAnswer:`Основное различие
+Breakpoint и rewrite — это два разных инструмента в браузерных DevTools, которые решают разные задачи. Breakpoint приостанавливает выполнение JavaScript в заданной строке кода, позволяя исследовать переменные, стек вызовов и состояние приложения. Rewrite (или Overrides) позволяет подменить содержимое сетевого запроса или ответа, не изменяя исходный код на сервере.
+Когда используется breakpoint
+Breakpoint применяется для пошаговой отладки: вы ставите точку останова в коде, и выполнение останавливается. Вы можете проверить значения переменных, выполнить код в консоли, пройти по шагам. Это незаменимо при поиске логических ошибок, неправильных вычислений или неожиданного поведения функций.
+
+Когда используется rewrite
+Rewrite позволяет переопределить ответ сервера для конкретного URL. Вы можете заменить JSON-ответ, HTML-файл или даже изображение. Это полезно для тестирования разных состояний UI без изменения бэкенда: например, имитировать ошибку сервера, пустой список или специфические данные.
+
+Ключевые отличия
+
+- Breakpoint работает на уровне выполнения кода, rewrite — на уровне сетевых запросов.
+- Breakpoint требует остановки выполнения, rewrite происходит прозрачно для приложения.
+- Breakpoint помогает отлаживать логику, rewrite — тестировать разные сценарии данных.
+Вывод: Используйте breakpoint для поиска ошибок в коде, а rewrite — для проверки поведения интерфейса при различных ответах сервера без изменения бэкенда.`,codeExample:`// Пример: отладка функции с breakpoint
+function calculateTotal(items) {
+  let total = 0;
+  for (let item of items) {
+    total += item.price * item.quantity; // здесь ставим breakpoint
+  }
+  return total;
+}
+
+// Пример: переопределение ответа API
+// В DevTools -> Network -> правый клик на запросе -> Override content
+// Подменяем ответ на:
+{
+  "users": [],
+  "error": "Service unavailable"
+}`,skills:[`HTML`]},{question:`Какие системные события нужно учитывать при тестировании (например, звонки, уведомления, потеря сети)?`,shortAnswer:`При тестировании мобильных приложений важно учитывать системные события, такие как входящие звонки, SMS, уведомления, потеря или переключение сети, изменение ориентации экрана, низкий заряд батареи и блокировка устройства. Эти события могут прервать работу приложения, вызвать потерю данных или некорректное состояние. Тестирование должно проверять, как приложение восстанавливается после таких прерываний и сохраняет пользовательские данные.`,longAnswer:`Зачем учитывать системные события
+Системные события — это внешние воздействия на мобильное устройство, которые могут прервать нормальную работу приложения. Игнорирование их тестирования приводит к сбоям, потере данных и плохому пользовательскому опыту. Например, если приложение не обрабатывает входящий звонок, оно может зависнуть или потерять введённые данные.
+Основные типы системных событий
+
+- Входящие звонки и SMS — прерывают текущую активность, приложение должно корректно приостановиться и восстановиться после завершения вызова.
+- Уведомления — push-уведомления или системные алерты могут перекрывать интерфейс, важно проверить, что приложение не теряет состояние.
+- Потеря сети — переход в офлайн-режим, приложение должно сохранять данные локально и синхронизироваться при восстановлении соединения.
+- Изменение ориентации — поворот экрана может вызвать пересоздание Activity (Android) или ViewController (iOS), нужно сохранять состояние.
+- Низкий заряд батареи — система может ограничить фоновые процессы, приложение должно корректно завершать операции.
+- Блокировка экрана — приложение переходит в фоновый режим, важно сохранять прогресс и не допускать утечек памяти.
+Пример тестирования на Android
+
+Практические рекомендации
+Для каждого системного события нужно написать отдельные тест-кейсы. Используйте эмуляторы или реальные устройства для имитации событий (например, через ADB команды для Android). Автоматизируйте проверки с помощью фреймворков вроде Espresso или XCTest, чтобы гарантировать стабильность при каждом билде.
+Вывод: Учёт системных событий обязателен для обеспечения надёжности мобильного приложения. Это предотвращает потерю данных, улучшает пользовательский опыт и повышает рейтинг приложения в магазинах.`,codeExample:`// Пример обработки входящего звонка в Activity
+@Override
+protected void onPause() {
+    super.onPause();
+    // Сохраняем текущее состояние
+    saveState();
+}
+
+@Override
+protected void onResume() {
+    super.onResume();
+    // Восстанавливаем состояние после звонка
+    restoreState();
+}`,skills:[`HTML`]},{question:`Как проверить корректность отображения интерфейса по макетам?`,shortAnswer:`Для проверки интерфейса по макетам используют визуальное сравнение (pixel perfect), инструменты для автоматического регрессионного тестирования (Percy, Chromatic) и ручной review. Важно проверять отступы, шрифты, цвета и поведение на разных разрешениях. Это помогает избежать расхождений между дизайном и реализацией.`,longAnswer:`Проверка интерфейса по макетам
+Корректное отображение интерфейса по макетам — это ключевой этап разработки, который гарантирует, что пользователь видит именно то, что задумал дизайнер. Для этого применяются как ручные, так и автоматизированные методы.
+Основные подходы
+
+- Pixel Perfect сравнение — наложение скриншота страницы на макет с полупрозрачностью для выявления расхождений.
+- Визуальное регрессионное тестирование — автоматическое сравнение скриншотов с эталонными с помощью инструментов (Percy, Chromatic, Applitools).
+- Ручной review — проверка отступов, шрифтов, цветов и адаптивности вручную с помощью браузерных инструментов разработчика.
+Пример кода для визуального тестирования с Percy
+
+Вывод
+Регулярная проверка интерфейса по макетам помогает поддерживать качество UI и предотвращает накопление визуальных дефектов. Особенно полезна автоматизация в проектах с частыми изменениями дизайна.`,codeExample:`// Пример интеграции Percy с Cypress
+cy.visit('/page');
+cy.percySnapshot('Homepage'); // Делает скриншот и сравнивает с эталоном`,skills:[`HTML`]},{question:`Какие инструменты можно использовать для проверки адаптивности интерфейса?`,shortAnswer:`Для проверки адаптивности интерфейса можно использовать встроенные инструменты разработчика в браузерах (Chrome DevTools, Firefox Developer Tools), которые позволяют эмулировать различные устройства и разрешения экрана. Также существуют онлайн-сервисы, такие как Responsinator, BrowserStack, и Lighthouse для автоматизированного аудита. Дополнительно можно применять физические устройства и симуляторы для более точного тестирования.`,longAnswer:`Инструменты для проверки адаптивности интерфейса
+Адаптивность интерфейса — это способность веб-страницы корректно отображаться на различных устройствах с разными размерами экрана. Для её проверки существует несколько категорий инструментов, от встроенных в браузер до специализированных сервисов.
+Браузерные инструменты разработчика
+Самый доступный способ — использовать инструменты разработчика в браузере. Например, в Chrome DevTools есть режим эмуляции устройств (Toggle Device Toolbar), который позволяет выбрать конкретное устройство или задать произвольное разрешение. Вы можете проверить, как медиа-запросы влияют на макет, и симулировать сенсорные события.
+
+Онлайн-сервисы и автоматизированные инструменты
+
+- Responsinator — быстрая проверка на популярных устройствах.
+- BrowserStack — позволяет тестировать на реальных устройствах и браузерах в облаке.
+- Lighthouse — встроенный в Chrome инструмент для аудита производительности и доступности, включая проверку адаптивности.
+Физические устройства и симуляторы
+Для точного тестирования рекомендуется использовать реальные смартфоны и планшеты. Если их нет, подойдут симуляторы iOS (Xcode Simulator) и Android (Android Studio Emulator). Они дают более реалистичную картину, чем эмуляция в браузере.
+Вывод
+Используйте комбинацию браузерных инструментов для быстрой итеративной проверки, онлайн-сервисы для кросс-браузерного тестирования и физические устройства для финального контроля. Это обеспечит корректное отображение интерфейса на всех целевых устройствах.`,codeExample:`/* Пример CSS медиа-запроса */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}`,skills:[`HTML`]},{question:`В чем разница между JSON и XML?`,shortAnswer:`JSON (JavaScript Object Notation) — это легковесный формат, основанный на парах ключ-значение, который легко читается и парсится. XML (eXtensible Markup Language) — более тяжеловесный язык разметки с тегами и атрибутами, поддерживающий схемы и пространства имен. JSON обычно проще и быстрее для веб-API, тогда как XML чаще используется в сложных документах и системах с жесткими схемами.`,longAnswer:`Основные различия между JSON и XML
+JSON и XML — это два популярных формата для хранения и передачи структурированных данных. JSON произошел из JavaScript и стал стандартом для веб-API благодаря своей простоте. XML, напротив, является более старым и мощным языком разметки, который широко применяется в конфигурационных файлах, документах и системах, где важна строгая валидация.
+Синтаксис и читаемость
+JSON использует минималистичный синтаксис: объекты в фигурных скобках, массивы в квадратных, данные представлены парами ключ-значение. XML использует открывающие и закрывающие теги, что делает его более громоздким. Пример:
+
+Типы данных и поддержка
+JSON поддерживает ограниченный набор типов: строки, числа, булевы значения, массивы, объекты и null. XML не имеет встроенных типов — все данные являются строками, что требует дополнительной обработки. JSON легче парсится в языках программирования, особенно в JavaScript, где он может быть преобразован в объект с помощью \`JSON.parse()\`.
+Применение
+JSON доминирует в RESTful API, конфигурациях (например, package.json) и веб-приложениях. XML часто используется в SOAP-сервисах, SVG-графике, RSS-лентах и системах, где требуется строгая схема (XSD).
+Вывод
+Выбор между JSON и XML зависит от задачи: для простых и быстрых обменов данными в вебе лучше подходит JSON, а для сложных документов с валидацией и пространствами имен — XML.`,codeExample:`// JSON
+{
+  
+ame": "Alice",
+  "age": 30,
+  "city": "New York"
+}
+
+// XML
+<person>
+  <name>Alice</name>
+  <age>30</age>
+  <city>New York</city>
+</person>`,skills:[`HTML`]},{question:`Как использовать DevTools для анализа верстки и сетевых запросов?`,shortAnswer:`DevTools — это встроенные инструменты браузера для отладки. Для анализа верстки используй вкладку Elements, где можно просматривать и изменять HTML/CSS в реальном времени. Для сетевых запросов открой вкладку Network, где видны все запросы, их статусы, время выполнения и заголовки. Это помогает быстро находить проблемы с отображением или загрузкой данных.`,longAnswer:`Основы работы с DevTools
+DevTools (Инструменты разработчика) — это мощный набор инструментов, встроенный в современные браузеры, такие как Chrome, Firefox или Edge. Они позволяют разработчикам анализировать, отлаживать и оптимизировать веб-страницы. Для доступа к ним обычно используется клавиша F12 или комбинация Ctrl+Shift+I (Cmd+Option+I на Mac).
+Анализ верстки с помощью вкладки Elements
+Вкладка Elements (или Inspector) показывает DOM-дерево страницы и стили CSS. Вы можете:
+
+- Наводить курсор на элементы в дереве, чтобы подсветить их на странице.
+- Редактировать HTML и CSS в реальном времени — изменения видны сразу, но не сохраняются.
+- Просматривать вычисленные стили, размеры блоков (Box Model) и применённые CSS-правила.
+Пример: если элемент имеет неправильный отступ, вы можете найти его в Elements, посмотреть Box Model и изменить margin или padding прямо в панели Styles.
+Анализ сетевых запросов с помощью вкладки Network
+Вкладка Network показывает все HTTP-запросы, которые делает страница: загрузка HTML, CSS, JavaScript, изображений, API-запросы и т.д. Полезные возможности:
+
+- Просмотр статуса ответа (200, 404, 500 и т.д.).
+- Время выполнения каждого запроса (время ожидания, загрузки).
+- Заголовки запроса и ответа, включая Content-Type, Cache-Control.
+- Тело ответа (например, JSON или HTML).
+Пример: если страница не загружает данные, откройте Network, найдите запрос к API, проверьте его статус и тело ответа. Если статус 404 — вероятно, неверный URL.
+Практический пример
+
+Вывод
+DevTools — незаменимый инструмент для каждого веб-разработчика. Используйте Elements для быстрой отладки вёрстки и Network для диагностики проблем с загрузкой ресурсов и API-запросами. Это ускоряет разработку и помогает находить ошибки без перезагрузки страницы.`,codeExample:`// Пример: проверка загрузки данных через fetch
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Ошибка:', error));
+
+// В DevTools Network вы увидите этот запрос, его статус и время.
+// Если запрос не отображается, проверьте фильтры (например, XHR).`,skills:[`HTML`]},{question:`Что такое тестирование совместимости?`,shortAnswer:`Тестирование совместимости — это вид нефункционального тестирования, который проверяет, как приложение работает в разных средах: браузерах, операционных системах, устройствах, версиях ПО. Цель — убедиться, что продукт корректно функционирует для всех пользователей. Например, сайт должен одинаково отображаться в Chrome, Firefox и Safari.`,longAnswer:`Что такое тестирование совместимости?
+Тестирование совместимости — это процесс проверки того, что программное обеспечение работает корректно в заданных комбинациях аппаратного и программного обеспечения. Оно помогает выявить проблемы, которые могут возникнуть у пользователей из-за различий в окружении.
+Основные аспекты
+
+- Браузеры: проверка в Chrome, Firefox, Safari, Edge и других.
+- Операционные системы: Windows, macOS, Linux, iOS, Android.
+- Устройства: разные разрешения экрана, мобильные телефоны, планшеты.
+- Версии ПО: старые и новые версии браузеров, библиотек.
+Пример кода для проверки совместимости
+
+Такой код позволяет адаптировать стили в зависимости от возможностей браузера.
+Вывод
+Тестирование совместимости необходимо для обеспечения стабильной работы приложения на всех целевых платформах. Особенно важно для веб-приложений, где пользователи имеют разное окружение.`,codeExample:`// Проверка поддержки CSS Grid в браузере
+if (typeof CSS !== 'undefined' && CSS.supports('display', 'grid')) {
+  console.log('CSS Grid поддерживается');
+} else {
+  console.log('CSS Grid не поддерживается, используйте fallback');
+}`,skills:[`HTML`]},{question:`Что такое HTTP status code?`,shortAnswer:`HTTP status code — это трехзначное число, которое сервер отправляет в ответ на запрос браузера или другого клиента. Оно показывает, успешно ли выполнен запрос, произошла ли ошибка или требуется дополнительное действие. Коды делятся на категории: 1xx (информационные), 2xx (успех), 3xx (перенаправление), 4xx (ошибка клиента) и 5xx (ошибка сервера). Например, 200 означает успех, 404 — страница не найдена, а 500 — внутренняя ошибка сервера.`,longAnswer:`Что такое HTTP status code?
+HTTP status code (код состояния HTTP) — это трехзначное целое число, которое сервер возвращает в ответ на запрос клиента (например, браузера или мобильного приложения). Он является частью первой строки ответа HTTP и сообщает о результате обработки запроса. Коды стандартизированы в спецификации HTTP и делятся на пять классов, каждый из которых начинается с определенной цифры.
+Категории кодов состояния
+
+- 1xx (Informational): Информационные коды, указывающие, что запрос принят и обрабатывается. Например, 101 Switching Protocols используется при переходе на WebSocket.
+- 2xx (Success): Успешные коды, означающие, что запрос был успешно получен, понят и обработан. Самый распространенный — 200 OK.
+- 3xx (Redirection): Коды перенаправления, указывающие, что клиенту нужно выполнить дополнительное действие для завершения запроса. Например, 301 Moved Permanently означает, что ресурс перемещен на новый URL.
+- 4xx (Client Error): Ошибки на стороне клиента, такие как неверный синтаксис запроса или отсутствие ресурса. Например, 404 Not Found — страница не найдена, 401 Unauthorized — требуется авторизация.
+- 5xx (Server Error): Ошибки на стороне сервера, когда сервер не может выполнить корректный запрос. Например, 500 Internal Server Error — внутренняя ошибка сервера.
+Пример использования в коде
+При разработке веб-приложений на Node.js с Express можно явно задавать коды состояния:
+
+В этом примере, если пользователь не найден, сервер возвращает код 404 с сообщением об ошибке. Если пользователь существует — код 200 и данные.
+Вывод
+HTTP status code — это фундаментальный инструмент для понимания и отладки взаимодействия между клиентом и сервером. Знание категорий и типичных кодов помогает быстро диагностировать проблемы в веб-приложениях и правильно обрабатывать ответы на стороне клиента.`,codeExample:`const express = require('express');
+const app = express();
+
+app.get('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  const user = findUserById(userId);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  res.status(200).json(user);
+});
+
+app.listen(3000);`,skills:[`HTML`]},{question:`Какие факторы влияют на работу мобильного приложения?`,shortAnswer:`На работу мобильного приложения влияют аппаратные ограничения устройства, такие как процессор, память и батарея. Важны также сетевое соединение, версия операционной системы и фрагментация устройств. Оптимизация кода, работа с графикой и управление памятью напрямую влияют на отзывчивость и стабильность.`,longAnswer:`Основные факторы, влияющие на работу мобильного приложения
+Производительность мобильного приложения зависит от множества аспектов, начиная от аппаратных характеристик устройства и заканчивая качеством сетевого соединения. Понимание этих факторов помогает разработчикам создавать более стабильные и быстрые приложения.
+Аппаратные ограничения
+
+- Процессор и память: Разные устройства имеют разную вычислительную мощность и объем оперативной памяти. Приложение должно эффективно использовать ресурсы, избегая утечек памяти и излишней нагрузки на CPU.
+- Батарея: Энергопотребление критично для мобильных устройств. Фоновые процессы, частые сетевые запросы и тяжелая графика могут быстро разрядить батарею.
+- Экран и графика: Разрешение экрана и возможности GPU влияют на рендеринг интерфейса. Неоптимизированные изображения и анимации могут вызывать лаги.
+Программные и сетевые факторы
+
+- Операционная система и версия: Разные версии iOS и Android имеют различные API и ограничения. Приложение должно быть совместимо с широким спектром версий.
+- Сетевое соединение: Задержки сети, потеря пакетов и нестабильное соединение влияют на загрузку данных. Необходимо реализовывать кэширование и обработку ошибок сети.
+- Фрагментация устройств: Множество моделей с разными характеристиками требует тщательного тестирования и адаптации интерфейса.
+Пример оптимизации загрузки изображений
+
+В этом примере библиотека Glide автоматически управляет кэшированием и загрузкой изображений в фоновом потоке, что снижает нагрузку на UI и экономит трафик.
+Вывод
+Учет аппаратных ограничений, оптимизация сетевого взаимодействия и тестирование на различных устройствах являются ключевыми для создания отзывчивого и энергоэффективного мобильного приложения. Применение этих практик особенно важно при разработке приложений для массового рынка с широкой аудиторией устройств.`,codeExample:`// Пример кэширования изображений на Android с использованием Glide
+ImageView imageView = findViewById(R.id.image_view);
+String imageUrl = "https://example.com/image.jpg";
+
+Glide.with(this)
+    .load(imageUrl)
+    .placeholder(R.drawable.placeholder)
+    .error(R.drawable.error)
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .into(imageView);`,skills:[`HTML`]},{question:`Как анализировать вкладки Network и Response?`,shortAnswer:`Вкладка Network в DevTools показывает все сетевые запросы страницы: время загрузки, статусы, заголовки. Вкладка Response отображает тело ответа сервера в разных форматах (JSON, HTML, изображение). Это помогает отлаживать API, проверять данные и оптимизировать загрузку.`,longAnswer:`Что такое вкладки Network и Response?
+Вкладка Network (Сеть) в инструментах разработчика браузера (DevTools) — это мощный инструмент для анализа всех HTTP-запросов, которые выполняет веб-страница. Она показывает каждый запрос к серверу, включая статические файлы (CSS, JS, изображения) и API-вызовы. Вкладка Response (Ответ) является частью Network и отображает содержимое, которое вернул сервер на конкретный запрос.
+Как использовать Network для отладки
+Откройте DevTools (F12 или Ctrl+Shift+I), перейдите на вкладку Network. Обновите страницу или выполните действие. Вы увидите список запросов. Основные колонки:
+
+- Name — имя файла или URL запроса
+- Status — HTTP статус (200, 404, 500 и т.д.)
+- Type — тип контента (document, script, fetch)
+- Size — размер ответа
+- Time — время выполнения
+Кликните на любой запрос, чтобы увидеть детали: Headers (заголовки), Preview (предпросмотр), Response (тело ответа), Timing (время этапов).
+Пример анализа ответа
+Допустим, вы делаете запрос к API и ожидаете JSON. Во вкладке Response вы увидите:
+
+Если ответ пустой или содержит ошибку, вы сразу это заметите. Также можно проверить заголовки ответа, например, Content-Type: application/json.
+Практический пример с кодом
+Предположим, вы используете fetch для получения данных:
+
+Откройте Network, найдите запрос /api/users. Проверьте статус (должен быть 200), тип ответа (JSON) и тело ответа. Если статус 404 — проверьте URL. Если 500 — проблема на сервере.
+Вывод
+Вкладки Network и Response — незаменимый инструмент для отладки сетевого взаимодействия. Они помогают быстро находить проблемы с API, проверять корректность данных и оптимизировать производительность загрузки страницы.`,codeExample:`{
+  "users": [
+    {"id": 1, 
+ame": "Alice"},
+    {"id": 2, 
+ame": "Bob"}
+  ]
+}
+
+fetch('/api/users')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));`,skills:[`HTML`]},{question:`Как описать баг, связанный с версткой?`,shortAnswer:`Опишите баг, указав его заголовок, окружение (браузер, ОС, разрешение экрана), шаги воспроизведения, фактический и ожидаемый результат. Приложите скриншот или видео. Укажите приоритет и серьезность проблемы. Четкое описание помогает разработчику быстро понять и исправить ошибку.`,longAnswer:`Структура описания бага верстки
+Для эффективного исправления дефекта верстки необходимо предоставить разработчику исчерпывающую информацию. Описание должно быть четким, воспроизводимым и содержать все ключевые детали.
+Основные компоненты баг-репорта
+
+- Заголовок: Кратко отражает суть проблемы, например, "Кнопка 'Отправить' выходит за границы контейнера на мобильных устройствах".
+- Окружение: Укажите браузер (Chrome 120, Firefox 121), операционную систему (Windows 11, macOS 14), разрешение экрана (375x812 для iPhone X) и устройство (iPhone 14, Samsung Galaxy S23).
+- Шаги воспроизведения: Нумерованный список действий, приводящих к багу. Например: 1. Откройте страницу /profile. 2. Нажмите кнопку "Редактировать". 3. Уменьшите ширину окна до 375px.
+- Фактический результат: Что происходит на самом деле. Например: "Кнопка 'Сохранить' перекрывается текстом поля ввода".
+- Ожидаемый результат: Как должно быть. Например: "Кнопка 'Сохранить' располагается под полем ввода с отступом 16px".
+- Вложения: Скриншот или запись экрана, демонстрирующие проблему. Можно добавить HTML/CSS код, если он помогает локализовать проблему.
+Пример описания
+
+Вывод: Грамотное описание бага верстки экономит время команды, снижает количество уточняющих вопросов и ускоряет исправление дефекта. Всегда указывайте окружение и прикладывайте визуальные доказательства.`,codeExample:`Заголовок: Логотип наезжает на меню в Safari на iPad
+Окружение: Safari 17, iPadOS 17, iPad Pro 11" (разрешение 834x1194)
+Шаги воспроизведения:
+1. Открыть главную страницу.
+2. Повернуть устройство в альбомную ориентацию.
+Фактический результат: Логотип перекрывает первый пункт меню.
+Ожидаемый результат: Логотип и меню отображаются с отступом 20px.
+Приоритет: Высокий (блокирует навигацию).`,skills:[`HTML`]},{question:`Где передаются параметры в GET-запросе?`,shortAnswer:`Параметры в GET-запросе передаются в строке запроса (URL) после знака вопроса (?). Они имеют формат ключ=значение и разделяются символом &. Например: /api/users?page=2&limit=10. Это стандартный способ передачи данных в GET-запросах, который используется для фильтрации, сортировки и пагинации.`,longAnswer:`Как передаются параметры в GET-запросе
+В HTTP GET-запросе параметры передаются в строке URL (Uniform Resource Locator) после знака вопроса (?). Эта часть URL называется query string (строка запроса). Параметры имеют формат ключ=значение, а несколько параметров разделяются символом &.
+Пример структуры URL с параметрами
+Рассмотрим URL: \`https://api.example.com/users?page=2&limit=10&sort=name\`. Здесь:
+
+- \`https://api.example.com/users\` — базовый путь к ресурсу
+- \`?\` — разделитель, указывающий начало параметров
+- \`page=2\` — первый параметр (номер страницы)
+- \`&\` — разделитель между параметрами
+- \`limit=10\` — второй параметр (количество элементов на странице)
+- \`sort=name\` — третий параметр (сортировка по имени)
+Практический пример на JavaScript
+
+Особенности передачи параметров в GET
+
+- Видимость: Параметры видны в URL, поэтому не используйте GET для передачи конфиденциальных данных (паролей, токенов).
+- Ограничение длины: URL имеет ограничение по длине (обычно 2048 символов), поэтому GET не подходит для передачи больших объёмов данных.
+- Кэширование: GET-запросы с параметрами могут кэшироваться браузером и прокси-серверами, что ускоряет повторные запросы.
+- Идемпотентность: GET-запросы не должны изменять состояние сервера (только чтение данных).
+Вывод
+Параметры в GET-запросе передаются через query string в URL. Этот метод удобен для фильтрации, сортировки и пагинации данных, но не подходит для передачи чувствительной информации или больших объёмов данных. Используйте GET с параметрами для безопасных, идемпотентных запросов на чтение данных.`,codeExample:`// Формирование GET-запроса с параметрами
+const baseUrl = 'https://api.example.com/users';
+const params = {
+  page: 2,
+  limit: 10,
+  sort: 'name'
+};
+
+// Преобразование объекта в query string
+const queryString = Object.entries(params)
+  .map(([key, value]) => \`\${encodeURIComponent(key)}=\${encodeURIComponent(value)}\`)
+  .join('&');
+
+const fullUrl = \`\${baseUrl}?\${queryString}\`;
+console.log(fullUrl);
+// https://api.example.com/users?page=2&limit=10&sort=name
+
+// Выполнение запроса
+fetch(fullUrl)
+  .then(response => response.json())
+  .then(data => console.log(data));`,skills:[`HTML`]},{question:`Какую структуру имеет JSON?`,shortAnswer:`JSON (JavaScript Object Notation) — это текстовый формат для хранения и передачи данных. Он состоит из пар "ключ-значение", где ключи — строки в двойных кавычках, а значения могут быть строками, числами, объектами, массивами, булевыми значениями или null. Данные организуются в объекты (в фигурных скобках) и массивы (в квадратных скобках).`,longAnswer:`Основы структуры JSON
+JSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на синтаксисе JavaScript. Он используется для передачи структурированных данных между сервером и клиентом, а также для хранения конфигураций. Структура JSON состоит из двух основных конструкций: объект и массив.
+Объект
+Объект — это неупорядоченный набор пар "ключ-значение", заключенный в фигурные скобки {}. Ключи всегда являются строками в двойных кавычках, а значения могут быть любого допустимого типа. Пример:
+
+Массив
+Массив — это упорядоченный список значений, заключенный в квадратные скобки []. Значения разделяются запятыми. Пример:
+
+Допустимые типы значений
+
+- Строка (в двойных кавычках)
+- Число (целое или с плавающей точкой)
+- Булево значение (true или false)
+- null
+- Объект
+- Массив
+Пример сложной структуры
+
+В этом примере объект user содержит строку, число, массив и null. Вложенность может быть любой глубины.
+Вывод
+JSON — это простой и читаемый формат, который легко парсится большинством языков программирования. Его применяют для API, конфигурационных файлов и хранения данных, когда требуется универсальность и минимальный размер.`,codeExample:`{
+  
+ame": "Alice",
+  "age": 30,
+  "isStudent": false
+}
+
+[
+  "apple",
+  "banana",
+  "cherry"
+]
+
+{
+  "user": {
+    "id": 1,
+    
+ame": "Bob",
+    "hobbies": [eading", "coding"],
+    "address": null
+  },
+  "active": true
+}`,skills:[`HTML`]},{question:`Для чего используется вкладка Application в DevTools?`,shortAnswer:`Вкладка Application в DevTools используется для просмотра и управления всеми данными, которые хранятся в браузере: локальное хранилище (localStorage), сессионное хранилище (sessionStorage), куки (cookies), кэш (Cache Storage), IndexedDB, а также для управления Service Workers и манифестами PWA. Это ключевой инструмент для отладки клиентских хранилищ и проверки корректности работы веб-приложения.`,longAnswer:`Назначение вкладки Application
+Вкладка Application в инструментах разработчика браузера (DevTools) предоставляет централизованный интерфейс для просмотра, редактирования и удаления всех данных, которые веб-приложение сохраняет на стороне клиента. Она необходима для отладки работы с хранилищами, проверки корректности установки кук, анализа кэширования и управления Service Workers.
+Основные разделы
+
+- Local Storage — данные, хранящиеся в браузере без срока действия, доступные в рамках одного источника (origin).
+- Session Storage — данные, которые удаляются после закрытия вкладки.
+- Cookies — небольшие фрагменты данных, отправляемые с каждым HTTP-запросом, часто используются для сессий и трекинга.
+- IndexedDB — более сложная база данных на стороне клиента для хранения больших объёмов структурированных данных.
+- Cache Storage — часть Cache API, используемая для кэширования ресурсов (например, в Service Workers).
+- Service Workers — управление фоновыми скриптами, которые перехватывают сетевые запросы и реализуют офлайн-функциональность.
+Пример использования
+Допустим, вы хотите проверить, правильно ли сохраняется токен авторизации в localStorage. Вы можете открыть вкладку Application, выбрать Local Storage, найти ключ 'token' и увидеть его значение. Также можно изменить или удалить его прямо в интерфейсе для тестирования.
+
+Вывод
+Вкладка Application — незаменимый инструмент для отладки клиентских хранилищ и управления ресурсами PWA. Она позволяет быстро проверять и модифицировать данные, что ускоряет разработку и тестирование веб-приложений.`,codeExample:`// Пример сохранения токена в localStorage
+localStorage.setItem('token', 'abc123');
+
+// Проверка в DevTools: Application -> Local Storage -> ваш домен -> token = 'abc123'`,skills:[`HTML`]},{question:`Для чего используется вкладка Sources в DevTools?`,shortAnswer:`Вкладка Sources в Chrome DevTools используется для отладки JavaScript-кода. Вы можете устанавливать точки остановки (breakpoints), просматривать и изменять значения переменных, выполнять код по шагам и анализировать стек вызовов. Это основной инструмент для поиска и исправления ошибок в клиентском коде.`,longAnswer:`Назначение вкладки Sources
+Вкладка Sources в Chrome DevTools — это полноценная среда для отладки JavaScript, CSS и HTML. Она позволяет разработчику приостанавливать выполнение кода в любой момент, исследовать состояние приложения и пошагово выполнять скрипты. Это незаменимый инструмент для понимания того, как работает код, и для поиска багов.
+Основные возможности
+
+- Установка точек остановки (Breakpoints): Вы можете кликнуть на номер строки в редакторе, чтобы поставить точку остановки. Когда выполнение дойдет до этой строки, оно приостановится.
+- Пошаговое выполнение: После остановки вы можете использовать кнопки Step Over (F10), Step Into (F11), Step Out (Shift+F11) для выполнения кода по одной строке или функции.
+- Просмотр переменных: В правой панели Scope отображаются все локальные, замыкающие и глобальные переменные с их текущими значениями. Вы можете изменять их прямо во время отладки.
+- Call Stack: Показывает цепочку вызовов функций, которая привела к текущей точке остановки. Это помогает понять, откуда была вызвана функция.
+- Watch: Позволяет добавить выражения, значения которых будут вычисляться и отображаться на каждом шаге отладки.
+Пример использования
+Предположим, у вас есть функция, которая не возвращает ожидаемый результат:
+
+Чтобы отладить её, откройте вкладку Sources, найдите файл с этим кодом и кликните на номер строки \`let total = price + tax;\`. Затем выполните код снова (например, перезагрузите страницу). Выполнение остановится на этой строке. В панели Scope вы увидите значения \`price = 100\` и \`tax = 20\`. Нажав Step Over, вы перейдете к \`return total;\` и увидите, что \`total = 120\`. Если бы значение было неверным, вы бы сразу заметили проблему.
+Вывод
+Вкладка Sources — это основной инструмент для отладки фронтенд-кода. Она позволяет разработчику не просто читать логи, а интерактивно исследовать выполнение программы, что значительно ускоряет поиск и исправление ошибок. Её стоит применять всегда, когда поведение кода отличается от ожидаемого, особенно в сложных сценариях с асинхронностью или множеством вызовов функций.`,codeExample:`function calculateTotal(price, tax) {
+  let total = price + tax;
+  return total;
+}
+
+let result = calculateTotal(100, 20);
+console.log(result); // Ожидается 120, но может быть ошибка`,skills:[`HTML`]},{question:`Как реализовать debounce для поля поиска?`,shortAnswer:`Debounce — это техника, которая откладывает выполнение функции до тех пор, пока не пройдет определенное время после последнего вызова. Для поля поиска это означает, что запрос отправляется только после того, как пользователь перестал печатать. Это уменьшает количество запросов к серверу и улучшает производительность.`,longAnswer:`Что такое debounce и зачем он нужен?
+Debounce — это техника, используемая для ограничения частоты вызова функции. Она гарантирует, что функция будет выполнена только после того, как прошло определенное время с момента последнего вызова. Это особенно полезно для поля поиска, где каждый ввод символа может инициировать запрос к серверу. Без debounce каждый нажатый символ отправлял бы запрос, что приводит к излишней нагрузке и плохому пользовательскому опыту.
+Как реализовать debounce?
+Реализация debounce включает создание функции, которая принимает другую функцию и задержку. Она возвращает новую функцию, которая при каждом вызове сбрасывает таймер и устанавливает новый. Когда таймер истекает, вызывается исходная функция.
+
+Где применяется debounce?
+Debounce широко используется в веб-разработке для обработки событий, которые могут происходить часто, таких как ввод текста, изменение размера окна или скролл. Он помогает снизить нагрузку на браузер и сервер, улучшая производительность.
+Вывод
+Debounce — это простой и эффективный способ оптимизации частых вызовов функций. Его стоит применять в любом сценарии, где требуется реагировать на пользовательский ввод или другие частые события, чтобы избежать избыточных вычислений и запросов.`,codeExample:`function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// Использование для поля поиска
+const searchInput = document.getElementById('search');
+const handleSearch = debounce((event) => {
+  console.log('Search query:', event.target.value);
+  // Отправка запроса на сервер
+}, 300);
+
+searchInput.addEventListener('input', handleSearch);`,skills:[`HTML`]},{question:`Нужно ли отображать дочерние узлы при совпадении родителя?`,shortAnswer:`Да, при совпадении родительского узла обычно отображаются и все его дочерние узлы, чтобы сохранить целостность иерархии. Это позволяет пользователю видеть полный контекст найденного элемента. Исключение — если требуется только точное совпадение без вложенных данных.`,longAnswer:`Общая концепция
+При поиске в древовидных структурах (например, в DOM-дереве, файловой системе или иерархических меню) часто возникает вопрос: нужно ли показывать дочерние узлы, если родитель совпал с критерием поиска? Ответ зависит от контекста, но в большинстве случаев — да, дочерние узлы отображаются, чтобы сохранить иерархию и контекст.
+Почему это важно
+Если скрыть дочерние узлы при совпадении родителя, пользователь может потерять понимание структуры. Например, в файловом менеджере при поиске папки 'Documents' пользователь ожидает увидеть её содержимое, а не просто пустую папку. В интерфейсах с деревьями (например, TreeView) это стандартное поведение.
+Пример на JavaScript
+
+Исключения
+
+- Если требуется точное совпадение без контекста (например, поиск по ID).
+- В больших деревьях для производительности можно отображать только родителя с индикатором наличия детей.
+Вывод
+Отображение дочерних узлов при совпадении родителя улучшает пользовательский опыт и сохраняет контекст. Это стандартная практика в интерфейсах с иерархическими данными, если нет специальных требований к точности поиска.`,codeExample:`// Функция поиска в дереве с отображением дочерних узлов
+function searchTree(node, query) {
+  if (node.name.includes(query)) {
+    // Показываем родителя и всех его детей
+    node.visible = true;
+    node.children.forEach(child => showAllChildren(child));
+  } else {
+    // Ищем в дочерних узлах
+    node.children.forEach(child => searchTree(child, query));
+  }
+}
+
+function showAllChildren(node) {
+  node.visible = true;
+  node.children.forEach(child => showAllChildren(child));
+}`,skills:[`HTML`]},{question:`Какие основные браузерные движки существуют?`,shortAnswer:`Основные браузерные движки: Blink (Chrome, Opera, Edge), WebKit (Safari), Gecko (Firefox). Также есть Trident (старый Internet Explorer) и его преемник EdgeHTML (старый Edge). Каждый движок отвечает за отрисовку HTML, CSS и выполнение JavaScript.`,longAnswer:`Основные браузерные движки
+Браузерный движок — это программный компонент, который отвечает за загрузку, анализ и отображение веб-страниц. Он преобразует HTML, CSS и JavaScript в визуальное представление на экране. Знание движков помогает разработчикам понимать, почему один и тот же код может работать по-разному в разных браузерах.
+Список основных движков
+
+- Blink — используется в Google Chrome, Opera, Microsoft Edge (начиная с 2020 года), Brave и других браузерах на основе Chromium. Это форк WebKit, созданный Google в 2013 году.
+- WebKit — используется в Safari (Apple) и ранее в Chrome. Разработан Apple на основе KHTML.
+- Gecko — используется в Firefox (Mozilla). Известен своей строгой поддержкой веб-стандартов.
+- Trident — старый движок Internet Explorer (IE4–IE11). Больше не поддерживается.
+- EdgeHTML — использовался в старом Microsoft Edge (до 2020 года). Сейчас заменён на Blink.
+Пример кода для проверки движка
+
+Вывод
+Понимание браузерных движков необходимо для тестирования и обеспечения совместимости веб-приложений. Разные движки могут по-разному интерпретировать CSS-свойства или JavaScript-API, поэтому важно проверять работу сайта в нескольких браузерах.`,codeExample:`// Определение браузерного движка через navigator.userAgent
+const userAgent = navigator.userAgent;
+if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
+  console.log('Blink (Chrome)');
+} else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+  console.log('WebKit (Safari)');
+} else if (userAgent.includes('Firefox')) {
+  console.log('Gecko (Firefox)');
+} else if (userAgent.includes('Edg')) {
+  console.log('Blink (Edge)');
+} else {
+  console.log('Unknown engine');
+}`,skills:[`HTML`]},{question:`Что такое кроссбраузерность и почему возникают различия в отображении?`,shortAnswer:`Кроссбраузерность — это способность сайта корректно отображаться во всех популярных браузерах. Различия возникают из-за разных движков рендеринга (Blink, WebKit, Gecko), неполной поддержки стандартов и устаревших браузеров. Для обеспечения совместимости используют вендорные префиксы, полифиллы и прогрессивное улучшение.`,longAnswer:`Что такое кроссбраузерность?
+Кроссбраузерность — это свойство веб-сайта или приложения корректно работать и одинаково отображаться во всех современных браузерах, включая Chrome, Firefox, Safari, Edge и Opera. Это важный аспект веб-разработки, так как пользователи используют разные браузеры, и каждый из них может интерпретировать код по-своему.
+Почему возникают различия?
+Основные причины различий в отображении:
+
+- Разные движки рендеринга: Chrome и Edge используют Blink, Firefox — Gecko, Safari — WebKit. Каждый движок по-своему обрабатывает CSS и JavaScript.
+- Неполная поддержка стандартов: Новые возможности HTML, CSS и JavaScript могут быть реализованы не во всех браузерах одновременно.
+- Устаревшие браузеры: Старые версии (например, Internet Explorer) не поддерживают современные технологии.
+- Вендорные префиксы: Некоторые CSS-свойства требуют префиксов для конкретных браузеров (например, \`-webkit-\` для Safari).
+Пример кода с вендорными префиксами
+
+Как обеспечить кроссбраузерность?
+Для достижения кроссбраузерности разработчики используют:
+
+- Полифиллы — скрипты, добавляющие поддержку отсутствующих функций (например, \`fetch\` для старых браузеров).
+- CSS-нормализацию — сброс стандартных стилей браузера (например, Normalize.css).
+- Прогрессивное улучшение — создание базовой версии, которая работает везде, и добавление улучшений для современных браузеров.
+- Тестирование — проверка в разных браузерах с помощью инструментов вроде BrowserStack.
+Вывод: Кроссбраузерность необходима для обеспечения равного доступа к контенту всех пользователей. Применяйте полифиллы, префиксы и тестирование, чтобы минимизировать различия и улучшить пользовательский опыт.`,codeExample:`.box {
+  display: -webkit-flex; /* Safari */
+  display: flex; /* Стандарт */
+  -webkit-border-radius: 5px; /* Safari */
+  border-radius: 5px; /* Стандарт */
+}`,skills:[`HTML`]},{question:`Что такое reflow и repaint?`,shortAnswer:`Reflow (перекомпоновка) — это процесс пересчета размеров и позиций элементов на странице при изменении DOM или CSS. Repaint (перерисовка) — это обновление внешнего вида элементов без изменения геометрии. Reflow всегда вызывает repaint, но не наоборот. Частые reflow'ы снижают производительность, поэтому их стараются минимизировать.`,longAnswer:`Что такое reflow и repaint?
+Reflow (или layout) — это процесс, при котором браузер пересчитывает геометрию элементов: их размеры, позиции, отступы. Это происходит, когда изменяется DOM, CSS-свойства, влияющие на размеры (ширина, высота, margin, padding), или при изменении размеров окна. Repaint — это процесс обновления пикселей на экране без изменения геометрии, например, при изменении цвета фона или текста.
+Как они связаны?
+Reflow всегда вызывает repaint, так как после пересчета геометрии нужно обновить внешний вид. Repaint может происходить без reflow, если меняются только визуальные свойства (color, visibility, background-color).
+Примеры кода
+
+Как минимизировать reflow?
+
+- Изменяйте классы вместо отдельных стилей.
+- Работайте с элементами вне потока (position: absolute/fixed).
+- Используйте documentFragment для массовых изменений DOM.
+- Избегайте частого чтения свойств, вызывающих reflow (offsetHeight, clientWidth).
+Вывод: понимание reflow и repaint помогает писать быстрые веб-приложения, особенно при анимациях и динамическом контенте. Минимизация reflow — ключ к плавному интерфейсу.`,codeExample:`// Вызывает reflow и repaint
+document.getElementById('box').style.width = '200px';
+
+// Вызывает только repaint
+document.getElementById('box').style.backgroundColor = 'red';
+
+// Чтение offsetHeight вызывает reflow (принудительный layout)
+const height = document.getElementById('box').offsetHeight;`,skills:[`HTML`]},{question:`Что делает getBoundingClientRect?`,shortAnswer:`Метод getBoundingClientRect возвращает объект DOMRect с координатами элемента относительно окна браузера (viewport). Он содержит свойства top, right, bottom, left, width и height. Это полезно для определения видимости элемента, анимаций или позиционирования всплывающих подсказок.`,longAnswer:"Что такое getBoundingClientRect?\nМетод `getBoundingClientRect` вызывается на DOM-элементе и возвращает объект `DOMRect`, который описывает размер элемента и его положение относительно видимой области окна (viewport). Координаты считаются от верхнего левого угла viewport, а не от документа в целом.\nОсновные свойства возвращаемого объекта\n\n- `top` — расстояние от верхней границы viewport до верхней границы элемента.\n- `bottom` — расстояние от верхней границы viewport до нижней границы элемента.\n- `left` — расстояние от левой границы viewport до левой границы элемента.\n- `right` — расстояние от левой границы viewport до правой границы элемента.\n- `width` и `height` — ширина и высота элемента, включая padding и border.\nПример использования\n\nГде применяется\n\n- Проверка, виден ли элемент на экране (например, для lazy loading изображений).\n- Позиционирование всплывающих окон или тултипов относительно элемента.\n- Анимации, зависящие от положения элемента (например, параллакс).\nВывод\nМетод `getBoundingClientRect` — простой и эффективный способ получить точные координаты элемента в viewport. Он незаменим для задач, связанных с определением видимости и позиционированием в динамических интерфейсах.",codeExample:`const element = document.getElementById('myBox');
+const rect = element.getBoundingClientRect();
+console.log(rect.top, rect.left, rect.width, rect.height);
+// Например: 100, 50, 200, 150`,skills:[`HTML`]},{question:`Чем отличается transform от position при анимации?`,shortAnswer:`Transform использует GPU для перемещения элемента без изменения его геометрии, что вызывает только композитинг. Position изменяет положение элемента через свойства top/left, что вызывает перерасчет layout (reflow) и repaint, нагружая CPU. Transform работает быстрее и плавнее, особенно при анимации.`,longAnswer:"Основное различие между transform и position в анимации\nСвойство `transform` и свойства `top`/`left`/`right`/`bottom` (через `position`) по-разному влияют на процесс рендеринга в браузере. `transform` работает на этапе композитинга, не затрагивая layout и paint, что делает его более производительным для анимаций.\nКак это работает\nПри изменении `position` (например, `left: 100px`) браузер запускает полный цикл: пересчет layout (reflow), затем repaint и только потом композитинг. Это нагружает CPU. `transform` же перемещает элемент на отдельном слое, используя GPU, минуя layout и paint. Это особенно заметно при частых изменениях (60fps).\nПример кода\n\nКогда что использовать\n\n- transform — для анимаций движения, масштабирования, поворота. Обеспечивает плавность и высокую производительность.\n- position — для статического позиционирования или редких изменений, где производительность не критична.\nВывод: для анимаций всегда предпочитайте `transform`, так как он использует GPU и не вызывает перерасчет layout, что критично для плавности интерфейсов.",codeExample:`/* Медленная анимация через position */
+.box {
+  position: relative;
+  animation: move 2s infinite;
+}
+@keyframes move {
+  from { left: 0; }
+  to { left: 200px; }
+}
+
+/* Быстрая анимация через transform */
+.box {
+  animation: moveTransform 2s infinite;
+}
+@keyframes moveTransform {
+  from { transform: translateX(0); }
+  to { transform: translateX(200px); }
+}`,skills:[`HTML`]},{question:`Что такое CSSOM и как он взаимодействует с DOM?`,shortAnswer:`CSSOM (CSS Object Model) — это объектная модель CSS, аналогичная DOM для HTML. Браузер строит CSSOM из CSS-правил, а затем объединяет его с DOM в render tree для отрисовки страницы. Без CSSOM браузер не знает, как стилизовать элементы, поэтому построение CSSOM блокирует рендеринг.`,longAnswer:`Что такое CSSOM?
+CSSOM (CSS Object Model) — это объектное представление CSS-правил, которое браузер создаёт при загрузке страницы. Оно работает аналогично DOM, но для стилей: каждый узел CSSOM содержит информацию о селекторах, свойствах и значениях. Браузер строит CSSOM из всех CSS-файлов, inline-стилей и атрибутов style.
+Как CSSOM взаимодействует с DOM?
+После того как браузер построил DOM (дерево HTML-элементов) и CSSOM (дерево стилей), он объединяет их в render tree. Render tree содержит только видимые элементы и их вычисленные стили. Например, элемент с \`display: none\` не попадает в render tree, хотя остаётся в DOM. Затем render tree используется для этапов layout (расчёт геометрии) и paint (отрисовка пикселей).
+Пример кода
+
+В этом примере браузер сначала парсит HTML и строит DOM (узел div#app). Затем он загружает и парсит CSS, создавая CSSOM (правило для #app). После этого формируется render tree: div#app с цветом blue и размером 16px. Если бы CSS был заблокирован (например, медленный сервер), рендеринг задержался бы до полного построения CSSOM.
+Вывод
+CSSOM критически важен для корректного отображения страниц: он определяет стили каждого элемента. Понимание его взаимодействия с DOM помогает оптимизировать Critical Rendering Path, например, минимизируя блокирующие CSS-ресурсы для ускорения загрузки.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">Hello</div>
+</body>
+</html>
+
+/* styles.css */
+#app { color: blue; font-size: 16px; }`,skills:[`HTML`]},{question:`Когда происходит перерасчет layout?`,shortAnswer:`Перерасчет layout (reflow) происходит, когда изменяются геометрические свойства элементов: ширина, высота, позиция, отступы, или когда добавляются/удаляются элементы из DOM. Также reflow вызывается при изменении размеров окна, активации CSS-псевдоклассов (например, :hover), чтении некоторых свойств (offsetHeight, scrollTop) и при изменении содержимого (например, текста). Это дорогая операция, поэтому её стараются минимизировать.`,longAnswer:`Когда происходит перерасчет layout (reflow)?
+Перерасчет layout (также называемый reflow) — это этап рендеринга, на котором браузер вычисляет геометрию (размеры и позиции) всех элементов на странице. Это происходит каждый раз, когда изменяются свойства, влияющие на размер или положение элемента.
+Основные причины reflow:
+
+- Изменение геометрических CSS-свойств: width, height, margin, padding, border, top, left, display (смена на block/inline-block), position.
+- Добавление или удаление элементов из DOM.
+- Изменение содержимого элемента (например, замена текста или изображения).
+- Активация CSS-псевдоклассов, таких как :hover, :focus.
+- Изменение размеров окна браузера (resize).
+- Чтение некоторых свойств, которые заставляют браузер принудительно выполнить reflow: offsetHeight, offsetWidth, scrollTop, scrollHeight, clientTop, getComputedStyle() и другие.
+Пример кода, вызывающий reflow:
+
+Как минимизировать reflow?
+
+- Группировать изменения стилей (использовать classList.add или cssText).
+- Работать с элементами вне потока (position: absolute/fixed).
+- Использовать documentFragment для массового добавления элементов.
+- Избегать чтения свойств, вызывающих reflow, в циклах.
+Вывод: Понимание reflow важно для оптимизации производительности веб-страниц, особенно при анимациях и динамическом обновлении контента. Минимизация перерасчетов layout ускоряет рендеринг и улучшает пользовательский опыт.`,codeExample:`const el = document.getElementById('box');
+el.style.width = '200px'; // изменение геометрии -> reflow
+const height = el.offsetHeight; // принудительное чтение -> reflow
+el.style.height = '300px'; // ещё один reflow`,skills:[`HTML`]},{question:`Какие теги блокируют рендеринг страницы?`,shortAnswer:'Рендеринг блокируют `<script>` без атрибутов и `<link rel="stylesheet">`. Браузер останавливает построение DOM, пока не загрузит и не выполнит скрипт или не применит стили. В React-приложениях эта тема важна при настройке `index.html`, SSR/SSG и lazy loading.',longAnswer:`Что значит «блокировать рендеринг»
+Браузер строит DOM последовательно, сверху вниз. Если он встречает тег, который требует загрузки или выполнения ресурса — он останавливается и ждёт. Страница не отображается до тех пор, пока этот ресурс не будет обработан.
+\`<script>\` — блокирует парсинг DOM
+
+Разница между \`async\` и \`defer\`:
+
+- \`async\` — выполняется в момент загрузки, порядок не гарантирован
+
+- \`defer\` — выполняется после парсинга, в порядке объявления
+
+React-приложения (CRA, Vite) по умолчанию добавляют \`defer\` к бандлу.
+\`<link rel="stylesheet">\` — блокирует рендеринг
+
+CSS блокирует рендеринг, потому что браузер должен построить CSSOM до отрисовки — иначе страница «мигнет» без стилей (FOUC).
+Что НЕ блокирует рендеринг
+
+Как это выглядит на практике
+
+React-специфика
+В React напрямую с этими тегами работают редко, но тема всплывает в нескольких контекстах:`,codeExample:`<!-- ❌ Блокирует: браузер остановит парсинг, пока не загрузит и не выполнит -->
+<script src="app.js"><\/script>
+
+<!-- ✅ async: загружает параллельно, выполняет сразу после загрузки -->
+<script src="app.js" async><\/script>
+
+<!-- ✅ defer: загружает параллельно, выполняет после полного парсинга DOM -->
+<script src="app.js" defer><\/script>
+
+<!-- ❌ Блокирует: браузер не нарисует ни одного пикселя без CSS -->
+<link rel="stylesheet" href="styles.css">
+
+<!-- ✅ Загрузка некритического CSS без блокировки -->
+<link rel="stylesheet" href="print.css" media="print">
+<link rel="stylesheet" href="heavy.css" media="(min-width: 1200px)">
+
+<!-- Изображения — не блокируют, грузятся параллельно -->
+<img src="photo.jpg">
+
+<!-- Шрифты через font-face — не блокируют парсинг, но могут вызвать FOIT -->
+<link rel="preload" href="font.woff2" as="font" crossorigin>
+
+<!-- preload/prefetch — только подсказки браузеру, не блокируют -->
+<link rel="preload" href="chunk.js" as="script">
+<link rel="prefetch" href=
+ext-page.js">
+
+<head>
+  <!-- ❌ Блокирующий CSS — нормально для критических стилей -->
+  <link rel="stylesheet" href="critical.css">
+
+  <!-- ✅ Некритический CSS — асинхронная загрузка через трюк с onload -->
+  <link rel="preload" href=
+on-critical.css" as="style"
+        onload=  his.rel='stylesheet'">
+</head>
+
+<body>
+  <!-- контент -->
+
+  <!-- ✅ Скрипты в конце body или с defer — DOM уже построен -->
+  <script src="app.js" defer><\/script>
+</body>
+
+// Code splitting — Webpack/Vite добавят defer автоматически
+const LazyPage = React.lazy(() => import('./Page'));
+
+// Next.js — встроенное управление критическим CSS
+// Стили компонентов инлайнятся в <head>, остальное — defer
+
+// Vite/CRA index.html — бандл всегда идёт с defer
+// <script type="module" src="/src/main.jsx"><\/script>
+// type="module" ведёт себя как defer по умолчанию`,skills:[`HTML`]},{question:`Что такое время до первого взаимодействия (TTI)?`,shortAnswer:`Time to Interactive (TTI) — это метрика производительности, которая показывает, через сколько секунд после начала загрузки страница становится полностью интерактивной. Она учитывает время, когда контент отображен, основные скрипты выполнены, и пользователь может взаимодействовать с элементами без задержек. TTI помогает оценить, насколько быстро пользователь может начать работать со страницей.`,longAnswer:`Что такое Time to Interactive (TTI)?
+Time to Interactive (TTI) — это метрика производительности веб-страницы, которая измеряет время от начала навигации до момента, когда страница становится полностью интерактивной. Полная интерактивность означает, что контент отображен, основные скрипты загружены и выполнены, и пользователь может взаимодействовать с элементами (например, нажимать кнопки или заполнять формы) без заметных задержек.
+Как измеряется TTI?
+TTI вычисляется на основе двух ключевых моментов:
+
+- Страница должна быть визуально отображена (First Contentful Paint).
+- Основной поток браузера должен быть свободен от длительных задач (long tasks) в течение как минимум 5 секунд.
+Длительные задачи — это задачи, выполняющиеся дольше 50 мс, которые блокируют взаимодействие. TTI фиксируется после того, как сеть и основной поток стабилизируются.
+Пример кода для отслеживания TTI
+Хотя TTI обычно измеряется инструментами вроде Lighthouse, можно приблизительно оценить его с помощью Performance Observer:
+
+Где применяется TTI?
+TTI критически важен для пользовательского опыта, особенно на мобильных устройствах и при медленных соединениях. Низкий TTI означает, что пользователь быстро может начать взаимодействие, что улучшает вовлеченность и конверсию. Метрика используется в аудитах производительности (Lighthouse, WebPageTest) и для оптимизации загрузки скриптов, уменьшения размера JavaScript и устранения длительных задач.
+Вывод
+TTI помогает разработчикам оценить, насколько быстро страница становится готовой к взаимодействию. Применяйте эту метрику для оптимизации критического пути рендеринга, особенно на сайтах с большим количеством JavaScript, чтобы обеспечить плавный пользовательский опыт.`,codeExample:`const observer = new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  entries.forEach(entry => {
+    if (entry.name === 'first-contentful-paint') {
+      console.log('FCP:', entry.startTime);
+    }
+  });
+});
+observer.observe({ type: 'paint', buffered: true });
+
+// Для TTI требуется более сложная логика, обычно через библиотеки`,skills:[`HTML`]},{question:`Как браузер рендерит страницу от ввода URL до отображения?`,shortAnswer:`Браузер начинает с DNS-запроса для получения IP-адреса сервера, затем устанавливает TCP-соединение и отправляет HTTP-запрос. После получения HTML-документа парсер строит DOM-дерево, а параллельно загружаются CSS и JavaScript. CSS формирует CSSOM, затем браузер создаёт render tree, вычисляет layout (геометрию элементов) и выполняет paint (отрисовку пикселей).`,longAnswer:`Общий процесс рендеринга
+Когда пользователь вводит URL в адресную строку, браузер запускает последовательность шагов, известную как критический путь рендеринга. Этот процесс включает несколько этапов: от разрешения DNS до отрисовки пикселей на экране.
+Основные этапы
+
+- DNS-запрос: браузер преобразует доменное имя в IP-адрес сервера.
+- TCP-соединение: устанавливается соединение с сервером (обычно через HTTPS).
+- HTTP-запрос: браузер отправляет GET-запрос на сервер для получения HTML-документа.
+- Парсинг HTML: браузер начинает разбирать HTML и строить DOM-дерево. При обнаружении внешних ресурсов (CSS, JS) он инициирует их загрузку.
+- Построение CSSOM: CSS-правила преобразуются в CSS Object Model.
+- Render Tree: объединение DOM и CSSOM в дерево, которое содержит только видимые элементы.
+- Layout: вычисление точных размеров и позиций каждого элемента.
+- Paint: отрисовка пикселей на экране.
+Пример с кодом
+Рассмотрим простой HTML-документ:
+
+Браузер сначала загружает HTML, затем находит \`<link>\` и начинает загрузку CSS. Парсинг HTML продолжается, но рендеринг блокируется до полной загрузки CSS. После получения CSS строится CSSOM, затем render tree. Далее выполняется layout и paint. JavaScript в конце загружается и выполняется, что может изменить DOM или CSSOM и вызвать перерасчёт.
+Вывод
+Понимание критического пути рендеринга помогает оптимизировать производительность веб-страниц, например, минимизируя блокирующие ресурсы и используя асинхронную загрузку скриптов.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div>Hello World</div>
+  <script src="app.js"><\/script>
+</body>
+</html>`,skills:[`HTML`]},{question:`Какие существуют метрики производительности загрузки страницы?`,shortAnswer:`Основные метрики производительности загрузки страницы включают First Contentful Paint (FCP), Largest Contentful Paint (LCP), First Input Delay (FID), Cumulative Layout Shift (CLS) и Time to Interactive (TTI). FCP измеряет время до первого отображения контента, LCP — время загрузки самого крупного элемента, FID — задержку при первом взаимодействии, CLS — визуальную стабильность, а TTI — время до полной интерактивности. Эти метрики помогают оценить пользовательский опыт и оптимизировать производительность.`,longAnswer:`Метрики производительности загрузки страницы
+Производительность загрузки веб-страницы критически важна для пользовательского опыта и ранжирования в поисковых системах. Для её оценки используются стандартизированные метрики, которые измеряют различные аспекты загрузки: от первого отображения контента до стабильности макета. Основные метрики входят в набор Web Vitals, рекомендованный Google.
+Основные метрики
+
+- First Contentful Paint (FCP) — время, когда браузер впервые отображает любой контент (текст, изображение, canvas). Хорошее значение — менее 1.8 секунды.
+- Largest Contentful Paint (LCP) — время загрузки самого крупного видимого элемента (изображение, видео, блок текста). Цель — менее 2.5 секунды.
+- First Input Delay (FID) — задержка между первым взаимодействием пользователя (клик, нажатие клавиши) и ответом браузера. Хорошо — менее 100 мс.
+- Cumulative Layout Shift (CLS) — мера визуальной стабильности, оценивающая неожиданные сдвиги макета. Хорошее значение — менее 0.1.
+- Time to Interactive (TTI) — время, когда страница становится полностью интерактивной (готовность к взаимодействию). Цель — менее 3.8 секунды.
+Пример измерения с помощью Performance API
+
+Применение
+Эти метрики используются для мониторинга реального пользовательского опыта (RUM) и лабораторного тестирования (Lighthouse). Оптимизация под них включает сжатие изображений, минимизацию JavaScript, использование кэширования и предзагрузку критических ресурсов.
+Вывод: Метрики производительности загрузки страницы необходимы для объективной оценки скорости и стабильности сайта. Их регулярное измерение и оптимизация помогают улучшить пользовательский опыт, повысить конверсию и SEO-позиции.`,codeExample:`// Получение метрик через PerformanceObserver
+const observer = new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  entries.forEach(entry => {
+    console.log(\`\${entry.name}: \${entry.startTime} ms\`);
+  });
+});
+observer.observe({ type: 'largest-contentful-paint', buffered: true });
+observer.observe({ type: 'first-input', buffered: true });
+observer.observe({ type: 'layout-shift', buffered: true });`,skills:[`HTML`]},{question:`Какие этапы проходят HTML, CSS и JavaScript при загрузке страницы?`,shortAnswer:`Браузер загружает HTML и начинает его парсинг, строя DOM. При встрече CSS он строит CSSOM, а JavaScript блокирует парсинг до выполнения. Затем DOM и CSSOM объединяются в дерево рендеринга, после чего происходит layout (расчет геометрии) и paint (отрисовка пикселей).`,longAnswer:"Этапы загрузки страницы\nКогда браузер получает HTML-документ, он проходит несколько ключевых этапов, чтобы отобразить страницу. Этот процесс называется критическим путем рендеринга (Critical Rendering Path). Понимание этих этапов помогает разработчикам оптимизировать скорость загрузки.\n1. Парсинг HTML и построение DOM\nБраузер начинает парсить HTML с первого байта. Он преобразует разметку в объектную модель документа (DOM) — дерево узлов, где каждый тег становится элементом. Парсинг идет последовательно, но может быть приостановлен.\n2. Загрузка и парсинг CSS (CSSOM)\nКогда браузер встречает тег `<link>` или `<style>`, он начинает загружать CSS. Парсинг CSS не блокирует построение DOM, но блокирует рендеринг — браузер не покажет страницу, пока не построит CSSOM (объектную модель CSS). CSSOM — это дерево правил, которые применяются к элементам.\n3. Влияние JavaScript\nJavaScript может блокировать парсинг HTML. Если скрипт встречается без атрибутов `async` или `defer`, браузер останавливает построение DOM, загружает и выполняет скрипт, и только потом продолжает. Это может замедлить загрузку. Атрибут `defer` откладывает выполнение до завершения парсинга, а `async` выполняет скрипт асинхронно, не блокируя парсинг.\n4. Построение дерева рендеринга\nПосле того как DOM и CSSOM готовы, браузер объединяет их в дерево рендеринга. В него попадают только видимые элементы (например, `<head>` или элементы с `display: none` исключаются).\n5. Layout (Reflow)\nНа этом этапе браузер вычисляет точные размеры и позиции каждого элемента на странице. Это ресурсоемкий процесс, особенно при сложных макетах.\n6. Paint\nФинальный этап — преобразование дерева рендеринга в пиксели на экране. Браузер рисует слои, применяет цвета, тени и текстуры.\nПример кода для демонстрации блокировки\n\nВ этом примере браузер сначала загрузит CSS, затем остановится на скрипте, выполнит его, и только потом продолжит парсинг и рендеринг.\nВывод\nПонимание этапов загрузки помогает разработчикам оптимизировать производительность: размещать CSS в `<head>`, а JavaScript — в конце `<body>` с атрибутами `async` или `defer`, чтобы не блокировать рендеринг и улучшить пользовательский опыт.",codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css"> <!-- блокирует рендеринг -->
+  <script src="script.js"><\/script> <!-- блокирует парсинг HTML -->
+</head>
+<body>
+  <p>Текст появится после загрузки скрипта</p>
+</body>
+</html>`,skills:[`HTML`]},{question:`В чем разница между переменными в CSS и переменными в SCSS?`,shortAnswer:`CSS-переменные (кастомные свойства) работают на уровне браузера, поддерживают наследование и могут изменяться динамически через JavaScript или медиа-запросы. SCSS-переменные компилируются в статические значения на этапе сборки и не поддаются изменению в рантайме. CSS-переменные доступны в DOM и подходят для тем, а SCSS — для удобства разработки и переиспользования значений.`,longAnswer:`Основное различие: время вычисления
+CSS-переменные (кастомные свойства) вычисляются браузером во время выполнения страницы, а SCSS-переменные — на этапе компиляции препроцессора. Это ключевое отличие определяет все остальные особенности.
+Динамичность и наследование
+CSS-переменные наследуются через DOM и могут быть переопределены в любом селекторе, включая медиа-запросы и псевдоклассы. SCSS-переменные имеют лексическую область видимости (блоки кода) и не реагируют на изменения DOM.
+
+Применение в JavaScript
+CSS-переменные можно читать и изменять через JS, что удобно для динамических тем или анимаций. SCSS-переменные недоступны в рантайме.
+
+Вывод
+Используйте CSS-переменные для динамических стилей, тем и адаптивности. SCSS-переменные подходят для статических значений, которые не меняются в рантайме, и для улучшения читаемости кода на этапе разработки.`,codeExample:`/* SCSS */
+$primary: blue;
+.button { color: $primary; }
+.dark .button { $primary: white; /* Ошибка: не переопределит */ }
+
+/* CSS */
+:root { --primary: blue; }
+.button { color: var(--primary); }
+.dark .button { --primary: white; /* Работает */ }
+
+// Чтение CSS-переменной
+getComputedStyle(element).getPropertyValue('--primary');
+// Изменение
+element.style.setProperty('--primary', 'red');`,skills:[`HTML`]},{question:`Можно ли отказаться от SCSS в современных проектах?`,shortAnswer:`Да, можно отказаться от SCSS в современных проектах. Современный CSS поддерживает переменные (custom properties), вложенность (nesting), calc() и другие функции, которые раньше были доступны только через препроцессоры. Однако SCSS всё ещё полезен для миксинов, циклов и продвинутой организации кода. Решение зависит от команды и требований проекта.`,longAnswer:"Можно ли отказаться от SCSS в современных проектах?\nДа, в большинстве современных проектов можно отказаться от SCSS, так как нативный CSS значительно эволюционировал. Многие возможности, которые ранее были доступны только через препроцессоры, теперь реализованы в самом CSS. Однако это не означает, что SCSS полностью устарел — он всё ещё предоставляет удобные инструменты для сложных проектов.\nЧто предлагает современный CSS?\n\n- Переменные (Custom Properties): `--primary-color: #333;` с поддержкой динамического изменения через JavaScript.\n- Вложенность (Nesting): Нативная поддержка вложенных селекторов (Chrome 120+, Safari 17.2+).\n- Функции: `calc()`, `min()`, `max()`, `clamp()` для гибких вычислений.\n- Цветовые функции: `color-mix()`, `light-dark()`.\n- Модули CSS: `@import` с поддержкой модулей и `@layer` для управления каскадом.\nПример сравнения\nSCSS:\n\nСовременный CSS:\n\nКогда SCSS всё ещё полезен?\n\n- Миксины и функции: Для повторного использования сложных блоков стилей.\n- Циклы и условия: Для генерации множества классов (например, сетка).\n- Управление цветами: Функции `darken()`, `lighten()` удобнее, чем `color-mix()`.\n- Старые проекты: Миграция может быть дорогой и неоправданной.\nВывод\nОтказ от SCSS оправдан в новых проектах с современными браузерами, где важна производительность и уменьшение зависимостей. Однако для сложных систем с большим количеством повторяющегося кода или при необходимости поддержки старых браузеров SCSS остаётся полезным инструментом. Решение должно основываться на требованиях проекта и опыте команды.",codeExample:`$primary: #3498db;
+.button {
+  background: $primary;
+  &:hover {
+    background: darken($primary, 10%);
+  }
+}
+
+:root {
+  --primary: #3498db;
+}
+.button {
+  background: var(--primary);
+}
+.button:hover {
+  background: color-mix(in srgb, var(--primary), black 10%);
+}`,skills:[`HTML`]},{question:`Что такое публичный API модуля во фронтенде?`,shortAnswer:`Публичный API модуля — это набор функций, классов или переменных, которые модуль явно экспортирует для использования другими частями приложения. Всё, что не экспортировано, считается приватным и недоступно снаружи. Это позволяет скрыть внутреннюю реализацию и предоставить только необходимый интерфейс. Например, в JavaScript используется export для объявления публичного API.`,longAnswer:`Что такое публичный API модуля?
+Публичный API модуля — это контракт, который модуль предоставляет внешнему коду. Он определяет, какие функции, классы, константы или типы доступны для импорта и использования в других модулях. Внутренние детали реализации, такие как вспомогательные функции или приватные переменные, остаются скрытыми. Это ключевой принцип инкапсуляции, который помогает поддерживать чистоту кода, уменьшать связанность и упрощать рефакторинг.
+Как это работает в JavaScript?
+В современном JavaScript (ES6+) публичный API модуля задаётся с помощью ключевого слова \`export\`. Вы можете экспортировать отдельные сущности или использовать \`export default\` для главного экспорта. Всё, что не экспортировано, является приватным и недоступно извне.
+
+В другом файле вы можете импортировать только то, что нужно:
+
+Зачем это нужно?
+Публичный API модуля позволяет:
+
+- Скрыть внутреннюю сложность и детали реализации.
+- Уменьшить риск случайного использования внутренних функций.
+- Упростить тестирование и замену модулей.
+- Создать чёткие границы между частями приложения.
+Это особенно важно в больших проектах, где модули разрабатываются разными командами или переиспользуются в нескольких местах.
+Вывод
+Публичный API модуля — это основа модульной архитектуры во фронтенде. Он помогает организовать код, сделать его более предсказуемым и удобным для поддержки. Используйте явные экспорты, чтобы контролировать, что именно доступно снаружи, и избегайте экспорта всего подряд.`,codeExample:`// math.js — модуль с публичным API
+
+export function add(a, b) {
+  return a + b;
+}
+
+export const PI = 3.14159;
+
+// Приватная функция, не экспортируется
+function helper() {
+  console.log('Internal helper');
+}
+
+// app.js
+import { add, PI } from './math.js';
+
+console.log(add(2, 3)); // 5
+console.log(PI); // 3.14159`,skills:[`HTML`]},{question:`Как SEO связано с HTML?`,shortAnswer:`SEO (Search Engine Optimization) напрямую зависит от HTML, так как поисковые системы анализируют структуру и содержимое страницы. Правильное использование семантических тегов (например, , , ) помогает роботам понять иерархию контента. Мета-теги, такие как и <meta name="description">, влияют на отображение в результатах поиска. Чистый и валидный HTML улучшает индексацию и ранжирование сайта.`,longAnswer:'Связь SEO и HTML\nSEO (Search Engine Optimization) и HTML неразрывно связаны, поскольку HTML является основой любой веб-страницы. Поисковые системы, такие как Google, используют краулеры для сканирования HTML-кода, чтобы понять содержание страницы, ее структуру и релевантность поисковым запросам. Качественный HTML напрямую влияет на то, как поисковые роботы интерпретируют и ранжируют сайт.\nКлючевые элементы HTML для SEO\n\n- Семантические теги: Использование тегов `<header>`, `<nav>`, `<main>`, `<article>`, `<section>` и `<footer>` помогает поисковым системам понять логическую структуру документа. Это улучшает индексацию и может повысить шансы на появление в расширенных результатах (rich snippets).\n- Мета-теги: Тег `<title>` задает заголовок страницы, который отображается в результатах поиска. Мета-тег `<meta name="description">` предоставляет краткое описание, которое также может быть показано в сниппете. Правильное заполнение этих тегов с ключевыми словами повышает кликабельность (CTR).\n- Заголовки (h1-h6): Тег `<h1>` должен быть уникальным для каждой страницы и содержать основную тему. Иерархия заголовков (h1, h2, h3) помогает поисковым роботам оценить важность контента.\n- Атрибуты alt для изображений: Атрибут `alt` в теге `<img>` описывает содержимое изображения. Это не только улучшает доступность для пользователей с ограниченными возможностями, но и позволяет поисковым системам индексировать изображения, что может привлечь дополнительный трафик.\n- Чистый и валидный код: Отсутствие ошибок в HTML (например, незакрытых тегов) облегчает сканирование страницы. Использование правильной структуры и избегание дублированного контента также положительно сказывается на SEO.\nПример кода\n\nВывод: SEO и HTML работают в тандеме: грамотная семантическая разметка и правильное использование мета-тегов делают сайт более понятным для поисковых систем, что улучшает его видимость и ранжирование. Применение этих принципов обязательно для любого сайта, ориентированного на органический трафик.',codeExample:`<!DOCTYPE html>
+<html lang=u">
+<head>
+    <meta charset="UTF-8">
+    <title>Как испечь идеальный хлеб | Рецепты</title>
+    <meta name="description" content="Пошаговый рецепт домашнего хлеба с хрустящей корочкой. Ингредиенты, время выпечки и секреты теста.">
+</head>
+<body>
+    <header>
+        <nav><!-- Навигация --></nav>
+    </header>
+    <main>
+        <article>
+            <h1>Идеальный домашний хлеб</h1>
+            <section>
+                <h2>Ингредиенты</h2>
+                <!-- Список ингредиентов -->
+            </section>
+            <section>
+                <h2>Пошаговый процесс</h2>
+                <img src="dough.jpg" alt="Замешанное тесто для хлеба">
+            </section>
+        </article>
+    </main>
+    <footer><!-- Подвал --></footer>
+</body>
+</html>`,skills:[`HTML`]},{question:`Все ли скрипты блокируют парсинг HTML?`,shortAnswer:`Не все скрипты блокируют парсинг HTML. Обычные скрипты без атрибутов блокируют парсинг до полной загрузки и выполнения. Скрипты с атрибутами async или defer не блокируют парсинг, но ведут себя по-разному: async загружается параллельно и выполняется сразу после загрузки, а defer — после завершения парсинга. Это позволяет ускорить загрузку страницы.`,longAnswer:"Как скрипты влияют на парсинг HTML\nКогда браузер встречает тег `<script>` без атрибутов, он останавливает парсинг HTML, загружает скрипт, выполняет его, и только потом продолжает разбор документа. Это может замедлить отображение страницы, особенно если скрипт тяжёлый или загружается с медленного сервера.\nАтрибуты async и defer\nАтрибут `async` позволяет загружать скрипт параллельно с парсингом HTML. Как только скрипт загружен, он выполняется, приостанавливая парсинг. Атрибут `defer` также загружает скрипт параллельно, но откладывает его выполнение до полного завершения парсинга документа. Оба атрибута не блокируют парсинг, но `defer` гарантирует порядок выполнения скриптов, а `async` — нет.\nПример кода\n\nВывод\nИспользуйте `defer` для скриптов, которые должны выполняться после полной загрузки DOM, и `async` для независимых скриптов, например, аналитики. Это улучшает производительность и пользовательский опыт.",codeExample:`<!-- Блокирующий скрипт -->
+<script src="script.js"><\/script>
+
+<!-- Неблокирующий async -->
+<script src="script.js" async><\/script>
+
+<!-- Неблокирующий defer -->
+<script src="script.js" defer><\/script>`,skills:[`HTML`]},{question:`Что такое Cumulative Layout Shift (CLS)?`,shortAnswer:`Cumulative Layout Shift (CLS) — это метрика, которая измеряет, насколько часто и сильно элементы на странице неожиданно смещаются во время загрузки. Высокий CLS ухудшает пользовательский опыт, так как пользователь может случайно нажать не на ту кнопку или потерять контекст чтения. CLS вычисляется как сумма всех неожиданных смещений видимых элементов, умноженных на их долю в области просмотра.`,longAnswer:`Что такое Cumulative Layout Shift (CLS)?
+Cumulative Layout Shift (CLS) — это одна из трех основных метрик Web Vitals, которая оценивает визуальную стабильность веб-страницы. Она измеряет, насколько часто и с какой амплитудой элементы интерфейса неожиданно смещаются в процессе загрузки страницы. Низкий CLS означает, что пользователь видит стабильный контент, а высокий — что элементы «прыгают», что может вызывать раздражение и ошибки взаимодействия.
+Как рассчитывается CLS?
+CLS вычисляется как сумма всех неожиданных смещений видимых элементов. Для каждого смещения рассчитывается score = impact fraction * distance fraction. Impact fraction — это доля области просмотра, затронутая смещением, а distance fraction — расстояние, на которое сместился элемент, относительно области просмотра. Итоговый CLS — это сумма всех таких score за время жизни страницы.
+Примеры и причины высокого CLS
+Основные причины высокого CLS:
+
+- Изображения и видео без явно заданных размеров (width/height).
+- Динамически загружаемые шрифты, которые меняют размер текста.
+- Рекламные блоки, которые вставляются после загрузки основного контента.
+- Анимации, которые изменяют положение элементов.
+Практический пример
+Рассмотрим HTML-код, который вызывает смещение:
+
+Если у изображения не заданы размеры, браузер сначала отобразит текст, а затем, когда изображение загрузится, текст сместится вниз. Чтобы избежать этого, нужно явно указать размеры:
+
+Или использовать CSS-контейнеры с фиксированным соотношением сторон.
+Вывод
+CLS — важная метрика для обеспечения комфортного пользовательского опыта. Её следует оптимизировать, особенно на страницах с динамическим контентом, изображениями и рекламой. Рекомендуется всегда задавать размеры медиа-элементов и избегать вставки контента после загрузки основного макета.`,codeExample:`<div>
+  <img src="image.jpg" alt="Example">
+  <p>Some text</p>
+</div>
+
+<div>
+  <img src="image.jpg" alt="Example" width="400" height="300">
+  <p>Some text</p>
+</div>`,skills:[`HTML`]},{question:`Что такое First Contentful Paint (FCP)?`,shortAnswer:`First Contentful Paint (FCP) — это метрика производительности, которая измеряет время от начала загрузки страницы до момента, когда браузер отображает первый фрагмент контента, например текст или изображение. Она помогает оценить, насколько быстро пользователь видит, что страница начинает загружаться. Хорошее значение FCP — менее 1.8 секунды.`,longAnswer:`Что такое First Contentful Paint (FCP)?
+First Contentful Paint (FCP) — это одна из ключевых метрик производительности веб-страниц, входящая в состав Core Web Vitals. Она измеряет время в миллисекундах от момента, когда пользователь начинает переходить на страницу (например, вводит URL или нажимает ссылку), до момента, когда браузер впервые отрисовывает любой текстовый или графический контент. Это может быть текст, изображение, SVG, canvas или даже непустой элемент \`<div>\`. FCP не учитывает фоновые изображения или шрифты, загруженные через \`@font-face\`.
+Как измеряется FCP?
+FCP фиксируется браузером в момент, когда происходит первая отрисовка контента в окне просмотра. Для измерения используются инструменты вроде Lighthouse, PageSpeed Insights или Performance API в браузере. Пример получения FCP через JavaScript:
+
+Почему FCP важен?
+FCP напрямую влияет на восприятие скорости загрузки пользователем. Если FCP высокий (более 2.5 секунд), пользователь может подумать, что страница не работает, и уйти. Низкий FCP (менее 1.8 секунды) создаёт ощущение быстрой загрузки. Метрика особенно критична для контентных сайтов, интернет-магазинов и новостных порталов, где первое впечатление решает многое.
+Как улучшить FCP?
+
+- Минимизируйте блокирующий рендеринг CSS и JavaScript.
+- Используйте критический CSS (inline-стили для первого экрана).
+- Оптимизируйте изображения (сжатие, современные форматы WebP).
+- Настройте кэширование ресурсов через CDN.
+- Удалите неиспользуемый код и библиотеки.
+Вывод
+FCP — это базовая метрика для оценки начальной загрузки страницы. Её улучшение напрямую повышает пользовательский опыт и может положительно сказаться на SEO и конверсии. Рекомендуется регулярно мониторить FCP в реальных условиях и оптимизировать критические пути рендеринга.`,codeExample:`new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  entries.forEach(entry => {
+    console.log('FCP:', entry.startTime, 'ms');
+  });
+}).observe({ type: 'paint', buffered: true });`,skills:[`HTML`]},{question:`Может ли обращение к DOM через JS вызвать reflow?`,shortAnswer:`Да, обращение к DOM через JavaScript может вызвать reflow. Reflow — это процесс пересчёта геометрии элементов на странице. Когда вы читаете или изменяете свойства, влияющие на размеры или положение элементов (например, offsetHeight, clientWidth, scrollTop), браузер может принудительно выполнить reflow, чтобы вернуть актуальные значения. Это может негативно сказаться на производительности, особенно при частых операциях.`,longAnswer:`Что такое reflow и как он связан с DOM?
+Reflow (или layout) — это этап рендеринга страницы, на котором браузер вычисляет размеры и позиции всех элементов. Он происходит при начальной загрузке страницы, а также при любых изменениях, которые могут повлиять на геометрию: изменение размеров окна, добавление/удаление элементов, изменение стилей (ширина, высота, margin, padding и т.д.).
+JavaScript может как читать, так и изменять DOM. Некоторые операции чтения, такие как получение offsetHeight, clientWidth, scrollTop, getComputedStyle, могут заставить браузер выполнить reflow, чтобы вернуть актуальные значения. Это называется принудительным синхронным reflow (forced synchronous reflow).
+Примеры операций, вызывающих reflow
+
+- Чтение свойств: offsetHeight, offsetWidth, clientHeight, clientWidth, scrollTop, scrollLeft, getBoundingClientRect, getComputedStyle.
+- Изменение стилей, влияющих на геометрию: width, height, margin, padding, display, position, float и т.д.
+- Добавление или удаление элементов из DOM.
+- Изменение содержимого (например, textContent), если это влияет на размеры.
+Практический пример
+
+В этом примере каждое обращение к offsetHeight и изменение width может вызвать reflow. Чтобы минимизировать количество reflow, рекомендуется группировать операции чтения и записи, либо использовать техники, такие как чтение всех значений перед изменениями.
+Как избежать лишних reflow
+
+- Используйте классы для изменения стилей вместо прямого изменения свойств.
+- Работайте с элементами вне потока (например, с display: none, затем изменяйте, потом показывайте).
+- Используйте documentFragment для массового добавления элементов.
+- Кешируйте значения, которые могут вызвать reflow, если они не меняются.
+Вывод: Понимание reflow важно для оптимизации производительности веб-страниц. Избегайте частых принудительных reflow, особенно в анимациях или при работе с большими списками. Группируйте операции и используйте современные подходы, такие как requestAnimationFrame, для синхронизации изменений с циклом рендеринга браузера.`,codeExample:`const el = document.getElementById('myElement');
+// Чтение offsetHeight вызывает reflow
+const height = el.offsetHeight;
+// Изменение ширины также вызывает reflow
+el.style.width = '200px';
+// Если читать после изменения, будет ещё один reflow
+const newHeight = el.offsetHeight;`,skills:[`HTML`]},{question:`Что происходит при встрече браузером CSS и JavaScript во время парсинга HTML?`,shortAnswer:`Когда браузер встречает CSS (внешний или внутренний), он продолжает парсить HTML, но приостанавливает рендеринг до полной загрузки и построения CSSOM. Встретив обычный JavaScript (без async/defer), браузер полностью останавливает парсинг HTML, загружает и выполняет скрипт, и только потом продолжает. Это сделано, потому что скрипт может изменить DOM или CSSOM.`,longAnswer:'Влияние CSS и JavaScript на парсинг HTML\nБраузер строит DOM (Document Object Model) из HTML и CSSOM (CSS Object Model) из CSS. Эти два дерева объединяются в Render Tree для отрисовки страницы. CSS и JavaScript по-разному влияют на этот процесс.\nCSS (Render Blocking)\nКогда парсер HTML встречает тег `<link rel="stylesheet"">` или `<style>`, он не останавливает парсинг HTML, но блокирует рендеринг. Браузер не будет отображать страницу до тех пор, пока CSSOM не будет полностью построен. Это необходимо, чтобы избежать FOUC (Flash of Unstyled Content).\nJavaScript (Parser Blocking)\nКогда парсер встречает обычный тег `<script>` (без атрибутов `async` или `defer`), он полностью останавливает парсинг HTML. Браузер загружает скрипт (если он внешний), выполняет его, и только потом продолжает парсинг. Это связано с тем, что скрипт может изменить DOM (через `document.write`) или обратиться к CSSOM.\nПример\n\nВ этом примере браузер сначала загрузит CSS, затем остановится на скрипте, загрузит и выполнит его, и только потом продолжит парсинг и отрисовку.\nОптимизация\n\n- Для CSS: используйте `media` атрибуты, чтобы указать, что стили не критичны для начального рендеринга.\n- Для JavaScript: используйте `async` (скрипт выполняется сразу после загрузки, не блокируя парсинг) или `defer` (скрипт выполняется после завершения парсинга HTML).\nВывод: Понимание блокировки рендеринга и парсинга критически важно для оптимизации скорости загрузки страницы (Core Web Vitals). Используйте `async`/`defer` для скриптов и минимизируйте критический CSS для быстрого первого отображения.',codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css"> <!-- Render blocking -->
+  <script src="script.js"><\/script> <!-- Parser blocking -->
+</head>
+<body>
+  <p>Hello</p>
+</body>
+</html>`,skills:[`HTML`]},{question:`Почему важно учитывать null при получении данных из localStorage?`,shortAnswer:`Метод getItem возвращает null, если ключ не существует в localStorage. Если не проверять это значение, код может упасть с ошибкой при попытке вызвать методы на null, например JSON.parse(null). Всегда проверяйте результат getItem на null перед использованием.`,longAnswer:`Почему null важен при работе с localStorage
+Метод \`localStorage.getItem(key)\` возвращает \`null\`, если указанный ключ отсутствует в хранилище. Это стандартное поведение, которое нужно учитывать, чтобы избежать ошибок выполнения.
+Пример проблемы
+Рассмотрим типичный код без проверки:
+
+Если ключ 'user' отсутствует, \`getItem\` вернет \`null\`, а \`JSON.parse(null)\` вызовет исключение.
+Правильный подход
+Всегда проверяйте результат перед использованием:
+
+Также можно использовать оператор нулевого слияния (\`??\`) для задания значения по умолчанию:
+
+Вывод
+Проверка на null при получении данных из localStorage обязательна для стабильной работы приложения, особенно при первом запуске или после очистки хранилища.`,codeExample:`const data = JSON.parse(localStorage.getItem('user'));
+console.log(data.name); // Ошибка, если ключа нет
+
+const raw = localStorage.getItem('user');
+if (raw === null) {
+  console.log('Данные не найдены');
+} else {
+  const data = JSON.parse(raw);
+  console.log(data.name);
+}
+
+const data = JSON.parse(localStorage.getItem('user') ?? '{}');`,skills:[`HTML`]},{question:`Какие методы есть у localStorage?`,shortAnswer:`localStorage предоставляет методы для хранения данных в браузере. Основные методы: setItem(key, value) для сохранения, getItem(key) для получения, removeItem(key) для удаления одной записи, clear() для очистки всего хранилища, а также key(index) для доступа по индексу и свойство length для получения количества записей.`,longAnswer:`Основные методы localStorage
+localStorage — это часть Web Storage API, которая позволяет хранить данные в браузере без срока действия. Данные сохраняются даже после закрытия вкладки или браузера. Все методы синхронны и работают только со строками.
+Методы и их использование
+
+- setItem(key, value) — сохраняет значение по ключу. Если ключ уже существует, значение перезаписывается.
+- getItem(key) — возвращает значение по ключу или null, если ключ не найден.
+- removeItem(key) — удаляет запись по ключу.
+- clear() — удаляет все записи из localStorage.
+- key(index) — возвращает имя ключа по индексу (начиная с 0).
+- length — свойство, показывающее количество сохранённых элементов.
+Пример кода
+
+Важные особенности
+
+- Все значения автоматически преобразуются в строки. Для объектов используйте JSON.stringify() и JSON.parse().
+- Хранилище ограничено по размеру (обычно 5-10 МБ на домен).
+- Данные доступны только в рамках одного протокола и домена.
+Вывод: localStorage удобен для хранения пользовательских настроек, токенов или кэширования данных, которые должны сохраняться между сессиями. Однако не стоит хранить конфиденциальную информацию, так как данные доступны через JavaScript.`,codeExample:`// Сохраняем данные
+localStorage.setItem('username', 'John');
+localStorage.setItem('theme', 'dark');
+
+// Получаем данные
+const user = localStorage.getItem('username'); // 'John'
+
+// Удаляем одну запись
+localStorage.removeItem('theme');
+
+// Получаем количество записей
+console.log(localStorage.length); // 1
+
+// Доступ по индексу
+const firstKey = localStorage.key(0); // 'username'
+
+// Очищаем всё хранилище
+localStorage.clear();`,skills:[`HTML`]},{question:`Как получить данные из localStorage?`,shortAnswer:`localStorage позволяет хранить данные в браузере без срока действия. Для получения данных используется метод getItem(), который принимает ключ и возвращает строку. Если ключ не найден, возвращается null. Данные хранятся в виде строк, поэтому объекты нужно сериализовать через JSON.stringify() и парсить через JSON.parse().`,longAnswer:`Что такое localStorage и как с ним работать
+localStorage — это часть Web Storage API, предоставляющая возможность хранить данные в браузере пользователя. Данные сохраняются между сессиями и не имеют срока действия, пока не будут удалены вручную или через JavaScript. В отличие от cookies, localStorage не отправляется на сервер с каждым HTTP-запросом, что делает его эффективным для хранения настроек, токенов или кэшированных данных.
+Метод getItem()
+Для получения данных из localStorage используется метод \`getItem(key)\`, где key — это строка, соответствующая ключу, под которым данные были сохранены. Метод возвращает строку или null, если ключ отсутствует. Поскольку localStorage хранит только строки, для работы с объектами или массивами необходимо использовать JSON.parse().
+
+Практическое применение
+localStorage часто используется для хранения пользовательских настроек (тема, язык), состояния интерфейса (раскрытые меню) или временных данных, которые не требуют серверной обработки. Например, можно сохранить выбранный фильтр на странице, чтобы при перезагрузке он восстановился.
+Вывод
+localStorage — простой и быстрый способ хранения данных на клиенте, подходящий для небольших объёмов информации (до 5-10 МБ). Используйте его для кэширования настроек или состояния, но избегайте хранения чувствительных данных, так как они доступны через JavaScript.`,codeExample:`// Сохранение объекта
+const user = { name: 'Alice', age: 30 };
+localStorage.setItem('user', JSON.stringify(user));
+
+// Получение и парсинг
+const storedUser = localStorage.getItem('user');
+if (storedUser) {
+  const parsedUser = JSON.parse(storedUser);
+  console.log(parsedUser.name); // Alice
+} else {
+  console.log('Ключ не найден');
+}`,skills:[`HTML`]},{question:`Почему данные в localStorage нужно сериализовать?`,shortAnswer:`localStorage может хранить только строки. Если вы попытаетесь сохранить объект, массив или число, они будут автоматически преобразованы в строку через метод toString(), что приведет к потере данных или некорректному формату. Поэтому перед сохранением данные нужно сериализовать в JSON с помощью JSON.stringify(), а при чтении — десериализовать через JSON.parse().`,longAnswer:"Почему localStorage требует сериализации?\nlocalStorage — это механизм хранения данных в браузере, который работает исключительно со строками. Когда вы пытаетесь сохранить значение, не являющееся строкой (например, объект, массив, число или булево значение), браузер автоматически вызывает метод `toString()` для этого значения. Для объектов это приводит к сохранению строки `[object Object]`, что делает данные бесполезными.\nКак правильно работать с данными?\nДля корректного сохранения и восстановления сложных структур данных необходимо использовать JSON-сериализацию. Метод `JSON.stringify()` преобразует объект или массив в строку JSON, а `JSON.parse()` восстанавливает исходную структуру.\n\nПримеры проблем без сериализации\n\n- Сохранение числа: `localStorage.setItem('count', 42)` — сохранится строка '42', но при чтении это будет строка, а не число.\n- Сохранение массива: `localStorage.setItem('arr', [1,2,3])` — сохранится строка '1,2,3', что не является корректным JSON.\n- Сохранение объекта: `localStorage.setItem('obj', {a:1})` — сохранится строка '[object Object]'.\nВывод\nСериализация через JSON — обязательный шаг при работе с localStorage для любых данных, кроме простых строк. Это гарантирует целостность и правильный тип данных при последующем использовании.",codeExample:`// Сохранение объекта
+const user = { name: 'Alice', age: 30 };
+localStorage.setItem('user', JSON.stringify(user));
+
+// Чтение и восстановление
+const storedUser = JSON.parse(localStorage.getItem('user'));
+console.log(storedUser.name); // 'Alice'`,skills:[`HTML`]},{question:`Какие ошибки могут возникнуть при работе с localStorage?`,shortAnswer:`Основные ошибки при работе с localStorage включают превышение лимита хранилища (обычно 5-10 МБ), что вызывает исключение QuotaExceededError. Также могут возникать проблемы с безопасностью, такие как XSS-атаки, поскольку данные хранятся в открытом виде. Кроме того, localStorage не поддерживает автоматическую синхронизацию между вкладками, и данные могут быть потеряны при очистке кэша браузера.`,longAnswer:`Основные ошибки при работе с localStorage
+localStorage — это механизм хранения данных на стороне клиента в браузере. Несмотря на свою простоту, он имеет ряд ограничений и потенциальных проблем, которые важно учитывать при разработке.
+Превышение лимита хранилища
+Большинство браузеров устанавливают лимит на размер данных в localStorage (обычно 5-10 МБ на домен). При попытке сохранить данные сверх лимита возникает исключение \`QuotaExceededError\`. Это особенно актуально для приложений, которые хранят большие объемы данных, например, кэш изображений или логи.
+
+Проблемы безопасности
+Данные в localStorage хранятся в открытом виде и доступны любому JavaScript-коду на странице. Это делает их уязвимыми для XSS-атак. Злоумышленник может получить доступ к чувствительной информации, такой как токены аутентификации или пользовательские настройки. Никогда не храните пароли, ключи API или другие конфиденциальные данные в localStorage.
+Отсутствие синхронизации между вкладками
+Изменения в localStorage в одной вкладке не автоматически отражаются в других вкладках того же домена. Для синхронизации необходимо использовать событие \`storage\`, которое срабатывает при изменении данных в другой вкладке.
+
+Потеря данных при очистке кэша
+Пользователь может в любой момент очистить данные браузера, включая localStorage. Это приведет к потере всех сохраненных данных. Поэтому localStorage не подходит для хранения критически важной информации, которая должна сохраняться постоянно.
+Вывод
+localStorage удобен для хранения небольших объемов некритичных данных, таких как настройки интерфейса или временные состояния. Однако для хранения чувствительной информации или данных, требующих синхронизации, лучше использовать серверные решения или более безопасные механизмы, такие как sessionStorage или IndexedDB.`,codeExample:`try {
+  localStorage.setItem('key', 'largeData');
+} catch (e) {
+  if (e.name === 'QuotaExceededError') {
+    console.error('Превышен лимит localStorage');
+  }
+}
+
+window.addEventListener('storage', (event) => {
+  console.log('Данные изменены:', event.key, event.newValue);
+});`,skills:[`HTML`]},{question:`Как сохранить данные в localStorage?`,shortAnswer:`localStorage позволяет хранить данные в браузере без срока действия. Для сохранения используется метод setItem('ключ', 'значение'). Данные хранятся в виде строк, поэтому объекты нужно преобразовывать через JSON.stringify(). Доступ к данным возможен из любого окна того же источника.`,longAnswer:`Что такое localStorage и как с ним работать
+localStorage — это часть Web Storage API, предоставляющая возможность хранить пары ключ-значение в браузере. Данные сохраняются даже после закрытия вкладки или браузера и не имеют срока действия. Это удобно для хранения пользовательских настроек, состояния интерфейса или кэширования небольших объёмов данных.
+Сохранение данных
+Основной метод для записи — \`setItem(key, value)\`. Оба параметра должны быть строками. Если нужно сохранить объект или массив, используйте \`JSON.stringify()\` для преобразования в строку.
+
+Чтение и удаление
+Для получения данных используйте \`getItem(key)\`, который возвращает строку или \`null\`, если ключ отсутствует. Для удаления одного элемента — \`removeItem(key)\`, для полной очистки — \`clear()\`.
+
+Важные особенности
+
+- Данные хранятся в виде строк — любые нестроковые типы нужно явно преобразовывать.
+- Размер хранилища ограничен (обычно 5–10 МБ на домен).
+- localStorage синхронный — операции могут блокировать основной поток, поэтому не используйте его для больших объёмов данных.
+- Данные доступны только для того же протокола, домена и порта (same-origin policy).
+Вывод
+localStorage — простой и эффективный способ хранения небольших объёмов данных на стороне клиента. Используйте его для сохранения пользовательских настроек, состояния интерфейса или кэширования данных, которые не требуют серверной синхронизации. Для более сложных сценариев (большие объёмы, работа с файлами) рассмотрите IndexedDB или серверное хранение.`,codeExample:`// Сохраняем строку
+localStorage.setItem('username', 'Alice');
+
+// Сохраняем объект
+const user = { name: 'Bob', age: 30 };
+localStorage.setItem('user', JSON.stringify(user));
+
+// Сохраняем массив
+const colors = ['red', 'green', 'blue'];
+localStorage.setItem('colors', JSON.stringify(colors));
+
+// Читаем строку
+const name = localStorage.getItem('username');
+
+// Читаем объект (не забываем парсить)
+const savedUser = JSON.parse(localStorage.getItem('user'));
+
+// Удаляем один элемент
+localStorage.removeItem('colors');
+
+// Очищаем всё хранилище
+localStorage.clear();`,skills:[`HTML`]},{question:`Можно ли использовать XML и JSON в различных типах запросов?`,shortAnswer:`Да, XML и JSON можно использовать в различных типах запросов, таких как GET, POST, PUT и DELETE. JSON чаще применяется в REST API из-за своей легкости и простоты, в то время как XML используется в SOAP и конфигурационных файлах. Выбор зависит от требований проекта и совместимости с системами.`,longAnswer:`Использование XML и JSON в запросах
+XML и JSON являются форматами для обмена данными, которые могут быть использованы в различных типах HTTP-запросов. JSON (JavaScript Object Notation) более популярен в современных веб-приложениях благодаря своей компактности и удобству для JavaScript. XML (eXtensible Markup Language) часто применяется в корпоративных системах и протоколах, таких как SOAP.
+Примеры использования
+В REST API JSON обычно передается в теле POST, PUT или PATCH запросов, а также может быть частью ответа на GET запрос. XML также может использоваться аналогично, но требует дополнительной обработки на стороне клиента и сервера.
+
+Вывод
+XML и JSON могут быть использованы в любых типах запросов, но JSON предпочтительнее для легковесных и быстрых приложений, а XML — для систем, требующих строгой структуры и расширяемости, например, в SOAP-сервисах.`,codeExample:`// Пример JSON в POST запросе
+fetch('/api/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: 'John', age: 30 })
+});
+
+// Пример XML в POST запросе (с использованием SOAP)
+const xml = '' +
+  '123';
+fetch('/api/soap', {
+  method: 'POST',
+  headers: { 'Content-Type': 'text/xml' },
+  body: xml
+});`,skills:[`HTML`]},{question:`Как используется Figma в процессе тестирования?`,shortAnswer:`Figma используется тестировщиками для сверки готового интерфейса с макетами. В Figma можно измерять отступы, размеры элементов, проверять цвета и шрифты. Это помогает находить расхождения между дизайном и реализацией. Также Figma удобна для написания тест-кейсов на основе визуальных компонентов.`,longAnswer:`Роль Figma в тестировании
+Figma — это инструмент для дизайна интерфейсов, который активно используется тестировщиками для проверки соответствия верстки макетам. В отличие от статичных изображений, Figma предоставляет доступ к точным размерам, отступам, цветам и стилям, что делает её незаменимой для UI-тестирования.
+Как тестировщики работают с Figma
+
+- Сверка размеров и отступов: с помощью инструмента «Measure» можно проверить, совпадают ли фактические пиксельные значения с дизайном.
+- Проверка цветов: Figma показывает HEX, RGB и другие коды цветов, что позволяет убедиться в точности палитры.
+- Анализ состояний элементов: в макетах часто отображены hover, active, disabled состояния, которые нужно проверить в коде.
+- Написание тест-кейсов: на основе компонентов Figma можно создавать чек-листы для регрессионного тестирования.
+Пример использования
+
+Вывод
+Figma помогает тестировщикам точно и быстро выявлять визуальные дефекты, особенно на этапе приёмочного тестирования. Использование Figma в QA-процессе повышает качество продукта и сокращает время на коммуникацию с дизайнерами.`,codeExample:`// Пример проверки отступа в коде (CSS) и в Figma
+// Figma: отступ между кнопкой и полем ввода = 16px
+// В коде:
+.button {
+  margin-bottom: 16px; // должно совпадать
+}`,skills:[`HTML`]},{question:`Что делать, если в веб-приложении после нажатия кнопки ничего не происходит?`,shortAnswer:`Откройте инструменты разработчика в браузере (F12). Проверьте консоль на наличие ошибок JavaScript. Убедитесь, что на кнопку правильно назначен обработчик события. Проверьте вкладку Network, чтобы увидеть, отправляются ли запросы на сервер. Если ошибок нет, проверьте, не заблокирован ли скрипт или не перехватывается ли событие.`,longAnswer:`Диагностика проблемы
+Когда после нажатия кнопки ничего не происходит, первым делом нужно открыть инструменты разработчика браузера (обычно клавиша F12). Это основной инструмент для отладки веб-приложений.
+Проверка консоли
+Перейдите на вкладку Console. Здесь отображаются все ошибки JavaScript, предупреждения и логи. Если есть ошибка, она обычно содержит описание и номер строки кода. Например, ошибка 'Uncaught TypeError: Cannot read properties of null' указывает на то, что вы пытаетесь обратиться к несуществующему элементу DOM.
+Проверка обработчика события
+Убедитесь, что на кнопку назначен обработчик события. Это можно сделать через атрибут onclick в HTML или через addEventListener в JavaScript. Пример правильного назначения:
+
+Проверка сетевых запросов
+Если обработчик события есть, но ничего не происходит, перейдите на вкладку Network. Нажмите кнопку и посмотрите, появляются ли новые запросы. Если запросов нет, значит, проблема в клиентском коде. Если запрос есть, проверьте его статус и ответ сервера.
+Другие возможные причины
+
+- Скрипт не загрузился из-за ошибки в другом месте кода
+- Событие перехватывается другим обработчиком (event.stopPropagation)
+- Кнопка находится внутри формы и происходит отправка формы вместо вызова обработчика
+- Браузерное расширение блокирует выполнение скрипта
+Вывод
+Системный подход к отладке — проверка консоли, обработчиков событий и сетевых запросов — позволяет быстро выявить большинство проблем. Используйте инструменты разработчика как основной инструмент для диагностики.`,codeExample:`// HTML: <button id="myButton">Click me</button>
+// JavaScript:
+document.getElementById('myButton').addEventListener('click', function() {
+  console.log('Button clicked!');
+  // Ваш код
+});`,skills:[`HTML`]},{question:`Какие знания HTML и CSS необходимы тестировщику?`,shortAnswer:`Тестировщику нужно понимать структуру HTML-документа, уметь находить элементы по тегам, классам и ID. Важно знать основы CSS: селекторы, свойства для работы с размерами, цветом и позиционированием. Это помогает точно описывать баги и проверять верстку.`,longAnswer:"Зачем тестировщику HTML и CSS\nHTML и CSS — основа любого веб-интерфейса. Тестировщик, понимающий эти технологии, может точнее локализовать дефекты, быстрее находить элементы на странице и грамотно описывать проблемы в баг-трекерах. Без этих знаний сложно отличить ошибку верстки от логической ошибки приложения.\nОсновные знания HTML\n\n- Структура документа: `<html>`, `<head>`, `<body>`.\n- Семантические теги: `<header>`, `<main>`, `<footer>`, `<section>`.\n- Атрибуты: `id`, `class`, `href`, `src`, `alt`.\n- Формы: `<form>`, `<input>`, `<button>`, `<select>`.\nОсновные знания CSS\n\n- Селекторы: по тегу, классу, ID, вложенные селекторы.\n- Свойства: `color`, `background`, `font-size`, `margin`, `padding`, `display`, `position`.\n- Единицы измерения: px, em, rem, %, vw, vh.\n- Адаптивность: медиа-запросы (`@media`).\nПример использования в тестировании\nПредположим, кнопка не нажимается. Тестировщик смотрит код:\n\nОн видит атрибут `disabled` — это не баг верстки, а логика приложения. Или если элемент скрыт:\n\nТестировщик понимает, что элемент не отображается из-за CSS, а не из-за ошибки.\nВывод\nЗнание HTML и CSS на базовом уровне позволяет тестировщику быстрее находить причины дефектов, точнее описывать их и эффективнее взаимодействовать с разработчиками. Это обязательный минимум для работы с веб-приложениями.",codeExample:`<button class="submit-btn" disabled>Отправить</button>
+
+<div style="display: none;">Скрытый блок</div>`,skills:[`HTML`]},{question:`Какие бывают классы HTTP-ответов (информационные, успешные, ошибки клиента, ошибки сервера)?`,shortAnswer:`HTTP-ответы делятся на 5 классов: 1xx (информационные) — запрос принят, продолжается обработка; 2xx (успешные) — запрос успешно обработан; 3xx (перенаправления) — требуются дополнительные действия; 4xx (ошибки клиента) — проблема на стороне клиента; 5xx (ошибки сервера) — проблема на стороне сервера. Каждый класс имеет свой диапазон кодов, например 200 OK, 404 Not Found, 500 Internal Server Error.`,longAnswer:"Классы HTTP-ответов\nHTTP-статусы группируются по пяти классам, каждый из которых обозначает определённый тип результата обработки запроса. Первая цифра кода указывает на класс: 1xx, 2xx, 3xx, 4xx или 5xx. Это стандартизировано в RFC 7231 и помогает разработчикам быстро диагностировать проблемы.\n1xx — Информационные\nЭти коды означают, что запрос принят и сервер продолжает его обработку. Они редко используются в повседневной практике, но важны для протоколов вроде WebSocket. Пример: `100 Continue` — клиент может продолжать отправку тела запроса.\n2xx — Успешные\nЗапрос успешно обработан. Самые распространённые: `200 OK` (стандартный успех), `201 Created` (ресурс создан), `204 No Content` (успех без тела ответа).\n3xx — Перенаправления\nТребуются дополнительные действия со стороны клиента, обычно переход по другому URL. Примеры: `301 Moved Permanently` (ресурс перемещён навсегда), `302 Found` (временное перенаправление), `304 Not Modified` (кэшированный ответ).\n4xx — Ошибки клиента\nПроблема на стороне клиента: неверный запрос, отсутствие прав или ресурса. Частые: `400 Bad Request` (некорректный синтаксис), `401 Unauthorized` (требуется аутентификация), `403 Forbidden` (доступ запрещён), `404 Not Found` (ресурс не найден).\n5xx — Ошибки сервера\nСервер не смог выполнить запрос из-за внутренней проблемы. Примеры: `500 Internal Server Error` (общая ошибка), `502 Bad Gateway` (неверный ответ от вышестоящего сервера), `503 Service Unavailable` (сервер временно недоступен).\nПример кода\n\nВ этом примере проверяется класс ответа: 2xx — успех, 4xx — ошибка клиента, 5xx — ошибка сервера.\nВывод\nЗнание классов HTTP-статусов необходимо для корректной обработки ответов в веб-приложениях, отладки API и построения надёжных клиент-серверных взаимодействий.",codeExample:`fetch('/api/data')
+  .then(response => {
+    if (response.status === 200) {
+      return response.json();
+    } else if (response.status === 404) {
+      console.error('Resource not found');
+    } else if (response.status >= 500) {
+      console.error('Server error');
+    }
+  });`,skills:[`HTML`]},{question:`Какие правила синтаксиса JSON необходимо соблюдать?`,shortAnswer:`JSON требует строгого синтаксиса: ключи и строки в двойных кавычках, числа без кавычек, логические значения true/false, null. Данные разделяются запятыми, объекты в фигурных скобках, массивы в квадратных. Не допускаются trailing commas и комментарии.`,longAnswer:'Основные правила синтаксиса JSON\nJSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на подмножестве JavaScript. Его синтаксис строг и требует соблюдения следующих правил:\n\n- Ключи и строки всегда заключаются в двойные кавычки (`"`). Одинарные кавычки не допускаются.\n- Числа записываются без кавычек, могут быть целыми или с плавающей точкой (например, `42`, `3.14`).\n- Логические значения — `true` и `false` (без кавычек).\n- Null — `null` (без кавычек).\n- Объекты заключаются в фигурные скобки `{}`, пары ключ-значение разделяются запятыми.\n- Массивы заключаются в квадратные скобки `[]`, элементы разделяются запятыми.\n- Запрещены trailing commas (запятая после последнего элемента).\n- Комментарии не поддерживаются.\nПример корректного JSON\n\nГде применяется\nJSON используется в API, конфигурационных файлах, хранении данных и обмене между клиентом и сервером. Соблюдение синтаксиса обязательно для парсинга и сериализации.\nВывод: JSON — простой и строгий формат, который легко читается и обрабатывается. Его правила синтаксиса обеспечивают однозначность и совместимость между системами.',codeExample:`{
+  
+ame": "Alice",
+  "age": 30,
+  "isStudent": false,
+  "hobbies": [eading", "coding"],
+  "address": null
+}`,skills:[`HTML`]},{question:`Какие ошибки могут быть в JSON?`,shortAnswer:`Ошибки в JSON могут быть синтаксическими: лишние запятые, неправильные кавычки (только двойные), отсутствие кавычек у ключей, неверные типы данных (например, undefined). Также возможны ошибки при парсинге, если строка не соответствует формату. Часто встречаются проблемы с экранированием символов и вложенностью.`,longAnswer:'Основные ошибки в JSON\nJSON (JavaScript Object Notation) — это текстовый формат обмена данными, основанный на синтаксисе JavaScript. Однако он строже: ключи и строки должны быть в двойных кавычках, а значения — только определённых типов (строка, число, объект, массив, boolean, null).\nСинтаксические ошибки\n\n- Лишние запятые: после последнего элемента в объекте или массиве запятая недопустима. Пример: `{"a": 1,}` — ошибка.\n- Неправильные кавычки: только двойные кавычки (`"`). Одинарные (`\'`) или обратные (```) вызовут ошибку.\n- Отсутствие кавычек у ключей: ключи должны быть строками в кавычках. `{key: "value"}` — неверно, нужно `{"key": "value"}`.\n- Недопустимые значения: `undefined`, `NaN`, `Infinity` не поддерживаются. Используйте `null`.\n- Ошибки экранирования: специальные символы (например, кавычка внутри строки) должны экранироваться обратной косой чертой: `"`.\nПримеры кода\n\nВывод\nЗнание типичных ошибок JSON помогает избежать проблем при передаче данных между клиентом и сервером, а также при работе с конфигурационными файлами. Всегда проверяйте JSON валидатором и используйте try-catch при парсинге.',codeExample:`// Неправильный JSON
+const badJson = '{
+ame": "John", "age": undefined}';
+// Правильный JSON
+const goodJson = '{
+ame": "John", "age": null}';
+
+// Парсинг с обработкой ошибок
+try {
+  const data = JSON.parse(badJson);
+} catch (e) {
+  console.error('Ошибка парсинга:', e.message);
+}`,skills:[`HTML`]},{question:`Какие типы данных существуют в JSON?`,shortAnswer:`JSON поддерживает шесть типов данных: строка (string), число (number), булево значение (boolean), null, массив (array) и объект (object). Строки всегда в двойных кавычках, числа могут быть целыми или с плавающей точкой, массивы и объекты могут быть вложенными. Другие типы, такие как даты или undefined, не поддерживаются напрямую.`,longAnswer:`Основные типы данных JSON
+JSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на подмножестве синтаксиса JavaScript. Он поддерживает ровно шесть типов данных, которые позволяют представлять практически любую структурированную информацию.
+
+- String (строка) — последовательность символов в двойных кавычках, поддерживает escape-последовательности (например, "
+, "). Пример: "Hello, world!".
+- Number (число) — целое или число с плавающей точкой, может быть отрицательным. Не поддерживает NaN, Infinity или ведущие нули. Пример: 42, 3.14, -7.
+- Boolean (булево значение) — true или false.
+- Null — специальное значение, обозначающее отсутствие данных. Записывается как null.
+- Array (массив) — упорядоченный список значений, заключённый в квадратные скобки. Элементы могут быть любого типа, включая другие массивы и объекты. Пример: [1, wo", false].
+- Object (объект) — неупорядоченная коллекция пар ключ-значение, заключённая в фигурные скобки. Ключи всегда строки в двойных кавычках. Пример: {
+ame": "Alice", "age": 30}.
+Пример использования
+
+Ограничения
+JSON не поддерживает даты, функции, undefined, символы или бинарные данные. Для передачи дат обычно используют строки в формате ISO 8601. Также нет поддержки комментариев — это сделано для простоты парсинга.
+Вывод
+Знание типов данных JSON необходимо для корректной сериализации и десериализации данных при обмене между клиентом и сервером, а также для работы с конфигурационными файлами и API.`,codeExample:`{
+  "user": {
+    "id": 123,
+    
+ame": "John Doe",
+    "active": true,
+    oles": ["admin", "editor"],
+    "metadata": null
+  }
+}`,skills:[`HTML`]},{question:`Что такое PSI и как он используется?`,shortAnswer:`PSI (Pagespeed Insights) — это инструмент от Google для анализа скорости и производительности веб-страниц. Он предоставляет метрики, такие как First Contentful Paint (FCP) и Largest Contentful Paint (LCP), а также рекомендации по улучшению. Используется для выявления узких мест в загрузке сайта и повышения пользовательского опыта.`,longAnswer:`Что такое PSI?
+PSI (Pagespeed Insights) — это бесплатный инструмент от Google, который анализирует производительность веб-страниц как на мобильных устройствах, так и на десктопах. Он основан на данных из реального пользовательского опыта (CrUX) и лабораторных тестах (Lighthouse). Основная цель PSI — помочь разработчикам понять, как быстро загружается их сайт, и дать конкретные советы по оптимизации.
+Как он используется?
+PSI используется для оценки ключевых метрик производительности, таких как First Contentful Paint (FCP), Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS) и других. Эти метрики влияют на ранжирование в поисковой выдаче Google и на удовлетворенность пользователей. Инструмент предоставляет числовые оценки (от 0 до 100) и детализированные отчеты с рекомендациями.
+Пример использования
+Допустим, вы хотите проверить производительность своего сайта. Вы вводите URL в PSI и получаете отчет. Если LCP превышает 2.5 секунды, PSI предложит оптимизировать изображения или использовать кэширование. Пример кода для оптимизации изображения:
+
+Также PSI рекомендует минимизировать CSS и JavaScript, использовать сжатие и улучшить серверное время отклика.
+Вывод
+PSI — это незаменимый инструмент для веб-разработчиков, стремящихся улучшить скорость загрузки и пользовательский опыт. Его регулярное использование помогает поддерживать сайт в соответствии с современными стандартами производительности и SEO.`,codeExample:`<img src="image.webp" loading="lazy" alt="Описание" />`,skills:[`HTML`]},{question:`Как использовать HAR-файлы для анализа багов?`,shortAnswer:`HAR-файл (HTTP Archive) — это JSON-логи всех сетевых запросов браузера. Он помогает разработчикам анализировать загрузку ресурсов, ошибки сервера и узкие места. Для анализа откройте HAR в инструментах разработчика или специализированных сервисах, чтобы увидеть тайминги, заголовки и статусы запросов.`,longAnswer:`Что такое HAR-файл?
+HAR (HTTP Archive) — это формат файла, который сохраняет полную запись всех сетевых взаимодействий между браузером и сервером. Он содержит данные о каждом запросе: URL, метод, заголовки, время выполнения, размер ответа и статус. HAR-файлы незаменимы для воспроизведения и анализа багов, связанных с производительностью, загрузкой ресурсов или ошибками API.
+Как создать HAR-файл?
+В браузерах на основе Chromium (Chrome, Edge) откройте инструменты разработчика (F12), перейдите на вкладку Network, выполните действия, воспроизводящие баг, затем нажмите правой кнопкой мыши на любом запросе и выберите 'Save all as HAR with content'. В Firefox аналогично: вкладка Network → кнопка 'Export HAR'.
+Пример анализа HAR
+Допустим, пользователь жалуется, что страница долго загружается. Открыв HAR, вы видите запрос к большому изображению с таймингом 5 секунд. Это указывает на необходимость оптимизации изображения или использования CDN. Также можно найти ошибки 404 или 500, которые не видны на странице.
+
+Где применять?
+HAR-файлы полезны при отладке медленной загрузки, ошибок API, проблем с кэшированием и несоответствия заголовков. Они позволяют разработчикам и тестировщикам точно воспроизвести окружение и найти корень проблемы.
+Вывод: HAR-файлы — мощный инструмент для анализа сетевых багов и оптимизации производительности, особенно при работе с клиент-серверными приложениями.`,codeExample:`// Пример структуры HAR (упрощённо)
+{
+  "log": {
+    "entries": [
+      {
+        equest": {
+          "url": "https://example.com/api/data",
+          "method": "GET"
+        },
+        esponse": {
+          "status": 200,
+          "content": {
+            "size": 1234
+          }
+        },
+          imings": {
+          "wait": 300,
+          eceive": 50
+        }
+      }
+    ]
+  }
+}`,skills:[`HTML`]},{question:`Как тестировать фильтры на сайте?`,shortAnswer:`Тестирование фильтров включает проверку корректности работы каждого фильтра по отдельности, их комбинаций, а также обработку граничных значений. Важно проверить, что фильтры правильно отображают отфильтрованные данные и не ломают другие элементы интерфейса. Также стоит протестировать производительность при большом количестве данных.`,longAnswer:`Основные аспекты тестирования фильтров
+Тестирование фильтров на сайте — это процесс проверки корректности работы механизмов отбора данных по заданным критериям. Оно необходимо для обеспечения точности и удобства поиска информации пользователем. Основные виды тестов включают функциональное тестирование, тестирование граничных значений и интеграционное тестирование.
+Функциональное тестирование
+Проверьте, что каждый фильтр работает изолированно. Например, если есть фильтр по цене, убедитесь, что при выборе диапазона от 100 до 200 отображаются только товары в этом ценовом сегменте.
+
+Тестирование комбинаций фильтров
+Проверьте, что несколько фильтров работают вместе корректно. Например, фильтр по категории и по цене должны пересекаться, а не заменять друг друга.
+Граничные значения
+Протестируйте крайние случаи: пустые результаты, максимальные и минимальные значения, а также некорректный ввод (например, отрицательные числа).
+Интеграционное тестирование
+Убедитесь, что фильтры не нарушают работу других компонентов, таких как пагинация или сортировка. Например, после применения фильтра пагинация должна пересчитать количество страниц.
+Вывод: Тестирование фильтров необходимо для обеспечения надежности и удобства пользовательского интерфейса. Особенно важно в интернет-магазинах, каталогах и любых системах с большим объемом данных, где точность фильтрации напрямую влияет на пользовательский опыт.`,codeExample:`// Пример проверки фильтра по цене
+const items = [
+  { name: 'A', price: 150 },
+  { name: 'B', price: 250 },
+  { name: 'C', price: 50 }
+];
+const filterByPrice = (items, min, max) =>
+  items.filter(item => item.price >= min && item.price <= max);
+console.log(filterByPrice(items, 100, 200)); // [{ name: 'A', price: 150 }]`,skills:[`HTML`]},{question:`Для чего используется вкладка Network в DevTools?`,shortAnswer:`Вкладка Network в DevTools используется для мониторинга всех сетевых запросов, которые делает страница: загрузка HTML, CSS, JavaScript, изображений, API-запросов. Она помогает анализировать время загрузки, статусы ответов, размеры файлов и выявлять узкие места. Это ключевой инструмент для оптимизации производительности и отладки проблем с сетью.`,longAnswer:`Назначение вкладки Network
+Вкладка Network в инструментах разработчика браузера (DevTools) предназначена для отслеживания и анализа всех сетевых запросов, выполняемых веб-страницей. Она позволяет разработчику видеть, какие ресурсы загружаются, сколько времени это занимает, и какие ошибки возникают. Это незаменимый инструмент для оптимизации производительности, отладки API-интеграций и понимания поведения приложения в сети.
+Основные возможности
+
+- Просмотр запросов: отображает все запросы (XHR, Fetch, изображения, скрипты, стили) в хронологическом порядке.
+- Детали запроса: при клике на запрос можно увидеть заголовки (Headers), тело ответа (Response), параметры (Payload), время выполнения (Timing) и cookies.
+- Фильтрация: можно фильтровать запросы по типу (XHR, JS, CSS, Img, Media, Font, Doc, WS) или по тексту в URL.
+- Анализ производительности: вкладка Timing показывает, сколько времени заняла DNS-резолюция, установка соединения, TLS-рукопожатие, отправка запроса и получение ответа.
+- Эмуляция условий: можно симулировать медленное соединение (Throttling) или отключать кэш (Disable cache).
+Пример использования
+Предположим, вы разрабатываете приложение на React, которое загружает данные через API. Вы хотите проверить, что запрос отправляется корректно и ответ приходит без ошибок. Откройте DevTools (F12), перейдите на вкладку Network, обновите страницу или выполните действие, вызывающее запрос. Вы увидите запрос к вашему API. Кликните на него:
+
+В Network вы увидите статус ответа (например, 200 OK), заголовки (Content-Type, Authorization), тело ответа (JSON с данными) и время выполнения. Если статус 404 или 500, вы сразу это заметите и сможете исправить.
+Вывод
+Вкладка Network — это основной инструмент для отладки сетевого взаимодействия веб-приложений. Она помогает быстро находить проблемы с загрузкой ресурсов, анализировать производительность и проверять корректность API-запросов. Используйте её на этапе разработки и тестирования для обеспечения стабильной работы приложения.`,codeExample:`// Пример кода, который делает запрос
+fetch('https://api.example.com/users')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Ошибка:', error));`,skills:[`HTML`]},{question:`Для чего используется Qt?`,shortAnswer:`Qt — это кроссплатформенный фреймворк для разработки приложений на C++. Он используется для создания графических интерфейсов, десктопных и мобильных приложений, а также встраиваемых систем. Qt предоставляет богатый набор библиотек для работы с сетью, базами данных, мультимедиа и графикой. Благодаря своей модульности и поддержке множества платформ, Qt популярен в индустрии для создания сложных интерфейсов.`,longAnswer:`Qt — это мощный кроссплатформенный фреймворк, написанный на C++, который позволяет разрабатывать приложения с графическим интерфейсом (GUI) для различных операционных систем, включая Windows, macOS, Linux, Android и iOS. Он был создан компанией Qt Group и широко используется в промышленности, от десктопных программ до встраиваемых систем.
+Основные возможности Qt
+
+- Кроссплатформенность: Один и тот же код можно скомпилировать под разные ОС без изменений.
+- Богатый набор виджетов: Кнопки, таблицы, деревья, текстовые поля и другие элементы интерфейса.
+- Сигналы и слоты: Механизм для связывания событий и обработчиков, упрощающий разработку.
+- Модульность: Qt состоит из множества модулей, таких как QtWidgets, QtNetwork, QtSQL, QtMultimedia и других.
+Пример простого приложения на Qt
+
+Этот код создает окно с кнопкой. Qt автоматически обрабатывает события и отрисовку.
+Где применяется Qt?
+
+- Десктопные приложения: Например, VLC Media Player, VirtualBox, Telegram Desktop.
+- Встраиваемые системы: Qt for MCU позволяет запускать интерфейсы на микроконтроллерах.
+- Мобильные приложения: Qt поддерживает Android и iOS.
+- Промышленность: Системы управления, медицинское оборудование, автомобильные интерфейсы.
+Вывод: Qt идеально подходит для создания кроссплатформенных приложений с богатым интерфейсом, особенно когда требуется высокая производительность и поддержка множества платформ. Его стоит выбирать для проектов, где важна надежность и долгосрочная поддержка.`,codeExample:`#include <QApplication>
+#include <QPushButton>
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    QPushButton button("Hello, Qt!");
+    button.resize(200, 100);
+    button.show();
+    return app.exec();
+}`,skills:[`HTML`]},{question:`Как проверяется соответствие реализации дизайн-макетам?`,shortAnswer:`Соответствие реализации дизайн-макетам проверяется через визуальное сравнение (pixel perfect) с помощью инструментов вроде Figma, Percy или Chromatic. Также используются автоматические тесты визуальных регрессий. Важно проверять не только размеры и цвета, но и отступы, типографику и поведение на разных разрешениях.`,longAnswer:`Процесс проверки соответствия дизайн-макетам
+Проверка соответствия реализации дизайн-макетам — это ключевой этап контроля качества верстки. Она включает как ручные, так и автоматизированные методы, чтобы убедиться, что интерфейс выглядит и ведет себя так, как задумано дизайнером.
+Ручная проверка (Pixel Perfect)
+Разработчик или QA-инженер накладывает скриншот готовой страницы поверх макета в Figma или Photoshop, используя режим наложения. Проверяются:
+
+- Размеры и отступы элементов
+- Цвета и градиенты
+- Типографика (шрифты, размеры, межстрочные интервалы)
+- Состояния элементов (hover, active, focus)
+Автоматизированная проверка (Visual Regression Testing)
+Инструменты вроде Percy, Chromatic или Applitools делают скриншоты компонентов и сравнивают их с эталонными снимками. При обнаружении различий отправляется уведомление. Пример настройки для Storybook с Chromatic:
+
+Инструменты для проверки
+
+- Figma — ручное сравнение через наложение
+- Percy / Chromatic — автоматическое визуальное регрессионное тестирование
+- BrowserStack — проверка на реальных устройствах
+Вывод: регулярная проверка соответствия макетам помогает избежать накопления визуальных дефектов и ускоряет согласование с дизайнером. Особенно полезна автоматизация в крупных проектах с частыми изменениями.`,codeExample:`// .storybook/main.js
+module.exports = {
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials'],
+  framework: '@storybook/react',
+};
+// Запуск: npx chromatic --project-token=YOUR_TOKEN`,skills:[`HTML`]},{question:`Как дебажить frontend-приложение в браузере?`,shortAnswer:`Для отладки frontend-приложения используются встроенные инструменты разработчика в браузере (DevTools). Основные возможности: просмотр и изменение HTML/CSS, установка точек остановки (breakpoints) в JavaScript коде, анализ сетевых запросов, профилирование производительности. Открыть DevTools можно клавишей F12 или через контекстное меню.`,longAnswer:`Основы отладки в браузере
+Инструменты разработчика (DevTools) — это набор встроенных в браузер средств, которые позволяют анализировать и отлаживать frontend-приложения. Они доступны во всех современных браузерах (Chrome, Firefox, Edge, Safari) и открываются клавишей F12 или через контекстное меню.
+Ключевые возможности DevTools
+
+- Elements (Инспектор) — просмотр и редактирование HTML-структуры и CSS-стилей в реальном времени. Позволяет экспериментировать с вёрсткой без перезагрузки страницы.
+- Console (Консоль) — вывод ошибок, предупреждений и логов. Можно выполнять произвольный JavaScript-код для проверки гипотез.
+- Sources (Исходники) — просмотр исходного кода, установка точек остановки (breakpoints), пошаговое выполнение кода, просмотр значений переменных.
+- Network (Сеть) — анализ всех сетевых запросов: время загрузки, заголовки, тело ответа. Помогает диагностировать проблемы с API или загрузкой ресурсов.
+- Performance (Производительность) — запись и анализ производительности страницы: загрузка, рендеринг, выполнение скриптов.
+Пример использования breakpoints
+
+Работа с source maps
+Если код минифицирован или транспилирован (например, из TypeScript или React), source maps позволяют видеть оригинальный исходный код, а не скомпилированный. Для этого в сборщике (Webpack, Vite) нужно включить генерацию source maps.
+Вывод
+DevTools — незаменимый инструмент для каждого frontend-разработчика. Они позволяют быстро находить и исправлять ошибки в вёрстке, логике и производительности, не покидая браузер.`,codeExample:`// Исходный код функции, которую нужно отладить
+function calculateTotal(price, tax) {
+  const taxAmount = price * tax;
+  const total = price + taxAmount;
+  return total;
+}
+
+// В DevTools вкладка Sources, находим этот файл,
+// кликаем на номер строки с const total = ..., чтобы поставить breakpoint.
+// При вызове функции выполнение остановится на этой строке,
+// можно посмотреть значения price, tax, taxAmount в панели Scope.`,skills:[`HTML`]},{question:`Как можно диагностировать медленную загрузку сайта без доступа к коду?`,shortAnswer:`Медленную загрузку сайта можно диагностировать через вкладку Network в инструментах разработчика браузера. Там видно время загрузки каждого ресурса, размеры файлов и порядок их загрузки. Также можно использовать Lighthouse для аудита производительности и получения рекомендаций. Анализ Waterfall-диаграммы помогает выявить блокирующие запросы или слишком большие изображения.`,longAnswer:`Диагностика медленной загрузки сайта без доступа к коду
+Для диагностики производительности сайта без доступа к исходному коду можно использовать встроенные инструменты браузера. Основной инструмент — вкладка Network в Chrome DevTools, которая показывает все сетевые запросы, их размеры и время выполнения.
+Основные шаги диагностики
+
+- Откройте DevTools (F12) и перейдите на вкладку Network.
+- Перезагрузите страницу и изучите Waterfall-диаграмму — она показывает последовательность загрузки ресурсов.
+- Обратите внимание на длинные запросы (красные или оранжевые полосы) — они указывают на медленные ресурсы.
+- Проверьте размеры изображений, скриптов и стилей — большие файлы могут замедлять загрузку.
+- Используйте Lighthouse (вкладка Audits) для автоматического аудита производительности.
+Пример анализа
+Допустим, вы видите, что загрузка главной страницы занимает 5 секунд. В Waterfall видно, что большой JavaScript-файл (2 МБ) загружается в начале и блокирует рендеринг. Это указывает на необходимость оптимизации скрипта или его асинхронной загрузки.
+
+Вывод
+Диагностика через инструменты браузера позволяет быстро выявить основные проблемы производительности без доступа к серверу. Это полезно для фронтенд-разработчиков и QA-инженеров при оптимизации пользовательского опыта.`,codeExample:`// Пример: анализ времени загрузки через Performance API (если доступен)performance.getEntriesByType('resource').forEach(entry => {  console.log(entry.name, entry.duration);});`,skills:[`HTML`]},{question:`Что смотреть во вкладке Network в DevTools?`,shortAnswer:`Во вкладке Network можно увидеть все запросы, которые делает страница: HTML, CSS, JS, изображения, API-вызовы. Полезно смотреть статус ответа (200, 404, 500), время загрузки, размер файла, заголовки запроса и ответа. Это помогает отлаживать ошибки, оптимизировать скорость загрузки и проверять корректность отправляемых данных.`,longAnswer:`Основные элементы вкладки Network
+Вкладка Network в инструментах разработчика браузера показывает все сетевые запросы, которые выполняет веб-страница. Это ключевой инструмент для отладки и оптимизации производительности.
+Что стоит анализировать
+
+- Статус ответа (Status) — код HTTP, например 200 (успех), 404 (не найдено), 500 (ошибка сервера). Позволяет быстро выявить проблемы с загрузкой ресурсов.
+- Тип запроса (Type) — document, script, stylesheet, xhr/fetch, image и т.д. Помогает понять, какие ресурсы загружаются.
+- Время загрузки (Time / Waterfall) — показывает, сколько времени занял каждый этап: DNS, соединение, отправка, ожидание, получение. Полезно для поиска узких мест.
+- Размер (Size) — размер переданных данных (сжатый и несжатый). Большие файлы могут замедлять загрузку.
+- Заголовки (Headers) — информация о запросе и ответе: Content-Type, Cache-Control, Authorization и другие. Важно для отладки API и кэширования.
+- Payload / Preview / Response — тело запроса (для POST) и ответа. Позволяет проверить, какие данные отправляются и приходят.
+Пример использования
+Допустим, страница не загружает изображение. Открываем Network, находим запрос с типом image и статусом 404. Смотрим URL — возможно, путь указан неверно. Или видим, что запрос к API возвращает 500 — значит, проблема на сервере.
+
+В Network можно увидеть этот запрос, его статус, заголовки и тело ответа.
+Вывод
+Вкладка Network — незаменимый инструмент для отладки сетевого взаимодействия, проверки корректности API, анализа производительности загрузки и выявления ошибок на стороне клиента или сервера.`,codeExample:`// Пример: проверка ответа API через fetch
+fetch('/api/users')
+  .then(response => {
+    if (!response.ok) {
+      console.error('Ошибка:', response.status);
+    }
+    return response.json();
+  })
+  .then(data => console.log(data));`,skills:[`HTML`]},{question:`Что такое design system?`,shortAnswer:`Design system — это набор стандартов, правил и готовых компонентов для создания единообразных интерфейсов. Он включает UI-компоненты, дизайн-токены (цвета, шрифты), гайдлайны и документацию. Использование design system ускоряет разработку, упрощает поддержку и обеспечивает консистентность продуктов. Примеры: Material Design, Ant Design.`,longAnswer:`Что такое Design System?
+Design system (система дизайна) — это комплексный набор стандартов, принципов, правил и готовых компонентов, который обеспечивает единообразие пользовательских интерфейсов во всех продуктах компании. Это не просто библиотека UI-компонентов, а целостная система, включающая дизайн-токены (цвета, типографика, отступы), паттерны взаимодействия, гайдлайны по доступности и документацию.
+Основные компоненты
+
+- UI-компоненты: кнопки, инпуты, модальные окна, таблицы и т.д.
+- Дизайн-токены: переменные для цветов, шрифтов, отступов (например, \`--color-primary: #1890ff\`).
+- Паттерны: повторяющиеся решения для типовых задач (навигация, формы, фильтры).
+- Документация: правила использования, примеры кода, best practices.
+Пример реализации на React
+
+Где применяется
+Design system используется в крупных проектах с несколькими командами разработчиков и дизайнеров. Она критически важна для продуктов, где требуется единый пользовательский опыт (например, корпоративные порталы, SaaS-платформы, мобильные приложения).
+Вывод: Design system стоит внедрять, когда в компании есть несколько продуктов или команд, чтобы избежать разрозненности интерфейсов, ускорить разработку и упростить поддержку кода.`,codeExample:`// Пример использования дизайн-токенов в CSS-in-JS
+const theme = {
+  colors: {
+    primary: '#1890ff',
+    background: '#f0f2f5',
+  },
+  spacing: (n) => \`\${n * 8}px\`,
+};
+
+// Компонент кнопки из design system
+const Button = styled.button\`
+  background: \${props => props.theme.colors.primary};
+  padding: \${props => props.theme.spacing(2)} \${props => props.theme.spacing(4)};
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+\`;`,skills:[`HTML`]},{question:`Какие атрибуты есть у cookies?`,shortAnswer:`Основные атрибуты cookies: Name, Value, Domain, Path, Expires/Max-Age, Secure, HttpOnly, SameSite. Name и Value задают имя и значение. Domain и Path определяют, для каких URL кука отправляется. Expires или Max-Age задают срок жизни. Secure требует HTTPS. HttpOnly запрещает доступ через JavaScript. SameSite ограничивает отправку в межсайтовых запросах.`,longAnswer:`Основные атрибуты cookies
+Cookies — это небольшие фрагменты данных, которые сервер отправляет браузеру, а браузер хранит их и отправляет обратно с каждым запросом к серверу. Атрибуты cookies управляют их поведением, безопасностью и сроком действия.
+Список атрибутов
+
+- Name — имя куки (обязательный).
+- Value — значение куки (обязательный).
+- Domain — домен, для которого кука действительна (например, example.com).
+- Path — путь URL, для которого кука отправляется (например, /).
+- Expires — дата истечения срока действия (в формате HTTP-date).
+- Max-Age — время жизни в секундах (приоритетнее Expires).
+- Secure — флаг, указывающий, что кука должна передаваться только по HTTPS.
+- HttpOnly — флаг, запрещающий доступ к куке через JavaScript (document.cookie).
+- SameSite — ограничивает отправку куки в межсайтовых запросах (Strict, Lax, None).
+Пример установки cookie на сервере (Node.js с Express)
+
+Вывод
+Атрибуты cookies позволяют тонко настроить их поведение: от ограничения области действия до повышения безопасности. Используйте Secure и HttpOnly для защиты от перехвата и XSS-атак, а SameSite — для предотвращения CSRF-атак.`,codeExample:`res.cookie('sessionId', 'abc123', {
+  domain: '.example.com',
+  path: '/',
+  maxAge: 3600000, // 1 час
+  secure: true,
+  httpOnly: true,
+  sameSite: 'strict'
+});`,skills:[`HTML`]},{question:`Какие селекторы считаются наиболее стабильными?`,shortAnswer:`Наиболее стабильными считаются селекторы по классам и ID, так как они менее подвержены изменениям в структуре HTML. Селекторы по тегам и атрибутам менее стабильны, а псевдоклассы и псевдоэлементы могут меняться в зависимости от состояния. Использование классов с осмысленными именами повышает стабильность и читаемость кода.`,longAnswer:`Что такое стабильность селекторов?
+Стабильность CSS-селектора означает, насколько вероятно, что стиль, применённый с его помощью, не сломается при изменении HTML-структуры или контента. Стабильные селекторы помогают избежать неожиданных изменений вёрстки и упрощают поддержку кода.
+Какие селекторы считаются наиболее стабильными?
+
+- Селекторы по классам (.class) — наиболее стабильные, так как классы обычно задаются с определённой целью и редко меняются. Они имеют среднюю специфичность и легко переопределяются.
+- Селекторы по ID (#id) — очень стабильны, но имеют высокую специфичность, что может усложнить переопределение стилей. Используются для уникальных элементов.
+- Селекторы по атрибутам ([attr]) — стабильны, если атрибуты не меняются динамически. Подходят для стилизации элементов с определёнными свойствами.
+- Селекторы по тегам (element) — менее стабильны, так как теги могут быть переиспользованы в разных контекстах. Их изменение может затронуть множество элементов.
+- Псевдоклассы (:hover, :focus) — зависят от состояния элемента и могут меняться, поэтому менее стабильны для постоянных стилей.
+Примеры кода
+
+Вывод
+Для создания стабильных и легко поддерживаемых стилей рекомендуется использовать селекторы по классам с осмысленными именами. Это снижает риск поломки вёрстки при изменениях и упрощает работу в команде.`,codeExample:`/* Стабильный селектор по классу */
+.button {
+  background-color: blue;
+  color: white;
+}
+
+/* Менее стабильный селектор по тегу */
+button {
+  border: none;
+  padding: 10px;
+}
+
+/* Селектор по ID с высокой специфичностью */
+#submit-btn {
+  font-size: 16px;
+}`,skills:[`HTML`]},{question:`Что такое JSON?`,shortAnswer:`JSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на синтаксисе объектов JavaScript. Он использует пары "ключ-значение" и поддерживает строки, числа, массивы, объекты, булевы значения и null. JSON широко применяется для передачи данных между сервером и клиентом в веб-приложениях.`,longAnswer:`Что такое JSON?
+JSON (JavaScript Object Notation) — это текстовый формат для хранения и передачи структурированных данных. Он основан на синтаксисе объектов JavaScript, но является языково-независимым, что делает его универсальным для обмена данными между различными системами.
+Синтаксис JSON
+JSON поддерживает следующие типы данных:
+
+- Строки (в двойных кавычках)
+- Числа (целые и с плавающей точкой)
+- Булевы значения (true/false)
+- null
+- Массивы (упорядоченные списки в квадратных скобках)
+- Объекты (неупорядоченные коллекции пар "ключ-значение" в фигурных скобках)
+Пример JSON-объекта:
+
+Применение JSON
+JSON используется в API для передачи данных между клиентом и сервером, в конфигурационных файлах, в базах данных (например, MongoDB) и для сериализации объектов. Он заменил XML во многих веб-приложениях благодаря своей простоте и читаемости.
+Пример работы с JSON в JavaScript
+
+Вывод: JSON — это стандартный формат для обмена данными, который прост в использовании, читаем человеком и поддерживается практически всеми языками программирования. Его стоит применять везде, где требуется передача структурированных данных, особенно в веб-разработке и микросервисной архитектуре.`,codeExample:`{
+  
+ame": "Alice",
+  "age": 30,
+  "isStudent": false,
+  "hobbies": [eading", "coding"],
+  "address": {
+    "city": "New York",
+    "zip": "10001"
+  }
+}
+
+// Преобразование объекта в JSON-строку
+const user = { name: "Bob", age: 25 };
+const jsonString = JSON.stringify(user);
+console.log(jsonString); // {
+ame":"Bob","age":25}
+
+// Парсинг JSON-строки в объект
+const parsedUser = JSON.parse(jsonString);
+console.log(parsedUser.name); // Bob`,skills:[`HTML`]},{question:`Как тестировать форму оплаты банковской карты?`,shortAnswer:`Тестирование формы оплаты включает проверку валидации номера карты, срока действия, CVV и имени держателя. Нужно проверить обработку ошибок при неверных данных, поддержку разных типов карт и безопасность передачи данных. Также важно тестировать успешные и неуспешные сценарии оплаты через платежный шлюз.`,longAnswer:`Основные аспекты тестирования формы оплаты
+Тестирование формы оплаты банковской карты требует внимания к валидации ввода, обработке ошибок и безопасности. Важно проверить, что форма корректно принимает данные, отображает ошибки и взаимодействует с платежным шлюзом.
+Валидация полей
+
+- Номер карты: проверка длины (16 цифр для Visa/Mastercard), формата (группы по 4 цифры), алгоритма Луна.
+- Срок действия: проверка формата MM/YY, что дата не истекла.
+- CVV: 3-4 цифры, только цифры.
+- Имя держателя: только буквы, пробелы, дефисы.
+Пример теста на JavaScript
+
+Обработка ошибок
+Проверьте, что форма показывает понятные сообщения об ошибках для каждого поля. Например, "Неверный номер карты" или "Срок действия истек". Также важно тестировать сценарии с пустыми полями и неверными форматами.
+Безопасность
+Убедитесь, что данные передаются по HTTPS, не сохраняются в логах и не отображаются в консоли. Используйте токенизацию или PCI DSS совместимые решения.
+Вывод
+Тестирование формы оплаты критично для безопасности и UX. Применяйте автоматизированные тесты для валидации и ручные для проверки сценариев с платежным шлюзом.`,codeExample:`function validateCardNumber(number) {
+  const cleaned = number.replace(/""s/g, '');
+  if (!/^""d{16}$/.test(cleaned)) return false;
+  let sum = 0;
+  for (let i = 0; i < cleaned.length; i++) {
+    let digit = parseInt(cleaned[i]);
+    if (i % 2 === 0) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+  }
+  return sum % 10 === 0;
+}`,skills:[`HTML`]},{question:`Как улучшить UX формы оплаты?Какие способы оплаты можно добавить для улучшения пользовательского опыта?`,shortAnswer:`Для улучшения UX формы оплаты стоит добавить популярные способы оплаты, такие как кредитные карты, PayPal, Apple Pay, Google Pay и локальные методы. Важно минимизировать количество полей, использовать автозаполнение и показывать индикаторы безопасности. Это снижает трение и повышает конверсию.`,longAnswer:`Улучшение UX формы оплаты
+Форма оплаты — критический этап воронки продаж. Плохой UX может привести к брошенным корзинам. Основная цель — сделать процесс быстрым, безопасным и интуитивным.
+Выбор способов оплаты
+Добавление разнообразных методов оплаты повышает удобство для пользователей. Рекомендуется включать:
+
+- Кредитные и дебетовые карты (Visa, Mastercard, Мир)
+- Электронные кошельки (PayPal, WebMoney, Qiwi)
+- Мобильные платежи (Apple Pay, Google Pay, Samsung Pay)
+- Локальные методы (СБП, Alipay, iDEAL — в зависимости от региона)
+Пример кода: простая форма оплаты с валидацией
+
+Дополнительные улучшения UX
+
+- Автозаполнение полей (autocomplete="cc-number")
+- Валидация в реальном времени с подсветкой ошибок
+- Индикаторы безопасности (значок замка, SSL-сертификат)
+- Возможность сохранить карту для будущих покупок
+- Минимизация количества шагов (одностраничная оплата)
+Вывод: улучшение UX формы оплаты напрямую влияет на конверсию и удовлетворенность клиентов. Рекомендуется тестировать разные варианты и анализировать поведение пользователей.`,codeExample:`<form id="payment-form">
+  <label for="card-number">Номер карты</label>
+  <input type=  ext" id="card-number" placeholder="1234 5678 9012 3456" required>
+  <label for="expiry">Срок действия</label>
+  <input type=  ext" id="expiry" placeholder="MM/YY" required>
+  <label for="cvv">CVV</label>
+  <input type=  ext" id="cvv" placeholder="123" required>
+  <button type="submit">Оплатить</button>
+</form>`,skills:[`HTML`]},{question:`Как повторно отправить запрос через DevTools?`,shortAnswer:`В панели Network (Сеть) найдите нужный запрос. Кликните по нему правой кнопкой мыши и выберите "Replay XHR" (Повторить XHR) или "Edit and Replay" (Редактировать и повторить). Это позволяет быстро протестировать API без перезагрузки страницы.`,longAnswer:`Повторная отправка запроса через DevTools
+Инструменты разработчика (DevTools) в браузере предоставляют удобный способ повторно отправить HTTP-запрос без необходимости перезагружать страницу или писать код. Это особенно полезно при отладке API, тестировании изменений на сервере или проверке ответов на разные параметры.
+Как это сделать
+
+- Откройте DevTools (F12 или Ctrl+Shift+I).
+- Перейдите на вкладку Network (Сеть).
+- Найдите нужный запрос в списке (можно фильтровать по типу, например XHR).
+- Кликните правой кнопкой мыши по запросу.
+- Выберите Replay XHR (Повторить XHR) — запрос будет отправлен с теми же заголовками и телом.
+- Для изменения параметров выберите Edit and Replay (Редактировать и повторить) — откроется редактор, где можно изменить метод, URL, заголовки или тело запроса.
+Пример использования
+Предположим, вы тестируете POST-запрос на создание пользователя. После первого ответа вы хотите проверить, как сервер реагирует на повторную отправку тех же данных. Вместо написания curl или скрипта, просто используйте Replay XHR в DevTools.
+
+После отправки вы увидите запрос в Network. Правый клик -> Replay XHR отправит его снова.
+Вывод
+Функция повторной отправки запросов в DevTools ускоряет отладку и тестирование API, позволяя быстро проверять изменения без дополнительных инструментов. Это незаменимый навык для фронтенд- и бэкенд-разработчиков.`,codeExample:`// Пример запроса, который можно повторить
+fetch('/api/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: 'John' })
+});`,skills:[`HTML`]},{question:`Для чего используется вкладка Fetch/XHR в DevTools?`,shortAnswer:`Вкладка Fetch/XHR в DevTools показывает все сетевые запросы, отправленные браузером. Она позволяет просматривать заголовки, тело запроса и ответа, статус-коды и время выполнения. Это помогает отлаживать ошибки API, проверять передаваемые данные и анализировать производительность.`,longAnswer:`Назначение вкладки Fetch/XHR
+Вкладка Fetch/XHR в инструментах разработчика браузера (DevTools) предназначена для мониторинга и отладки асинхронных HTTP-запросов, выполняемых через Fetch API или XMLHttpRequest (XHR). Она является частью панели Network и фильтрует только те запросы, которые инициируются JavaScript-кодом, а не загрузкой страницы или ресурсов.
+Как это работает
+Когда веб-приложение отправляет запрос к серверу (например, для получения данных или отправки формы), браузер регистрирует его в логах. Вкладка Fetch/XHR отображает список таких запросов с ключевой информацией:
+
+- URL запроса
+- Метод (GET, POST, PUT, DELETE и т.д.)
+- Статус-код ответа (200, 404, 500 и др.)
+- Тип и размер ответа
+- Время выполнения
+При клике на конкретный запрос открываются детали: заголовки, тело запроса и ответа, cookies, а также временная шкала.
+Пример использования
+Предположим, вы разрабатываете приложение на React, которое загружает список пользователей через Fetch API. Если данные не отображаются, откройте DevTools (F12), перейдите на вкладку Network и выберите фильтр Fetch/XHR. Вы увидите запрос к API. Проверьте статус-код: если он 200, значит сервер ответил успешно. Затем посмотрите тело ответа вкладке Response — возможно, структура данных не соответствует ожидаемой. Если статус 404, проверьте правильность URL.
+
+В DevTools вы увидите этот запрос, его заголовки и ответ, что поможет быстро найти проблему.
+Вывод
+Вкладка Fetch/XHR — незаменимый инструмент для отладки клиент-серверного взаимодействия. Она позволяет быстро выявлять ошибки в запросах, проверять корректность данных и оптимизировать производительность сетевых операций.`,codeExample:`// Пример кода, который может вызвать ошибку
+fetch('https://api.example.com/users')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Ошибка:', error));`,skills:[`HTML`]},{question:`Где применяется JSON?`,shortAnswer:`JSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на синтаксисе объектов JavaScript. Он используется для передачи структурированных данных между сервером и клиентом в веб-приложениях, а также для хранения конфигураций. JSON легко читается человеком и машиной, что делает его популярным в REST API, базах данных (например, MongoDB) и файлах конфигурации.`,longAnswer:`JSON (JavaScript Object Notation) — это текстовый формат обмена данными, основанный на синтаксисе объектов JavaScript. Он был разработан для представления простых структур данных и ассоциативных массивов (объектов). JSON является независимым от языка, что позволяет использовать его практически в любой среде программирования.
+Основные области применения JSON
+
+- Веб-API и REST-сервисы: JSON является стандартом для передачи данных между клиентом (например, браузером) и сервером. Большинство современных API возвращают данные в формате JSON.
+- Конфигурационные файлы: Многие инструменты и фреймворки (например, Webpack, ESLint, npm) используют JSON для хранения настроек проекта.
+- Хранение данных: NoSQL базы данных, такие как MongoDB, хранят документы в формате, близком к JSON (BSON).
+- Обмен данными между сервисами: В микросервисной архитектуре JSON часто используется для сериализации сообщений при взаимодействии между компонентами.
+Пример использования JSON в JavaScript
+
+Пример использования JSON в Python
+
+JSON поддерживает только несколько типов данных: строки, числа, булевы значения, null, массивы и объекты. Это делает его простым, но достаточным для большинства задач обмена данными.
+Вывод: JSON применяется везде, где требуется легковесный, читаемый и кроссплатформенный формат для передачи или хранения структурированных данных. Он особенно полезен в веб-разработке, конфигурациях и микросервисах, заменяя более громоздкие форматы вроде XML.`,codeExample:`// Объект JavaScript
+const user = {
+  name: "Alice",
+  age: 30,
+  isAdmin: false
+};
+
+// Сериализация в JSON-строку
+const jsonString = JSON.stringify(user);
+console.log(jsonString); // {
+ame":"Alice","age":30,"isAdmin":false}
+
+// Парсинг JSON-строки обратно в объект
+const parsedUser = JSON.parse(jsonString);
+console.log(parsedUser.name); // Alice
+
+import json
+
+# Словарь Python
+data = {
+    
+ame": "Bob",
+    "age": 25,
+    "skills": ["Python", "JSON"]
+}
+
+# Сериализация в JSON
+json_data = json.dumps(data)
+print(json_data)  # {
+ame": "Bob", "age": 25, "skills": ["Python", "JSON"]}
+
+# Парсинг JSON
+parsed_data = json.loads(json_data)
+print(parsed_data[
+ame"])  # Bob`,skills:[`HTML`]},{question:`Какие проверки ввода необходимо выполнять для текстовых полей?`,shortAnswer:`Для текстовых полей необходимо выполнять проверки на длину, формат (например, email или телефон), отсутствие вредоносных символов (XSS, SQL-инъекции), а также санитизацию ввода. Важно проверять данные как на клиенте, так и на сервере. Используйте белые списки разрешённых символов и избегайте чёрных списков.`,longAnswer:`Основные проверки ввода для текстовых полей
+Проверка ввода — это критически важный этап обработки данных, который предотвращает множество уязвимостей, таких как XSS, SQL-инъекции и повреждение данных. Она должна выполняться как на стороне клиента (для удобства пользователя), так и на стороне сервера (для безопасности).
+Типы проверок
+
+- Проверка длины: ограничение минимального и максимального количества символов, чтобы избежать переполнения буфера или слишком длинных строк.
+- Проверка формата: использование регулярных выражений для проверки email, номера телефона, URL и других структурированных данных.
+- Санитизация: удаление или экранирование опасных символов, таких как \`<script>\` или \`' OR 1=1 --\`.
+- Белый список символов: разрешение только определённых символов (например, только буквы и цифры) вместо попыток заблокировать все опасные.
+Пример кода на JavaScript (серверная проверка)
+
+Вывод
+Проверка ввода обязательна для всех текстовых полей, особенно в веб-приложениях, работающих с пользовательскими данными. Она защищает от атак и обеспечивает целостность данных. Всегда используйте серверную валидацию как основной барьер, а клиентскую — как дополнительное удобство.`,codeExample:`function validateInput(input) {
+  // Проверка длины
+  if (input.length < 1 || input.length > 100) {
+    return 'Длина должна быть от 1 до 100 символов';
+  }
+  // Проверка на опасные символы (XSS)
+  const dangerous = /[<>"'""/]/g;
+  if (dangerous.test(input)) {
+    return 'Недопустимые символы';
+  }
+  // Экранирование для безопасного вывода
+  const sanitized = input.replace(/&/g, '&')
+                         .replace(/</g, '<')
+                         .replace(/>/g, '>');
+  return sanitized;
+}`,skills:[`HTML`]},{question:`Что такое контрольная сумма номера банковской карты?`,shortAnswer:`Контрольная сумма номера банковской карты — это последняя цифра, вычисленная по алгоритму Луна. Она используется для проверки корректности номера карты без обращения к банку. Алгоритм работает с цифрами номера: удваивает каждую вторую цифру, суммирует все цифры, и если сумма делится на 10, номер считается валидным. Это помогает выявить опечатки при вводе.`,longAnswer:`Что такое контрольная сумма номера банковской карты?
+Контрольная сумма номера банковской карты — это последняя цифра номера, которая вычисляется по алгоритму Луна (Luhn algorithm). Этот алгоритм используется для проверки корректности номера карты без необходимости обращения к платежной системе или банку. Он помогает выявить случайные ошибки при вводе, такие как перестановка цифр или опечатки.
+Как работает алгоритм Луна?
+Алгоритм Луна применяется к номеру карты (обычно 16 цифр). Последняя цифра является контрольной. Процесс проверки включает следующие шаги:
+
+- Начиная с первой цифры слева, удваивайте каждую вторую цифру.
+- Если результат удвоения больше 9, вычтите 9 (или сложите цифры числа).
+- Сложите все цифры (включая те, которые не удваивались).
+- Если общая сумма делится на 10 без остатка, номер корректен.
+Пример для номера 4539 1488 0343 6467 (контрольная сумма 7):
+
+Где применяется?
+Алгоритм Луна используется в платежных системах (Visa, MasterCard), а также в других идентификаторах, таких как IMEI и номера социального страхования. Он встроен в библиотеки для валидации форм на сайтах и в мобильных приложениях.
+Вывод: Контрольная сумма по алгоритму Луна — простой и эффективный способ защиты от случайных ошибок ввода. Его стоит применять везде, где требуется ручной ввод номеров карт или других идентификаторов, чтобы снизить количество неверных транзакций.`,codeExample:`// Удваиваем каждую вторую цифру (начиная с первой):
+4*2=8, 3*2=6, 1*2=2, 8*2=16->1+6=7, 0*2=0, 4*2=8, 6*2=12->1+2=3, 6*2=12->1+2=3
+// Суммируем все цифры: 8+5+6+9+2+4+7+8+0+3+8+3+3+4+3+7 = 80
+// 80 делится на 10 -> номер корректен`,skills:[`HTML`]},{question:`Какие инструменты браузера используются для диагностики проблем во фронтенде?`,shortAnswer:`Основные инструменты браузера для диагностики — это вкладки Elements, Console, Sources, Network, Performance и Application. Elements позволяет просматривать и редактировать HTML/CSS. Console выводит ошибки и логи JavaScript. Sources используется для отладки кода с точками остановки. Network показывает все сетевые запросы и их время. Performance анализирует производительность страницы. Application управляет хранилищами, куками и кэшем.`,longAnswer:`Инструменты браузера для диагностики фронтенда
+Современные браузеры предоставляют мощный набор встроенных инструментов разработчика (DevTools), которые помогают выявлять и исправлять проблемы в веб-приложениях. Основные вкладки включают Elements, Console, Sources, Network, Performance и Application. Каждая из них решает специфические задачи диагностики.
+Основные вкладки и их применение
+
+- Elements — просмотр и редактирование DOM-дерева и CSS-стилей в реальном времени. Позволяет быстро проверить, как изменения влияют на внешний вид.
+- Console — вывод ошибок, предупреждений и логов JavaScript. Можно выполнять произвольный код для тестирования.
+- Sources — отладка JavaScript с точками остановки (breakpoints), пошаговое выполнение, просмотр стека вызовов и значений переменных.
+- Network — мониторинг всех HTTP-запросов, их статусов, времени выполнения, заголовков и тела. Помогает найти медленные или неудачные запросы.
+- Performance — запись и анализ производительности страницы: загрузка, рендеринг, выполнение скриптов. Позволяет выявить узкие места.
+- Application — управление локальным хранилищем, сессиями, куками, IndexedDB, кэшем Service Worker и манифестами PWA.
+Пример использования
+Допустим, страница загружается медленно. Откройте вкладку Network и перезагрузите страницу. Вы увидите все запросы и их время. Если какой-то запрос занимает много времени, проверьте его размер или серверную задержку. Затем перейдите в Performance, нажмите Record и повторите действие. Анализ покажет, какие функции или рендеринг занимают больше всего времени.
+
+Также можно использовать точки остановки в Sources. Например, если функция не возвращает ожидаемый результат, поставьте breakpoint на её вызов и проверьте аргументы.
+Вывод
+Инструменты браузера незаменимы для быстрой диагностики и отладки фронтенда. Они позволяют находить ошибки в коде, оптимизировать производительность и анализировать сетевые взаимодействия без дополнительных библиотек.`,codeExample:`// Пример кода для отладки в Console
+console.log('Сообщение для отладки');
+console.error('Ошибка: что-то пошло не так');
+console.table([{name: 'Alice', age: 30}, {name: 'Bob', age: 25}]);`,skills:[`HTML`]},{question:`Что такое HTTP-only Cookie?`,shortAnswer:`HTTP-only Cookie — это флаг, который запрещает доступ к куки из JavaScript (document.cookie). Куки с этим флагом отправляются только при HTTP-запросах к серверу. Это защищает сессионные токены от кражи через XSS-атаки. Флаг устанавливается сервером в заголовке Set-Cookie.`,longAnswer:`Что такое HTTP-only Cookie?
+HTTP-only Cookie — это атрибут безопасности, который можно добавить к HTTP-куки. Когда куки помечены как HTTP-only, браузер запрещает доступ к ним из клиентского JavaScript (через \`document.cookie\`). Такие куки автоматически отправляются браузером только при HTTP-запросах к серверу, который их установил.
+Зачем это нужно?
+Основная цель — защита от межсайтового скриптинга (XSS). Если злоумышленник внедрит вредоносный скрипт на страницу, он не сможет прочитать HTTP-only куки, например, сессионный токен. Это значительно снижает риск угона сессии.
+Как это работает?
+Сервер устанавливает куки с флагом \`HttpOnly\` в заголовке ответа:
+
+После этого браузер хранит куки, но JavaScript не может их прочитать:
+
+Куки всё равно отправляются с каждым запросом к серверу автоматически.
+Где применяется?
+HTTP-only куки широко используются для хранения сессионных идентификаторов, токенов аутентификации и других конфиденциальных данных, которые не должны быть доступны клиентскому коду. Это стандартная практика в веб-разработке для повышения безопасности.
+Вывод
+Используйте HTTP-only флаг для всех куки, содержащих чувствительные данные, особенно сессионные токены. Это обязательная мера защиты от XSS-атак, но не панацея — комбинируйте с другими механизмами безопасности, такими как Secure, SameSite и CSP.`,codeExample:`Set-Cookie: sessionId=abc123; HttpOnly; Secure; SameSite=Strict
+
+// Попытка прочитать куки из JS
+console.log(document.cookie); // Выведет пустую строку или другие куки без HttpOnly`,skills:[`HTML`]},{question:`Какие инструменты используются для Pixel Perfect?`,shortAnswer:`Pixel Perfect — это подход, при котором верстка точно соответствует дизайн-макету. Основные инструменты: расширения для браузера, такие как PerfectPixel (Chrome) и PixelPerfect (Firefox), а также встроенные инструменты разработчика. Они позволяют накладывать макет поверх страницы и сравнивать пиксели.`,longAnswer:`Что такое Pixel Perfect и зачем это нужно?
+Pixel Perfect — это техника верстки, при которой итоговый HTML/CSS код максимально точно повторяет дизайн-макет (обычно в формате PSD, Figma или Sketch). Это важно для обеспечения единообразного внешнего вида на всех устройствах и браузерах, а также для удовлетворения требований заказчика или дизайнера.
+Основные инструменты
+
+- PerfectPixel (Chrome) — расширение, позволяющее загрузить изображение макета и наложить его поверх страницы с регулировкой прозрачности.
+- PixelPerfect (Firefox) — аналог для Firefox с похожим функционалом.
+- Встроенные инструменты разработчика — в Chrome DevTools можно использовать панель "Rendering" и опцию "Screenshot" для сравнения.
+- Figma Mirror — для просмотра макета на мобильных устройствах в реальном времени.
+Пример использования PerfectPixel
+
+Практические советы
+
+- Всегда проверяйте верстку на нескольких разрешениях экрана.
+- Используйте CSS-свойства, такие как \`box-sizing: border-box\`, чтобы избежать несоответствий в размерах.
+- Для сложных макетов применяйте сетки (CSS Grid или Flexbox) для точного позиционирования.
+Вывод: Инструменты Pixel Perfect необходимы для фронтенд-разработчиков, работающих в команде с дизайнерами, чтобы минимизировать расхождения между макетом и готовым продуктом. Они особенно полезны на этапе верстки и при приемке работы.`,codeExample:`// Установите расширение PerfectPixel из Chrome Web Store
+// Откройте страницу, нажмите на иконку расширения
+// Загрузите изображение макета (например, design.png)
+// Настройте прозрачность (opacity) для сравнения
+// Используйте клавиши со стрелками для точного позиционирования`,skills:[`HTML`]},{question:`Что такое Pixel Perfect верстка?`,shortAnswer:`Pixel Perfect верстка — это подход, при котором готовый HTML/CSS код полностью соответствует дизайн-макету с точностью до пикселя. Разработчик использует инструменты для наложения верстки на макет и добивается идеального совпадения размеров, отступов, цветов и шрифтов. Это требует внимательности и навыков работы с CSS.`,longAnswer:`Что такое Pixel Perfect верстка?
+Pixel Perfect верстка — это метод разработки веб-интерфейсов, при котором итоговый HTML/CSS код визуально идентичен дизайн-макету, предоставленному дизайнером. Основная цель — добиться совпадения каждого элемента (блоков, текста, изображений) с точностью до одного пикселя. Этот подход часто используется в проектах, где важна высокая точность визуального представления, например, в лендингах или корпоративных сайтах.
+Как это работает?
+Разработчик открывает макет (обычно в Figma, Sketch или Photoshop) и параллельно верстает страницу в браузере. Для проверки используются специальные инструменты, такие как расширения для браузера (например, PixelPerfect) или плагины, которые накладывают полупрозрачное изображение макета поверх верстки. Затем разработчик корректирует CSS-свойства (width, height, margin, padding, font-size, color и т.д.) до полного совпадения.
+Пример кода
+Допустим, в макете есть кнопка с размерами 200x50 пикселей, отступом сверху 20px и шрифтом Arial 16px. Верстка будет выглядеть так:
+
+После этого разработчик проверяет, совпадает ли кнопка с макетом, и при необходимости корректирует значения.
+Когда применять?
+Pixel Perfect верстка оправдана в проектах с жесткими требованиями к дизайну, где даже небольшое отклонение может быть критичным (например, брендовые сайты). Однако в современных адаптивных и резиновых макетах этот подход может быть избыточным, так как приоритет отдается гибкости и удобству поддержки. Вывод: используйте Pixel Perfect, когда точность важнее скорости разработки, но помните о компромиссах с адаптивностью.`,codeExample:`<button class="btn">Нажми меня</button>
+
+.btn {
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}`,skills:[`HTML`]},{question:`Как браузер работает с CSS?`,shortAnswer:`Браузер загружает HTML и CSS, парсит их в DOM и CSSOM. Затем объединяет их в дерево рендеринга, вычисляет геометрию элементов (layout) и отрисовывает пиксели на экране (paint). Этот процесс называется критическим путём рендеринга.`,longAnswer:`Как браузер обрабатывает CSS
+Когда браузер загружает веб-страницу, он последовательно обрабатывает HTML и CSS. Сначала парсится HTML, создавая DOM (Document Object Model). Параллельно загружаются и парсятся CSS-файлы, формируя CSSOM (CSS Object Model). Эти два дерева объединяются в дерево рендеринга, которое содержит только видимые элементы.
+Этапы рендеринга
+
+- Парсинг CSS: браузер разбирает CSS-правила, разрешает конфликты (каскад и специфичность) и строит CSSOM.
+- Layout (Reflow): вычисляются размеры и позиции каждого элемента на странице.
+- Paint: браузер отрисовывает пиксели, заполняя цвета, тени, границы и т.д.
+- Composite: слои объединяются в финальное изображение.
+Пример
+
+Браузер создаст CSSOM-узел для .box, затем в layout вычислит его размеры, а в paint закрасит красным.
+Вывод
+Понимание этого процесса помогает оптимизировать производительность: избегать частых reflow и repaint, использовать свойства, не вызывающие перекомпоновку (например, transform вместо изменения top/left).`,codeExample:`/* CSS */
+.box {
+  width: 100px;
+  height: 100px;
+  background: red;
+}`,skills:[`HTML`]},{question:`Какие ограничения по размеру есть у браузерных хранилищ?`,shortAnswer:`localStorage и sessionStorage обычно имеют лимит около 5-10 МБ на домен, в зависимости от браузера. Cookies ограничены 4 КБ на одну куку и максимум 20-50 кук на домен. Эти ограничения важны для выбора подходящего хранилища в веб-приложениях.`,longAnswer:`Ограничения браузерных хранилищ
+Браузерные хранилища, такие как localStorage, sessionStorage и cookies, имеют строгие лимиты по размеру, установленные производителями браузеров. Эти ограничения влияют на то, какие данные можно хранить на клиенте без потери производительности или ошибок.
+localStorage и sessionStorage
+Оба хранилища используют одинаковые лимиты, обычно от 5 до 10 МБ на домен. Например, в Chrome и Firefox лимит составляет 5 МБ, а в Opera — до 10 МБ. Если превысить лимит, браузер выбросит исключение QuotaExceededError. Эти хранилища подходят для кэширования данных, но не для больших файлов.
+
+Cookies
+Cookies имеют гораздо меньший лимит: 4 КБ на одну куку и обычно до 20-50 кук на домен (зависит от браузера). Они передаются с каждым HTTP-запросом, поэтому их размер критичен для производительности. Cookies лучше использовать только для аутентификации или идентификации, а не для хранения больших данных.
+Вывод
+Выбор хранилища зависит от задачи: для небольших данных (до 4 КБ) подходят cookies, для средних (до 5-10 МБ) — localStorage или sessionStorage. Для больших объемов данных используйте серверные базы данных или IndexedDB, которая имеет лимиты до нескольких сотен МБ.`,codeExample:`try {
+  localStorage.setItem('key', 'value');
+} catch (e) {
+  if (e.name === 'QuotaExceededError') {
+    console.log('Превышен лимит хранилища');
+  }
+}`,skills:[`HTML`]},{question:`В каких случаях скрытый элемент остаётся интерактивным?`,shortAnswer:`Скрытый элемент остаётся интерактивным, если используется свойство visibility: hidden или opacity: 0. В первом случае элемент невидим, но занимает место и реагирует на клики. Во втором — элемент полностью прозрачен, но также остаётся кликабельным. При display: none элемент удаляется из потока и теряет интерактивность.`,longAnswer:"Как скрытие влияет на интерактивность\nВ CSS есть несколько способов скрыть элемент, и их поведение различается. Если вы хотите, чтобы элемент оставался интерактивным (например, реагировал на клики или фокус), нужно использовать `visibility: hidden` или `opacity: 0`. При `display: none` элемент полностью удаляется из потока документа и теряет любую интерактивность.\nПримеры кода\n\nВ этом примере элемент невидим, но при клике на его место сработает обработчик. Аналогично работает `opacity: 0` — элемент прозрачен, но остаётся в потоке и реагирует на события.\nКогда это полезно\n\n- Для создания анимаций появления/исчезновения без потери состояния.\n- Для скрытия элементов, которые должны оставаться доступными для скринридеров (с осторожностью).\n- Для реализации кастомных чекбоксов или кнопок, где визуально скрытый элемент управляет поведением.\nВывод: Используйте `visibility: hidden` или `opacity: 0`, если нужно сохранить интерактивность скрытого элемента, например, для анимаций или доступности. Для полного удаления из интерфейса применяйте `display: none`.",codeExample:`<div id="hidden" style="visibility: hidden;">Кликни меня</div>
+<script>
+  document.getElementById('hidden').addEventListener('click', () => {
+    alert('Клик сработал!');
+  });
+<\/script>`,skills:[`HTML`]},{question:`Что может блокировать построение DOM?`,shortAnswer:`Построение DOM может блокироваться синхронными скриптами, которые выполняются сразу при загрузке, а также CSS-файлами, если они загружаются до скриптов. Браузер приостанавливает парсинг HTML, пока не загрузит и не выполнит скрипт или не обработает CSS. Это замедляет отображение страницы.`,longAnswer:"Что блокирует построение DOM?\nПостроение DOM (Document Object Model) — это процесс, в ходе которого браузер парсит HTML и создает древовидную структуру элементов. Некоторые ресурсы могут приостанавливать этот процесс, задерживая отрисовку страницы.\nОсновные блокировщики\n\n- Синхронные скрипты — теги `<script>` без атрибутов `async` или `defer`. Браузер останавливает парсинг HTML, загружает скрипт, выполняет его, и только потом продолжает строить DOM.\n- CSS-файлы — хотя CSS сам по себе не блокирует DOM напрямую, он может блокировать выполнение скриптов, которые следуют за ним. Браузер ждет загрузки CSS перед выполнением скрипта, что косвенно задерживает DOM.\nПример\n\nКак избежать блокировки\n\n- Используйте `async` или `defer` для скриптов, чтобы они не блокировали парсинг.\n- Размещайте CSS в `<head>`, а скрипты — в конце `<body>`.\n- Минимизируйте количество блокирующих ресурсов.\nВывод: Понимание блокировщиков DOM помогает оптимизировать загрузку страницы, особенно для улучшения First Contentful Paint (FCP) и общего пользовательского опыта.",codeExample:`<!-- Блокирующий скрипт -->
+<script src="script.js"><\/script>
+<!-- Парсинг HTML приостановлен до загрузки и выполнения script.js -->
+<div>Этот элемент появится позже</div>`,skills:[`HTML`]},{question:`Как скрытие элемента влияет на DOM и поток документа?`,shortAnswer:`Свойство display: none полностью удаляет элемент из потока документа, он не занимает места и невидим. Свойство visibility: hidden делает элемент невидимым, но он продолжает занимать место в потоке. Оба свойства не удаляют элемент из DOM-дерева, но display: none исключает его из рендеринга.`,longAnswer:`Влияние на DOM и поток документа
+Свойства \`display: none\` и \`visibility: hidden\` по-разному влияют на отображение элемента и его место в документе. Оба не удаляют элемент из DOM-дерева, но изменяют его участие в рендеринге.
+display: none
+Элемент полностью удаляется из потока документа. Он не занимает места, и соседние элементы занимают его пространство. Элемент невидим и не участвует в событиях мыши или клавиатуры.
+
+В этом примере второй элемент не отображается и не занимает места, третий элемент будет сразу после первого.
+visibility: hidden
+Элемент становится невидимым, но продолжает занимать место в потоке документа. Он не отображается, но его размеры и положение сохраняются, влияя на расположение других элементов.
+
+Здесь второй элемент не виден, но между первым и третьим остаётся пустое пространство, равное его размеру.
+Применение
+
+- \`display: none\` используется для полного скрытия элемента, когда нужно освободить место (например, в адаптивном дизайне).
+- \`visibility: hidden\` применяется, когда нужно скрыть элемент, но сохранить его место (например, для анимаций или placeholder).
+Вывод: выбор между этими свойствами зависит от задачи — нужно ли сохранить место элемента в потоке документа или полностью убрать его из визуального представления.`,codeExample:`<div>Первый элемент</div>
+<div style="display: none">Скрытый элемент</div>
+<div>Третий элемент</div>
+
+<div>Первый элемент</div>
+<div style="visibility: hidden">Невидимый элемент</div>
+<div>Третий элемент</div>`,skills:[`HTML`]},{question:`Как скрытые элементы влияют на SEO?`,shortAnswer:`Скрытые элементы, как правило, не индексируются поисковыми системами, если они полностью скрыты с помощью CSS (display: none). Однако, если элемент скрыт, но его содержимое все еще доступно для чтения (например, через visibility: hidden), поисковые роботы могут его проиндексировать. Использование скрытых элементов для манипуляции SEO может привести к санкциям.`,longAnswer:`Влияние скрытых элементов на SEO
+Скрытые элементы на веб-странице могут по-разному влиять на SEO в зависимости от способа их скрытия. Поисковые системы, такие как Google, стремятся индексировать контент, который видим пользователям, и могут игнорировать или по-разному обрабатывать скрытый контент.
+Основные способы скрытия элементов
+
+- display: none — элемент полностью удаляется из потока документа и не отображается. Поисковые роботы обычно не индексируют такой контент, так как он считается невидимым для пользователей.
+- visibility: hidden — элемент остается в потоке, но становится невидимым. Его содержимое может быть проиндексировано, так как оно все еще присутствует в DOM.
+- opacity: 0 — элемент прозрачен, но занимает место. Поисковые системы могут индексировать его содержимое, так как оно доступно для чтения.
+- position: absolute; left: -9999px — элемент смещается за пределы экрана. Такой метод часто используется для скрытия текста, но может быть расценен как попытка манипуляции SEO.
+Пример кода
+
+Рекомендации
+Используйте скрытые элементы только для улучшения пользовательского опыта, например, для модальных окон или выпадающих меню. Не пытайтесь скрывать ключевые слова или ссылки для манипуляции ранжированием, так как это может привести к штрафам от поисковых систем.
+Вывод: Скрытые элементы следует использовать осторожно, так как их влияние на SEO зависит от метода скрытия. Лучше всего избегать скрытия важного контента и сосредоточиться на создании качественного, видимого контента для пользователей.`,codeExample:`<!-- Скрытый элемент с display: none -->
+<div style="display: none;">Этот текст не будет проиндексирован</div>
+
+<!-- Скрытый элемент с visibility: hidden -->
+<div style="visibility: hidden;">Этот текст может быть проиндексирован</div>
+
+<!-- Скрытый элемент с opacity: 0 -->
+<div style="opacity: 0;">Этот текст также может быть проиндексирован</div>`,skills:[`HTML`]},{question:`Что приходит браузеру в HTTP-ответе?`,shortAnswer:`Браузер получает HTTP-ответ, который состоит из строки статуса, заголовков и тела. Строка статуса содержит код и сообщение, например 200 OK. Заголовки передают метаданные, такие как Content-Type. Тело содержит запрашиваемые данные, например HTML-код страницы.`,longAnswer:`Структура HTTP-ответа
+Когда браузер отправляет запрос на сервер, сервер возвращает HTTP-ответ. Этот ответ состоит из трех основных частей: строки статуса, заголовков и тела. Строка статуса включает версию протокола, код статуса (например, 200, 404) и текстовое сообщение. Заголовки содержат метаданные, такие как тип контента, длина тела, кэширование и другие параметры. Тело ответа — это фактические данные, которые браузер обрабатывает, например HTML, JSON или изображение.
+Пример HTTP-ответа
+Рассмотрим простой пример, когда сервер возвращает HTML-страницу. В ответе будет строка статуса \`HTTP/1.1 200 OK\`, заголовки, такие как \`Content-Type: text/html\`, и тело с HTML-кодом. Вот как это может выглядеть в виде текста:
+
+Ключевые компоненты
+
+- Строка статуса: указывает на успех или ошибку запроса. Например, 200 OK означает успех, 404 Not Found — ресурс не найден.
+- Заголовки: передают дополнительную информацию, такую как тип данных (Content-Type), кэширование (Cache-Control) или cookies (Set-Cookie).
+- Тело: содержит полезную нагрузку, которую браузер отображает или обрабатывает. Может быть пустым, например, при ответе 204 No Content.
+Практическое применение
+Понимание структуры HTTP-ответа важно для отладки сетевых запросов, настройки серверов и создания API. Например, при разработке REST API сервер возвращает JSON в теле ответа с соответствующим заголовком Content-Type. Вот пример кода на Node.js с использованием Express:
+
+В этом примере сервер возвращает статус 200, заголовок Content-Type и JSON в теле.
+Вывод: HTTP-ответ — это фундаментальный элемент веб-коммуникации, который необходимо знать для работы с веб-технологиями, отладки и создания серверных приложений.`,codeExample:`HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 123
+
+<html>
+<body>
+<h1>Hello, World!</h1>
+</body>
+</html>
+
+const express = require('express');
+const app = express();
+
+app.get('/api/data', (req, res) => {
+  res.status(200);
+  res.set('Content-Type', 'application/json');
+  res.json({ message: 'Success', data: [1, 2, 3] });
+});
+
+app.listen(3000);`,skills:[`HTML`]},{question:`Какие HTML-теги считаются семантическими?`,shortAnswer:`Семантические теги несут смысловую нагрузку, описывая содержимое. Например, , , , , , , . Они улучшают доступность для скринридеров и помогают поисковикам понимать структуру страницы.`,longAnswer:"Что такое семантические HTML-теги?\nСемантические теги — это элементы HTML, которые явно описывают своё содержимое и роль в структуре документа. В отличие от универсальных `<div>` или `<span>`, семантические теги несут смысловую нагрузку, делая код более читаемым и понятным как для разработчиков, так и для браузеров, поисковых систем и вспомогательных технологий.\nОсновные семантические теги HTML5\n\n- `<header>` — вводная часть или навигация для раздела.\n- `<nav>` — блок навигационных ссылок.\n- `<main>` — основное содержимое страницы (уникальное).\n- `<article>` — независимая, самодостаточная часть контента (статья, пост).\n- `<section>` — тематическая группа контента, обычно с заголовком.\n- `<aside>` — косвенно связанный контент (боковая панель, врезка).\n- `<footer>` — заключительная часть раздела или страницы.\n- `<figure>` и `<figcaption>` — иллюстрация с подписью.\n- `<time>` — дата или время.\n- `<mark>` — выделенный текст (например, результаты поиска).\nПример использования\n\nЗачем использовать семантические теги?\n\n- Доступность: Скринридеры и другие вспомогательные технологии могут лучше интерпретировать структуру страницы, помогая пользователям с ограниченными возможностями.\n- SEO: Поисковые системы (Google, Яндекс) учитывают семантику для ранжирования и отображения сниппетов.\n- Поддерживаемость: Код становится более читаемым и легче поддерживается командой разработчиков.\n- Будущее: Семантические теги — стандарт HTML5, поддерживаемый всеми современными браузерами.\nВывод: Используйте семантические теги всегда, когда это возможно, чтобы улучшить доступность, SEO и читаемость кода. Они особенно полезны в крупных проектах и при работе в команде.",codeExample:`<body>
+  <header>
+    <h1>Мой блог</h1>
+    <nav><a href="/">Главная</a></nav>
+  </header>
+  <main>
+    <article>
+      <h2>Заголовок статьи</h2>
+      <p>Текст статьи...</p>
+      <time datetime="2025-03-20">20 марта 2025</time>
+    </article>
+    <aside>
+      <p>Реклама или ссылки</p>
+    </aside>
+  </main>
+  <footer>&copy; 2025</footer>
+</body>`,skills:[`HTML`]},{question:`Для чего нужны header, section, article, footer?`,shortAnswer:`Семантические теги header, section, article и footer используются для логической разметки содержимого страницы. header определяет вводную часть или навигацию, section группирует тематически связанный контент, article представляет самостоятельный блок (например, пост или новость), а footer содержит информацию об авторе, копирайт или ссылки. Они улучшают читаемость кода, помогают поисковикам и скринридерам.`,longAnswer:"Назначение семантических тегов\nСемантические теги `<header>`, `<section>`, `<article>` и `<footer>` были введены в HTML5 для того, чтобы придать структуре веб-страницы осмысленный смысл, а не просто использовать универсальные `<div>`. Они помогают браузерам, поисковым системам и вспомогательным технологиям (например, скринридерам) правильно интерпретировать содержимое.\nОписание каждого тега\n\n- <header> — представляет вводную часть раздела или всей страницы. Обычно содержит логотип, заголовок, навигацию или поиск. Может использоваться несколько раз на странице.\n- <section> — группирует тематически связанный контент. Каждый `<section>` должен иметь заголовок (например, `<h1>`–`<h6>`). Используется для логических блоков, таких как главы, вкладки или группы новостей.\n- <article> — обозначает самостоятельный, независимый фрагмент контента, который может быть распространён отдельно (например, статья блога, комментарий, новость). Внутри `<article>` могут быть свои `<header>` и `<footer>`.\n- <footer> — содержит информацию об авторе, копирайт, ссылки на политику конфиденциальности или контакты. Обычно располагается внизу раздела или страницы.\nПример использования\n\nВывод\nИспользование семантических тегов делает код более читаемым, улучшает SEO и доступность. Рекомендуется применять их всегда, когда это возможно, вместо безликих `<div>`, чтобы чётко обозначить назначение каждого блока.",codeExample:`<body>
+  <header>
+    <h1>Мой блог</h1>
+    <nav>...</nav>
+  </header>
+  <main>
+    <article>
+      <header>
+        <h2>Заголовок статьи</h2>
+        <time>2025-01-01</time>
+      </header>
+      <section>
+        <h3>Введение</h3>
+        <p>Текст введения...</p>
+      </section>
+      <section>
+        <h3>Основная часть</h3>
+        <p>Подробности...</p>
+      </section>
+      <footer>
+        <p>Автор: Иван</p>
+      </footer>
+    </article>
+  </main>
+  <footer>
+    <p>&copy; 2025 Блог</p>
+  </footer>
+</body>`,skills:[`HTML`]},{question:`Как скрытые элементы влияют на скринридеры?`,shortAnswer:'Скрытые элементы могут по-разному восприниматься скринридерами. Использование CSS-свойства `display: none` или атрибута `hidden` полностью удаляет элемент из DOM-дерева доступности, и скринридер его игнорирует. Свойство `visibility: hidden` также скрывает элемент визуально и от скринридера. Однако, если элемент скрыт с помощью `opacity: 0` или `clip`, он может оставаться доступным для скринридера, что может запутать пользователя. Для семантического скрытия от скринридеров используется атрибут `aria-hidden=rue"`.',longAnswer:`Влияние скрытых элементов на скринридеры
+Скринридеры (программы чтения с экрана) полагаются на DOM-дерево доступности (Accessibility Tree), которое браузер строит на основе HTML-кода. Способ скрытия элемента напрямую влияет на то, будет ли он включен в это дерево и, следовательно, озвучен пользователю.
+Основные способы скрытия и их эффект
+
+- display: none и атрибут hidden: Полностью удаляют элемент из Accessibility Tree. Скринридер не видит и не озвучивает его. Это правильный способ скрыть контент, который не должен быть доступен никому.
+- visibility: hidden: Аналогично, элемент скрывается и из визуального представления, и из дерева доступности.
+- opacity: 0 и clip: Элемент визуально невидим, но остается в Accessibility Tree. Скринридер может его прочитать, что может дезориентировать пользователя, так как он не видит элемент на экране.
+- aria-hidden=rue": Этот атрибут явно указывает скринридеру игнорировать элемент, независимо от его визуального состояния. Он не удаляет элемент из DOM, но исключает его из Accessibility Tree.
+Пример кода
+
+Вывод
+Для обеспечения доступности важно выбирать правильный способ скрытия элементов. Используйте \`display: none\` или \`hidden\` для контента, который не должен быть доступен никому. Применяйте \`aria-hidden=rue"\` для декоративных элементов или контента, который визуально присутствует, но не несет смысловой нагрузки для пользователей скринридеров. Избегайте использования \`opacity: 0\` для скрытия контента, который не должен быть озвучен.`,codeExample:`<!-- Элемент полностью скрыт от всех -->
+<div style="display: none;">Этот текст не увидят и не услышат</div>
+
+<!-- Элемент визуально скрыт, но доступен скринридеру (плохая практика) -->
+<div style="opacity: 0;">Этот текст услышат, но не увидят</div>
+
+<!-- Элемент визуально видим, но скрыт от скринридера -->
+<div aria-hidden=  rue">Этот текст увидят, но не услышат</div>`,skills:[`HTML`]},{question:`Что происходит при встрече тега <script> во время парсинга HTML?`,shortAnswer:`Когда парсер HTML встречает тег`,longAnswer:`Блокирующее поведение тега script
+Когда браузер парсит HTML и встречает тег`,skills:[`HTML`]},{question:`Почему между inline-block появляются пробелы?`,shortAnswer:`Пробелы между inline-block элементами возникают из-за того, что браузер интерпретирует пробелы и переносы строк в HTML-коде как текстовые узлы. Эти пробелы отображаются как обычные пробелы между элементами, создавая видимые отступы. Чтобы убрать их, можно использовать font-size: 0 на родителе, комментарии между тегами или писать элементы в одну строку.`,longAnswer:`Причина появления пробелов
+Когда вы используете display: inline-block для элементов, браузер обрабатывает их как строчные блоки. В HTML пробелы, табуляции и переносы строк между тегами считаются текстовыми узлами. Поскольку inline-block элементы ведут себя как текст, эти пробелы отображаются в виде видимых промежутков.
+Пример проблемы
+
+Между красным и синим квадратами появится пробел шириной около 4px.
+Способы решения
+
+- Убрать пробелы в разметке: написать элементы в одну строку без пробелов.
+- Использовать комментарии: <!-- --> между тегами.
+- font-size: 0: установить родителю font-size: 0, а затем явно задать размер шрифта для дочерних элементов.
+- Отрицательный margin: применить margin-right: -4px (зависит от размера шрифта).
+Пример с font-size: 0
+
+Этот метод часто используется на практике, так как не требует изменения HTML-структуры.
+Вывод
+Пробелы между inline-block элементами — это особенность обработки пробелов в HTML. Понимание этого помогает избежать неожиданных отступов в вёрстке. Рекомендуется использовать font-size: 0 на родителе или писать элементы в одну строку для чистоты кода.`,codeExample:`<div>
+  <span style="display: inline-block; width: 50px; height: 50px; background: red;"></span>
+  <span style="display: inline-block; width: 50px; height: 50px; background: blue;"></span>
+</div>
+
+<div style="font-size: 0;">
+  <span style="display: inline-block; width: 50px; height: 50px; background: red; font-size: 16px;"></span>
+  <span style="display: inline-block; width: 50px; height: 50px; background: blue; font-size: 16px;"></span>
+</div>`,skills:[`HTML`]},{question:`Насколько оправдано использование inline-стилей?`,shortAnswer:`Inline-стили — это стили, заданные непосредственно в атрибуте style HTML-элемента. Они имеют высокий приоритет, но их использование оправдано только в редких случаях, например, для динамических стилей, зависящих от JavaScript, или для быстрого прототипирования. В продакшене лучше использовать CSS-классы, так как они улучшают читаемость, переиспользуемость и производительность.`,longAnswer:`Что такое inline-стили и когда они применяются
+Inline-стили — это способ задания CSS-свойств непосредственно в атрибуте \`style\` HTML-элемента. Например: \`<div style="color: red; font-size: 16px;">Текст</div>\`. Такой подход позволяет быстро применить стили к конкретному элементу без создания отдельных CSS-правил. Однако его использование имеет как преимущества, так и недостатки.
+Плюсы и минусы inline-стилей
+
+- Плюсы: Высокий приоритет (переопределяет большинство других стилей), удобство для динамических стилей (например, при изменении через JavaScript), простота для быстрого тестирования.
+- Минусы: Низкая переиспользуемость (стили привязаны к конкретному элементу), сложность поддержки (изменения требуют правки каждого элемента), увеличение размера HTML, невозможность использовать псевдоклассы и медиа-запросы, снижение производительности при частых изменениях через DOM.
+Примеры использования
+Вот пример, когда inline-стили могут быть оправданы — динамическое изменение цвета в зависимости от состояния:
+
+Однако для статической стилизации лучше использовать классы:
+
+Вывод
+Inline-стили стоит применять только для динамических изменений, которые невозможно реализовать через CSS-классы, или в крайне малых проектах. В большинстве случаев предпочтительнее использовать внешние CSS-файлы или CSS-модули для лучшей поддерживаемости и производительности.`,codeExample:`const button = document.getElementById('myButton');
+button.style.backgroundColor = isActive ? 'green' : 'red';
+
+<style>
+  .active { background-color: green; }
+  .inactive { background-color: red; }
+</style>
+<div class="active">Кнопка</div>`,skills:[`HTML`]},{question:`Какой браузер используется чаще всего на Android?`,shortAnswer:`На Android чаще всего используется браузер Google Chrome. Он предустановлен на большинстве устройств и тесно интегрирован с сервисами Google. Другие популярные браузеры включают Samsung Internet, Firefox и Opera.`,longAnswer:`Популярные браузеры на Android
+На мобильной платформе Android наиболее распространенным браузером является Google Chrome. Это связано с тем, что Chrome предустанавливается на большинстве Android-устройств, особенно тех, которые сертифицированы Google. Он обеспечивает глубокую интеграцию с экосистемой Google, синхронизацию закладок, паролей и истории между устройствами.
+Другие популярные браузеры
+
+- Samsung Internet — предустановлен на устройствах Samsung, имеет удобный интерфейс и поддержку расширений.
+- Mozilla Firefox — предлагает расширенные настройки конфиденциальности и поддержку дополнений.
+- Opera — известен встроенным VPN и режимом экономии трафика.
+Вывод
+Google Chrome доминирует на Android благодаря предустановке и интеграции с сервисами Google, но другие браузеры также имеют свою аудиторию благодаря уникальным функциям.`,skills:[`HTML`]},{question:`Какой браузер чаще всего используется на десктопе?`,shortAnswer:`На десктопе чаще всего используется Google Chrome. Его доля рынка составляет около 65-70%. Другие популярные браузеры: Safari, Firefox, Edge. Статистика может меняться со временем.`,longAnswer:`Какой браузер чаще всего используется на десктопе?
+На десктопных компьютерах самым популярным браузером является Google Chrome. По данным различных аналитических сервисов, его доля рынка стабильно составляет около 65-70%. Это означает, что примерно двое из трех пользователей ПК открывают веб-страницы именно через Chrome.
+Почему Chrome лидирует?
+
+- Скорость и производительность: Chrome известен своей быстрой загрузкой страниц и эффективной работой с JavaScript.
+- Расширения: Огромная библиотека расширений в Chrome Web Store позволяет настраивать браузер под любые задачи.
+- Интеграция с сервисами Google: Удобная синхронизация с Gmail, Google Drive, YouTube и другими сервисами.
+- Безопасность: Регулярные обновления и встроенные механизмы защиты от вредоносных сайтов.
+Другие популярные браузеры
+
+- Safari: Занимает второе место, особенно популярен среди пользователей macOS.
+- Firefox: Ценится за приватность и открытый исходный код.
+- Microsoft Edge: Набирает популярность благодаря интеграции с Windows и использованию движка Chromium.
+Вывод
+При разработке веб-приложений важно в первую очередь тестировать их в Google Chrome, так как это обеспечит корректную работу для большинства пользователей. Однако не стоит забывать и о других браузерах, чтобы гарантировать совместимость с разными платформами.`,skills:[`HTML`]},{question:`Нужно ли учитывать старые модели устройств?`,shortAnswer:`Да, старые модели устройств и браузеров нужно учитывать, если ваша целевая аудитория их использует. Это обеспечивает доступность и корректную работу приложения для всех пользователей. Применяйте прогрессивное улучшение или изящную деградацию, чтобы базовый функционал работал везде, а современные возможности добавлялись для новых браузеров.`,longAnswer:`Зачем учитывать старые устройства?
+Поддержка старых моделей устройств и браузеров важна для обеспечения доступности вашего веб-приложения. Если значительная часть целевой аудитории использует устаревшие браузеры (например, Internet Explorer 11 или старые версии Safari на iOS), игнорирование их может привести к потере пользователей и снижению конверсии.
+Подходы к поддержке
+
+- Прогрессивное улучшение — сначала создаётся базовая версия, работающая на всех устройствах, затем добавляются современные функции для новых браузеров.
+- Изящная деградация — сначала разрабатывается полная версия для современных браузеров, затем обеспечивается корректная работа (возможно, с упрощённым интерфейсом) на старых.
+Пример кода: проверка поддержки CSS Grid
+
+В этом примере современные браузеры используют Grid, а старые — Flexbox как запасной вариант.
+Вывод
+Учитывать старые устройства необходимо, если ваша аудитория активно их использует. Применяйте прогрессивное улучшение для обеспечения базовой функциональности на всех платформах, а современные возможности добавляйте как улучшение для новых браузеров.`,codeExample:`@supports (display: grid) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Fallback для старых браузеров */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container > * {
+  flex: 1 1 50%;
+}`,skills:[`HTML`]},{question:`Как проверить цвет через инструменты браузера?`,shortAnswer:`Откройте инструменты разработчика (F12), перейдите на вкладку Elements, выберите элемент. В панели Styles найдите CSS-свойство color или background-color. Нажмите на цветной квадратик рядом со значением, чтобы открыть палитру и увидеть точный цвет.`,longAnswer:`Проверка цвета через инструменты браузера
+Инструменты разработчика браузера предоставляют удобный способ инспекции цветов, используемых на веб-странице. Это необходимо для точной верстки, отладки стилей и обеспечения соответствия дизайну.
+Основные шаги
+
+- Откройте инструменты разработчика (F12 или Ctrl+Shift+I).
+- Перейдите на вкладку Elements (или Inspector).
+- Выберите элемент с помощью инструмента выбора (иконка курсора) или кликните по HTML-коду.
+- В правой панели найдите вкладку Styles (или Computed).
+- Найдите CSS-свойство, задающее цвет (например, color, background-color, border-color).
+- Рядом со значением цвета (например, #ff0000) будет цветной квадратик — кликните по нему.
+Работа с палитрой
+После клика откроется цветовая палитра, где можно:
+
+- Увидеть точное значение цвета в HEX, RGB, HSL или других форматах.
+- Изменить цвет, перетаскивая ползунки или вводя значения.
+- Скопировать значение цвета в буфер обмена.
+Пример кода
+
+В инструментах разработчика вы увидите эти цвета и сможете их проверить.
+Вывод
+Используйте инструменты разработчика для быстрой проверки и корректировки цветов в реальном времени, что особенно полезно при верстке и отладке стилей.`,codeExample:`<div style="color: #3498db; background-color: #f1c40f;">Пример текста</div>`,skills:[`HTML`]},{question:`Что такое HEX-цвет?`,shortAnswer:`HEX-цвет — это шестнадцатеричное представление цвета, используемое в веб-дизайне. Он состоит из символа решетки (#) и шести шестнадцатеричных цифр, которые определяют интенсивность красного, зеленого и синего каналов. Например, #FF0000 означает красный цвет. HEX-цвета широко применяются в CSS для задания цветов элементов.`,longAnswer:`Что такое HEX-цвет?
+HEX-цвет — это способ представления цвета в шестнадцатеричной системе счисления, широко используемый в веб-разработке и дизайне. Он основан на RGB-модели, где каждый цвет задается тремя каналами: красным (Red), зеленым (Green) и синим (Blue). Каждый канал кодируется двумя шестнадцатеричными цифрами от 00 до FF, что соответствует десятичным значениям от 0 до 255.
+Структура HEX-цвета
+HEX-цвет начинается с символа решетки (#), за которым следуют шесть символов: первые два — красный канал, следующие два — зеленый, последние два — синий. Например, #FF0000 означает максимальную интенсивность красного (255) и отсутствие зеленого и синего, то есть чистый красный цвет.
+Примеры и применение
+HEX-цвета используются в CSS для задания цветов фона, текста, границ и других элементов. Вот пример кода:
+
+Также существуют сокращенные HEX-коды из трех символов, например, #F00 эквивалентен #FF0000. Это удобно для простых цветов.
+Вывод
+HEX-цвета — это стандартный и удобный способ задания цветов в веб-дизайне, особенно в CSS. Они обеспечивают точное управление цветом и легко читаются, что делает их незаменимыми для разработчиков интерфейсов.`,codeExample:`/* Красный фон */
+background-color: #FF0000;
+
+/* Зеленый текст */
+color: #00FF00;
+
+/* Синяя граница */
+border: 2px solid #0000FF;`,skills:[`HTML`]},{question:`Какой браузер используется по умолчанию на iOS?`,shortAnswer:`На iOS все браузеры, включая Chrome и Firefox, обязаны использовать движок WebKit от Apple. Это означает, что по умолчанию и единственным полноценным браузером является Safari, так как другие лишь оболочки над ним. Пользователь может установить альтернативы, но они не имеют собственных движков рендеринга.`,longAnswer:`Какой браузер используется по умолчанию на iOS?
+На устройствах iOS (iPhone, iPad) браузером по умолчанию является Safari. Это предустановленное приложение от Apple, которое использует движок WebKit. Важно понимать, что из-за политики Apple все сторонние браузеры (например, Chrome, Firefox, Edge) также обязаны использовать WebKit, а не свои собственные движки (Blink или Gecko). Таким образом, технически все браузеры на iOS — это оболочки над Safari с разными интерфейсами и синхронизацией.
+Почему это важно?
+Это ограничение влияет на веб-разработку: если вы тестируете сайт в Chrome на iOS, он рендерится так же, как в Safari. Поэтому для проверки совместимости достаточно ориентироваться на Safari и WebKit. Пользователь может сменить браузер по умолчанию в настройках, но это не изменит движок.
+Пример кода для определения браузера на iOS
+
+Вывод
+Знание этой особенности помогает избежать ошибок при кросс-браузерном тестировании и оптимизации под мобильные устройства Apple. Всегда проверяйте сайты на Safari в iOS, так как это единственный браузер с полным доступом к функциям платформы.`,codeExample:`// Проверка, является ли браузер Safari на iOS
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isIOS && isSafari) {
+  console.log('Это Safari на iOS');
+} else if (isIOS) {
+  console.log('Другой браузер на iOS (но использует WebKit)');
+}`,skills:[`HTML`]},{question:`Какие браузеры работают на одном движке?`,shortAnswer:`Браузеры могут работать на одном движке. Например, Google Chrome, Opera, Brave, Microsoft Edge (с 2020 года) и Vivaldi используют движок Blink (форк WebKit). Safari использует WebKit. Firefox использует Gecko. Это важно для кросс-браузерного тестирования.`,longAnswer:`Что такое браузерный движок?
+Браузерный движок (rendering engine) — это ключевой компонент браузера, отвечающий за парсинг HTML, CSS и отображение веб-страницы на экране. Разные браузеры могут использовать один и тот же движок, что означает схожее поведение при рендеринге, но не гарантирует полную идентичность из-за различий в других компонентах (JavaScript-движок, настройки безопасности и т.д.).
+Основные движки и браузеры на их основе
+
+- Blink (форк WebKit от Google): Google Chrome, Microsoft Edge (Chromium-based), Opera, Brave, Vivaldi, Samsung Internet.
+- WebKit: Apple Safari, все браузеры на iOS (из-за требований Apple).
+- Gecko: Mozilla Firefox, Tor Browser.
+- Goanna (форк Gecko): Pale Moon, Basilisk.
+Пример кода для проверки движка
+
+Почему это важно?
+Знание движка помогает предсказать, как страница будет отображаться в разных браузерах. Например, CSS-свойства, поддерживаемые в Blink, могут не работать в Gecko. Это критично при разработке кросс-браузерных приложений.
+Вывод: Понимание общих движков упрощает тестирование и оптимизацию веб-приложений, позволяя сосредоточиться на ключевых отличиях между основными движками (Blink, WebKit, Gecko).`,codeExample:`// Определение браузерного движка через navigator.userAgent
+function getEngine() {
+  const ua = navigator.userAgent;
+  if (ua.includes('Gecko') && !ua.includes('WebKit')) return 'Gecko';
+  if (ua.includes('AppleWebKit') && !ua.includes('Chrome')) return 'WebKit';
+  if (ua.includes('AppleWebKit') && ua.includes('Chrome')) return 'Blink';
+  return 'Unknown';
+}
+console.log(getEngine());`,skills:[`HTML`]},{question:`Что такое viewport?`,shortAnswer:`Viewport — это видимая область веб-страницы на экране устройства. Без его правильной настройки мобильные браузеры могут масштабировать страницу, делая её неудобной. Для управления используется мета-тег . Это основа адаптивной вёрстки.`,longAnswer:`Что такое viewport?
+Viewport — это прямоугольная область экрана, в которой отображается веб-страница. На десктопе она совпадает с окном браузера, а на мобильных устройствах может быть меньше физического экрана. Без явного указания viewport браузеры на телефонах часто пытаются показать всю страницу целиком, уменьшая её масштаб, что делает текст и элементы слишком мелкими.
+Зачем управлять viewport?
+Для создания адаптивных сайтов, которые корректно отображаются на любых устройствах, необходимо задать ширину viewport равной ширине экрана устройства. Это достигается с помощью мета-тега в HTML. Если этого не сделать, пользователям придётся вручную масштабировать страницу, что ухудшает опыт.
+Как это работает?
+Мета-тег viewport сообщает браузеру, как контролировать размеры и масштабирование страницы. Самый распространённый вариант:
+
+Параметр \`width=device-width\` устанавливает ширину viewport равной ширине экрана устройства. \`initial-scale=1.0\` задаёт начальный масштаб 100% (без увеличения).
+Пример использования
+Рассмотрим простую страницу без viewport и с ним:
+
+Без тега текст на мобильном будет мелким, и пользователю придётся увеличивать. С тегом — текст отображается в натуральную величину.
+Вывод
+Viewport — критически важная концепция для адаптивного веб-дизайна. Её правильная настройка обязательна для любого сайта, ориентированного на мобильные устройства, и является первым шагом к созданию удобного пользовательского интерфейса.`,codeExample:`<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Без этого тега мобильный браузер уменьшит страницу -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <p>Текст, который будет читаем на телефоне.</p>
+</body>
+</html>`,skills:[`HTML`]},{question:`Как фиксировать отклонения от макета?`,shortAnswer:`Отклонения от макета фиксируют с помощью визуального сравнения: накладывают скриншот верстки на макет в режиме наложения (например, в Pixel Perfect плагине). Также используют инструменты визуального регрессионного тестирования (Percy, Applitools), которые автоматически сравнивают снимки экрана. Важно документировать каждое расхождение в баг-трекере с указанием скриншота и описанием.`,longAnswer:`Как фиксировать отклонения от макета
+Отклонения от макета — это несоответствия между реализованным интерфейсом и утвержденным дизайном. Их фиксация критична для поддержания качества продукта и единообразия пользовательского опыта. Основная цель — выявить расхождения на ранних этапах разработки, чтобы избежать накопления технического долга.
+Методы фиксации
+
+- Визуальное сравнение вручную: Используйте браузерные расширения (Pixel Perfect, PerfectPixel) для наложения скриншота макета поверх верстки. Регулируйте прозрачность и проверяйте отступы, размеры шрифтов, цвета.
+- Автоматизированное визуальное регрессионное тестирование: Инструменты (Percy, Applitools, Chromatic) делают скриншоты компонентов и сравнивают их с эталонными. При расхождении генерируется отчет с подсветкой изменений.
+- Инспекция кода: Используйте DevTools для проверки CSS-свойств (padding, margin, font-size, color) и сравнения их со значениями из макета (Figma, Sketch).
+Пример кода для автоматической проверки
+
+Процесс документирования
+
+- Сделайте скриншот проблемного участка.
+- Укажите точное местоположение (URL, компонент, разрешение экрана).
+- Опишите ожидаемое поведение (из макета) и фактическое.
+- Приложите ссылку на макет в Figma или другом инструменте.
+- Заведите задачу в баг-трекере (Jira, Trello) с приоритетом.
+Вывод: Фиксация отклонений от макета — обязательная часть QA-процесса. Ручные методы подходят для точечных проверок, а автоматизированные инструменты экономят время при регрессионном тестировании. Используйте комбинацию подходов для максимального покрытия.`,codeExample:`// Пример использования Percy для визуального тестирования
+import PercyScript from '@percy/script';
+
+PercyScript.run(async (page, percySnapshot) => {
+  await page.goto('http://localhost:3000');
+  // Делаем снимок страницы
+  await percySnapshot('Homepage');
+  // Если есть расхождения, Percy отметит их в отчете
+});`,skills:[`HTML`]},{question:`Как браузерные расширения могут влиять на работу приложения?`,shortAnswer:`Браузерные расширения могут изменять DOM, внедрять скрипты, блокировать ресурсы или перехватывать запросы. Это может приводить к неожиданному поведению приложения, например, к ошибкам в работе JavaScript или изменению стилей. Разработчикам важно учитывать это при тестировании и использовать изоляцию кода.`,longAnswer:`Влияние браузерных расширений на веб-приложения
+Браузерные расширения — это программы, которые работают в контексте браузера и могут взаимодействовать с веб-страницами. Они могут влиять на работу приложения несколькими способами, включая изменение DOM, внедрение дополнительных скриптов, блокировку сетевых запросов или модификацию CSS. Это может вызывать ошибки, снижение производительности или даже проблемы безопасности.
+Основные механизмы влияния
+
+- Изменение DOM: Расширения могут добавлять, удалять или изменять элементы на странице, что может нарушить логику приложения, особенно если оно полагается на определённую структуру.
+- Внедрение скриптов: Content scripts расширений выполняются в контексте страницы и могут перехватывать события, изменять глобальные объекты или вызывать конфликты с кодом приложения.
+- Блокировка ресурсов: Некоторые расширения блокируют рекламу, трекеры или скрипты, что может привести к отсутствию необходимых зависимостей.
+- Изменение стилей: Расширения могут переопределять CSS, что влияет на внешний вид и поведение интерфейса.
+Пример кода: как расширение может изменить страницу
+
+Как защитить приложение
+Разработчики могут минимизировать влияние расширений, используя изоляцию кода (например, Shadow DOM), проверку наличия необходимых элементов перед их использованием, а также тестирование в разных окружениях. Также важно избегать глобальных переменных и использовать строгие проверки типов.
+Вывод: Браузерные расширения могут непредсказуемо влиять на работу приложения, поэтому важно тестировать его в различных условиях и применять практики изоляции кода для повышения устойчивости.`,codeExample:`// Content script расширения, которое добавляет кнопку на страницу
+const button = document.createElement('button');
+button.textContent = 'Click me';
+document.body.appendChild(button);
+
+// Это может нарушить работу приложения, если оно ожидает определённое количество элементов`,skills:[`HTML`]},{question:`Какие способы кросс-браузерного тестирования существуют?`,shortAnswer:`Кросс-браузерное тестирование включает ручную проверку в разных браузерах, использование автоматизированных инструментов (например, Selenium, Playwright), сервисов облачного тестирования (BrowserStack, Sauce Labs) и эмуляторов/симуляторов. Также применяются полифиллы и CSS-префиксы для обеспечения совместимости. Важно тестировать на реальных устройствах и версиях браузеров.`,longAnswer:`Основные способы кросс-браузерного тестирования
+Кросс-браузерное тестирование необходимо для проверки, что веб-приложение одинаково работает в различных браузерах (Chrome, Firefox, Safari, Edge и др.) и их версиях. Это помогает выявить проблемы с отображением, функциональностью и производительностью.
+Ручное тестирование
+Разработчик или тестировщик вручную открывает приложение в разных браузерах и проверяет его поведение. Этот метод прост, но трудоемок при большом количестве комбинаций.
+Автоматизированное тестирование
+Используются инструменты, которые запускают тесты в разных браузерах автоматически. Примеры:
+
+- Selenium WebDriver — позволяет писать тесты на разных языках (Java, Python, JavaScript) и запускать их в браузерах.
+- Playwright — современный инструмент от Microsoft, поддерживающий все основные браузеры и автоматические ожидания.
+- Cypress — ориентирован на тестирование в реальном браузере, но поддерживает только Chrome-подобные браузеры.
+Пример кода на Playwright:
+
+Облачные сервисы
+Сервисы вроде BrowserStack, Sauce Labs или LambdaTest предоставляют доступ к реальным браузерам и устройствам в облаке. Это позволяет тестировать на множестве конфигураций без установки локальных сред.
+Эмуляторы и симуляторы
+Для мобильных браузеров используются эмуляторы (например, Android Studio) или симуляторы (Xcode для iOS). Они помогают проверить адаптивность и сенсорное взаимодействие.
+Полифиллы и CSS-префиксы
+Для поддержки старых браузеров применяются полифиллы (JavaScript-код, эмулирующий современные API) и вендорные префиксы в CSS (например, -webkit-, -moz-). Это не метод тестирования, но способ уменьшить количество проблем.
+Вывод
+Кросс-браузерное тестирование следует комбинировать: использовать автоматизацию для регрессионных проверок, облачные сервисы для охвата множества конфигураций и ручное тестирование для сложных сценариев. Это особенно важно для публичных веб-приложений с широкой аудиторией.`,codeExample:`const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  const title = await page.title();
+  console.log(title);
+  await browser.close();
+})();`,skills:[`HTML`]},{question:`Какие данные содержит HTTP Response?`,shortAnswer:`HTTP Response состоит из трех основных частей: статусной строки, заголовков и тела ответа. Статусная строка содержит версию протокола, код статуса и текстовое описание. Заголовки передают метаданные, такие как Content-Type или Cache-Control. Тело ответа содержит запрашиваемые данные, например HTML-страницу или JSON.`,longAnswer:`Структура HTTP Response
+HTTP Response — это ответ сервера на запрос клиента. Он состоит из трех ключевых компонентов: статусной строки, заголовков и тела. Каждый из них выполняет свою роль в передаче информации.
+Статусная строка
+Первая строка ответа содержит версию HTTP, числовой код статуса и краткое описание. Например: \`HTTP/1.1 200 OK\`. Код статуса указывает на результат обработки запроса: 200 — успех, 404 — не найдено, 500 — внутренняя ошибка сервера.
+Заголовки
+Заголовки передают метаданные о ответе. Они могут включать тип содержимого (\`Content-Type\`), размер (\`Content-Length\`), политику кэширования (\`Cache-Control\`) и другие. Заголовки отделяются от тела пустой строкой.
+Тело ответа
+Тело содержит фактические данные, которые запрашивал клиент. Это может быть HTML, JSON, изображение или любой другой ресурс. Не все ответы имеют тело, например, ответ с кодом 204 No Content.
+Пример HTTP Response
+
+В этом примере статусная строка указывает на успех, заголовки описывают тип и размер данных, а тело содержит JSON-объект.
+Вывод
+Понимание структуры HTTP Response необходимо для разработки веб-приложений, отладки сетевых запросов и настройки серверов. Это основа работы с REST API и веб-технологиями.`,codeExample:`HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 27
+
+{"message": "Hello, World!"}`,skills:[`HTML`]},{question:`Какие существуют CSP directives?`,shortAnswer:`CSP директивы определяют, какие ресурсы могут загружаться на странице. Основные: default-src (базовое правило), script-src (скрипты), style-src (стили), img-src (изображения), connect-src (сетевые запросы), font-src (шрифты), frame-src (фреймы), object-src (плагины). Они помогают предотвратить XSS и инъекции.`,longAnswer:`Что такое CSP директивы?
+Content Security Policy (CSP) — это механизм безопасности, который позволяет веб-разработчикам контролировать, какие ресурсы могут загружаться и выполняться на их страницах. CSP директивы — это правила, которые указываются в HTTP-заголовке Content-Security-Policy или в meta-теге. Они помогают предотвратить атаки межсайтового скриптинга (XSS) и другие инъекции.
+Основные директивы
+
+- default-src — задаёт базовое правило для всех типов ресурсов, если не указана более конкретная директива.
+- script-src — определяет разрешённые источники для JavaScript.
+- style-src — контролирует загрузку CSS.
+- img-src — разрешает источники для изображений.
+- connect-src — управляет сетевыми запросами (fetch, XMLHttpRequest).
+- font-src — задаёт источники для шрифтов.
+- frame-src — определяет, какие источники могут быть встроены в iframe.
+- object-src — контролирует загрузку плагинов (например, Flash).
+Пример использования
+
+В этом примере разрешены только собственные ресурсы, скрипты с Google APIs, инлайн-стили и изображения из любых источников.
+Вывод
+CSP директивы — мощный инструмент для повышения безопасности веб-приложений. Их стоит применять в любом проекте, где важна защита от XSS и контроль над загружаемыми ресурсами.`,codeExample:`Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src *;`,skills:[`HTML`]},{question:`Что такое hash в CSP?`,shortAnswer:`Hash в CSP — это криптографический хеш (SHA-256, SHA-384 или SHA-512) от содержимого inline-скрипта или стиля. Он добавляется в заголовок Content-Security-Policy, чтобы разрешить выполнение только тех inline-кодов, чей хеш совпадает. Это позволяет безопасно использовать inline-скрипты без отказа от CSP.`,longAnswer:`Что такое hash в CSP?
+Content Security Policy (CSP) — это механизм безопасности, который помогает предотвращать XSS-атаки, ограничивая источники загружаемых ресурсов. Однако inline-скрипты (код прямо в HTML) сложно контролировать, так как они не имеют внешнего источника. Для решения этой проблемы CSP поддерживает использование hash.
+Hash — это криптографический хеш (например, SHA-256) от содержимого inline-скрипта или стиля. Вы вычисляете хеш от точного текста скрипта и добавляете его в политику CSP. Браузер при загрузке страницы вычисляет хеш от каждого inline-скрипта и сравнивает с разрешёнными. Если хеш совпадает, скрипт выполняется, иначе блокируется.
+Как это работает на практике?
+Допустим, у вас есть inline-скрипт:
+
+Вы вычисляете его SHA-256 хеш (например, с помощью онлайн-инструмента или командной строки). Получается строка вроде 'sha256-abc123...'. Затем добавляете в заголовок CSP:
+
+Теперь браузер разрешит выполнение только этого конкретного скрипта. Если кто-то попытается внедрить другой inline-скрипт, его хеш не совпадёт, и он будет заблокирован.
+Где это применяется?
+Hash в CSP полезен, когда вы не можете отказаться от inline-скриптов (например, для аналитики или кастомных виджетов) и хотите сохранить строгую политику безопасности. Это альтернатива использованию nonce (одноразового токена).
+Вывод: Используйте hash в CSP, когда нужно разрешить конкретные inline-скрипты без компрометации безопасности. Это надёжный способ защититься от XSS, сохраняя гибкость вёрстки.`,codeExample:`<script>alert('Hello');<\/script>
+
+Content-Security-Policy: script-src 'sha256-abc123...'`,skills:[`HTML`]},{question:`Какие существуют методы защиты клиентской части приложения?`,shortAnswer:`Защита клиентской части включает предотвращение XSS через экранирование ввода, использование Content Security Policy (CSP) для ограничения источников скриптов, обязательное HTTPS для шифрования трафика, валидацию данных на клиенте и сервере, а также применение политики same-origin для изоляции ресурсов.`,longAnswer:`Основные методы защиты клиентской части
+Безопасность клиентской части приложения направлена на защиту от атак, таких как межсайтовый скриптинг (XSS), подделка запросов (CSRF) и перехват данных. Эти методы помогают предотвратить кражу сессий, внедрение вредоносного кода и утечку конфиденциальной информации.
+Ключевые подходы
+
+- Content Security Policy (CSP) — HTTP-заголовок, ограничивающий источники загрузки скриптов, стилей и других ресурсов. Например, \`Content-Security-Policy: default-src 'self'\` блокирует инлайн-скрипты.
+- Экранирование ввода — преобразование специальных символов (например, \`<\` в \`&lt;\`) для предотвращения XSS. В React это делается автоматически через JSX.
+- HTTPS — шифрование данных между клиентом и сервером, защищающее от перехвата (man-in-the-middle).
+- Same-Origin Policy — ограничение доступа скриптов к ресурсам с другого домена. Для кросс-доменных запросов используется CORS.
+- Валидация и санитизация — проверка данных на клиенте (например, через регулярные выражения) и обязательная повторная проверка на сервере.
+Пример кода: CSP и экранирование
+
+Вывод: Комбинация CSP, экранирования, HTTPS и валидации создает многоуровневую защиту. Эти методы обязательны для любого веб-приложения, работающего с пользовательскими данными, особенно в формах, комментариях и аутентификации.`,codeExample:`// Установка CSP через мета-тег
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://trusted.cdn.com">
+
+// Экранирование ввода в JavaScript
+function escapeHTML(str) {
+  return str.replace(/&/g, '&')
+            .replace(//g, '>')
+            .replace(/"/g, '"');
+}
+
+// Использование в React (автоматически)
+const userInput = "<script>alert('xss')<\/script>";
+return <div>{userInput}</div>; // Безопасно`,skills:[`HTML`]},{question:`Какие клиентские уязвимости встречаются во frontend?`,shortAnswer:`Основные клиентские уязвимости: XSS (межсайтовый скриптинг), CSRF (подделка межсайтовых запросов), Clickjacking (перехват кликов), небезопасное хранение данных (localStorage, cookies), утечки через Referer-заголовки. XSS позволяет внедрить вредоносный скрипт, CSRF — выполнить действие от имени пользователя. Защита: экранирование вывода, Content Security Policy, SameSite cookies, заголовок X-Frame-Options.`,longAnswer:`Основные клиентские уязвимости во frontend
+Клиентские уязвимости — это проблемы безопасности, которые возникают на стороне браузера пользователя. Они могут привести к краже данных, выполнению несанкционированных действий или компрометации сессии. Наиболее распространённые типы: XSS, CSRF, Clickjacking и небезопасное хранение данных.
+XSS (Cross-Site Scripting)
+XSS позволяет злоумышленнику внедрить вредоносный JavaScript-код на страницу, которая затем выполняется в браузере жертвы. Различают три типа: отражённый (reflected), хранимый (stored) и DOM-based. Пример уязвимого кода:
+
+Защита: экранирование всех данных перед вставкой в HTML, использование Content Security Policy (CSP), избегание innerHTML, где возможно.
+CSRF (Cross-Site Request Forgery)
+CSRF заставляет браузер жертвы отправить запрос на целевой сайт от её имени, используя её куки. Например, злоумышленник размещает на своём сайте форму, которая отправляет POST-запрос на смену пароля. Защита: использование CSRF-токенов (уникальных для сессии), проверка заголовка Origin/Referer, установка атрибута SameSite для кук (Strict или Lax).
+Clickjacking
+Clickjacking скрывает целевой сайт в невидимом iframe, а пользователь думает, что кликает по элементам другого сайта. Защита: установка заголовка X-Frame-Options: DENY или SAMEORIGIN, использование Content Security Policy с директивой frame-ancestors.
+Небезопасное хранение данных
+Хранение чувствительных данных (токенов, паролей) в localStorage или sessionStorage делает их доступными для любого скрипта на странице. Рекомендуется использовать httpOnly куки для токенов, а localStorage — только для некритичных данных.
+Вывод
+Знание клиентских уязвимостей необходимо для написания безопасного кода. Применяйте экранирование, CSP, CSRF-токены и правильное хранение данных, чтобы минимизировать риски. Эти практики обязательны для любого frontend-разработчика, работающего с пользовательскими данными.`,codeExample:`// Уязвимый код: вставка пользовательского ввода напрямую в HTML
+document.getElementById('output').innerHTML = userInput;
+
+// Безопасный вариант: использование textContent
+document.getElementById('output').textContent = userInput;`,skills:[`HTML`]},{question:`Какие угрозы решает CSP?`,shortAnswer:`CSP (Content Security Policy) — это HTTP-заголовок, который позволяет контролировать, какие ресурсы (скрипты, стили, изображения) могут загружаться на странице. Он предотвращает XSS-атаки, блокируя выполнение инлайн-скриптов и загрузку ресурсов с недоверенных источников. CSP задаётся через заголовок Content-Security-Policy и может быть настроен для разных типов контента.`,longAnswer:`Что такое CSP и какие угрозы он решает?
+Content Security Policy (CSP) — это механизм безопасности, реализованный через HTTP-заголовок, который позволяет веб-разработчикам контролировать, какие ресурсы могут загружаться и выполняться на их страницах. Основная цель CSP — защита от атак межсайтового скриптинга (XSS) и других видов инъекций контента.
+Основные угрозы, которые решает CSP:
+
+- XSS (Cross-Site Scripting) — атаки, при которых злоумышленник внедряет вредоносный скрипт на страницу. CSP блокирует выполнение инлайн-скриптов и скриптов из недоверенных источников.
+- Clickjacking — атаки, при которых пользователя обманом заставляют кликнуть на скрытый элемент. CSP может запретить встраивание страницы в iframe.
+- Data injection — внедрение вредоносных данных через формы или URL. CSP ограничивает источники, с которых можно загружать данные.
+Как работает CSP?
+CSP задаётся через HTTP-заголовок \`Content-Security-Policy\` и содержит директивы, определяющие разрешённые источники для различных типов контента. Например:
+
+В этом примере:
+
+- \`default-src 'self'\` — разрешает загрузку всех ресурсов только с того же домена.
+- \`script-src 'self' https://trusted.cdn.com\` — разрешает скрипты только с собственного домена и указанного CDN.
+- \`style-src 'self' 'unsafe-inline'\` — разрешает инлайн-стили (но это не рекомендуется для безопасности).
+Пример атаки XSS и защиты с помощью CSP
+Предположим, на странице есть уязвимость, позволяющая вставить скрипт:
+
+Без CSP этот скрипт выполнится. С CSP, если директива \`script-src\` не разрешает инлайн-скрипты, браузер заблокирует его выполнение и покажет ошибку в консоли.
+Вывод
+CSP — это мощный инструмент для защиты веб-приложений от XSS и других атак, связанных с инъекциями контента. Его следует применять на всех продакшн-сайтах, особенно тех, которые обрабатывают пользовательский ввод или используют сторонние скрипты. Правильная настройка CSP требует баланса между безопасностью и функциональностью, но даже базовая конфигурация значительно снижает риски.`,codeExample:`Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com; style-src 'self' 'unsafe-inline';
+
+<script>alert('XSS')<\/script>`,skills:[`HTML`]},{question:`Что такое HTML?`,shortAnswer:`HTML (HyperText Markup Language) — это стандартный язык разметки для создания веб-страниц. Он использует теги для определения структуры и содержания документа, такого как заголовки, абзацы, ссылки и изображения. Браузеры интерпретируют HTML и отображают его в виде визуальной страницы.`,longAnswer:"Что такое HTML?\nHTML (HyperText Markup Language) — это фундаментальный язык разметки, используемый для создания и структурирования содержимого веб-страниц. Он не является языком программирования, так как не содержит логики или алгоритмов, а служит для описания того, как текст, изображения, ссылки и другие элементы должны быть организованы и отображены в браузере.\nОсновные концепции\nHTML работает на основе тегов, которые заключаются в угловые скобки. Теги обычно парные: открывающий и закрывающий, например `<p>` и `</p>`. Внутри тегов находится содержимое. Атрибуты тегов позволяют задавать дополнительные свойства, такие как ссылки (`href`) или идентификаторы (`id`).\nПример простой HTML-страницы\n\nВ этом примере `<!DOCTYPE html>` объявляет тип документа, `<html>` — корневой элемент, `<head>` содержит метаданные (например, заголовок вкладки), а `<body>` — видимое содержимое страницы.\nГде применяется HTML\nHTML используется повсеместно в веб-разработке: от простых статических сайтов до сложных веб-приложений. Он является основой, на которую накладываются стили (CSS) и интерактивность (JavaScript). Без HTML невозможно представить современный интернет.\nВывод: HTML — это обязательный инструмент для любого веб-разработчика. Он позволяет создавать структурированные и доступные веб-страницы, которые могут быть легко прочитаны браузерами и поисковыми системами.",codeExample:`<!DOCTYPE html>
+<html>
+<head>
+    <title>Моя первая страница</title>
+</head>
+<body>
+    <h1>Привет, мир!</h1>
+    <p>Это абзац текста.</p>
+    <a href="https://example.com">Ссылка</a>
+</body>
+</html>`,skills:[`HTML`]},{question:`Что такое адаптивная верстка?`,shortAnswer:`Адаптивная верстка — это подход, при котором дизайн сайта подстраивается под размер экрана устройства. Используются медиа-запросы (CSS media queries), чтобы изменять стили в зависимости от ширины окна браузера. Это позволяет сайту одинаково хорошо выглядеть на десктопах, планшетах и смартфонах. Основная цель — обеспечить удобство чтения и навигации без горизонтальной прокрутки.`,longAnswer:`Что такое адаптивная верстка?
+Адаптивная верстка (responsive web design) — это метод создания веб-страниц, которые автоматически подстраиваются под размер экрана устройства пользователя. В отличие от фиксированной верстки, где ширина задается в пикселях, адаптивная верстка использует относительные единицы (проценты, em, rem) и медиа-запросы для изменения макета.
+Основные принципы
+
+- Гибкая сетка: элементы располагаются в процентах от ширины родительского контейнера.
+- Гибкие изображения: картинки масштабируются с помощью max-width: 100%.
+- Медиа-запросы: CSS-правила, которые применяются при определенных условиях (например, ширина экрана меньше 768px).
+Пример кода
+
+Где применяется
+Адаптивная верстка используется в большинстве современных сайтов, особенно в интернет-магазинах, блогах и новостных порталах. Она критически важна для SEO, так как Google отдает предпочтение мобильно-дружественным сайтам.
+Вывод: Адаптивная верстка — стандарт современного веб-дизайна. Ее стоит применять всегда, когда сайт должен быть доступен на разных устройствах, чтобы обеспечить хороший пользовательский опыт и высокие позиции в поисковой выдаче.`,codeExample:`/* Базовая сетка */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Медиа-запрос для планшетов */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Медиа-запрос для телефонов */
+@media (max-width: 480px) {
+  .header {
+    font-size: 18px;
+  }
+}`,skills:[`HTML`]},{question:`Чем DOM отличается от HTML?`,shortAnswer:`HTML — это текстовая разметка, которую вы пишете в файле. DOM (Document Object Model) — это объектная модель документа, которую браузер создаёт на основе HTML. DOM — это живое, динамическое дерево узлов, которое можно изменять с помощью JavaScript, в то время как HTML остаётся неизменным. Изменения в DOM не сохраняются обратно в HTML-файл.`,longAnswer:`Что такое HTML и DOM?
+HTML (HyperText Markup Language) — это язык разметки, который описывает структуру веб-страницы в виде текста с тегами. Когда браузер загружает HTML-файл, он парсит его и строит DOM (Document Object Model) — объектное представление документа в памяти. DOM — это древовидная структура, где каждый HTML-тег становится узлом (node), а текст внутри тегов — текстовыми узлами.
+Ключевые отличия
+
+- Статичность vs Динамичность: HTML — статичен, это просто текст. DOM — динамичен, его можно изменять через JavaScript (добавлять, удалять, изменять узлы).
+- Представление: HTML — это строка. DOM — это объектная модель, с которой можно взаимодействовать программно.
+- Влияние на страницу: Изменения в DOM сразу отображаются на странице (браузер перерисовывает её). Изменения в HTML-файле требуют перезагрузки страницы.
+Пример
+Представьте, что у вас есть HTML:
+
+После парсинга браузер создаёт DOM-узел для \`<div>\` и текстовый узел "Привет". С помощью JavaScript вы можете изменить текст:
+
+Теперь DOM изменился, и на странице отображается "Мир", но исходный HTML-файл остался прежним.
+Вывод
+DOM — это мост между статическим HTML и динамическим JavaScript. Понимание этой разницы необходимо для работы с интерактивными веб-страницами, где требуется изменять содержимое без перезагрузки.`,codeExample:`<div id="app">Привет</div>
+
+const div = document.getElementById('app');
+div.textContent = 'Мир';`,skills:[`HTML`]},{question:`Как получить элемент по идентификатору?`,shortAnswer:`Метод document.getElementById('id') возвращает элемент с указанным id. Если элемент не найден, возвращает null. Это самый быстрый способ поиска одного элемента по уникальному идентификатору.`,longAnswer:"Основы метода getElementById\nМетод `document.getElementById()` является одним из самых простых и быстрых способов доступа к элементу DOM в JavaScript. Он принимает строку — значение атрибута `id` элемента — и возвращает сам элемент, если он существует, или `null`, если элемент не найден.\nПример использования\n\nГде применяется\nЭтот метод используется в любых веб-приложениях, где нужно быстро получить конкретный элемент для изменения его содержимого, стилей или обработки событий. Он особенно полезен при работе с формами, модальными окнами и динамическими интерфейсами.\nВывод\nИспользуйте `getElementById` для быстрого доступа к уникальным элементам страницы, когда id известен и гарантированно уникален.",codeExample:`<div id="header">Заголовок</div>
+<script>
+  const header = document.getElementById('header');
+  if (header) {
+    header.style.color = 'blue';
+  }
+<\/script>`,skills:[`HTML`]},{question:`Как очищать содержимое DOM-элемента?`,shortAnswer:`Самый простой способ — присвоить пустую строку свойству innerHTML: element.innerHTML = ''. Однако это неэффективно и может вызвать утечки памяти. Лучше использовать element.textContent = '' или цикл с removeChild. Современный метод — element.replaceChildren(), который удаляет все дочерние узлы за один вызов.`,longAnswer:`Очистка содержимого DOM-элемента
+Очистка DOM-элемента — частая задача при работе с динамическим интерфейсом. Неправильный подход может привести к утечкам памяти или медленной работе. Рассмотрим основные методы.
+Методы очистки
+
+- innerHTML = '' — самый простой, но медленный и потенциально опасный: удаляет все дочерние элементы, включая обработчики событий, что может вызвать утечки.
+- textContent = '' — быстрее, чем innerHTML, так как не парсит HTML. Удаляет только текстовые узлы, но не затрагивает дочерние элементы.
+- removeChild в цикле — надёжный способ, удаляет каждый дочерний узел по одному. Пример:
+
+- replaceChildren() — современный метод (ES2021), удаляет все дочерние узлы за один вызов. Пример:
+
+Вывод
+Для большинства случаев используйте \`replaceChildren()\` — это быстро, безопасно и читаемо. Если нужна поддержка старых браузеров, подойдёт цикл с \`removeChild\`. Избегайте \`innerHTML = ''\` из-за риска утечек и производительности.`,codeExample:`const parent = document.getElementById('container');
+while (parent.firstChild) {
+  parent.removeChild(parent.firstChild);
+}
+
+const parent = document.getElementById('container');
+parent.replaceChildren();`,skills:[`HTML`]},{question:`Как загрузка шрифтов влияет на рендеринг страницы?`,shortAnswer:`Загрузка шрифтов может блокировать рендеринг текста, вызывая задержки. Браузеры используют разные стратегии: FOIT (Flash of Invisible Text) — текст невидим до загрузки шрифта, или FOUT (Flash of Unstyled Text) — текст отображается запасным шрифтом. Это влияет на восприятие скорости загрузки и может ухудшить пользовательский опыт.`,longAnswer:`Влияние загрузки шрифтов на рендеринг
+Когда веб-страница использует пользовательские шрифты, браузер должен загрузить их до того, как сможет отобразить текст. Этот процесс может задерживать рендеринг и влиять на производительность. Существует два основных поведения: FOIT (Flash of Invisible Text) и FOUT (Flash of Unstyled Text).
+FOIT и FOUT
+
+- FOIT: Браузер скрывает текст, пока шрифт не загрузится. Это может привести к пустому пространству на странице.
+- FOUT: Браузер сначала отображает текст запасным шрифтом, а после загрузки заменяет его на пользовательский. Это вызывает видимую смену стиля.
+Как оптимизировать загрузку шрифтов
+Используйте \`font-display\` в CSS для управления поведением. Например:
+
+Значение \`swap\` включает FOUT, что улучшает восприятие скорости. Также можно предзагружать шрифты с помощью \`<link rel="preload">\`.
+Вывод
+Правильная настройка загрузки шрифтов критична для производительности и UX. Используйте \`font-display: swap\` и предзагрузку, чтобы минимизировать задержки и избежать пустого текста.`,codeExample:`@font-face {
+  font-family: 'MyFont';
+  src: url('myfont.woff2') format('woff2');
+  font-display: swap; /* Использует FOUT */
+}`,skills:[`HTML`]},{question:`Чем отличаются свойства onload и onerror?`,shortAnswer:`Свойства onload и onerror — это обработчики событий, которые вызываются при загрузке или ошибке загрузки ресурса (например, изображения, скрипта). onload срабатывает, когда ресурс успешно загружен, а onerror — когда произошла ошибка (например, файл не найден или сеть недоступна). Они позволяют выполнить код после завершения загрузки или при возникновении проблемы.`,longAnswer:"Разница между onload и onerror\nСвойства `onload` и `onerror` являются обработчиками событий, которые присваиваются HTML-элементам, загружающим внешние ресурсы, таким как `<img>`, `<script>`, `<link>` и другие. Они позволяют реагировать на успешную загрузку или ошибку при загрузке ресурса.\nКогда срабатывает onload\nСобытие `load` (обработчик `onload`) происходит, когда ресурс полностью загружен и готов к использованию. Например, для изображения это означает, что оно полностью скачано и может быть отображено. Для скрипта — что он выполнен.\nКогда срабатывает onerror\nСобытие `error` (обработчик `onerror`) возникает, если при загрузке ресурса произошла ошибка. Причины могут быть разными: неверный URL, отсутствие файла на сервере, проблемы с сетью, блокировка CORS и т.д. Важно отметить, что `onerror` не срабатывает при синтаксических ошибках в скрипте — только при ошибках загрузки.\nПример использования\n\nВывод\nИспользуйте `onload` для выполнения действий после успешной загрузки ресурса, а `onerror` — для обработки ошибок и обеспечения отказоустойчивости (например, подстановка запасного изображения). Эти обработчики особенно полезны при динамической загрузке ресурсов и в ситуациях, когда необходимо гарантировать корректное отображение контента.",codeExample:`const img = new Image();
+img.onload = function() {
+  console.log('Изображение успешно загружено');
+  document.body.appendChild(img);
+};
+img.onerror = function() {
+  console.error('Ошибка загрузки изображения');
+  // Показать запасное изображение
+  img.src = 'fallback.png';
+};
+img.src = 'photo.jpg';`,skills:[`HTML`]},{question:`Почему изображения не блокируют построение страницы?`,shortAnswer:`Изображения не блокируют построение DOM и CSSOM, так как они загружаются асинхронно. Браузер продолжает парсить HTML и строить DOM, не дожидаясь загрузки изображений. Это позволяет странице отобразить контент быстрее, а изображения подгружаются позже, не задерживая интерактивность.`,longAnswer:`Как браузер обрабатывает изображения
+Когда браузер встречает тег \`<img>\` в HTML, он не останавливает парсинг документа. Вместо этого он отправляет запрос на загрузку изображения асинхронно, а сам продолжает строить DOM. Это ключевое отличие от блокирующих ресурсов, таких как синхронные скрипты или CSS-файлы, которые могут задерживать рендеринг.
+Роль предзагрузчика (preload scanner)
+Современные браузеры используют предзагрузчик, который сканирует HTML ещё до того, как основной парсер построит DOM. Он находит ссылки на изображения, скрипты и стили и начинает их загрузку заранее. Это ускоряет общую загрузку страницы, так как запросы отправляются параллельно с парсингом.
+Влияние на события страницы
+Изображения не блокируют событие \`DOMContentLoaded\`, которое срабатывает, когда DOM полностью построен. Однако они могут задерживать событие \`load\`, которое ждёт загрузки всех ресурсов, включая изображения. Это важно для аналитики и интерактивности.
+Пример кода
+
+В этом примере заголовок появится сразу, а изображение будет загружаться асинхронно. Событие \`DOMContentLoaded\` сработает до полной загрузки изображения.
+Вывод
+Понимание асинхронной загрузки изображений помогает оптимизировать производительность страницы, особенно для контентных сайтов. Используйте атрибуты \`loading="lazy"\` для отложенной загрузки изображений вне экрана, чтобы ускорить начальный рендеринг.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <title>Пример</title>
+</head>
+<body>
+  <h1>Контент отображается сразу</h1>
+  <img src="large-image.jpg" alt="Большое изображение">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM готов, изображение ещё может загружаться');
+    });
+  <\/script>
+</body>
+</html>`,skills:[`HTML`]},{question:`Чем граф отличается от графика данных?`,shortAnswer:`Граф — это математическая структура, состоящая из узлов и рёбер, используемая для моделирования связей. График данных — это визуальное представление числовых данных, например, линейный или столбчатый. Граф описывает отношения, а график показывает тренды и распределения.`,longAnswer:`Основное различие
+Граф (graph) в информатике и математике — это абстрактная структура данных, состоящая из вершин (узлов) и рёбер (связей между ними). Он используется для моделирования сложных взаимосвязей, таких как социальные сети, маршруты или зависимости. График данных (chart или plot) — это визуальный элемент, отображающий числовые данные на осях координат, например, для анализа трендов или сравнения значений.
+Примеры и применение
+Графы применяются в алгоритмах поиска путей (например, Dijkstra), в базах данных (графовые БД) и в сетевых моделях. Графики данных используются в аналитике, BI-системах и отчётах для наглядного представления статистики.
+Пример кода
+
+Вывод
+Граф — это структура для моделирования связей, а график — инструмент визуализации данных. Выбор зависит от задачи: графы подходят для анализа отношений, графики — для представления числовых рядов.`,codeExample:`// Пример графа (JavaScript)
+const graph = {
+  A: ['B', 'C'],
+  B: ['A', 'D'],
+  C: ['A'],
+  D: ['B']
+};
+
+// Пример графика данных (Python с matplotlib)
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4]
+y = [10, 20, 15, 25]
+plt.plot(x, y)
+plt.show()`,skills:[`HTML`]},{question:`Для чего используется библиотека Cytoscape?`,shortAnswer:`Cytoscape — это JavaScript библиотека для визуализации и анализа графов. Она позволяет отображать сложные сетевые структуры, такие как социальные связи или маршруты. Библиотека поддерживает интерактивные возможности: масштабирование, перетаскивание узлов и динамическое обновление данных. Cytoscape.js широко используется в биоинформатике, анализе данных и веб-разработке.`,longAnswer:`Что такое Cytoscape?
+Cytoscape.js — это мощная JavaScript библиотека с открытым исходным кодом для визуализации и анализа графов (сетей). Она позволяет разработчикам создавать интерактивные веб-приложения, работающие с данными, представленными в виде узлов и связей. Библиотека предоставляет гибкие возможности для стилизации, компоновки и взаимодействия с графами.
+Основные возможности
+
+- Поддержка различных алгоритмов компоновки (например, круговой, иерархический, force-directed).
+- Интерактивность: выбор узлов, масштабирование, перетаскивание.
+- Динамическое обновление графа: добавление/удаление узлов и ребер в реальном времени.
+- Расширяемость через плагины и пользовательские стили.
+Пример использования
+
+Где применяется
+Cytoscape.js часто используется в биоинформатике для визуализации молекулярных взаимодействий, в анализе социальных сетей, для отображения маршрутов в логистике и в любых веб-приложениях, где требуется наглядное представление связей между объектами.
+Вывод: Cytoscape.js — это универсальный инструмент для работы с графами в браузере. Его стоит применять, когда необходимо визуализировать сложные сетевые структуры с возможностью интерактивного взаимодействия и анализа.`,codeExample:`// Создание графа с двумя узлами и одним ребром
+var cy = cytoscape({
+  container: document.getElementById('cy'),
+  elements: [
+    { data: { id: 'a' } },
+    { data: { id: 'b' } },
+    { data: { id: 'ab', source: 'a', target: 'b' } }
+  ],
+  style: [
+    { selector: 'node', style: { 'background-color': '#666', 'label': 'data(id)' } },
+    { selector: 'edge', style: { 'width': 3, 'line-color': '#ccc' } }
+  ],
+  layout: { name: 'grid' }
+});`,skills:[`HTML`]},{question:`Какие существуют способы хранения токенов на клиенте?`,shortAnswer:`Токены можно хранить в localStorage, sessionStorage или cookies. localStorage и sessionStorage уязвимы для XSS-атак, так как к ним есть доступ из JavaScript. Cookies с флагами HttpOnly и Secure более безопасны, так как недоступны для JS и передаются только по HTTPS. Для повышения безопасности рекомендуется использовать httpOnly cookies и хранить токены в памяти приложения.`,longAnswer:`Способы хранения токенов на клиенте
+Хранение токенов аутентификации (например, JWT) на клиенте — критически важная задача для безопасности веб-приложений. Основные способы включают использование localStorage, sessionStorage и cookies. Каждый из них имеет свои преимущества и недостатки, особенно в контексте защиты от XSS и CSRF атак.
+localStorage и sessionStorage
+localStorage и sessionStorage — это хранилища браузера, доступные через JavaScript. Они просты в использовании, но уязвимы для XSS-атак: если злоумышленник внедрит скрипт, он сможет прочитать токен. sessionStorage очищается при закрытии вкладки, что снижает риск, но не устраняет его полностью.
+
+Cookies
+Cookies — более безопасный вариант, если установлены флаги HttpOnly (недоступен для JavaScript) и Secure (только по HTTPS). Это защищает от XSS, но требует дополнительных мер против CSRF-атак, например, использование SameSite атрибута или CSRF-токенов.
+
+Хранение в памяти
+Токен можно хранить в переменной JavaScript (в памяти приложения). Это самый безопасный способ, так как токен не сохраняется в браузере, но при перезагрузке страницы он теряется, и требуется повторная аутентификация.
+Вывод
+Для максимальной безопасности рекомендуется использовать httpOnly cookies с флагами Secure и SameSite. Если требуется доступ к токену из JavaScript (например, для отправки в заголовках), рассмотрите хранение в памяти с коротким сроком жизни и использованием refresh-токенов в cookies.`,codeExample:`// Сохранение токена в localStorage
+localStorage.setItem('token', 'my-jwt-token');
+
+// Чтение токена
+const token = localStorage.getItem('token');
+
+// Удаление токена
+localStorage.removeItem('token');
+
+// Установка cookie с флагами (на сервере)
+Set-Cookie: token=my-jwt-token; HttpOnly; Secure; SameSite=Strict`,skills:[`HTML`]},{question:`Для чего используется библиотека D3?`,shortAnswer:`D3.js (Data-Driven Documents) — это JavaScript-библиотека для создания динамических и интерактивных визуализаций данных в браузере. Она позволяет связывать данные с DOM-элементами и применять к ним трансформации. D3 предоставляет мощные инструменты для работы с масштабами, осями и анимациями. Это не библиотека готовых графиков, а инструмент для построения кастомных визуализаций.`,longAnswer:`Что такое D3.js?
+D3.js (Data-Driven Documents) — это JavaScript-библиотека для создания динамических и интерактивных визуализаций данных в веб-браузере. В отличие от готовых решений, таких как Chart.js, D3 предоставляет низкоуровневый контроль над DOM, позволяя разработчику строить любые типы графиков, диаграмм и карт, используя HTML, SVG и CSS.
+Основные концепции
+
+- Data Binding: D3 позволяет связывать данные с DOM-элементами. Например, массив чисел может быть привязан к набору кругов SVG.
+- Scales: Функции для преобразования данных в визуальные атрибуты (например, координаты, цвета).
+- Transitions: Анимации для плавного обновления визуализации при изменении данных.
+- SVG: D3 активно использует SVG для рисования фигур, линий и текста.
+Пример кода
+
+Где применяется
+D3 используется в аналитике, дашбордах, научных публикациях и любых проектах, где требуется кастомная визуализация данных. Она идеальна для создания уникальных графиков, которые не поддерживаются стандартными библиотеками.
+Вывод
+D3.js — это мощный инструмент для разработчиков, которым нужна полная гибкость в визуализации данных. Её стоит применять, когда требуется создать нестандартные, интерактивные и анимированные графики с глубоким контролем над каждым элементом.`,codeExample:`// Создание простой гистограммы с D3
+const data = [10, 20, 30, 40, 50];
+const svg = d3.select('body').append('svg')
+    .attr('width', 400)
+    .attr('height', 200);
+
+svg.selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', (d, i) => i * 40)
+    .attr('y', d => 200 - d * 3)
+    .attr('width', 30)
+    .attr('height', d => d * 3)
+    .attr('fill', 'steelblue');`,skills:[`HTML`]},{question:`В чём разница между success и non-success статус-кодами в HTTP? Какие коды относятся к каждой группе?`,shortAnswer:`HTTP статус-коды делятся на успешные (2xx) и неуспешные (4xx, 5xx). Успешные коды, например 200 OK, означают, что запрос обработан корректно. Неуспешные коды сигнализируют об ошибке: 4xx — ошибка клиента (например, 404 Not Found), 5xx — ошибка сервера (например, 500 Internal Server Error).`,longAnswer:`Классификация HTTP статус-кодов
+HTTP статус-коды — это трёхзначные числа, которые сервер отправляет в ответ на запрос клиента. Они делятся на пять классов, каждый из которых начинается с определённой цифры. Основное различие между успешными и неуспешными кодами заключается в том, что успешные (2xx) указывают на корректную обработку запроса, а неуспешные (4xx и 5xx) сигнализируют об ошибке.
+Успешные коды (2xx)
+Эти коды означают, что запрос был принят, понят и обработан успешно. Наиболее распространённые:
+
+- 200 OK — стандартный ответ для успешных GET-запросов.
+- 201 Created — ресурс успешно создан (например, после POST-запроса).
+- 204 No Content — запрос выполнен, но тело ответа пусто (например, при DELETE).
+Неуспешные коды (4xx и 5xx)
+Коды 4xx указывают на ошибку со стороны клиента, а 5xx — на ошибку сервера. Примеры:
+
+- 400 Bad Request — неверный синтаксис запроса.
+- 401 Unauthorized — требуется аутентификация.
+- 403 Forbidden — доступ запрещён.
+- 404 Not Found — ресурс не найден.
+- 500 Internal Server Error — общая ошибка сервера.
+- 502 Bad Gateway — неверный ответ от вышестоящего сервера.
+- 503 Service Unavailable — сервер временно недоступен.
+Пример кода обработки статус-кодов
+
+В этом примере \`response.ok\` возвращает true для всех успешных кодов (2xx). Для обработки ошибок мы проверяем конкретные статусы.
+Вывод
+Понимание разницы между успешными и неуспешными статус-кодами необходимо для правильной обработки ответов сервера, отладки и построения надёжных веб-приложений. Используйте успешные коды для подтверждения операций, а неуспешные — для информирования клиента об ошибках.`,codeExample:`fetch('/api/data')
+  .then(response => {
+    if (response.ok) { // статус 200-299
+      return response.json();
+    } else if (response.status === 404) {
+      throw new Error('Ресурс не найден');
+    } else if (response.status === 500) {
+      throw new Error('Ошибка сервера');
+    } else {
+      throw new Error('Неизвестная ошибка');
+    }
+  })
+  .catch(error => console.error(error));`,skills:[`HTML`]},{question:`Почему отправка HTML-формы по умолчанию вызывает перезагрузку страницы?`,shortAnswer:`При отправке формы браузер по умолчанию выполняет навигацию на URL, указанный в атрибуте action, отправляя HTTP-запрос (GET или POST). Это приводит к перезагрузке страницы, так как браузер загружает новый документ с сервера. Такое поведение заложено в спецификации HTML для синхронной отправки данных.`,longAnswer:`Почему отправка HTML-формы вызывает перезагрузку страницы?
+По умолчанию HTML-форма при нажатии кнопки submit инициирует стандартное поведение браузера: он собирает данные из полей формы, формирует HTTP-запрос (GET или POST) и отправляет его на сервер по URL, указанному в атрибуте \`action\`. После получения ответа браузер загружает новый документ, что и приводит к перезагрузке страницы. Это исторически сложившийся механизм, предназначенный для синхронного обмена данными между клиентом и сервером.
+Как это работает?
+Когда пользователь нажимает кнопку отправки, браузер выполняет следующие шаги:
+
+- Собирает значения всех полей формы (input, select, textarea).
+- Формирует строку запроса (для GET) или тело запроса (для POST).
+- Отправляет HTTP-запрос на сервер.
+- Загружает ответ сервера как новую страницу, заменяя текущий документ.
+Пример простой формы:
+
+При отправке браузер перейдет на URL \`/search?q=значение\` и загрузит новую страницу.
+Как предотвратить перезагрузку?
+Для создания современных одностраничных приложений (SPA) или асинхронной отправки данных используется JavaScript. Метод \`preventDefault()\` отменяет стандартное поведение формы, позволяя обработать данные через AJAX/Fetch API без перезагрузки.
+Пример с JavaScript:
+
+Вывод
+Понимание этого механизма важно для разработки как традиционных многостраничных сайтов, так и современных SPA. Если требуется избежать перезагрузки, используйте JavaScript и \`preventDefault()\`.`,codeExample:`<form action="/search" method="GET">
+  <input type=  ext" name="q" />
+  <button type="submit">Search</button>
+</form>
+
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const formData = new FormData(this);
+  fetch('/api/submit', { method: 'POST', body: formData });
+});`,skills:[`HTML`]},{question:`Что такое CustomEvent? Когда его используют?`,shortAnswer:`CustomEvent — это встроенный в JavaScript конструктор, позволяющий создавать события с произвольным именем и передавать с ними дополнительные данные. Используется для организации обмена сообщениями между независимыми частями приложения, например, между компонентами или модулями. Событие создаётся через new CustomEvent('имя', { detail: данные }), а затем отправляется через element.dispatchEvent(event).`,longAnswer:`Что такое CustomEvent?
+CustomEvent — это стандартный интерфейс браузера, который расширяет базовый Event и позволяет разработчику создавать события с произвольным именем и передавать с ними произвольные данные через свойство detail. Это мощный инструмент для реализации паттерна «наблюдатель» (Observer) в веб-приложениях, когда один компонент хочет уведомить другие о каком-либо действии, не создавая жёсткой связанности между ними.
+Как это работает?
+Для создания пользовательского события используется конструктор new CustomEvent(type, options), где type — строка с именем события, а options — объект, который может содержать поля bubbles, cancelable и detail. Поле detail — это любые данные, которые вы хотите передать вместе с событием. Затем событие отправляется на целевой элемент с помощью метода dispatchEvent(). Любой слушатель, подписанный на это имя события на данном элементе или его предках (если bubbles: true), получит уведомление.
+Пример кода
+
+Когда это применяется?
+CustomEvent особенно полезен в архитектурах, где компоненты должны общаться без прямой зависимости друг от друга. Например, в микрофронтендах, когда разные части приложения работают в изолированных контейнерах, или в простых SPA без использования глобального стейт-менеджера. Также это стандартный способ для веб-компонентов (Web Components) сообщать о своих внутренних изменениях внешнему миру.
+Вывод: CustomEvent — это лёгкий и нативный способ реализовать слабосвязанную коммуникацию между частями приложения. Его стоит применять, когда нужно передать событие между независимыми модулями или компонентами, избегая прямых вызовов и зависимостей, особенно в контексте веб-компонентов или микрофронтендов.`,codeExample:`// Создаём пользовательское событие с данными
+const event = new CustomEvent('userLogin', {
+  detail: { username: 'john_doe', timestamp: Date.now() },
+  bubbles: true,
+  cancelable: true
+});
+
+// Отправляем событие на документ
+document.dispatchEvent(event);
+
+// Где-то в другом месте подписываемся
+document.addEventListener('userLogin', (e) => {
+  console.log('Пользователь вошёл:', e.detail.username);
+});`,skills:[`HTML`]},{question:`Из чего состоит HTTP-запрос?`,shortAnswer:`HTTP-запрос состоит из трех основных частей: стартовой строки, заголовков и тела. Стартовая строка содержит метод, URI и версию протокола. Заголовки передают метаданные, такие как Content-Type или User-Agent. Тело опционально и используется для передачи данных, например, в POST-запросах.`,longAnswer:`Структура HTTP-запроса
+HTTP-запрос — это текстовое сообщение, которое клиент отправляет серверу для получения или отправки данных. Он состоит из трех ключевых компонентов: стартовой строки, заголовков и тела. Понимание этой структуры помогает разработчикам отлаживать сетевое взаимодействие и правильно настраивать API.
+Стартовая строка
+Первая строка запроса содержит метод (например, GET, POST), URI (путь к ресурсу) и версию HTTP (например, HTTP/1.1). Пример:
+
+Заголовки
+Заголовки передают дополнительную информацию о запросе, такую как тип контента, авторизация или кеширование. Каждый заголовок имеет формат "Ключ: Значение". Пример:
+
+Тело запроса
+Тело присутствует не всегда и используется для передачи данных, например, в POST или PUT запросах. Оно может быть в формате JSON, XML или form-data. Пример тела:
+
+Практический пример
+Рассмотрим полный HTTP-запрос для создания пользователя:
+
+Здесь стартовая строка — POST /api/users HTTP/1.1, заголовки — Host, Content-Type, Content-Length, а тело — JSON-объект.
+Вывод
+Знание структуры HTTP-запроса необходимо для работы с веб-серверами, отладки сетевых запросов и создания клиент-серверных приложений. Это основа для понимания REST API и протоколов передачи данных.`,codeExample:`GET /api/users HTTP/1.1
+
+Host: example.com
+Content-Type: application/json
+Authorization: Bearer token123
+
+{
+ame": "John", "age": 30}
+
+POST /api/users HTTP/1.1
+Host: example.com
+Content-Type: application/json
+Content-Length: 27
+
+{
+ame": "Alice", "age": 25}`,skills:[`HTML`]},{question:`Какие HTTP-заголовки могут передаваться в запросе?`,shortAnswer:`HTTP-заголовки запроса передают дополнительную информацию о запросе, клиенте или теле сообщения. Основные заголовки: Host (указывает домен), User-Agent (идентифицирует клиент), Accept (форматы ответа), Content-Type (тип тела запроса), Authorization (аутентификация), Cookie (куки), Referer (источник запроса). Они помогают серверу корректно обработать запрос.`,longAnswer:`Что такое HTTP-заголовки запроса?
+HTTP-заголовки запроса — это поля, которые клиент (браузер, приложение) отправляет серверу вместе с самим запросом. Они содержат метаданные: информацию о клиенте, предпочтениях формата данных, аутентификации, кэшировании и т.д. Заголовки передаются в виде пар ключ-значение, каждая на новой строке, после строки запроса.
+Основные заголовки запроса
+
+- Host — обязательный заголовок, указывает домен и порт сервера (например, \`Host: example.com:8080\`).
+- User-Agent — строка, идентифицирующая клиентское приложение (браузер, версию, ОС).
+- Accept — указывает, какие MIME-типы ответа клиент готов принять (например, \`Accept: application/json\`).
+- Content-Type — тип содержимого тела запроса (например, \`application/x-www-form-urlencoded\` или \`multipart/form-data\`).
+- Authorization — передает учетные данные для аутентификации (например, \`Bearer <token>\`).
+- Cookie — отправляет ранее сохраненные куки на сервер.
+- Referer — адрес страницы, с которой был сделан запрос (используется для аналитики и защиты от CSRF).
+Пример использования в коде
+
+В этом примере клиент явно указывает, что отправляет JSON, ожидает JSON в ответе и передает токен для аутентификации.
+Вывод
+HTTP-заголовки запроса необходимы для корректной коммуникации между клиентом и сервером: они определяют формат данных, аутентификацию, кэширование и другие аспекты. Знание основных заголовков помогает при отладке сетевых запросов и разработке API.`,codeExample:`fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer my-token',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({ key: 'value' })
+});`,skills:[`HTML`]},{question:`Как браузер определяет тип полученного контента — HTML это или JSON?`,shortAnswer:`Браузер определяет тип контента по заголовку Content-Type в HTTP-ответе сервера. Этот заголовок содержит MIME-тип, например text/html для HTML или application/json для JSON. Если заголовок отсутствует или неверен, браузер может попытаться угадать тип (MIME sniffing), но это небезопасно и часто отключается заголовком X-Content-Type-Options: nosniff.`,longAnswer:"Как браузер определяет тип контента\nКогда браузер отправляет запрос на сервер, сервер в ответе указывает заголовок `Content-Type`. Этот заголовок содержит MIME-тип, который сообщает браузеру, как интерпретировать полученные данные. Например, для HTML-страницы используется `text/html`, а для JSON — `application/json`.\nРоль MIME-типов\nMIME-типы (Multipurpose Internet Mail Extensions) — это стандартизированные строки, описывающие формат данных. Основные типы:\n\n- `text/html` — HTML-документ\n- `application/json` — JSON-данные\n- `text/plain` — обычный текст\n- `application/octet-stream` — бинарные данные\nПример работы\nРассмотрим простой пример на Node.js с использованием Express:\n\nВ первом случае браузер получит JSON и, скорее всего, предложит скачать файл или отобразит его как текст (в зависимости от настроек). Во втором — отрендерит HTML.\nMIME sniffing и безопасность\nЕсли заголовок `Content-Type` отсутствует или указан неверно, браузер может попытаться угадать тип контента, анализируя первые байты ответа. Это называется MIME sniffing. Однако это может привести к уязвимостям, например, если злоумышленник загрузит JavaScript под видом изображения. Для защиты используется заголовок `X-Content-Type-Options: nosniff`, который запрещает браузеру угадывать тип.\nВывод\nПравильная установка заголовка `Content-Type` критична для корректной обработки данных браузером. Всегда указывайте точный MIME-тип и используйте `X-Content-Type-Options: nosniff` для повышения безопасности.",codeExample:`const express = require('express');
+const app = express();
+
+app.get('/data', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.json({ message: 'Hello' });
+});
+
+app.get('/page', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.send('<h1>Hello</h1>');
+});
+
+app.listen(3000);`,skills:[`HTML`]},{question:`Как браузер строит DOM-дерево при парсинге HTML?`,shortAnswer:`Браузер получает HTML-документ и начинает его парсинг. Он разбивает сырой HTML на токены (теги, атрибуты, текст), затем строит из них узлы (Node). Узлы связываются в древовидную структуру — DOM (Document Object Model). Этот процесс выполняется последовательно, но может быть приостановлен при встрече скриптов или CSS.`,longAnswer:'Как браузер строит DOM-дерево\nКогда браузер загружает HTML-документ, он запускает процесс парсинга, который преобразует сырой текст в структурированное DOM-дерево. DOM (Document Object Model) — это объектное представление HTML-страницы, с которым JavaScript может взаимодействовать.\nЭтапы построения DOM\n\n- Токенизация (Tokenization): Браузер разбивает HTML-строку на токены — открывающие теги, закрывающие теги, атрибуты и текстовые узлы. Например, `<div class="container">` превращается в токен открывающего тега с атрибутом.\n- Построение узлов (Node construction): Из токенов создаются объекты узлов. Каждый узел имеет тип (Element, Text, Comment и т.д.) и свойства.\n- Формирование дерева (Tree construction): Узлы связываются в иерархическую структуру. Открывающий тег становится родителем для вложенных элементов. Закрывающий тег завершает текущую ветвь.\nПример кода\n\nПосле парсинга этого HTML браузер создаст DOM-дерево: корневой узел `document`, внутри `html`, затем `head` с `title`, и `body` с `div` и `p`. Каждый элемент становится объектом с методами и свойствами.\nОсобенности процесса\n\n- Блокирующие ресурсы: Встречая тег `<script>` без атрибутов `async` или `defer`, браузер приостанавливает парсинг HTML, загружает и выполняет скрипт, затем продолжает. CSS также может блокировать рендеринг, но не парсинг DOM.\n- Инкрементальная обработка: Браузер не ждет полной загрузки HTML — он начинает строить DOM по мере получения данных, что ускоряет отображение страницы.\n- Ошибки в HTML: Браузеры терпимы к ошибкам (например, пропущенные закрывающие теги) и пытаются восстановить корректное дерево.\nВывод\nПонимание процесса построения DOM помогает оптимизировать загрузку страницы: размещать скрипты внизу, использовать атрибуты async/defer, минимизировать количество блокирующих ресурсов. Это основа для создания быстрых и отзывчивых веб-приложений.',codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <title>Пример</title>
+</head>
+<body>
+  <div id="app">
+    <p>Привет, мир!</p>
+  </div>
+</body>
+</html>`,skills:[`HTML`]},{question:`Чем плох вариант с прослушиванием события window scroll для определения достижения конца страницы?`,shortAnswer:`Прослушивание события scroll срабатывает очень часто, вызывая перерасчеты и потенциальные лаги. Это может привести к проблемам с производительностью, особенно на мобильных устройствах. Вместо этого рекомендуется использовать Intersection Observer API, который более эффективен и не вызывает лишних перерисовок.`,longAnswer:`Проблемы с событием scroll
+Событие scroll срабатывает при каждом пикселе прокрутки, что может вызывать до 60-120 вызовов в секунду. Если в обработчике выполняются тяжелые операции (например, вычисления позиции элемента или запросы к DOM), это может привести к заметным тормозам интерфейса.
+Альтернатива: Intersection Observer
+Intersection Observer API позволяет асинхронно отслеживать видимость элемента относительно предка или окна просмотра. Он не блокирует основной поток и срабатывает только при изменении состояния видимости.
+
+Когда использовать
+Intersection Observer идеален для бесконечной прокрутки, ленивой загрузки изображений и анимаций при скролле. Он снижает нагрузку на основной поток и упрощает код.
+Вывод: Для определения достижения конца страницы используйте Intersection Observer вместо scroll event — это повышает производительность и упрощает поддержку кода.`,codeExample:`// Плохой подход: scroll event
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight;
+  const winHeight = window.innerHeight;
+  if (scrollTop + winHeight >= docHeight - 100) {
+    loadMore();
+  }
+});
+
+// Хороший подход: Intersection Observer
+const sentinel = document.getElementById('sentinel');
+const observer = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    loadMore();
+  }
+});
+observer.observe(sentinel);`,skills:[`HTML`]},{question:`Как использовать IntersectionObserver для реализации бесконечного скролла?`,shortAnswer:`IntersectionObserver позволяет асинхронно отслеживать пересечение элемента с областью просмотра. Для бесконечного скролла создайте наблюдатель, который при пересечении с элементом-триггером загружает новые данные и обновляет позицию триггера. Это эффективнее, чем слушать событие scroll, так как работает на уровне браузера без постоянных вычислений.`,longAnswer:`Что такое IntersectionObserver и зачем он нужен
+IntersectionObserver — это API браузера, который позволяет асинхронно наблюдать за пересечением целевого элемента с его родителем или областью просмотра. В контексте бесконечного скролла он заменяет дорогостоящие обработчики события scroll, которые вызываются сотни раз в секунду и могут тормозить интерфейс.
+Как работает бесконечный скролл с IntersectionObserver
+Основная идея: разместить в конце списка невидимый элемент-триггер (sentinel). Когда пользователь прокручивает до него, срабатывает колбэк наблюдателя, и вы загружаете следующую порцию данных. После загрузки триггер снова оказывается внизу, и процесс повторяется.
+Пример реализации
+
+Важные детали
+
+- Настройте порог срабатывания через опцию \`threshold\` (например, 0.1 для ранней подгрузки).
+- Используйте \`rootMargin\`, чтобы начать загрузку до того, как триггер появится на экране.
+- Не забывайте отключать наблюдателя, когда данные закончились, чтобы избежать лишних запросов.
+Вывод
+IntersectionObserver — это современный и производительный способ реализации бесконечного скролла. Он подходит для лент новостей, списков товаров и любых динамических списков, где важна плавность прокрутки и экономия ресурсов.`,codeExample:`// HTML: <div id="sentinel"></div>
+
+const sentinel = document.getElementById('sentinel');
+let page = 1;
+
+const observer = new IntersectionObserver(async (entries) => {
+  if (entries[0].isIntersecting) {
+    const data = await fetch(\`/api/items?page=\${page}\`);
+    const items = await data.json();
+    // Добавляем элементы в список
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.textContent = item.name;
+      document.body.insertBefore(div, sentinel);
+    });
+    page++;
+  }
+});
+
+observer.observe(sentinel);`,skills:[`HTML`]},{question:`Как очищать старые DOM-узлы при бесконечном скролле, чтобы не накапливать элементы в памяти?`,shortAnswer:`При бесконечном скролле старые DOM-узлы нужно удалять, чтобы избежать накопления элементов в памяти. Используйте виртуальный скроллинг (virtual scrolling), который рендерит только видимые элементы и переиспользует узлы. Альтернативно, можно вручную удалять элементы за пределами видимой области, например, при каждом добавлении новых элементов удалять старые, сохраняя буфер.`,longAnswer:`Проблема накопления DOM-узлов
+При бесконечном скролле каждый новый загруженный элемент добавляется в DOM. Если не удалять старые узлы, количество элементов растёт бесконечно, что приводит к увеличению потребления памяти и замедлению работы страницы. Браузер хранит все DOM-узлы, даже если они не видны, что может вызвать зависания и крахи.
+Решение: виртуальный скроллинг
+Виртуальный скроллинг — это техника, при которой рендерится только небольшое количество элементов, видимых в окне просмотра, плюс небольшой буфер сверху и снизу. При скролле старые элементы удаляются, а новые добавляются, переиспользуя DOM-узлы. Это позволяет работать с тысячами записей без потери производительности.
+Пример реализации на JavaScript:
+
+В этом примере при скролле вычисляется, какие элементы должны быть видны, и рендерится только их небольшое количество. Старые узлы удаляются через \`innerHTML = ''\`.
+Альтернативный подход: ручное удаление
+Если виртуальный скроллинг не подходит, можно вручную удалять элементы, которые находятся далеко за пределами видимой области. Например, при добавлении новых элементов удалять первые N старых, сохраняя фиксированный лимит (например, 100 элементов).
+
+Этот подход проще, но менее эффективен для очень больших списков, так как DOM всё ещё содержит до 100 узлов.
+Вывод
+Для бесконечного скролла с большим количеством данных используйте виртуальный скроллинг — это стандартный способ избежать утечек памяти и обеспечить плавную работу. Для небольших списков (до нескольких сотен элементов) можно обойтись ручным удалением старых узлов.`,codeExample:`const container = document.getElementById('scroll-container');
+const itemHeight = 50;
+const buffer = 5;
+let items = []; // массив данных
+
+function render(startIndex) {
+  container.innerHTML = '';
+  const endIndex = Math.min(startIndex + buffer * 2, items.length);
+  for (let i = startIndex; i < endIndex; i++) {
+    const div = document.createElement('div');
+    div.textContent = items[i];
+    div.style.height = itemHeight + 'px';
+    container.appendChild(div);
+  }
+}
+
+container.addEventListener('scroll', () => {
+  const scrollTop = container.scrollTop;
+  const startIndex = Math.floor(scrollTop / itemHeight) - buffer;
+  render(Math.max(0, startIndex));
+});
+
+const maxItems = 100;
+const list = document.getElementById('list');
+
+function addItem(text) {
+  const li = document.createElement('li');
+  li.textContent = text;
+  list.appendChild(li);
+  if (list.children.length > maxItems) {
+    list.removeChild(list.firstChild);
+  }
+}`,skills:[`HTML`]},{question:`Какой атрибут HTML-тега обязателен для корректной работы скринридеров применительно к изображениям?`,shortAnswer:`Для корректной работы скринридеров с изображениями обязателен атрибут alt. Он предоставляет текстовое описание изображения, которое зачитывается пользователям с нарушениями зрения. Если изображение декоративное, alt должен быть пустым (alt=""), чтобы скринридер его пропустил.`,longAnswer:`Зачем нужен атрибут alt?
+Атрибут alt (alternative text) в теге \`<img>\` предоставляет текстовую альтернативу изображению. Скринридеры зачитывают этот текст, чтобы пользователи с нарушениями зрения могли понять содержание изображения. Без alt скринридер может прочитать имя файла или просто сказать "изображение", что неинформативно.
+Правила использования
+
+- Для информативных изображений: опишите суть изображения кратко, но содержательно. Например: \`alt="Диаграмма роста продаж за 2023 год"\`.
+- Для декоративных изображений: используйте пустой alt (\`alt=""\`), чтобы скринридер полностью пропустил элемент.
+- Не используйте фразы вроде "изображение" или "картинка" — скринридер сам сообщит, что это изображение.
+Пример кода
+
+Вывод
+Атрибут alt обязателен для всех изображений в вебе. Он обеспечивает доступность контента для людей, использующих скринридеры, и улучшает SEO. Всегда добавляйте alt, даже если он пустой для декоративных элементов.`,codeExample:`<!-- Информативное изображение -->
+<img src="chart.png" alt="График роста продаж по месяцам">
+
+<!-- Декоративное изображение -->
+<img src="divider.png" alt="">
+
+<!-- Ошибка: отсутствует alt -->
+<img src="photo.jpg"> <!-- Скринридер прочитает имя файла -->`,skills:[`HTML`]},{question:`Какие инструменты Chrome DevTools используются для профилирования производительности фронтенд-приложения?`,shortAnswer:`Chrome DevTools предоставляет несколько вкладок для профилирования: Performance для записи и анализа активности страницы, Network для анализа загрузки ресурсов, Memory для исследования утечек памяти и снятия снимков кучи, а также Lighthouse для аудита производительности и получения рекомендаций. Эти инструменты помогают выявить узкие места, такие как долгие скрипты, медленная загрузка или избыточное потребление памяти.`,longAnswer:`Основные инструменты Chrome DevTools для профилирования производительности
+Chrome DevTools — это встроенный набор инструментов, который позволяет разработчикам анализировать и оптимизировать производительность веб-приложений. Для профилирования используются несколько ключевых вкладок, каждая из которых решает свою задачу.
+Вкладка Performance
+Позволяет записать сессию взаимодействия с приложением и затем детально изучить временную шкалу событий: загрузка страницы, выполнение JavaScript, рендеринг, перекомпоновка (layout) и отрисовка (paint). Вы можете увидеть, какие функции занимают больше всего времени, и найти узкие места.
+
+Вкладка Network
+Показывает все сетевые запросы, их размер, время загрузки и порядок. Полезна для выявления медленных запросов, большого количества запросов или блокирующих ресурсов. Можно фильтровать по типу (XHR, JS, CSS) и сортировать по времени.
+Вкладка Memory
+Используется для поиска утечек памяти. Позволяет снимать снимки кучи (heap snapshots), сравнивать их и находить объекты, которые не освобождаются сборщиком мусора. Также есть инструмент Allocation instrumentation on timeline для отслеживания выделения памяти в реальном времени.
+Вкладка Lighthouse
+Автоматический аудит производительности, доступности, SEO и лучших практик. Генерирует отчёт с оценками и конкретными рекомендациями по улучшению, например, оптимизация изображений, уменьшение JavaScript-бандла или использование кэширования.
+Вывод
+Эти инструменты следует применять на этапе разработки и тестирования для выявления и устранения проблем производительности, таких как медленная загрузка, подвисания интерфейса или избыточное потребление памяти, что напрямую влияет на пользовательский опыт.`,codeExample:`// Пример: запись Performance для поиска долгих задач
+// 1. Откройте DevTools (F12)
+// 2. Перейдите на вкладку Performance
+// 3. Нажмите кнопку записи (круглый значок)
+// 4. Выполните действия на странице
+// 5. Остановите запись и проанализируйте flame chart`,skills:[`HTML`]},{question:`На каком этапе Event Loop происходит перерисовка страницы?`,shortAnswer:`Перерисовка страницы происходит после выполнения всех микрозадач и макрозадач в текущем цикле Event Loop. Браузер планирует рендеринг перед следующей макрозадачей, но не гарантирует его каждый цикл. Для синхронизации с рендерингом используют requestAnimationFrame.`,longAnswer:`Как Event Loop связан с рендерингом
+В браузере Event Loop управляет выполнением JavaScript, обработкой событий и рендерингом страницы. Перерисовка (repaint) и перекомпоновка (reflow) происходят на специальном этапе, который следует за выполнением всех микрозадач и макрозадач в текущем цикле. Браузер может объединять несколько изменений в один рендеринг для оптимизации производительности.
+Порядок выполнения
+
+- Сначала выполняются все макрозадачи (например, setTimeout, события ввода).
+- Затем обрабатываются все микрозадачи (Promise.then, MutationObserver).
+- После этого браузер проверяет, нужно ли обновить рендеринг (обычно с частотой 60 FPS).
+- Если да, то запускается этап рендеринга: стили, layout, paint, compositing.
+Пример кода
+
+В этом примере requestAnimationFrame выполняется до макрозадачи, так как он привязан к этапу рендеринга.
+Вывод
+Понимание этого механизма помогает избегать задержек в UI и правильно использовать requestAnimationFrame для анимаций, гарантируя синхронизацию с обновлением экрана.`,codeExample:`console.log('start');
+
+setTimeout(() => console.log('macro'), 0);
+
+Promise.resolve().then(() => console.log('micro'));
+
+requestAnimationFrame(() => console.log('render'));
+
+console.log('end');
+// Вывод: start, end, micro, render, macro`,skills:[`HTML`]},{question:`Чем CSS блокирует рендеринг страницы?`,shortAnswer:`CSS блокирует рендеринг, потому что браузер не начинает отрисовку страницы, пока не загрузит и не обработает все CSS-файлы. Это необходимо, чтобы избежать отображения страницы без стилей (Flash of Unstyled Content). Браузер строит DOM и CSSOM, и только после их объединения в Render Tree начинается рендеринг. Для ускорения загрузки можно использовать медиа-запросы или инлайновые критические стили.`,longAnswer:'Как CSS блокирует рендеринг\nКогда браузер загружает веб-страницу, он проходит через критический путь рендеринга (Critical Rendering Path). Этот путь включает несколько этапов: построение DOM (Document Object Model) из HTML, построение CSSOM (CSS Object Model) из CSS, объединение их в Render Tree, вычисление геометрии элементов (Layout) и, наконец, отрисовку (Paint).\nCSS считается ресурсом, блокирующим рендеринг, потому что браузер не начинает отрисовку страницы до тех пор, пока не загрузит и не обработает все CSS-файлы, указанные в `<link>` в `<head>`. Это сделано для предотвращения появления страницы без стилей (Flash of Unstyled Content, FOUC). Если бы браузер начал рендеринг до загрузки CSS, пользователь сначала увидел бы неоформленный контент, а затем — внезапное применение стилей, что ухудшает пользовательский опыт.\nПример влияния на производительность\nПредставьте, что у вас есть внешний CSS-файл, который загружается 2 секунды. В течение этих 2 секунд страница будет оставаться пустой, даже если HTML уже полностью загружен. Это увеличивает время до первого рендеринга (First Paint) и ухудшает показатели Core Web Vitals, такие как First Contentful Paint (FCP).\n\nКак уменьшить блокировку\n\n- Использовать медиа-запросы: Если CSS применяется только для определенных условий (например, для печати), добавьте атрибут `media`. Браузер загрузит такой CSS, но не будет блокировать рендеринг, если условие не выполняется.\n- Инлайновые критические стили: Выделите стили, необходимые для отображения верхней части страницы (above-the-fold), и вставьте их непосредственно в `<head>` внутри тега `<style>`. Остальные стили загружайте асинхронно.\n- Асинхронная загрузка: Используйте JavaScript для динамической загрузки CSS после начального рендеринга, например, с помощью `rel="preload"` и атрибута `onload`.\n\nВывод\nПонимание блокировки рендеринга CSS критически важно для оптимизации производительности веб-страниц. Применяя техники, такие как инлайновые критические стили и асинхронная загрузка некритического CSS, вы можете значительно улучшить скорость загрузки и пользовательский опыт, особенно на мобильных устройствах и медленных соединениях.',codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css"> <!-- Блокирует рендеринг -->
+</head>
+<body>
+  <h1>Привет, мир!</h1>
+</body>
+</html>
+
+<link rel="stylesheet" href="print.css" media="print"> <!-- Не блокирует рендеринг на экране -->
+<link rel="preload" href=
+on-critical.css" as="style" onload=  his.rel='stylesheet'">`,skills:[`HTML`]},{question:`В чём разница между тегами <b> и <strong>?`,shortAnswer:`Тег используется для визуального выделения текста жирным шрифтом без изменения смысла. Тег обозначает важность содержимого, добавляя семантический вес. Для скринридеров выделяет текст интонационно, а игнорируется. Разница в семантике, а не только в стилях.`,longAnswer:`Семантическая разница между и
+В HTML теги и визуально выглядят одинаково — текст становится жирным. Однако их семантическое значение различается. Тег (bold) предназначен для стилистического выделения, не несущего дополнительной важности. Тег указывает на высокую важность содержимого, влияя на восприятие скринридерами и поисковыми системами.
+Примеры использования
+Используйте для ключевых слов в тексте, где не требуется акцент на важности. Используйте для предупреждений или критических сообщений.
+
+Влияние на доступность
+Скринридеры могут изменять интонацию при чтении , подчеркивая важность. Тег не вызывает таких изменений. Это делает предпочтительным для обеспечения доступности.
+Вывод
+Используйте для визуального выделения без семантики, а для обозначения важного содержимого. Это улучшает доступность и семантическую структуру документа.`,codeExample:`<p>Нажмите <b>Отправить</b> для завершения.</p>
+<p><strong>Внимание!</strong> Данные будут удалены.</p>`,skills:[`HTML`]},{question:`Строится ли DOM-дерево независимо от CSS, или они зависят друг от друга?`,shortAnswer:`DOM и CSSOM строятся независимо друг от друга, но для построения render tree (дерева рендеринга) они объединяются. Браузер парсит HTML и CSS параллельно, однако JavaScript может блокировать построение DOM, если он ожидает загрузки CSS. Render tree строится только после того, как оба дерева готовы.`,longAnswer:`Независимое построение DOM и CSSOM
+Браузер обрабатывает HTML и CSS параллельно, используя разные потоки. Парсер HTML строит DOM (Document Object Model), а парсер CSS строит CSSOM (CSS Object Model). Эти процессы не зависят друг от друга и могут выполняться одновременно.
+Влияние CSS на DOM через JavaScript
+Хотя CSS не блокирует построение DOM напрямую, он может косвенно влиять на него через JavaScript. Если скрипт пытается получить доступ к стилям (например, через \`getComputedStyle\`), браузер приостанавливает выполнение JavaScript до полной загрузки и парсинга CSS. Это может задержать построение DOM, так как скрипты блокируют парсинг HTML.
+Render tree — объединение DOM и CSSOM
+После завершения построения DOM и CSSOM браузер создает render tree, которое содержит только видимые элементы и их вычисленные стили. Render tree используется для расчета геометрии (layout) и отрисовки (paint).
+Пример
+
+В этом примере скрипт блокирует построение DOM до загрузки CSS, хотя сам CSS не блокирует DOM.
+Вывод
+DOM и CSSOM строятся независимо, но для рендеринга страницы необходимо их объединение в render tree. Понимание этого процесса помогает оптимизировать загрузку страницы, размещая CSS в \`<head>\` и избегая блокирующих скриптов.`,codeExample:`<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div>Hello</div>
+  <script>
+    // Этот скрипт выполнится только после загрузки CSS
+    console.log('CSS loaded');
+  <\/script>
+</body>
+</html>`,skills:[`HTML`]},{question:`Что такое Content Security Policy (CSP) и как он связан с безопасностью?`,shortAnswer:`Content Security Policy (CSP) — это HTTP-заголовок, который позволяет контролировать, какие ресурсы (скрипты, стили, изображения) могут загружаться на веб-странице. Он предотвращает XSS-атаки, блокируя выполнение неавторизованного JavaScript. CSP задаётся через директивы, например, script-src 'self' разрешает только скрипты с того же домена. Это важный слой безопасности для веб-приложений.`,longAnswer:"Что такое Content Security Policy (CSP)?\nContent Security Policy (CSP) — это стандарт безопасности, реализуемый через HTTP-заголовок `Content-Security-Policy`. Он позволяет разработчику указать браузеру, какие источники контента (скрипты, стили, шрифты и т.д.) считаются доверенными. CSP эффективно защищает от межсайтового скриптинга (XSS) и других инъекций, ограничивая выполнение неавторизованного кода.\nКак это работает?\nБраузер, получив заголовок CSP, проверяет каждый загружаемый ресурс на соответствие заданным правилам. Если ресурс не соответствует политике, он блокируется. Например, директива `script-src 'self'` разрешает выполнение только скриптов с того же домена, что и страница. Это предотвращает выполнение встроенных скриптов или скриптов с внешних сайтов, которые могут быть вредоносными.\nПример использования\nРассмотрим простой пример настройки CSP в HTML через мета-тег:\n\nЗдесь `default-src 'self'` задаёт базовое правило — разрешены только ресурсы с текущего домена. `script-src` дополнительно разрешает скрипты с `https://apis.example.com`, а `style-src` позволяет встроенные стили (`'unsafe-inline'`).\nГде применяется?\nCSP используется в веб-приложениях для усиления безопасности, особенно в системах с пользовательским контентом (форумы, блоги, CRM). Он также обязателен для соответствия стандартам безопасности, например, PCI DSS.\nВывод\nCSP — это мощный инструмент для предотвращения XSS-атак и контроля загрузки ресурсов. Его стоит применять в любом веб-приложении, где важна безопасность, особенно при работе с динамическим контентом или сторонними библиотеками.",codeExample:`<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://apis.example.com; style-src 'self' 'unsafe-inline';">`,skills:[`HTML`]},{question:`Зачем использовать черновое сохранение формы и как его реализовать?`,shortAnswer:`Черновое сохранение формы позволяет пользователю не потерять введенные данные при случайном закрытии страницы или сбое. Реализуется через сохранение состояния формы в localStorage или sessionStorage при каждом изменении полей. При загрузке страницы данные восстанавливаются из хранилища и заполняют форму. Это улучшает пользовательский опыт и снижает количество брошенных заполнений.`,longAnswer:`Зачем нужно черновое сохранение формы
+Черновое сохранение (draft saving) решает проблему потери данных при незавершенном заполнении формы. Пользователь может случайно закрыть вкладку, перезагрузить страницу или столкнуться с ошибкой сети. Без сохранения черновика все введенные данные пропадают, что вызывает раздражение и снижает конверсию. Особенно это критично для длинных форм: регистрация, оформление заказа, создание сложных объектов.
+Как это работает
+Основная идея — сохранять состояние формы в локальном хранилище браузера (localStorage) при каждом изменении. При загрузке страницы проверяем наличие сохраненных данных и восстанавливаем их. Для этого подписываемся на события изменения полей (input, change) и периодически записываем текущее состояние формы в JSON-строку.
+Пример реализации на JavaScript
+
+Где применяется
+
+- Формы регистрации и входа
+- Редакторы контента (блоги, CMS)
+- Многошаговые формы (wizard)
+- Корзина интернет-магазина
+Вывод: черновое сохранение — простой и эффективный способ улучшить UX, особенно для длинных или критичных форм. Реализация через localStorage не требует серверной поддержки и легко интегрируется в любой проект.`,codeExample:`const FORM_KEY = 'draft_form_data';
+
+function saveDraft(formData) {
+  localStorage.setItem(FORM_KEY, JSON.stringify(formData));
+}
+
+function loadDraft() {
+  const data = localStorage.getItem(FORM_KEY);
+  return data ? JSON.parse(data) : null;
+}
+
+function clearDraft() {
+  localStorage.removeItem(FORM_KEY);
+}
+
+// Сохранение при изменении полей
+document.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('input', () => {
+    const formData = new FormData(document.getElementById('myForm'));
+    saveDraft(Object.fromEntries(formData));
+  });
+});
+
+// Восстановление при загрузке
+window.addEventListener('DOMContentLoaded', () => {
+  const draft = loadDraft();
+  if (draft) {
+    Object.entries(draft).forEach(([name, value]) => {
+      const field = document.querySelector(\`[name="\${name}"]\`);
+      if (field) field.value = value;
+    });
+  }
+});
+
+// Очистка после успешной отправки
+document.getElementById('myForm').addEventListener('submit', clearDraft);`,skills:[`HTML`]},{question:`Какие причины могут вызывать обрезание выпадающего списка внутри таблицы?`,shortAnswer:`Выпадающий список может обрезаться из-за CSS-свойства overflow: hidden на таблице или её родительском контейнере. Также проблема возникает, если у элемента списка низкий z-index или он находится внутри контейнера с фиксированной высотой. Решение — установить overflow: visible на таблицу или использовать position: fixed для выпадающего списка.`,longAnswer:"Причины обрезания выпадающего списка\nВыпадающий список внутри таблицы часто обрезается из-за CSS-свойства `overflow: hidden`, которое применяется к таблице, её ячейке или родительскому контейнеру. Это свойство скрывает содержимое, выходящее за границы элемента. Также проблема может быть вызвана низким значением `z-index` у выпадающего списка или его расположением внутри контейнера с фиксированной высотой.\nКак это работает\nТаблицы в HTML имеют строгую структуру, и их ячейки (`td` или `th`) по умолчанию не позволяют содержимому выходить за свои границы, если не задано `overflow: visible`. Когда выпадающий список открывается, он может выходить за пределы ячейки, но если на таблице или её родителе стоит `overflow: hidden`, то часть списка будет скрыта.\nПример кода\n\nРешения\n\n- Установить `overflow: visible` на таблицу и её ячейки.\n- Использовать `position: fixed` для выпадающего списка, чтобы он позиционировался относительно окна браузера.\n- Поместить выпадающий список вне таблицы с помощью JavaScript и абсолютного позиционирования.\nВывод: проблема обрезания выпадающего списка внутри таблицы решается правильной настройкой CSS-свойств overflow и позиционирования. Это важно для создания удобных интерфейсов, особенно в формах и таблицах с данными.",codeExample:`<table style="overflow: hidden;">
+  <tr>
+    <td>
+      <div class="dropdown">
+        <button>Открыть</button>
+        <div class="dropdown-menu">
+          <!-- выпадающий список -->
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>`,skills:[`HTML`]},{question:`Что такое CSRF и как от него защититься на уровне фронтенда?`,shortAnswer:`CSRF (Cross-Site Request Forgery) — это атака, при которой злоумышленник заставляет браузер жертвы выполнить нежелательное действие на доверенном сайте, используя его куки. На фронтенде защита включает использование CSRF-токенов, которые сервер генерирует и проверяет при каждом запросе. Также помогает установка атрибута SameSite для кук (Strict или Lax) и проверка заголовка Origin или Referer. Важно не полагаться только на куки для аутентификации и использовать дополнительные механизмы, такие как кастомные заголовки.`,longAnswer:`Что такое CSRF?
+CSRF (Cross-Site Request Forgery) — это тип атаки, при которой злоумышленник заставляет браузер аутентифицированного пользователя отправить запрос на целевой сайт без его ведома. Например, пользователь заходит на вредоносный сайт, который содержит скрытую форму или изображение, отправляющее POST-запрос на банковский сервер. Если пользователь уже авторизован на этом сервере (куки сохранены), запрос будет выполнен с его правами.
+Как защититься на фронтенде?
+Основные методы защиты на стороне клиента включают:
+
+- CSRF-токены: Сервер генерирует уникальный токен, который встраивается в HTML-форму или передается через заголовок (например, X-CSRF-Token). При каждом запросе фронтенд отправляет этот токен, а сервер проверяет его. Токен должен быть случайным и привязанным к сессии.
+- SameSite куки: Установка атрибута SameSite=Strict или Lax для кук предотвращает их отправку в кросс-сайтовых запросах. Например, SameSite=Lax разрешает отправку только для навигационных GET-запросов, что блокирует большинство CSRF-атак.
+- Проверка заголовков: Сервер может проверять заголовки Origin или Referer, чтобы убедиться, что запрос пришел с доверенного источника. На фронтенде это не требует дополнительных действий, но сервер должен быть настроен.
+- Кастомные заголовки: Использование кастомных заголовков (например, X-Requested-With: XMLHttpRequest) для AJAX-запросов, так как браузеры не позволяют устанавливать такие заголовки из кросс-доменных скриптов без CORS.
+Пример реализации CSRF-токена на фронтенде
+
+В этом примере токен извлекается из мета-тега, который сервер вставил в HTML. Затем он добавляется в заголовок запроса. Сервер проверяет токен и отклоняет запрос, если он не совпадает.
+Вывод
+CSRF-защита на фронтенде — это комбинация использования CSRF-токенов, правильной настройки кук (SameSite) и проверки заголовков. Эти методы эффективны против большинства атак, но требуют согласованной работы с сервером. Применять их стоит в любом веб-приложении, где есть аутентификация через куки и выполняются изменяющие состояние запросы (POST, PUT, DELETE).`,codeExample:`// Получаем CSRF-токен из мета-тега или куки
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+// Отправляем POST-запрос с токеном в заголовке
+fetch('/api/transfer', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': csrfToken
+  },
+  body: JSON.stringify({ amount: 100, to: 'attacker' })
+});`,skills:[`HTML`]},{question:`Как querySelector со звёздочкой позволяет получить все элементы страницы?`,shortAnswer:`Метод querySelector('*') возвращает первый элемент, соответствующий селектору '*', то есть любой элемент. Чтобы получить все элементы, нужно использовать querySelectorAll('*'), который возвращает NodeList со всеми элементами страницы. Это полезно для перебора или анализа всего DOM.`,longAnswer:`Что такое querySelector со звёздочкой?
+Метод \`querySelector\` принимает CSS-селектор и возвращает первый элемент, соответствующий ему. Селектор \`*\` (звёздочка) в CSS означает «любой элемент». Поэтому \`document.querySelector('*')\` вернёт самый первый элемент в DOM (обычно это \`<html>\`).
+Как получить все элементы?
+Чтобы получить все элементы страницы, нужно использовать \`querySelectorAll('*')\`. Этот метод возвращает статический NodeList, содержащий все элементы DOM в порядке их появления. Например:
+
+Практическое применение
+Это может быть полезно для:
+
+- Подсчёта количества элементов на странице.
+- Применения стилей или атрибутов ко всем элементам.
+- Отладки или анализа структуры DOM.
+Однако будьте осторожны: перебор всех элементов может быть затратным по производительности на больших страницах.
+Вывод
+Используйте \`querySelectorAll('*')\`, когда нужно получить полный список элементов DOM для анализа или массовых операций, но помните о возможных проблемах с производительностью.`,codeExample:`const allElements = document.querySelectorAll('*');
+console.log(allElements.length); // количество всех элементов`,skills:[`HTML`]},{question:`Что возвращает getElementsByTagName — один элемент или коллекцию?`,shortAnswer:`Метод getElementsByTagName возвращает живую коллекцию HTMLCollection, а не один элемент. Она автоматически обновляется при изменении DOM. Чтобы получить конкретный элемент, нужно обратиться по индексу или использовать метод item().`,longAnswer:"Что возвращает getElementsByTagName?\nМетод `getElementsByTagName` возвращает живую коллекцию элементов — `HTMLCollection`. Это не один элемент, а список всех элементов с указанным тегом в документе. Коллекция является живой, то есть автоматически обновляется при добавлении или удалении элементов из DOM.\nКак работать с результатом?\nЧтобы получить конкретный элемент, используйте индекс или метод `item()`. Например:\n\nЕсли нужно перебрать все элементы, используйте цикл `for` или преобразуйте в массив через `Array.from()`.\nОтличие от других методов\n\n- `getElementById` — возвращает один элемент (или null).\n- `querySelector` — возвращает первый подходящий элемент.\n- `querySelectorAll` — возвращает статическую коллекцию NodeList (не живую).\nПример использования\n\nВывод: `getElementsByTagName` возвращает живую коллекцию HTMLCollection, что удобно для динамических страниц, где DOM часто меняется. Однако для статичных списков лучше использовать `querySelectorAll`, чтобы избежать неожиданных изменений.",codeExample:`const divs = document.getElementsByTagName('div');
+const firstDiv = divs[0]; // первый div
+const secondDiv = divs.item(1); // второй div
+
+// Получаем все параграфы
+const paragraphs = document.getElementsByTagName('p');
+console.log(paragraphs.length); // количество параграфов
+
+// Добавляем новый параграф
+const newP = document.createElement('p');
+document.body.appendChild(newP);
+console.log(paragraphs.length); // увеличится автоматически`,skills:[`HTML`]},{question:`Какой заголовок HTTP регулирует разрешённые домены в контексте CORS?`,shortAnswer:`Заголовок Access-Control-Allow-Origin указывает, какие домены могут получать доступ к ресурсу. Если сервер не отправляет этот заголовок, браузер блокирует запросы с других источников. Значение '*' разрешает все домены, но не поддерживается с куками.`,longAnswer:"Что такое CORS и зачем нужен Access-Control-Allow-Origin\nCORS (Cross-Origin Resource Sharing) — это механизм безопасности браузера, который контролирует доступ к ресурсам с других доменов. Когда веб-страница пытается сделать запрос к серверу на другом домене, браузер проверяет заголовки ответа сервера. Основной заголовок, регулирующий разрешённые домены — `Access-Control-Allow-Origin`.\nКак это работает\nСервер в ответе на запрос отправляет заголовок `Access-Control-Allow-Origin` с указанием домена, которому разрешён доступ. Например, если сервер отправляет `Access-Control-Allow-Origin: https://example.com`, то только страницы с этого домена могут читать ответ. Если нужно разрешить все домены, используется значение `*`, но это не работает с запросами, содержащими куки или авторизацию.\nПример настройки на сервере (Node.js с Express)\n\nПрактическое применение\nЭтот заголовок используется в любых API, которые вызываются с фронтенда из другого домена. Например, если у вас есть React-приложение на `app.example.com`, а API на `api.example.com`, сервер API должен отправлять `Access-Control-Allow-Origin: https://app.example.com`.\nВывод: Access-Control-Allow-Origin — ключевой заголовок для безопасного кросс-доменного взаимодействия. Его правильная настройка предотвращает утечки данных и обеспечивает работу современных веб-приложений.",codeExample:`const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://myfrontend.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+app.get('/data', (req, res) => {
+  res.json({ message: 'Доступ разрешён' });
+});
+
+app.listen(3000);`,skills:[`HTML`]},{question:`Когда события обычно отлавливаются — на всплытии или на погружении?`,shortAnswer:`События обычно отлавливаются на фазе всплытия (bubbling). Это поведение по умолчанию для большинства событий, таких как click или keydown. Фаза погружения (capturing) используется реже, в основном для перехвата событий до того, как они достигнут целевого элемента. Всплытие более интуитивно и удобно для делегирования событий.`,longAnswer:"Фазы распространения событий\nКогда в DOM происходит событие, оно проходит три фазы: погружение (capturing), цель (target) и всплытие (bubbling). На фазе погружения событие движется от корневого элемента (document) вниз к целевому элементу. На фазе всплытия — наоборот, от целевого элемента вверх к корню.\nПочему всплытие используется чаще\nПо умолчанию метод `addEventListener` устанавливает обработчик на фазу всплытия (третий аргумент `false` или опущен). Это сделано для удобства: всплытие позволяет реализовать делегирование событий, когда один обработчик на родителе обрабатывает события от множества дочерних элементов. Например, для списка `<ul>` с сотней `<li>` можно повесить один обработчик на `<ul>` и ловить клики по любым `<li>` через всплытие.\nПример кода\n\nКогда применяется погружение\nФаза погружения используется реже, например, для перехвата событий до того, как они достигнут целевого элемента, или для отладки. Также она полезна, когда нужно обработать событие до того, как его обработает дочерний элемент.\nВывод: Всплытие — стандартный и наиболее практичный способ обработки событий в веб-разработке, особенно для делегирования. Погружение применяется в специфических сценариях, где требуется ранний перехват.",codeExample:`// Обработчик на всплытие (по умолчанию)
+document.querySelector('ul').addEventListener('click', (event) => {
+  console.log('Клик по', event.target.tagName);
+});
+
+// Обработчик на погружение (третий аргумент true)
+document.querySelector('ul').addEventListener('click', (event) => {
+  console.log('Погружение: клик по', event.target.tagName);
+}, true);`,skills:[`HTML`]},{question:`Какие существуют методы поиска элементов в DOM — querySelector, getElementBy*? Чем они отличаются?`,shortAnswer:`Основные методы поиска элементов в DOM: getElementById (по id), getElementsByClassName (по классу), getElementsByTagName (по тегу) и querySelector/querySelectorAll (по CSS-селектору). Первые три возвращают живые коллекции (HTMLCollection), а querySelectorAll — статический NodeList. querySelector возвращает первый подходящий элемент, а querySelectorAll — все.`,longAnswer:"Методы поиска элементов в DOM\nВ JavaScript существует несколько способов найти элементы в DOM-дереве. Основные из них: `getElementById`, `getElementsByClassName`, `getElementsByTagName`, а также `querySelector` и `querySelectorAll`. Они различаются по возвращаемым типам, производительности и гибкости.\ngetElementById\nВозвращает один элемент по его уникальному идентификатору `id`. Это самый быстрый метод, так как браузер оптимизирует поиск по id.\n\ngetElementsByClassName и getElementsByTagName\nВозвращают живую коллекцию `HTMLCollection`, которая автоматически обновляется при изменении DOM. `getElementsByClassName` ищет по классу, `getElementsByTagName` — по имени тега.\n\nquerySelector и querySelectorAll\nЭти методы принимают CSS-селектор. `querySelector` возвращает первый подходящий элемент, `querySelectorAll` — статический `NodeList`, который не обновляется при изменениях DOM. Они более гибкие, но медленнее специализированных методов.\n\nОсновные отличия\n\n- Тип возвращаемого значения: `getElementById` возвращает один элемент, `getElementsBy*` — живую коллекцию, `querySelectorAll` — статический NodeList.\n- Производительность: `getElementById` самый быстрый, `querySelector` медленнее из-за парсинга CSS-селектора.\n- Гибкость: `querySelector` позволяет использовать любые CSS-селекторы, включая комбинаторы и псевдоклассы.\nВывод: Для поиска по id используйте `getElementById` — это быстро и просто. Для сложных селекторов или поиска по классу/тегу с живой коллекцией подойдут `getElementsBy*`. Если нужна статическая коллекция или сложный CSS-селектор, выбирайте `querySelectorAll`.",codeExample:`const element = document.getElementById('myId');
+
+const items = document.getElementsByClassName('item');
+const divs = document.getElementsByTagName('div');
+
+const firstButton = document.querySelector('button.primary');
+const allButtons = document.querySelectorAll('button');`,skills:[`HTML`]},{question:`Как организовать взаимодействие между основной страницей и страницей внутри iFrame, если прямой доступ к функциям друг друга невозможен?`,shortAnswer:`Для взаимодействия между страницей и iFrame используется метод window.postMessage. Родительская страница отправляет сообщение через iframe.contentWindow.postMessage, а iFrame — через window.parent.postMessage. На принимающей стороне сообщение ловится через событие message. Обязательно проверяется origin отправителя для безопасности. Это стандартный способ обмена данными между окнами из разных доменов.`,longAnswer:`Основы взаимодействия с iFrame через postMessage
+Когда страница и iFrame находятся на разных доменах, прямой доступ к DOM или функциям друг друга блокируется политикой same-origin. Для безопасного обмена данными используется API postMessage, встроенный в браузеры.
+Как это работает
+Отправка сообщения происходит через метод postMessage целевого окна. Родитель обращается к iFrame через iframe.contentWindow, а iFrame — к родителю через window.parent. Вторым аргументом передаётся ожидаемый origin для безопасности.
+
+Практическое применение
+Этот подход используется для виджетов, встраиваемых платёжных форм, чатов поддержки и любых микросервисных интерфейсов, где части UI живут на разных доменах. Важно всегда проверять event.origin, чтобы не допустить утечки данных.
+Вывод
+postMessage — единственный стандартный способ кросс-доменного общения с iFrame. Он безопасен при правильной валидации origin и подходит для любых сценариев, где нужен обмен данными между окнами из разных источников.`,codeExample:`// Родительская страница отправляет сообщение в iFrame
+const iframe = document.getElementById('myIframe');
+iframe.contentWindow.postMessage({ action: 'update', data: 'hello' }, 'https://child-domain.com');
+
+// В iFrame слушаем сообщение
+window.addEventListener('message', (event) => {
+  if (event.origin !== 'https://parent-domain.com') return;
+  console.log('Получено:', event.data);
+  // Отправляем ответ
+  event.source.postMessage({ response: 'ok' }, event.origin);
+});`,skills:[`HTML`]},{question:`Как использовать метод showModal() и close() у нативного элемента <dialog> через реф?`,shortAnswer:`Элемент предоставляет методы showModal() и close() для управления отображением. В React нужно получить доступ к DOM-элементу через useRef, затем вызвать эти методы в обработчиках событий. Это позволяет создавать модальные окна без сторонних библиотек.`,longAnswer:`Что такое элемент
+Элемент
+— это нативный HTML-элемент, предназначенный для создания модальных окон и диалогов. Он предоставляет встроенные методы showModal() для открытия окна в модальном режиме (с блокировкой фона) и close() для его закрытия. Это упрощает разработку, так как не требует дополнительных библиотек.
+Использование в React через рефы
+В React для доступа к DOM-элементу используется хук useRef. Создаётся реф, который привязывается к элементу
+. Затем в обработчиках событий (например, onClick) вызываются методы showModal() и close() через текущее значение рефа.
+
+Особенности и применение
+Метод showModal() открывает диалог поверх остального контента и блокирует взаимодействие с фоном. Для закрытия можно использовать close() или нажатие клавиши Escape. Элемент
+также поддерживает событие 'close', которое можно обработать для дополнительной логики. Этот подход полезен для простых модальных окон, уведомлений или форм, когда не требуется сложная анимация или кастомизация.
+Вывод: Используйте
+с рефами в React для быстрого создания модальных окон без внешних зависимостей, если проект не требует сложного управления состоянием или стилизации.`,codeExample:`import { useRef } from 'react';
+
+function Modal() {
+  const dialogRef = useRef(null);
+
+  const openModal = () => {
+    dialogRef.current?.showModal();
+  };
+
+  const closeModal = () => {
+    dialogRef.current?.close();
+  };
+
+  return (
+    <>
+      <button onClick={openModal}>Open Modal</button>
+      <dialog ref={dialogRef}>
+        <p>Modal content</p>
+        <button onClick={closeModal}>Close</button>
+      </dialog>
+    </>
+  );
+}`,skills:[`HTML`]},{question:`Какие группы HTTP-кодов ответов существуют и что они означают?`,shortAnswer:`HTTP-коды ответов делятся на пять групп. 1xx — информационные, 2xx — успешные, 3xx — перенаправления, 4xx — ошибки клиента, 5xx — ошибки сервера. Каждая группа имеет своё значение и помогает понять результат запроса.`,longAnswer:"Группы HTTP-кодов ответов\nHTTP-коды ответов — это трёхзначные числа, которые сервер отправляет клиенту в ответ на запрос. Они делятся на пять групп, каждая из которых имеет своё назначение. Понимание этих кодов помогает разработчикам быстро диагностировать проблемы в работе веб-приложений.\n1xx: Информационные\nКоды этой группы сообщают, что запрос получен и обрабатывается. Они редко используются в повседневной практике, но важны для протоколов вроде WebSocket. Пример: `100 Continue` — клиент может продолжать отправку тела запроса.\n2xx: Успешные\nЭти коды указывают, что запрос был успешно обработан. Самый известный — `200 OK`, который возвращается при успешном GET-запросе. `201 Created` используется после создания ресурса (например, при POST). `204 No Content` означает успех, но без тела ответа.\n3xx: Перенаправления\nКоды этой группы говорят, что для выполнения запроса нужно выполнить дополнительные действия. `301 Moved Permanently` — ресурс перемещён навсегда, `302 Found` — временное перенаправление. `304 Not Modified` используется для кэширования.\n4xx: Ошибки клиента\nЭти коды указывают на проблемы со стороны клиента. `400 Bad Request` — неверный синтаксис запроса. `401 Unauthorized` — требуется аутентификация. `403 Forbidden` — доступ запрещён. `404 Not Found` — ресурс не найден. `429 Too Many Requests` — превышен лимит запросов.\n5xx: Ошибки сервера\nКоды этой группы сигнализируют о проблемах на стороне сервера. `500 Internal Server Error` — общая ошибка сервера. `502 Bad Gateway` — неверный ответ от вышестоящего сервера. `503 Service Unavailable` — сервер временно недоступен.\nПример использования\n\nВ этом примере мы обрабатываем разные коды ответов, чтобы корректно реагировать на успех или ошибку.\nВывод\nЗнание групп HTTP-кодов необходимо для отладки сетевых запросов, настройки серверов и создания надёжных клиент-серверных приложений. Это базовый навык для любого веб-разработчика.",codeExample:`fetch('/api/data')
+  .then(response => {
+    if (response.status === 200) {
+      return response.json();
+    } else if (response.status === 404) {
+      console.error('Resource not found');
+    } else if (response.status === 500) {
+      console.error('Server error');
+    }
+  });`,skills:[`HTML`]},{question:`Как работает IntersectionObserver под капотом на уровне браузера?`,shortAnswer:`IntersectionObserver использует внутренний механизм браузера для асинхронного отслеживания пересечения элемента с его родителем или областью просмотра. Браузер оптимизирует проверки, запуская их в рамках цикла событий, обычно перед рендерингом. Это позволяет избежать дорогих вычислений на главном потоке и обеспечивает плавную производительность.`,longAnswer:`Как работает IntersectionObserver под капотом
+IntersectionObserver — это API браузера, который позволяет асинхронно отслеживать, когда элемент пересекается с его родительским контейнером или областью просмотра. В отличие от ручного прослушивания событий scroll, которые могут вызывать множество вычислений на главном потоке, IntersectionObserver использует внутренние оптимизации браузера.
+Внутренний механизм
+Браузер реализует IntersectionObserver на уровне движка рендеринга. Когда вы создаете наблюдатель, браузер регистрирует его в специальной структуре данных, связанной с деревом DOM. Проверки пересечений выполняются не на каждом кадре анимации, а в рамках цикла событий, обычно перед этапом рендеринга. Это позволяет браузеру группировать изменения и минимизировать нагрузку.
+Пример кода
+
+Оптимизации
+
+- Браузер использует аппаратное ускорение для определения видимости, не загружая главный поток.
+- Проверки выполняются только при изменении прокрутки, размера окна или DOM, а не на каждом событии scroll.
+- IntersectionObserver поддерживает пороги (threshold), что позволяет точно контролировать, когда срабатывать.
+Вывод
+IntersectionObserver — это эффективный инструмент для реализации ленивой загрузки, бесконечной прокрутки и анимаций, так как он использует внутренние механизмы браузера для минимизации нагрузки на производительность.`,codeExample:`const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log('Элемент видим');
+    }
+  });
+}, { threshold: 0.5 });
+
+const target = document.getElementById('myElement');
+observer.observe(target);`,skills:[`HTML`]},{question:`Что такое fetch и что возвращает вызов response.json()?`,shortAnswer:`fetch — это встроенный в браузер метод для выполнения HTTP-запросов. Он возвращает Promise, который разрешается в объект Response. Вызов response.json() также возвращает Promise, который извлекает тело ответа и парсит его как JSON. Это асинхронная операция, поэтому нужно использовать await или .then().`,longAnswer:`Что такое fetch?
+fetch — это встроенный в браузер API для выполнения HTTP-запросов. Он заменяет устаревший XMLHttpRequest и предоставляет более простой и гибкий интерфейс на основе Promise. fetch принимает URL и опциональный объект с настройками (метод, заголовки, тело запроса) и возвращает Promise, который разрешается в объект Response.
+Что возвращает response.json()?
+Метод response.json() вызывается на объекте Response и возвращает Promise, который разрешается в результат парсинга тела ответа как JSON. Это асинхронная операция, так как тело ответа может быть большим и читается потоком. Если тело ответа не является валидным JSON, Promise будет отклонён с ошибкой.
+Пример использования
+
+В этом примере fetch отправляет GET-запрос, затем проверяется статус ответа, и если всё в порядке, вызывается response.json() для извлечения данных. Обратите внимание, что response.json() сам по себе асинхронен, поэтому его нужно обрабатывать через .then() или await.
+Вывод
+fetch и response.json() — это основа для работы с HTTP в современных веб-приложениях. Они позволяют легко получать и отправлять данные в формате JSON, что особенно полезно при взаимодействии с REST API. Используйте их для асинхронной загрузки данных на клиенте.`,codeExample:`fetch('https://api.example.com/data')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // возвращает Promise
+  })
+  .then(data => {
+    console.log(data); // обрабатываем данные
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+  });`,skills:[`HTML`]},{question:`Какие браузерные хранилища подходят для кэширования данных и в чём их отличия?`,shortAnswer:`Основные браузерные хранилища для кэширования: localStorage, sessionStorage, cookies, IndexedDB и Cache Storage. localStorage хранит данные до 5-10 МБ без срока действия, sessionStorage — до закрытия вкладки, cookies — до 4 КБ с истечением, IndexedDB — большие объёмы структурированных данных, Cache Storage — для HTTP-ответов. Выбор зависит от объёма и времени хранения.`,longAnswer:`Обзор браузерных хранилищ
+Для кэширования данных на стороне клиента в браузере доступно несколько механизмов: localStorage, sessionStorage, cookies, IndexedDB и Cache Storage. Каждый из них имеет свои особенности по объёму, времени жизни и способу доступа, что определяет их применение.
+localStorage
+Хранит данные в виде пар ключ-значение (строки) с лимитом около 5-10 МБ. Данные сохраняются после закрытия браузера и не имеют срока действия. Подходит для кэширования небольших объёмов статической информации, например, настроек пользователя.
+
+sessionStorage
+Аналогичен localStorage, но данные живут только в рамках текущей вкладки и удаляются при её закрытии. Лимит также около 5-10 МБ. Используется для временных данных, например, состояния формы на одной странице.
+
+Cookies
+Небольшие текстовые данные до 4 КБ, которые автоматически отправляются на сервер с каждым HTTP-запросом. Имеют срок действия, задаваемый через Expires или Max-Age. Используются для аутентификации и отслеживания сессий, но не для кэширования больших объёмов.
+
+IndexedDB
+Объектно-ориентированная база данных в браузере, поддерживающая большие объёмы (сотни МБ и более). Позволяет хранить структурированные данные, включая файлы и Blob. Асинхронный доступ через транзакции. Идеален для кэширования сложных данных, например, офлайн-приложений.
+
+Cache Storage
+Часть Service Worker API, предназначенная для кэширования HTTP-ответов. Позволяет сохранять запросы и ответы для работы в офлайн-режиме. Лимит зависит от браузера, но обычно значительный. Используется в Progressive Web Apps (PWA).
+
+Вывод
+Выбор хранилища зависит от задачи: для небольших строковых данных с длительным хранением используйте localStorage, для временных — sessionStorage, для аутентификации — cookies, для больших объёмов структурированных данных — IndexedDB, для кэширования HTTP-запросов в PWA — Cache Storage. Правильное применение этих механизмов улучшает производительность и пользовательский опыт.`,codeExample:`// Сохранение в localStorage
+localStorage.setItem('theme', 'dark');
+// Чтение
+const theme = localStorage.getItem('theme');
+console.log(theme); // 'dark'
+
+// Сохранение в sessionStorage
+sessionStorage.setItem('formData', JSON.stringify({name: 'John'}));
+// Чтение
+const data = JSON.parse(sessionStorage.getItem('formData'));
+
+// Установка cookie
+document.cookie = 'sessionId=abc123; max-age=3600; path=/';
+// Чтение всех cookies
+console.log(document.cookie);
+
+// Открытие базы данных
+const request = indexedDB.open('myDB', 1);
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction(['store'], 'readonly');
+  const store = transaction.objectStore('store');
+  const getRequest = store.get('key');
+  getRequest.onsuccess = () => console.log(getRequest.result);
+};
+
+// Открытие кэша и добавление ответа
+caches.open('v1').then(cache => {
+  cache.add('/api/data');
+});
+// Чтение из кэша
+caches.match('/api/data').then(response => {
+  if (response) console.log('Данные из кэша');
+});`,skills:[`HTML`]},{question:`Какой тип по умолчанию имеет элемент <button> в HTML?`,shortAnswer:`По умолчанию элемент имеет тип "submit". Это означает, что при нажатии на кнопку внутри формы она отправляет данные на сервер. Если кнопка находится вне формы, она не выполняет никаких действий. Чтобы изменить поведение, нужно явно указать атрибут type="button".`,longAnswer:'Тип по умолчанию для элемента\nВ HTML элемент по умолчанию имеет тип `submit`. Это важная особенность, которая часто приводит к неожиданному поведению, если разработчик не указывает атрибут `type` явно. Когда кнопка находится внутри формы, нажатие на неё вызывает отправку данных формы на сервер. Если кнопка расположена вне формы, она не выполняет никаких действий.\nПримеры использования\nРассмотрим простой пример формы:\n\nВ этом случае кнопка отправит форму. Чтобы предотвратить отправку, нужно явно указать `type="button"`:\n\nТакже существуют типы `reset` (сбрасывает форму) и `submit` (отправляет форму).\nВывод\nЗнание типа по умолчанию помогает избежать ошибок при работе с формами. Всегда указывайте атрибут `type` для кнопок, чтобы контролировать их поведение.',codeExample:`<form action="/submit" method="post">
+  <input type=  ext" name="username">
+  <button>Отправить</button>
+</form>
+
+<button type="button">Нажми меня</button>`,skills:[`HTML`]},{question:`Какие дочерние теги используются внутри <details> для создания аккордеона?`,shortAnswer:`Внутри используются теги для заголовка видимой части и произвольное содержимое (например, ,
+) для скрываемого блока. всегда первый дочерний элемент, иначе браузер создаст его автоматически. Атрибут open делает аккордеон развёрнутым по умолчанию.`,longAnswer:`Основные дочерние теги
+Элемент
+предназначен для создания раскрывающегося блока (аккордеона) без использования JavaScript. Он поддерживает два основных дочерних тега:
+
+- — обязательный тег, который задаёт видимый заголовок. Если его не указать, браузер автоматически добавит текст "Details".
+- Любые другие HTML-теги — содержимое, которое будет скрыто или показано при клике на . Это могут быть ,
+, , и т.д.
+Пример кода
+
+Атрибут open
+Чтобы аккордеон был развёрнут изначально, добавьте атрибут \`open\` к
+:
+
+Вывод
+Используйте
+и для простых аккордеонов без JavaScript, когда нужно скрыть дополнительную информацию, например, FAQ или спойлеры. Это улучшает доступность и упрощает код.`,codeExample:`<details>
+  <summary>Нажми, чтобы узнать больше</summary>
+  <p>Это скрытый текст, который появляется при клике.</p>
+  <ul>
+    <li>Пункт 1</li>
+    <li>Пункт 2</li>
+  </ul>
+</details>
+
+<details open>
+  <summary>Уже открыто</summary>
+  <p>Этот блок виден сразу.</p>
+</details>`,skills:[`HTML`]},{question:`Какой HTML-тег использовать для кнопки, открывающей модальное окно?`,shortAnswer:`Для кнопки, открывающей модальное окно, используйте тег . Он семантически правильный, доступен для клавиатуры и скринридеров. Не используйте или с обработчиками кликов, так как они не имеют встроенной доступности.`,longAnswer:'Правильный HTML-тег для кнопки модального окна\nДля создания кнопки, которая открывает модальное окно, следует использовать тег `<button>`. Этот тег семантически обозначает интерактивный элемент, который выполняет действие при нажатии. В отличие от `<div>` или `<span>`, `<button>` по умолчанию доступен для фокусировки с клавиатуры и корректно обрабатывается скринридерами, что улучшает доступность (accessibility).\nПример кода\n\nПочему не стоит использовать другие теги\n\n- `<div>` или `<span>` не имеют встроенной роли кнопки, что требует дополнительных атрибутов ARIA (например, `role="button"`) и ручной обработки клавиатурных событий.\n- Использование `<a>` с href="#" может привести к нежелательной навигации или изменению URL, если не предотвратить стандартное поведение.\nВывод\nИспользуйте `<button>` для любых действий, включая открытие модальных окон. Это обеспечивает семантическую правильность, доступность и простоту реализации.',codeExample:`<button id="openModalBtn">Открыть модальное окно</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Содержимое модального окна.</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('openModalBtn').addEventListener('click', function() {
+    document.getElementById('myModal').style.display = 'block';
+  });
+<\/script>`,skills:[`HTML`]},{question:`Какой HTML-тег использовать для ссылки-кнопки, выполняющей навигацию по странице?`,shortAnswer:`Для ссылки-кнопки, выполняющей навигацию по странице, используйте тег с атрибутом href. Это семантически правильный элемент для перехода между страницами или якорями. Не используйте для навигации, так как он предназначен для действий внутри страницы.`,longAnswer:"Основная концепция\nДля создания ссылки, которая перенаправляет пользователя на другую страницу или к якорю на текущей странице, следует использовать тег `<a>` (anchor). Этот тег является семантически правильным элементом HTML для навигации. Атрибут `href` указывает целевой URL или идентификатор якоря (например, `#section`).\nПочему не `<button>`?\nТег `<button>` предназначен для выполнения действий внутри страницы, таких как отправка формы или вызов JavaScript-функции. Использование `<button>` для навигации нарушает семантику HTML и может ухудшить доступность для пользователей скринридеров и поисковых систем.\nПример кода\n\nСтилизация под кнопку\nЕсли нужно, чтобы ссылка выглядела как кнопка, используйте CSS для стилизации тега `<a>`. Это сохранит семантику и обеспечит правильное поведение.\n\nВывод\nИспользуйте тег `<a>` с атрибутом `href` для любой навигации по странице или между страницами. Это обеспечивает семантическую правильность, доступность и корректную индексацию поисковыми системами.",codeExample:`<!-- Правильно: ссылка для навигации -->
+<a href="/about">О нас</a>
+
+<!-- Ссылка на якорь на той же странице -->
+<a href="#features">Перейти к функциям</a>
+
+<!-- Неправильно: кнопка для навигации -->
+<button onclick="location.href='/about'">О нас</button>
+
+<a href="/register" class="button">Зарегистрироваться</a>`,skills:[`HTML`]},{question:`Почему тег <details> не всегда подходит для реализации аккордеона с анимацией?`,shortAnswer:`Тег не поддерживает анимацию раскрытия/сворачивания через CSS transition или animation, так как его высота меняется мгновенно. Для плавной анимации приходится использовать JavaScript, что усложняет код. Кроме того, не позволяет управлять состоянием нескольких элементов одновременно, что необходимо для аккордеона.`,longAnswer:`Почему не подходит для анимированного аккордеона?
+Тег
+— это нативный HTML-элемент для создания раскрывающегося контента. Однако его поведение не соответствует требованиям аккордеона с анимацией по нескольким причинам.
+Отсутствие CSS-анимации
+Браузеры не поддерживают анимацию свойства \`height\` или \`max-height\` для
+, так как его раскрытие происходит мгновенно. CSS transition не срабатывает, потому что изменение состояния не является плавным.
+
+Управление состоянием
+Аккордеон требует, чтобы при открытии одного элемента другие закрывались.
+не предоставляет встроенного механизма для этого — нужно использовать JavaScript для управления атрибутом \`open\` у всех элементов.
+
+Ограничения стилизации
+Стилизация
+ограничена: нельзя легко изменить иконку или анимацию маркера без дополнительных CSS-трюков. Это усложняет создание единообразного дизайна.
+Вывод
+Используйте
+для простых раскрывающихся блоков без анимации. Для аккордеона с плавным открытием/закрытием и синхронизацией состояний лучше реализовать кастомный компонент на JavaScript с CSS transition.`,codeExample:`/* Не работает анимация */
+details {
+  transition: height 0.3s ease;
+}
+details[open] {
+  height: auto;
+}
+
+// Пример ручного управления
+const details = document.querySelectorAll('details');
+details.forEach(d => {
+  d.addEventListener('toggle', () => {
+    details.forEach(other => {
+      if (other !== d) other.removeAttribute('open');
+    });
+  });
+});`,skills:[`HTML`]},{question:`Какие семантические HTML-теги можно использовать для реализации аккордеона без JavaScript?`,shortAnswer:`Для реализации аккордеона без JavaScript можно использовать теги и . Каждый блок аккордеона оборачивается в , а заголовок — в . При клике на браузер автоматически раскрывает или скрывает содержимое . Это семантически правильный и доступный способ создания простых аккордеонов.`,longAnswer:"Использование семантических тегов для аккордеона\nДля создания аккордеона без JavaScript идеально подходят теги `<details>` и `<summary>`. Они являются частью HTML5 и предоставляют встроенную функциональность раскрытия и скрытия содержимого. Это семантически корректно, так как браузеры и вспомогательные технологии (например, скринридеры) правильно интерпретируют эти элементы.\nКак это работает\nКаждый раздел аккордеона оборачивается в `<details>`. Внутри него первый дочерний элемент — `<summary>`, который служит заголовком. Остальное содержимое будет скрыто до клика. При клике на `<summary>` браузер переключает атрибут `open` у `<details>`, показывая или скрывая содержимое.\nПример кода\n\nОсобенности и стилизация\nПо умолчанию `<details>` отображается как блок с маркером (треугольником) слева от `<summary>`. Вы можете стилизовать его с помощью CSS, например, убрать маркер или добавить анимацию. Однако для сложных аккордеонов с одновременным открытием только одного раздела потребуется JavaScript, так как HTML не предоставляет такой функциональности из коробки.\nВывод\nТеги `<details>` и `<summary>` — это простой и доступный способ создания аккордеонов без JavaScript. Они подходят для случаев, когда не требуется сложное поведение, например, для FAQ или документации. Если нужна более тонкая настройка, стоит рассмотреть JavaScript-решения.",codeExample:`<details>
+  <summary>Раздел 1</summary>
+  <p>Содержимое первого раздела.</p>
+</details>
+<details>
+  <summary>Раздел 2</summary>
+  <p>Содержимое второго раздела.</p>
+</details>
+<details>
+  <summary>Раздел 3</summary>
+  <p>Содержимое третьего раздела.</p>
+</details>`,skills:[`HTML`]},{question:`Какие диапазоны HTTP-статус-кодов относятся к ошибкам клиента, а какие — к ошибкам сервера?`,shortAnswer:`HTTP-статус-коды делятся на пять классов. Коды 4xx (400–499) обозначают ошибки клиента, например, 404 Not Found или 400 Bad Request. Коды 5xx (500–599) указывают на ошибки сервера, такие как 500 Internal Server Error или 503 Service Unavailable. Понимание этих диапазонов помогает быстро определить, кто виноват в проблеме — клиент или сервер.`,longAnswer:`Классификация HTTP-статус-кодов
+HTTP-статус-коды делятся на пять классов, каждый из которых начинается с определённой цифры. Первая цифра кода указывает на категорию ответа. Для диагностики ошибок наиболее важны два диапазона: 4xx (ошибки клиента) и 5xx (ошибки сервера).
+Ошибки клиента (4xx)
+Диапазон 400–499 означает, что запрос содержит некорректные данные или не может быть обработан из-за действий клиента. Примеры:
+
+- 400 Bad Request — неверный синтаксис запроса.
+- 401 Unauthorized — требуется аутентификация.
+- 403 Forbidden — доступ запрещён, даже при аутентификации.
+- 404 Not Found — ресурс не найден.
+- 429 Too Many Requests — превышен лимит запросов.
+Ошибки сервера (5xx)
+Диапазон 500–599 указывает на то, что сервер не смог выполнить запрос из-за внутренней проблемы. Примеры:
+
+- 500 Internal Server Error — общая ошибка сервера.
+- 502 Bad Gateway — неверный ответ от вышестоящего сервера.
+- 503 Service Unavailable — сервер временно недоступен (например, перегрузка).
+- 504 Gateway Timeout — превышено время ожидания от вышестоящего сервера.
+Пример кода обработки статусов
+
+В этом примере код проверяет диапазон статуса и выводит соответствующее сообщение. Это помогает разработчику быстро понять, где искать проблему.
+Вывод: Знание диапазонов HTTP-статус-кодов необходимо для эффективной отладки веб-приложений, написания корректной обработки ошибок на клиенте и сервере, а также для анализа логов и мониторинга.`,codeExample:`fetch('/api/data')
+  .then(response => {
+    if (response.status >= 400 && response.status < 500) {
+      console.error('Ошибка клиента:', response.status);
+    } else if (response.status >= 500) {
+      console.error('Ошибка сервера:', response.status);
+    }
+    return response.json();
+  })
+  .catch(error => console.error('Сетевая ошибка:', error));`,skills:[`HTML`]},{question:`Как реализовать анимированный аккордеон без JavaScript, используя HTML-элемент <label>, <input type="checkbox"> и CSS-переход?`,shortAnswer:`Аккордеон без JavaScript реализуется с помощью скрытого чекбокса и метки. Чекбокс хранит состояние открытия/закрытия, а CSS-селектор :checked управляет отображением контента. Для анимации используется CSS-переход свойства max-height или transform. Это простой и доступный способ создания интерактивных элементов без скриптов.`,longAnswer:'Принцип работы аккордеона на CSS\nАккордеон без JavaScript строится на "чекбокс-хаке": скрытый элемент `<input type="checkbox">` хранит состояние (открыт/закрыт), а связанный с ним `<label>` служит видимой кнопкой. Когда пользователь кликает по метке, чекбокс переключается, и CSS-селектор `:checked` применяет стили к соседним элементам, показывая или скрывая контент.\nБазовая структура HTML\n\nCSS для анимации\nДля плавного открытия используется свойство `max-height` с переходом. Изначально контент скрыт (`max-height: 0; overflow: hidden`), а при активации чекбокса — расширяется до большого значения.\n\nПрименение и ограничения\nТакой подход подходит для простых интерфейсов, где не требуется сложная логика или множественные открытые панели. Для аккордеона с единственной открытой секцией можно использовать `<input type=adio">` с одинаковым именем. Однако метод не поддерживает анимацию высоты точно (из-за фиксированного max-height) и неудобен для динамического контента.\nВывод\nЧисто CSS-аккордеон — отличное решение для статичных страниц, где важна производительность и отсутствие зависимостей от JavaScript. Он прост в реализации, но ограничен в гибкости и точности анимации.',codeExample:`<div class="accordion">
+  <input type="checkbox" id="item1" class="accordion-input">
+  <label for="item1" class="accordion-label">Заголовок 1</label>
+  <div class="accordion-content">
+    <p>Содержимое панели.</p>
+  </div>
+</div>
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-input:checked ~ .accordion-content {
+  max-height: 200px; /* достаточно большое значение */
+}`,skills:[`HTML`]},{question:`Как работает onSubmit на форме и почему может не срабатывать в некоторых случаях?`,shortAnswer:`onSubmit — это событие, которое срабатывает при отправке формы, например, по нажатию кнопки submit или клавиши Enter. Если оно не срабатывает, возможные причины: кнопка не имеет type="submit", форма вложена в другую форму, или JavaScript-ошибка в обработчике. Также стоит проверить, что событие не отменено через preventDefault без необходимости.`,longAnswer:`Как работает onSubmit
+Событие onSubmit в HTML-форме возникает, когда пользователь пытается отправить данные, например, нажав кнопку с type="submit" или клавишу Enter внутри поля ввода. Обработчик этого события позволяет перехватить отправку, выполнить валидацию или асинхронный запрос, а затем либо разрешить отправку, либо отменить её с помощью метода event.preventDefault().
+Почему может не срабатывать
+
+- Кнопка отправки не имеет атрибута type="submit" (по умолчанию type="button" в некоторых браузерах).
+- Форма вложена в другую форму — вложенные формы не поддерживаются HTML.
+- Ошибка в JavaScript-коде обработчика, которая прерывает выполнение.
+- Использование event.preventDefault() без последующей отправки.
+- Поле ввода не находится внутри тега .
+Пример кода
+
+Вывод
+onSubmit — ключевой инструмент для контроля отправки форм в веб-приложениях. Его стоит применять для валидации данных на клиенте, асинхронной отправки без перезагрузки страницы и улучшения пользовательского опыта. Всегда проверяйте структуру формы и наличие type="submit" у кнопки, чтобы избежать проблем.`,codeExample:`document.getElementById('myForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // отменяем стандартную отправку
+  const data = new FormData(event.target);
+  console.log('Данные формы:', Object.fromEntries(data));
+  // здесь можно отправить данные через fetch
+});`,skills:[`HTML`]},{question:`Как реализовать закрытие модального окна по клику на фон (click outside)?`,shortAnswer:`Для закрытия модального окна по клику на фон нужно добавить обработчик клика на оверлей (затемнённый фон). Внутри обработчика проверяем, что клик был именно по оверлею, а не по содержимому модального окна. Это можно сделать, сравнив event.target с элементом оверлея или используя event.stopPropagation() на содержимом модального окна.`,longAnswer:`Концепция закрытия модального окна по клику на фон
+Когда пользователь кликает на затемнённый фон (оверлей) модального окна, ожидается, что окно закроется. Это стандартный UX-паттерн, который улучшает взаимодействие с интерфейсом. Реализация основана на обработке событий клика и всплытии событий в DOM.
+Как это работает
+Оверлей — это родительский элемент, который занимает весь экран. Модальное окно находится внутри оверлея. При клике на оверлей событие всплывает, и мы можем перехватить его на уровне оверлея. Однако клик по содержимому модального окна также всплывает до оверлея, поэтому нужно отличать, был ли клик именно по оверлею, а не по его дочерним элементам.
+Пример реализации
+
+Где применяется
+
+- Веб-приложения с модальными окнами, диалогами, попапами.
+- Библиотеки UI (React, Vue) часто предоставляют встроенные решения.
+- Кастомные компоненты для улучшения UX.
+Вывод
+Используйте проверку event.target или stopPropagation для надёжного закрытия модального окна по клику на фон. Это простой и эффективный способ улучшить взаимодействие пользователя с интерфейсом.`,codeExample:`// HTML: <div id="overlay"><div id="modal">...</div></div>
+
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+
+overlay.addEventListener('click', (event) => {
+  // Если кликнули именно по оверлею, а не по модалке
+  if (event.target === overlay) {
+    closeModal();
+  }
+});
+
+// Альтернативный подход: остановить всплытие внутри модалки
+modal.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+overlay.addEventListener('click', () => {
+  closeModal();
+});`,skills:[`HTML`]},{question:`Чем отличается событие click от события input при обработке пользовательского ввода?`,shortAnswer:`Событие click срабатывает при клике мышью на элементе, а событие input — при изменении значения элемента ввода (например, текстового поля). Click используется для действий, таких как отправка формы, а input — для отслеживания каждого изменения ввода в реальном времени.`,longAnswer:"Различие между событиями click и input\nСобытия `click` и `input` относятся к разным типам взаимодействия пользователя с веб-страницей. `click` возникает при нажатии и отпускании кнопки мыши на элементе, в то время как `input` срабатывает при изменении значения элемента формы, такого как текстовое поле или ползунок.\nКогда и как применяются\nСобытие `click` часто используется для кнопок, ссылок и других интерактивных элементов, где требуется реакция на завершённое действие. Событие `input` применяется для полей ввода, чтобы реагировать на каждое изменение текста, например, для автодополнения или валидации в реальном времени.\nПримеры кода\n\nВ первом примере сообщение появляется только после клика, а во втором — каждое изменение текста выводится в консоль.\nВывод\nИспользуйте `click` для действий, требующих явного подтверждения, и `input` для мгновенной реакции на ввод данных, например, в поисковых подсказках или формах с динамической проверкой.",codeExample:`// Обработчик click для кнопки
+document.getElementById('myButton').addEventListener('click', function() {
+  alert('Кнопка нажата!');
+});
+
+// Обработчик input для текстового поля
+document.getElementById('myInput').addEventListener('input', function() {
+  console.log('Текущее значение:', this.value);
+});`,skills:[`HTML`]},{question:`Какое событие нужно слушать, чтобы реагировать на каждое изменение значения в текстовом поле?`,shortAnswer:`Событие 'input' срабатывает каждый раз, когда значение текстового поля изменяется, включая вставку, удаление или изменение через автозаполнение. В отличие от 'change', оно не ждет потери фокуса. Это основное событие для реактивного обновления данных в реальном времени.`,longAnswer:"Что такое событие input?\nСобытие `input` — это стандартное DOM-событие, которое возникает при каждом изменении значения элемента `<input>` или `<textarea>`. Оно срабатывает мгновенно после того, как пользователь ввел, удалил или вставил символ, включая действия через контекстное меню или автозаполнение браузера.\nОтличие от других событий\n\n- `change` — срабатывает только после потери фокуса и если значение изменилось. Не подходит для мгновенной реакции.\n- `keydown` / `keyup` — реагируют на нажатие клавиш, но не учитывают вставку мышью или автозаполнение.\n- `input` — универсально и надежно для отслеживания любых изменений значения.\nПример использования\n\nВ этом примере каждое изменение в поле выводит новое значение в консоль. Это полезно для поиска на лету, валидации в реальном времени или подсчета символов.\nВывод\nСобытие `input` — основной инструмент для реагирования на каждое изменение текстового поля. Его следует применять везде, где нужна мгновенная обратная связь от пользовательского ввода, например, в автокомплитах, фильтрах или формах с динамической валидацией.",codeExample:`const input = document.getElementById('myInput');
+input.addEventListener('input', function(event) {
+  console.log('Текущее значение:', event.target.value);
+});`,skills:[`HTML`]},{question:`Что такое контроллер в паттерне MVC?`,shortAnswer:`Контроллер в MVC — это компонент, который обрабатывает ввод пользователя, взаимодействует с моделью для обновления данных и передает результат представлению. Он выступает посредником между моделью и представлением, управляя логикой приложения. Например, при нажатии кнопки контроллер вызывает метод модели и обновляет интерфейс.`,longAnswer:`Что такое контроллер в MVC?
+Контроллер — это центральный элемент паттерна Model-View-Controller, который отвечает за обработку действий пользователя и координацию между моделью и представлением. Он принимает запросы (например, клики или ввод с клавиатуры), интерпретирует их и решает, какую логику выполнить. Контроллер не содержит бизнес-логики напрямую, а делегирует её модели, после чего обновляет представление.
+Как это работает?
+Когда пользователь взаимодействует с интерфейсом, контроллер получает событие, вызывает соответствующий метод модели для изменения данных, а затем уведомляет представление о необходимости перерисовки. Это обеспечивает разделение ответственности: модель управляет данными, представление — отображением, а контроллер — связью между ними.
+Пример кода
+
+Где применяется?
+MVC широко используется в веб-фреймворках (например, Ruby on Rails, Django, Spring MVC) и в разработке десктопных приложений. Контроллер упрощает тестирование и поддержку кода, так как логика ввода отделена от данных и интерфейса.
+Вывод: Контроллер в MVC необходим для организации чистого разделения ответственности, что делает приложение более модульным и удобным для расширения. Его стоит применять в проектах, где важна структурированность и масштабируемость.`,codeExample:`// Контроллер для управления пользователями
+class UserController {
+  constructor(model, view) {
+    this.model = model;
+    this.view = view;
+  }
+
+  // Обработка добавления пользователя
+  addUser(name) {
+    this.model.createUser(name);
+    this.view.renderUserList(this.model.getUsers());
+  }
+
+  // Обработка удаления пользователя
+  deleteUser(id) {
+    this.model.removeUser(id);
+    this.view.renderUserList(this.model.getUsers());
+  }
+}`,skills:[`HTML`]},{question:`Из каких логических частей состоит URL/URI запроса?`,shortAnswer:`URL состоит из нескольких логических частей: протокол (например, https), домен (или IP-адрес), порт (необязательно), путь к ресурсу, строка запроса (query parameters) и фрагмент (якорь). Эти части позволяют точно указать, где и как получить ресурс в сети.`,longAnswer:"Структура URL/URI\nURL (Uniform Resource Locator) — это адрес ресурса в сети. Он состоит из нескольких логических частей, каждая из которых выполняет свою функцию. Понимание этой структуры необходимо для корректной работы с HTTP-запросами, API и веб-разработкой в целом.\nОсновные компоненты\n\n- Протокол (scheme) — определяет способ передачи данных, например, `http`, `https`, `ftp`.\n- Домен (host) — имя сервера или IP-адрес, например, `example.com`.\n- Порт (port) — необязательный элемент, указывает номер порта на сервере (по умолчанию 80 для HTTP, 443 для HTTPS).\n- Путь (path) — указывает расположение ресурса на сервере, например, `/api/users`.\n- Строка запроса (query) — начинается с `?` и содержит параметры в формате `ключ=значение`, разделённые `&`.\n- Фрагмент (fragment) — начинается с `#` и указывает на конкретную часть ресурса (например, раздел на странице).\nПример\n\nВ этом примере: протокол — `https`, домен — `api.example.com`, порт — `8080`, путь — `/users`, строка запроса — `page=1&limit=10`, фрагмент — `section2`.\nПрименение\nЗнание структуры URL помогает правильно формировать запросы к API, обрабатывать параметры на сервере и клиенте, а также понимать, как браузер или HTTP-клиент интерпретирует адрес. Например, при разработке REST API важно правильно разбивать путь и query-параметры.\nВывод: Понимание компонентов URL необходимо для любой работы с веб-технологиями, от простого перехода по ссылкам до сложной интеграции микросервисов.",codeExample:`https://api.example.com:8080/users?page=1&limit=10#section2`,skills:[`HTML`]},{question:`Что такое присоединяемые свойства (Attached Property) в WPF?`,shortAnswer:`Присоединяемое свойство (Attached Property) — это специальный тип dependency property, который определен в одном классе, но может быть установлен на любом другом элементе. Оно позволяет дочерним элементам задавать значения свойств, влияющих на их расположение или поведение в родительском контейнере. Например, свойство Grid.Row задает строку сетки для элемента, хотя само свойство определено в классе Grid.`,longAnswer:`Что такое присоединяемые свойства?
+Присоединяемые свойства (Attached Properties) — это механизм в WPF, который позволяет одному элементу задавать значения свойств, определенных в другом классе. Это расширение системы dependency properties, где свойство объявляется в одном типе, но может быть установлено на любом объекте, поддерживающем dependency properties.
+Как это работает?
+Присоединяемые свойства реализуются через статические методы Set и Get, которые вызывают внутренние методы DependencyObject.SetValue и GetValue. В XAML они записываются в формате \`OwnerClass.PropertyName\`. Например, свойство \`Grid.Row\` позволяет задать строку сетки для любого дочернего элемента.
+
+Пример использования в XAML
+
+Здесь \`Grid.Row\` и \`Grid.Column\` — присоединяемые свойства, которые определяют позицию кнопки в сетке.
+Где применяется?
+Присоединяемые свойства широко используются в элементах управления компоновкой (Grid, Canvas, DockPanel), а также в стилях и триггерах. Они позволяют создавать гибкие и переиспользуемые компоненты, не нарушая иерархию классов.
+Вывод: Присоединяемые свойства — мощный инструмент WPF для разделения логики между родительскими и дочерними элементами. Их стоит применять, когда нужно задать поведение или расположение элемента в контексте другого контейнера, не изменяя сам элемент.`,codeExample:`// Определение присоединяемого свойства
+public static readonly DependencyProperty RowProperty =
+    DependencyProperty.RegisterAttached(
+        "Row",
+        typeof(int),
+        typeof(Grid),
+        new FrameworkPropertyMetadata(0));
+
+public static void SetRow(UIElement element, int value)
+{
+    element.SetValue(RowProperty, value);
+}
+
+public static int GetRow(UIElement element)
+{
+    return (int)element.GetValue(RowProperty);
+}
+
+<Grid>
+    <Button Grid.Row="1" Grid.Column="2" Content="Click" />
+</Grid>`,skills:[`HTML`]},{question:`Вызовет ли Reflow изменение свойств transform/translate у элемента?`,shortAnswer:`Нет, изменение свойств transform или translate не вызывает Reflow. Эти свойства обрабатываются на этапе композитинга, минуя этапы Layout и Paint. Это делает их идеальными для анимаций, так как они не пересчитывают геометрию других элементов и не вызывают дорогих перерисовок.`,longAnswer:`Что такое Reflow и как он работает?
+Reflow (или Layout) — это этап рендеринга, на котором браузер вычисляет геометрию элементов: их размеры, позицию и расположение относительно других элементов. Reflow вызывается изменениями, которые влияют на макет страницы, например, изменение ширины, высоты, margin, padding, display, позиционирования (top, left) и т.д. Это дорогостоящая операция, так как она может затронуть дочерние и родительские элементы.
+Почему transform/translate не вызывает Reflow?
+Свойства transform и translate (а также opacity, filter, will-change) обрабатываются на этапе композитинга (Compositing). Браузер создает для элемента отдельный слой (слой композитинга) и перемещает его с помощью GPU, не пересчитывая Layout и Paint. Это значит, что изменение transform не влияет на положение других элементов в потоке документа — элемент как бы "парит" над страницей.
+Пример кода
+
+Когда это важно?
+При создании анимаций, особенно с частотой 60fps, использование transform вместо left/top критически важно для производительности. Это стандартная практика в CSS-анимациях и JavaScript-библиотеках (например, GreenSock, Framer Motion).
+Вывод: Используйте transform/translate для анимаций перемещения, чтобы избежать Reflow и обеспечить плавную работу интерфейса, особенно на мобильных устройствах и при сложных макетах.`,codeExample:`// Плохо: вызывает Reflow при каждом кадре анимации
+const el = document.getElementById('box');
+el.style.left = '100px'; // Reflow!
+
+// Хорошо: не вызывает Reflow, использует композитинг
+el.style.transform = 'translateX(100px)'; // Нет Reflow`,skills:[`HTML`]},{question:`Как можно кастомизировать тему графика при использовании библиотеки Chart.js?`,shortAnswer:`Тему графика в Chart.js можно кастомизировать через глобальные настройки Chart.defaults, переопределяя цвета, шрифты и стили. Также можно использовать встроенные плагины, такие как Chart.plugins.register, или создавать собственные. Для отдельных графиков настройки передаются в объекте options при создании экземпляра.`,longAnswer:`Основные способы кастомизации темы в Chart.js
+Chart.js предоставляет гибкие возможности для изменения внешнего вида графиков, что позволяет адаптировать их под корпоративный стиль или конкретные требования дизайна. Кастомизация может быть выполнена на нескольких уровнях: глобальном, для конкретного графика или через плагины.
+Глобальная настройка темы
+Глобальные настройки задаются через объект \`Chart.defaults\`. Это позволяет изменить цвета, шрифты и другие параметры для всех графиков на странице. Например:
+
+Настройка для конкретного графика
+При создании графика можно передать объект \`options\` с индивидуальными настройками. Это переопределяет глобальные значения. Пример:
+
+Использование плагинов
+Chart.js поддерживает плагины, которые могут изменять тему. Например, плагин \`chartjs-plugin-datalabels\` позволяет настраивать подписи данных. Также можно создать собственный плагин для уникальных стилей:
+
+Вывод
+Кастомизация темы в Chart.js осуществляется через глобальные настройки, параметры конкретного графика или плагины. Это позволяет гибко управлять внешним видом визуализаций, делая их соответствующими требованиям дизайна и бренда.`,codeExample:`Chart.defaults.color = '#333';
+Chart.defaults.font.family = 'Arial';
+Chart.defaults.borderColor = '#ccc';
+
+const ctx = document.getElementById('myChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: { ... },
+  options: {
+    plugins: {
+      legend: {
+        labels: {
+          color: '#ff0000'
+        }
+      }
+    },
+    scales: {
+      y: {
+        grid: {
+          color: '#e0e0e0'
+        }
+      }
+    }
+  }
+});
+
+Chart.register({
+  id: 'customTheme',
+  beforeDraw: function(chart) {
+    const ctx = chart.ctx;
+    ctx.fillStyle = '#f5f5f5';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+  }
+});`,skills:[`HTML`]},{question:`Какие способы оптимизации Reflow/Repaint ты знаешь?`,shortAnswer:"Reflow (перекомпоновка) и Repaint (перерисовка) — это этапы рендеринга браузера. Reflow происходит при изменении геометрии элементов, а Repaint — при изменении стилей, не влияющих на размеры. Оптимизация включает минимизацию изменений DOM, использование классов вместо инлайн-стилей, применение `will-change`, `transform` и `opacity` для анимаций, а также пакетное чтение и запись свойств.",longAnswer:`Что такое Reflow и Repaint?
+Reflow (или layout) — это процесс вычисления размеров и позиций элементов на странице. Он запускается при любом изменении, которое влияет на геометрию: изменение ширины, высоты, добавление/удаление элементов, изменение шрифта и т.д. Repaint — это процесс отрисовки пикселей, который происходит после Reflow или при изменении визуальных свойств, не влияющих на геометрию (например, цвет фона, тень).
+Основные способы оптимизации
+
+- Минимизация Reflow: Избегайте частых изменений, вызывающих перекомпоновку. Например, вместо изменения стилей по одному, используйте классы или \`cssText\`.
+- Пакетное чтение и запись: Чтение свойств, вызывающих Reflow (например, \`offsetHeight\`), после записи может привести к принудительному Reflow. Группируйте чтения и записи отдельно.
+- Использование \`transform\` и \`opacity\`: Эти свойства обрабатываются на уровне композитинга и не вызывают Reflow или Repaint, что идеально для анимаций.
+- Применение \`will-change\`: Подсказывает браузеру, что элемент будет изменяться, позволяя заранее создать отдельный слой.
+- Избегание сложных селекторов: Хотя это влияет на Repaint меньше, сложные селекторы могут замедлить пересчет стилей.
+Пример кода
+
+Вывод
+Оптимизация Reflow и Repaint критична для производительности веб-приложений, особенно при анимациях и динамическом контенте. Используйте современные CSS-свойства, группируйте операции и избегайте принудительных перекомпоновок для плавного интерфейса.`,codeExample:`// Плохо: вызывает Reflow на каждой итерации
+for (let i = 0; i < 100; i++) {
+  const el = document.getElementById('item');
+  el.style.width = i + 'px';
+  console.log(el.offsetWidth); // принудительный Reflow
+}
+
+// Хорошо: пакетное чтение и запись
+const el = document.getElementById('item');
+const widths = [];
+for (let i = 0; i < 100; i++) {
+  widths.push(i);
+}
+for (let w of widths) {
+  el.style.width = w + 'px';
+}
+// Чтение после всех записей
+console.log(el.offsetWidth);`,skills:[`HTML`]},{question:`Что обозначает квадратная скобка в JSON?`,shortAnswer:`Квадратные скобки в JSON обозначают массив — упорядоченный список значений. Массив может содержать любые типы данных: строки, числа, объекты, другие массивы. Элементы разделяются запятыми.`,longAnswer:`Что такое квадратные скобки в JSON?
+В JSON квадратные скобки \`[]\` используются для обозначения массива. Массив — это упорядоченная коллекция значений, которая может содержать элементы любого типа: строки, числа, объекты, булевы значения, \`null\` или другие массивы.
+Синтаксис и примеры
+Массив начинается с \`[\` и заканчивается \`]\`. Элементы разделяются запятыми. Пример простого массива строк:
+
+Массив может содержать разные типы данных:
+
+Также массивы могут быть вложенными:
+
+Где применяется
+Массивы в JSON широко используются для передачи списков данных, например, списка пользователей, товаров или сообщений. Они являются основой для структурирования данных в API и конфигурационных файлах.
+Вывод
+Квадратные скобки в JSON обозначают массив, который позволяет хранить упорядоченные коллекции данных. Это ключевой элемент синтаксиса JSON, необходимый для работы с любыми списками в веб-разработке и обмене данными.`,codeExample:`["apple", "banana", "cherry"]
+
+[42, "hello", true, null, {"key": "value"}]
+
+[[1, 2], [3, 4], [5, 6]]`,skills:[`HTML`]},{question:`На какой вкладке DevTools можно увидеть отправляемые и получаемые сетевые запросы?`,shortAnswer:`Вкладка Network (Сеть) в инструментах разработчика браузера показывает все отправляемые и получаемые сетевые запросы. Вы можете увидеть заголовки, тело запроса и ответа, статус-коды, время выполнения и размер данных. Это помогает отлаживать проблемы с загрузкой ресурсов, API-запросами и производительностью.`,longAnswer:`Где смотреть сетевые запросы в DevTools
+В браузерных инструментах разработчика (DevTools) за анализ сетевой активности отвечает вкладка Network (в русской версии — «Сеть»). Она отображает все HTTP-запросы, которые отправляет страница: загрузку HTML, CSS, JavaScript, изображений, шрифтов, а также XHR/Fetch-запросы к API.
+Как использовать
+Откройте DevTools (F12 или Ctrl+Shift+I), перейдите на вкладку Network и обновите страницу. Вы увидите таблицу с запросами, где можно:
+
+- Фильтровать по типу (XHR, JS, CSS, Img, Doc и т.д.)
+- Просматривать заголовки запроса и ответа (Headers)
+- Смотреть тело ответа (Response) и отправленные данные (Payload)
+- Оценивать время выполнения (Timing) и размер (Size)
+Пример отладки
+Допустим, вы ожидаете, что при нажатии кнопки отправляется POST-запрос. Откройте Network, нажмите кнопку — появится новый запрос. Выберите его, перейдите на вкладку Payload, чтобы увидеть отправленные данные, и Response — чтобы проверить ответ сервера.
+
+В Network вы увидите этот запрос, его статус (200, 404, 500 и т.д.), время выполнения и содержимое.
+Вывод
+Вкладка Network — незаменимый инструмент для отладки сетевого взаимодействия, проверки корректности API-запросов, анализа производительности загрузки ресурсов и поиска ошибок на стороне клиента или сервера.`,codeExample:`// Пример: отправка POST-запроса через fetch
+fetch('/api/data', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ key: 'value' })
+})
+.then(res => res.json())
+.then(data => console.log(data));`,skills:[`HTML`]},{question:`Что такое нативное мобильное приложение?`,shortAnswer:`Нативное мобильное приложение создается специально для одной платформы, такой как iOS или Android, с использованием родных языков и инструментов (Swift/Objective-C для iOS, Kotlin/Java для Android). Оно имеет прямой доступ к аппаратным возможностям устройства, обеспечивая максимальную производительность и плавный пользовательский интерфейс. Такие приложения устанавливаются через официальные магазины приложений и могут использовать все функции ОС.`,longAnswer:`Что такое нативное мобильное приложение?
+Нативное мобильное приложение — это программа, разработанная для работы на конкретной операционной системе, такой как iOS или Android, с использованием официальных языков программирования и инструментов, предоставляемых платформой. Для iOS это Swift или Objective-C и среда Xcode, для Android — Kotlin или Java и Android Studio. Основное преимущество нативного подхода — полная интеграция с устройством и его возможностями.
+Ключевые особенности
+
+- Прямой доступ к аппаратным компонентам: камера, GPS, акселерометр, датчики.
+- Высокая производительность, так как код компилируется под конкретную архитектуру.
+- Использование всех возможностей ОС: push-уведомления, виджеты, фоновые задачи.
+- Соответствие гайдлайнам платформы (Human Interface Guidelines для iOS, Material Design для Android).
+Пример кода (iOS, Swift)
+
+Пример кода (Android, Kotlin)
+
+Когда применять нативную разработку?
+Нативный подход идеален для приложений, требующих высокой производительности (игры, графические редакторы), глубокой интеграции с устройством (фитнес-трекеры, камеры) или использования специфических функций платформы. Он также предпочтителен, если важна безупречная работа интерфейса и соответствие стандартам платформы. Однако нативная разработка требует отдельных кодовых баз для каждой платформы, что увеличивает время и стоимость разработки.
+Вывод: нативные приложения обеспечивают наилучший пользовательский опыт и производительность, но требуют больше ресурсов по сравнению с кроссплатформенными решениями.`,codeExample:`import UIKit
+
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Настройка интерфейса
+        let label = UILabel()
+        label.text = "Привет, мир!"
+        label.textAlignment = .center
+        view.addSubview(label)
+    }
+}
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val textView = findViewById<TextView>(R.id.textView)
+        textView.text = "Привет, мир!"
+    }
+}`,skills:[`HTML`]},{question:`Какие типы значений могут быть в JSON?`,shortAnswer:`JSON поддерживает шесть типов значений: строка (string), число (number), логическое значение (boolean), null, объект (object) и массив (array). Строки всегда в двойных кавычках, числа могут быть целыми или с плавающей точкой. Объекты и массивы могут быть вложенными.`,longAnswer:'Типы значений в JSON\nJSON (JavaScript Object Notation) — это легковесный формат обмена данными, основанный на подмножестве синтаксиса JavaScript. Он поддерживает строго ограниченный набор типов данных, что обеспечивает его универсальность и простоту парсинга в любом языке программирования.\nСписок поддерживаемых типов\n\n- Строка (string) — последовательность символов Unicode, заключенная в двойные кавычки. Пример: `"hello"`. Обязательно экранирование специальных символов, таких как `"""` или `"\n`.\n- Число (number) — целое или число с плавающей точкой. Не использует кавычки. Примеры: `42`, `-3.14`, `1.5e10`. Не поддерживает NaN, Infinity или ведущие нули.\n- Логическое значение (boolean) — `true` или `false` без кавычек.\n- null — специальное значение, обозначающее отсутствие данных. Пишется как `null`.\n- Объект (object) — неупорядоченный набор пар ключ-значение, заключенный в фигурные скобки `{}`. Ключи — всегда строки в двойных кавычках.\n- Массив (array) — упорядоченный список значений, заключенный в квадратные скобки `[]`. Элементы могут быть любого типа, включая другие массивы или объекты.\nПример корректного JSON\n\nЧто не поддерживается\nJSON не поддерживает даты, функции, undefined, символы или комментарии. Даты обычно передаются как строки в формате ISO 8601. Это ограничение делает JSON безопасным для передачи между системами.\nВывод: Знание типов JSON необходимо для корректной сериализации данных, написания API и конфигурационных файлов. Всегда проверяйте, что ваши данные соответствуют этим шести типам, чтобы избежать ошибок парсинга.',codeExample:`{
+  
+ame": "Alice",
+  "age": 30,
+  "isStudent": false,
+  "address": null,
+  "hobbies": [eading", 42, true],
+  "metadata": {
+    "created": "2023-01-01"
+  }
+}`,skills:[`HTML`]},{question:`Как работать с документацией API в формате Swagger?`,shortAnswer:`Swagger — это инструмент для описания REST API в формате OpenAPI. Он позволяет автоматически генерировать интерактивную документацию, где можно отправлять запросы и видеть ответы. Документация описывает эндпоинты, параметры, заголовки, тела запросов и форматы ответов. Swagger упрощает взаимодействие между разработчиками и тестировщиками, а также позволяет автоматизировать тестирование.`,longAnswer:`Что такое Swagger и зачем он нужен?
+Swagger (теперь часть спецификации OpenAPI) — это стандарт описания REST API. Он представляет собой YAML или JSON файл, который содержит полную информацию о всех эндпоинтах API: методы, пути, параметры, заголовки, тела запросов, коды ответов и схемы данных. Swagger UI — это инструмент, который визуализирует это описание в виде интерактивной веб-страницы, где можно прямо в браузере отправлять запросы к API и видеть ответы.
+Как использовать Swagger?
+Основные сценарии использования:
+
+- Разработка: Swagger служит единым источником правды для фронтенда и бэкенда. Фронтенд-разработчик может видеть, какие данные ожидает API, и не ждать готовности бэкенда.
+- Тестирование: Swagger UI позволяет быстро проверить работу эндпоинтов без написания кода. Также существуют инструменты для автоматической генерации тестов на основе Swagger-спецификации.
+- Документирование: Swagger автоматически генерирует читаемую документацию, которая всегда актуальна, если обновлять спецификацию.
+Пример кода (фрагмент Swagger-спецификации в YAML)
+
+Вывод
+Swagger — это незаменимый инструмент для командной разработки REST API. Он улучшает коммуникацию, ускоряет разработку и тестирование, а также обеспечивает актуальную документацию. Применять его стоит в любом проекте, где есть API, особенно при работе в распределённой команде или при необходимости интеграции с внешними сервисами.`,codeExample:`openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string`,skills:[`HTML`]},{question:`Как определить, какие данные нужно хранить для сущности "комментарий"?`,shortAnswer:`Для сущности комментарий нужно хранить уникальный идентификатор, текст комментария, дату и время создания, идентификатор автора и идентификатор родительской сущности (например, поста). Также можно добавить флаг редактирования, лайки и идентификатор родительского комментария для вложенности. Эти данные обеспечивают базовую функциональность и связь с другими сущностями.`,longAnswer:`Определение данных для сущности комментарий
+При проектировании структуры данных для комментария необходимо учитывать его роль в системе: комментарий связывает пользователя с контентом и может поддерживать вложенность. Основные поля включают уникальный идентификатор (id), текст (body), дату создания (created_at), идентификатор автора (author_id) и идентификатор родительской сущности (post_id). Дополнительно можно хранить дату редактирования (updated_at), количество лайков (likes_count) и идентификатор родительского комментария (parent_id) для древовидной структуры.
+Пример структуры в SQL
+
+Применение
+Такая структура используется в блогах, форумах и социальных сетях. Поле parent_id позволяет реализовать вложенные комментарии без дополнительных таблиц. Индексы на author_id и post_id ускоряют запросы. Вывод: храните минимально необходимые поля для функциональности, добавляя опциональные по мере необходимости.`,codeExample:`CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP,
+  author_id INTEGER REFERENCES users(id),
+  post_id INTEGER REFERENCES posts(id),
+  parent_id INTEGER REFERENCES comments(id),
+  likes_count INTEGER DEFAULT 0
+);`,skills:[`HTML`]},{question:`Как использование S3/CDN помогает решить проблему географической удалённости пользователей от сервера?`,shortAnswer:`S3 хранит статические файлы в облаке, а CDN кэширует их на серверах, расположенных ближе к пользователям. Когда пользователь запрашивает файл, CDN отдаёт его с ближайшего edge-сервера, а не из центрального хранилища. Это снижает задержку и ускоряет загрузку сайта или приложения.`,longAnswer:`Как S3 и CDN решают проблему географической удалённости
+Когда сервер находится далеко от пользователя, каждый запрос проходит через множество сетевых узлов, что увеличивает задержку (latency). Это особенно критично для статического контента: изображений, CSS, JavaScript, видео. S3 (Simple Storage Service) — это объектное хранилище, которое хранит файлы в определённом регионе. Если все пользователи находятся далеко от этого региона, загрузка будет медленной.
+Роль CDN
+CDN (Content Delivery Network) — это сеть серверов, распределённых по всему миру. Она кэширует контент из S3 на edge-серверах, расположенных ближе к конечным пользователям. Когда пользователь запрашивает файл, CDN автоматически направляет запрос на ближайший сервер, где есть копия. Если копии нет, CDN загружает её из S3 и сохраняет для последующих запросов.
+Пример настройки
+
+Преимущества
+
+- Снижение задержки: контент доставляется с ближайшего сервера.
+- Уменьшение нагрузки на S3: запросы обрабатываются CDN.
+- Экономия трафика: CDN может сжимать данные и использовать HTTP/2.
+Вывод: Использование S3 в связке с CDN — стандартный подход для глобальных приложений, где важна скорость загрузки статики. Это особенно полезно для сайтов с аудиторией в разных странах, стриминговых сервисов и крупных интернет-магазинов.`,codeExample:`// Пример: подключение CloudFront (CDN) к S3 bucket
+// 1. Создаёте S3 bucket и загружаете файлы
+// 2. Создаёте CloudFront distribution
+// 3. Указываете origin — ваш S3 bucket
+// 4. CloudFront автоматически раздаёт контент через edge-серверы
+
+// Пример URL после настройки:
+// https://d123.cloudfront.net/images/logo.png
+// Вместо прямого S3 URL:
+// https://my-bucket.s3.us-east-1.amazonaws.com/images/logo.png`,skills:[`HTML`]},{question:`Что такое медиа-запрос prefers-reduced-motion и для чего он используется?`,shortAnswer:`Медиа-запрос prefers-reduced-motion позволяет определить, включил ли пользователь в системе настройку уменьшения движения. Он используется для отключения или замены анимаций, чтобы избежать дискомфорта у людей с вестибулярными расстройствами. Это улучшает доступность веб-приложений.`,longAnswer:"Что такое prefers-reduced-motion?\nМедиа-запрос `prefers-reduced-motion` — это CSS-функция, которая проверяет системную настройку пользователя на уменьшение анимаций. Она возвращает одно из двух значений: `no-preference` (по умолчанию) или `reduce` (пользователь запросил минимизацию движения). Этот запрос является частью спецификации CSS Media Queries Level 5 и направлен на улучшение доступности веб-контента.\nЗачем это нужно?\nМногие люди испытывают дискомфорт, головокружение или тошноту при просмотре интенсивных анимаций, особенно те, у кого есть вестибулярные расстройства или мигрени. Используя `prefers-reduced-motion`, разработчики могут отключать или заменять анимации, делая сайт более комфортным для таких пользователей. Это также соответствует рекомендациям WCAG (Web Content Accessibility Guidelines).\nКак использовать?\nЗапрос применяется в CSS или JavaScript. В CSS вы можете переопределить анимации для пользователей, которые предпочитают уменьшение движения. Пример:\n\nВ JavaScript можно проверить настройку через `window.matchMedia`:\n\nГде применять?\nЭтот медиа-запрос полезен на любых сайтах с анимациями: параллакс-эффекты, вращающиеся элементы, мигающие баннеры, переходы между страницами. Особенно важен для сайтов с большим количеством движения, например, портфолио или лендингов.\nВывод: Используйте `prefers-reduced-motion` для создания инклюзивного интерфейса, который уважает потребности пользователей с чувствительностью к движению. Это повышает доступность и улучшает пользовательский опыт.",codeExample:`/* Обычная анимация */
+.element {
+  animation: spin 2s infinite;
+}
+
+/* Отключаем анимацию для пользователей с настройкой reduce */
+@media (prefers-reduced-motion: reduce) {
+  .element {
+    animation: none;
+  }
+}
+
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (motionQuery.matches) {
+  // Отключаем анимации
+}`,skills:[`HTML`]},{question:`Для чего нужен и как настраивается Prettier в проекте?`,shortAnswer:`Prettier — это инструмент для автоматического форматирования кода, который обеспечивает единый стиль во всём проекте. Он настраивается через файл конфигурации, например .prettierrc, где можно задать такие параметры, как ширина строки, использование кавычек и точек с запятой. Prettier интегрируется с редакторами кода и может запускаться автоматически при сохранении файла или через pre-commit хуки.`,longAnswer:`Что такое Prettier и зачем он нужен?
+Prettier — это opinionated форматтер кода, который автоматически приводит код к единому стилю, устраняя споры о форматировании в команде. Он поддерживает множество языков: JavaScript, TypeScript, CSS, HTML, JSON, Markdown и другие. Основная цель — избавить разработчиков от ручного форматирования и сделать код читаемым и предсказуемым.
+Как настроить Prettier в проекте?
+Установка Prettier выполняется через npm или yarn:
+
+Создайте файл конфигурации \`.prettierrc\` в корне проекта. Пример:
+
+Также можно добавить файл \`.prettierignore\`, чтобы исключить определённые файлы или папки из форматирования, например \`node_modules\` или \`dist\`.
+Интеграция с редактором и автоматизация
+Для автоматического форматирования при сохранении в VS Code установите расширение Prettier и настройте в \`settings.json\`:
+
+Для запуска в CI/CD или pre-commit хуках используйте \`pretty-quick\` или \`lint-staged\`. Пример с husky и lint-staged:
+
+Вывод
+Prettier стоит применять в любом проекте, где важна консистентность кода и автоматизация рутинных задач. Он особенно полезен в командах, так как устраняет обсуждения форматирования и ускоряет код-ревью.`,codeExample:`npm install --save-dev prettier
+
+{
+  "semi": true,
+  "singleQuote": true,
+    abWidth": 2,
+    railingComma": "es5"
+}
+
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+
+// package.json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md}": ["prettier --write"]
+  }
+}`,skills:[`HTML`]},{question:`Как инлайн-стиль соотносится по приоритету с обычными CSS-классами?`,shortAnswer:`Инлайн-стили имеют более высокий приоритет, чем обычные CSS-классы, из-за правил специфичности CSS. Специфичность инлайн-стиля считается наивысшей среди простых селекторов, поэтому он переопределяет свойства, заданные через классы. Исключением является использование !important, которое может перебить инлайн-стиль, если применено в классе.`,longAnswer:`Что такое специфичность CSS?
+Специфичность — это механизм, который определяет, какие стили будут применены к элементу, если несколько правил конфликтуют. Она рассчитывается на основе типов селекторов: инлайн-стили имеют наивысший вес, затем идут ID-селекторы, потом классы и атрибуты, и наконец теги и псевдоэлементы.
+Приоритет инлайн-стилей
+Инлайн-стили, заданные через атрибут \`style\` в HTML, имеют специфичность 1000 (условно), что выше, чем у класса (10). Это означает, что любое свойство, указанное инлайн, переопределит то же свойство из класса, если только в классе не используется \`!important\`.
+Пример
+
+Исключение: !important
+Если в классе добавить \`!important\`, он переопределит инлайн-стиль, так как \`!important\` имеет наивысший приоритет среди всех правил, включая инлайн.
+
+Вывод
+Инлайн-стили удобны для быстрых переопределений, но их злоупотребление усложняет поддержку кода. Лучше использовать классы и избегать \`!important\`, чтобы сохранить предсказуемость каскада.`,codeExample:`<div class="box" style="color: red;">Текст</div>
+
+.box {
+  color: blue;
+}
+// Результат: текст будет красным, так как инлайн-стиль имеет приоритет
+
+.box {
+  color: blue !important;
+}
+// Теперь текст будет синим, несмотря на инлайн-стиль`,skills:[`HTML`]},{question:`Как можно переопределить стиль, заданный через инлайн-атрибут style?`,shortAnswer:`Инлайн-стили имеют высокую специфичность, но их можно переопределить с помощью правила !important в CSS. Также можно изменить атрибут style через JavaScript. Другой способ — использовать CSS-свойство all: revert, которое сбрасывает инлайн-стили.`,longAnswer:`Что такое инлайн-стили и почему их сложно переопределить?
+Инлайн-стили задаются непосредственно в атрибуте style HTML-элемента. Они имеют очень высокую специфичность (1000 баллов), поэтому обычные CSS-правила не могут их переопределить без специальных приёмов.
+Основные способы переопределения
+
+- !important — добавляется к CSS-свойству, чтобы повысить его приоритет выше инлайн-стилей. Пример:
+
+переопределит \`style="color: red"\`.
+- JavaScript — можно напрямую изменить или удалить атрибут style:
+
+- CSS all: revert — сбрасывает все инлайн-стили к наследуемым или начальным значениям:
+
+Практический пример
+
+В этом примере цвет станет синим из-за !important, а размер шрифта останется 20px, так как обычное правило не может переопределить инлайн.
+Вывод
+Используйте !important только в крайних случаях, когда нужно гарантированно переопределить инлайн-стили, например, в библиотеках компонентов. Для гибкого управления стилями лучше избегать инлайн-атрибутов и использовать CSS-классы.`,codeExample:`div { color: blue !important; }
+
+element.style.color = 'green'; // или element.removeAttribute('style');
+
+div { all: revert; }
+
+<div style="color: red; font-size: 20px;">Текст</div>
+
+<style>
+  div {
+    color: blue !important; /* переопределит красный */
+    font-size: 16px; /* не сработает, так как инлайн выше */
+  }
+</style>`,skills:[`HTML`]},{question:`Какие есть способы избавиться от !important в проекте, если нужно его убрать?`,shortAnswer:`Чтобы избавиться от !important, нужно повысить специфичность селектора, перестроить порядок подключения стилей или использовать более вложенные селекторы. Также можно применить методологию BEM для изоляции стилей или CSS-модули. Важно пересмотреть архитектуру CSS и избегать конфликтов через правильную организацию кода.`,longAnswer:`Понимание проблемы !important
+Директива !important в CSS нарушает естественный каскад стилей, делая правило приоритетным независимо от специфичности. Это часто приводит к сложностям в поддержке и переопределении стилей. Основная цель — устранить такие зависимости, восстановив предсказуемость каскада.
+Способы устранения !important
+
+- Повышение специфичности селектора: используйте более конкретные селекторы, например, добавьте класс к родительскому элементу или используйте ID. Пример: вместо \`.button { color: red !important; }\` напишите \`.container .button { color: red; }\`.
+- Изменение порядка подключения стилей: если два правила имеют одинаковую специфичность, побеждает последнее. Переместите нужное правило ниже в файле или подключите его позже.
+- Использование методологии BEM: BEM (Block Element Modifier) создаёт уникальные имена классов, что исключает конфликты. Например: \`.block__element--modifier { color: red; }\`.
+- CSS-модули или CSS-in-JS: эти подходы автоматически генерируют уникальные имена классов, изолируя стили и предотвращая необходимость в !important.
+Практический пример
+Допустим, есть кнопка с !important:
+
+Решение — убрать !important и повысить специфичность:
+
+Или использовать BEM:
+
+Вывод
+Устранение !important улучшает поддерживаемость и предсказуемость CSS. Применяйте повышение специфичности, методологии именования или инструменты изоляции стилей для чистого и масштабируемого кода.`,codeExample:`.btn { color: blue !important; }
+.special .btn { color: red; } /* не сработает */
+
+.btn { color: blue; }
+.special .btn { color: red; } /* теперь работает */
+
+.btn { color: blue; }
+.btn--special { color: red; }`,skills:[`HTML`]},{question:`Какие проблемы безопасности связаны с использованием innerHTML для вставки пользовательского ввода?`,shortAnswer:`Использование innerHTML для вставки пользовательского ввода может привести к XSS-атакам. Злоумышленник может внедрить вредоносный скрипт, который выполнится в браузере жертвы. Это позволяет украсть данные, перенаправить пользователя или изменить содержимое страницы. Для безопасной вставки текста используйте textContent или создавайте элементы через DOM-методы.`,longAnswer:`Проблемы безопасности innerHTML
+Метод innerHTML позволяет вставить HTML-код в элемент, но если вставляемый код содержит пользовательский ввод, это открывает путь для XSS-атак. XSS (Cross-Site Scripting) — это уязвимость, при которой злоумышленник внедряет вредоносный скрипт в веб-страницу, который выполняется в браузере других пользователей.
+Как это работает
+Когда вы используете innerHTML, браузер парсит строку как HTML и выполняет все теги, включая`,skills:[`HTML`]},{question:`В чём разница между box-sizing: content-box и border-box?`,shortAnswer:"`content-box` (по умолчанию) не учитывает padding и border в указанной ширине/высоте элемента, а `border-box` включает их.",longAnswer:"При `content-box` свойство `width` определяет только размер контента, поэтому фактическая ширина элемента = width + padding + border. Это усложняет вёрстку, так как добавление padding «раздвигает» элемент за пределы ожидаемых размеров. `border-box` решает эту проблему: указанная ширина уже включает padding и border, поэтому элемент всегда занимает ровно столько места, сколько задано. Именно поэтому в большинстве CSS-reset файлов применяют `* { box-sizing: border-box; }`.",codeExample:`* {
   box-sizing: border-box;
 }
 
