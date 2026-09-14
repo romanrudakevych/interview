@@ -38,7 +38,23 @@ function preview(value) {
   }
 }
 
-self.onmessage = (event) => {
+// Args are structured-cloned so a mutating solution can't corrupt later tests.
+// Some tasks legitimately take functions as arguments (promisify, memoize,
+// runSequentially), which structuredClone refuses — those tasks use `body`
+// instead, but fall back to the raw args rather than failing the test.
+// Test bodies may use `await` (async tasks, rejection assertions), so they are
+// compiled as async functions — a plain `new Function` would be a syntax error.
+const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+
+function cloneArgs(args) {
+  try {
+    return structuredClone(args);
+  } catch {
+    return args;
+  }
+}
+
+self.onmessage = async (event) => {
   const { code, functionName, tests } = event.data;
 
   let solution;
@@ -58,29 +74,38 @@ self.onmessage = (event) => {
     return;
   }
 
-  const results = tests.map((test) => {
+  const results = [];
+  for (const test of tests) {
     try {
-      // Structured-clone the args so a mutating solution can't corrupt the next test.
-      const actual = solution(...structuredClone(test.args));
-      return {
+      // Two test forms:
+      //  - { args, expected }  — call the solution directly (most tasks)
+      //  - { body, expected }  — a snippet that receives `solution` and returns
+      //    the value to compare. Needed whenever a test must pass functions in,
+      //    count calls, or assert on a rejection.
+      const actual = test.body
+        ? await new AsyncFunction("solution", `"use strict";\n${test.body}`)(solution)
+        // `await` is a no-op for sync solutions and makes async ones work.
+        : await solution(...cloneArgs(test.args));
+
+      results.push({
         name: test.name,
         hidden: Boolean(test.hidden),
         passed: deepEqual(actual, test.expected),
         expected: preview(test.expected),
         actual: preview(actual),
         error: null,
-      };
+      });
     } catch (error) {
-      return {
+      results.push({
         name: test.name,
         hidden: Boolean(test.hidden),
         passed: false,
         expected: preview(test.expected),
         actual: null,
         error: error.message,
-      };
+      });
     }
-  });
+  }
 
   self.postMessage({ ok: true, results });
 };

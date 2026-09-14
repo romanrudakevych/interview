@@ -54,6 +54,12 @@ under the `/interview/` GitHub Pages base. Test values cross the worker boundary
 strings because a solution may return non-cloneable values. `Run` executes visible tests only;
 `Submit` adds `hidden: true` ones and is the only path that can mark a task solved.
 
+A test is either `{ args, expected }` or `{ body, expected }` — `body` is a snippet compiled as
+an **async** function receiving `solution`, needed when a test passes functions in (promisify,
+memoize, runSequentially), counts calls, or asserts on a rejection. When adding a task, verify
+a reference solution passes *and* that a plausible-wrong one fails; tests that only confirm the
+happy path let `return nums[0]` pass a majority-element suite.
+
 `src/components/CodeEditor.jsx` is a transparent `<textarea>` over a highlighted `<pre>` plus a
 gutter — all three must keep identical font/size/line-height/padding (`.code-editor__*` in
 `index.css`) or the caret drifts from the text. `src/utils/highlightJs.js` feeds

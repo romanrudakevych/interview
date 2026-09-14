@@ -77,9 +77,14 @@ export function TestCaseList({ tests }) {
         <div key={i} className="test-case">
           <div className="test-case__name">{test.name}</div>
           <div className="test-case__io">
-            <div>
-              Вход: <code>{JSON.stringify(test.args)}</code>
-            </div>
+            {/* `body` tests have no plain args — show the snippet that runs. */}
+            {test.body ? (
+              <pre className="test-case__body">{test.body}</pre>
+            ) : (
+              <div>
+                Вход: <code>{JSON.stringify(test.args)}</code>
+              </div>
+            )}
             <div>
               Ожидается: <code>{JSON.stringify(test.expected)}</code>
             </div>
