@@ -35,6 +35,30 @@ The core design constraint: **question content and user progress are stored sepa
 
 Question text conventions: inline code in `shortAnswer` / `longAnswer` is written with `` `backticks` `` and rendered as `<code>` by `src/components/FormattedText.jsx`; `codeExample` (optional) renders through `src/components/CodeBlock.jsx` with a copy button. `\n` in answer strings survives as a line break because `.answer-section__text` in `index.css` sets `white-space: pre-line` — keep that rule if you touch answer styling.
 
+### Coding tasks
+
+`/training/tasks` is a second, parallel feature with the same content/progress split:
+`src/data/tasks.js` (static bank, ids by array position, `TASK_CATEGORIES` / `TASK_LANGUAGES`)
++ `src/context/TasksContext.jsx` (`TasksProvider` / `useTasks()`) persisting to its **own**
+localStorage keys (`interview-prep:tasks`, `interview-prep:task-filters`) — never reuse the
+question keys, the filter shapes differ. Task `status` (`not_started` | `in_progress` | `solved`)
+is derived from the `solved` flag and whether saved code differs from `starterCode`, the same
+"derive, don't trust stored status" rule as questions. Task difficulty is **1–5**; question
+difficulty is 1–10 — don't share the filter constants.
+
+Solutions really execute: `src/utils/runCode.js` spawns `src/workers/runner.worker.js` and
+races it against a 2s timeout, terminating the worker on expiry — that's what keeps an infinite
+loop in user code from freezing the tab. Keep the
+`new Worker(new URL("...", import.meta.url), { type: "module" })` form; a string path would 404
+under the `/interview/` GitHub Pages base. Test values cross the worker boundary as display
+strings because a solution may return non-cloneable values. `Run` executes visible tests only;
+`Submit` adds `hidden: true` ones and is the only path that can mark a task solved.
+
+`src/components/CodeEditor.jsx` is a transparent `<textarea>` over a highlighted `<pre>` plus a
+gutter — all three must keep identical font/size/line-height/padding (`.code-editor__*` in
+`index.css`) or the caret drifts from the text. `src/utils/highlightJs.js` feeds
+`dangerouslySetInnerHTML`, so its HTML-escaping is load-bearing; edit it with care.
+
 ### Shared behavior hooks
 
 - `src/hooks/useQuestionActions.js` (`learn` / `repeat` / `toggleFavorite` / `canRepeat`) is the **only** place Learn/Repeat/Favorite logic is implemented. Both `QuestionCardMenu` (list view dropdown) and `QuestionActionsBar` (details page) call into this hook so the two surfaces can never diverge. `repeat` is only meaningful when `learnedCount > 0` (`canRepeat`); `learn` increments `learnedCount` capped at `learnedGoal`.

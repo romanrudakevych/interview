@@ -27,13 +27,19 @@ is no backend, no build step for content, and no account.
   `Repeat` resets the counter. `Favorite` toggles a star.
 - **Interview simulation** (`/training/interview`) — a random question, reveal the
   answer, mark it known or not known (which drive `Learn` / `Repeat`), shuffle on.
+- **Coding tasks** (`/training/tasks`) — a list of JavaScript exercises filterable by
+  difficulty (1–5), language, and category. Each task (`/training/tasks/:id`) opens a
+  description, a test-case list, and a code editor with syntax highlighting: **Run**
+  executes your solution against the visible tests, **Submit** also runs hidden ones and
+  marks the task solved. Code runs in a Web Worker with a 2s timeout, so an infinite loop
+  can't freeze the page. Your code is saved as you type.
 - **Collections** (`/knowledge-base/collections`) — every question you've starred.
 - **Analytics** (`/analytics`) — overall learned percentage, a per-skill
   learned-vs-remaining bar chart, and a question-count-by-difficulty chart.
 - **Home** (`/`) — totals for questions, learned, favorites, and skills covered,
   plus quick links into the main sections.
 
-`Tasks` and `Resources` are placeholder pages.
+`Resources` is a placeholder page.
 
 ## Screenshots
 
@@ -169,7 +175,8 @@ src/
 │   ├── InterviewPage.jsx
 │   ├── AnalyticsPage.jsx
 │   ├── CollectionsPage.jsx
-│   ├── TasksPage.jsx        # placeholder
+│   ├── TasksPage.jsx        # coding-task list
+│   ├── TaskDetailsPage.jsx  # description + tests + code editor
 │   └── ResourcesPage.jsx    # placeholder
 └── components/
     ├── Sidebar.jsx          # persistent nav
@@ -189,7 +196,8 @@ src/
 | ------------------------------- | ----------------------- |
 | `/`                             | Home                    |
 | `/training/interview`           | Interview simulation    |
-| `/training/tasks`               | Tasks (placeholder)     |
+| `/training/tasks`               | Coding task list        |
+| `/training/tasks/:id`           | Coding task details     |
 | `/knowledge-base/resources`     | Resources (placeholder) |
 | `/knowledge-base/questions`     | Question list           |
 | `/knowledge-base/questions/:id` | Question details        |
