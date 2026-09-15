@@ -1,8 +1,23 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { questions as staticQuestions } from "../data/questions.js";
+// The generated index, not the 11 MB source bank — see
+// scripts/build-questions-data.mjs. Answer bodies load lazily via
+// useQuestionBody(); everything here (filtering, analytics, counts) only needs
+// the metadata.
+import questionIndex from "../data/generated/index.json";
 import { loadProgress, saveProgress, loadFilters, saveFilters } from "../utils/storage.js";
 
 const QuestionsContext = createContext(null);
+
+// The same defaults createQuestion() applies in src/data/questions.js. Real
+// values live in localStorage, so the index never carries progress.
+const PROGRESS_DEFAULTS = {
+  status: "not_learned",
+  favorite: false,
+  learnedCount: 0,
+  learnedGoal: 3,
+};
+
+const staticQuestions = questionIndex.map((q) => ({ ...q, ...PROGRESS_DEFAULTS }));
 
 export const DEFAULT_FILTERS = {
   query: "",

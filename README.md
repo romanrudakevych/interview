@@ -82,6 +82,7 @@ npm run dev        # start the dev server with HMR — http://localhost:5173
 | `npm run build`   | Production build to `dist/` (also the quickest compile check)   |
 | `npm run preview` | Serve the production build locally                              |
 | `npm run lint`    | Run Oxlint (config: `.oxlintrc.json`)                           |
+| `npm run build:data` | Regenerate the split question data (runs automatically before dev/build) |
 | `npm run deploy`  | Build and publish `dist/` to the `gh-pages` branch              |
 
 ## Deployment (GitHub Pages)
@@ -115,9 +116,11 @@ The central design constraint: **question content and user progress are stored
 separately**, so editing the question bank never wipes learning progress and
 vice-versa.
 
-- **`src/data/questions.js`** — the static bank. Exports `SKILLS` (the 14 fixed
-  skill tags) and `questions`, built from an internal `rawQuestions` list via
-  `createQuestion()`. **IDs are the array position (`index + 1`)**, never stored
+- **`src/data/questions.js`** — the static bank and source of truth, built from an
+  internal `rawQuestions` list via `createQuestion()`. At ~11 MB it is **never
+  bundled**: `scripts/build-questions-data.mjs` splits it into a small eagerly-loaded
+  index plus 34 lazy answer chunks, which keeps first load at ~200 KB gzipped instead
+  of 2.7 MB. Answers are fetched on demand by `useQuestionBody()`. **IDs are the array position (`index + 1`)**, never stored
   in the data — a random id generated at module load would change on every
   refresh and orphan saved progress. The trade-off: reordering or deleting
   existing entries shifts ids and disconnects their progress. **Appending new

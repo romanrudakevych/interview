@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm run dev` — start the Vite dev server with HMR (defaults to http://localhost:5173)
 - `npm run build` — production build (`vite build`); use this to check for compile errors
+- `npm run build:data` — regenerate `src/data/generated/` from the question bank. Runs
+  automatically via `predev`/`prebuild`, so you rarely invoke it directly.
 - `npm run preview` — serve the production build locally
 - `npm run lint` — run Oxlint (config: `.oxlintrc.json`, plugins `react` + `oxc`)
 
@@ -28,6 +30,35 @@ The core design constraint: **question content and user progress are stored sepa
 - `src/data/questions.js` — the static question bank. Exports `SKILLS` (the fixed list of 14 skill tags) and `questions` (an array built from an internal `rawQuestions` array via `createQuestion()`). **IDs are assigned by array position (`index + 1`), not randomly** — this is intentional: a random ID generated at module-load time would change on every page refresh and orphan all saved localStorage progress. This means reordering or deleting entries in `rawQuestions` shifts IDs and can disconnect existing progress; appending new entries at the end is always safe. `rawQuestions.map()` also re-forces the progress fields (`status`/`favorite`/`learnedCount`/`learnedGoal`) to defaults, so any progress-like values in the data file are ignored.
 - `src/utils/storage.js` — thin localStorage read/write wrappers for two independent keys (`interview-prep:progress`, `interview-prep:filters`). Every read/write is wrapped in try/catch and degrades silently (private mode, quota) — these functions never throw. `loadFilters` spreads saved state over the passed defaults, so adding a new filter key is backward-compatible.
 - `src/context/QuestionsContext.jsx` (`QuestionsProvider` / `useQuestions()`) — the single source of truth at runtime. On render it merges the static `questions` array with saved progress from localStorage, and **derives `status` from `learnedCount >= learnedGoal`** rather than trusting a stored status field, so the "Learned" badge can never drift out of sync with the count. Also owns filter state: `DEFAULT_FILTERS` is `{ query, skills[], difficultyRanges[] (values `"1-3"|"4-6"|"7-8"|"9-10"`), ratings[] (1–5), status (`"all"|"learned"|"not_learned"`), favoriteOnly }`, persisted the same way.
+
+### Question data is split at build time
+
+`src/data/questions.js` is the **source of truth but is never bundled**. At ~11 MB it
+would otherwise ship 2.7 MB gzipped to every visitor, so
+`scripts/build-questions-data.mjs` (Node-only, run from `predev`/`prebuild`) splits it
+into gitignored `src/data/generated/`:
+
+- `index.json` — `id`, `question`, `skills`, `keywords`, `difficulty`, `rating` for all
+  3,361 questions (~100 KB gz). Imported eagerly by `QuestionsContext`; this is all that
+  filtering, search, Analytics, Home totals and Collections ever need.
+- `bodies/000.json`…`033.json` — `shortAnswer`/`longAnswer`/`codeExample` as tuples, 100
+  questions per chunk (~77 KB gz each), loaded on demand.
+- `meta.json` — `{ chunkSize, chunkCount, total }`; the client reads `chunkSize` from
+  here rather than redeclaring it, so the two can't drift.
+
+Answers load through `useQuestionBody(id | null)`
+(`src/hooks/useQuestionBody.js` + `src/utils/questionBodies.js`). Pass `null` to skip
+fetching — that's how collapsed cards stay inert. Only three places render answers
+(`QuestionCard`, `InterviewPage`, `QuestionDetailsPage`) and all are gated behind a user
+action, so the fetch is invisible. **Question objects from `useQuestions()` have no
+`shortAnswer`/`longAnswer`/`codeExample`** — reach for the hook instead.
+
+The loader uses `import.meta.glob(...)` + dynamic `import()`: the only form Vite rewrites
+for the `/interview/` base. A hand-built `fetch("/data/…")` would 404 on Pages, same trap
+as the Web Worker URL.
+
+Ids are the join key for saved localStorage progress, so the generator asserts its ids
+match `questions[].id` position-for-position and fails the build otherwise.
 
 ### Editing the question bank
 

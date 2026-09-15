@@ -1,6 +1,6 @@
 import { Search, Heart } from "lucide-react";
 import { useQuestions } from "../context/QuestionsContext.jsx";
-import { SKILLS } from "../data/questions.js";
+import { SKILLS } from "../data/skills.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
 
 const DIFFICULTY_RANGES = ["1-3", "4-6", "7-8", "9-10"];

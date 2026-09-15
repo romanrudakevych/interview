@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../components/Breadcrumbs.jsx";
 import { useQuestions } from "../context/QuestionsContext.jsx";
-import { SKILLS } from "../data/questions.js";
+import { SKILLS } from "../data/skills.js";
 
 const DIFFICULTY_BUCKETS = [
   { label: "1-3", min: 1, max: 3 },

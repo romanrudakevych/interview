@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated from src/data/questions.js by scripts/build-questions-data.mjs
+src/data/generated/

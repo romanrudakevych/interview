@@ -6,6 +6,7 @@ import { CodeBlock } from "../components/CodeBlock.jsx";
 import { SkillIcon } from "../utils/skillIcons.jsx";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { useQuestionActions } from "../hooks/useQuestionActions.js";
+import { useQuestionBody } from "../hooks/useQuestionBody.js";
 
 function pickRandomId(questions, excludeId) {
   const pool = questions.length > 1 ? questions.filter((q) => q.id !== excludeId) : questions;
@@ -19,6 +20,8 @@ export function InterviewPage() {
   const [revealed, setRevealed] = useState(false);
 
   const question = questions.find((q) => q.id === currentId);
+  // null until revealed — the answer isn't fetched while it's still hidden.
+  const { body, loading } = useQuestionBody(revealed ? currentId : null);
 
   const nextQuestion = useCallback(() => {
     setCurrentId((prevId) => pickRandomId(questions, prevId));
@@ -60,10 +63,18 @@ export function InterviewPage() {
           ) : (
             <>
               <div className="interview-card__answer">
-                <p>
-                  <FormattedText text={question.shortAnswer} />
-                </p>
-                {question.codeExample && <CodeBlock code={question.codeExample} />}
+                {loading ? (
+                  <p className="answer-loading">Завантаження відповіді…</p>
+                ) : (
+                  body && (
+                    <>
+                      <p>
+                        <FormattedText text={body.shortAnswer} />
+                      </p>
+                      {body.codeExample && <CodeBlock code={body.codeExample} />}
+                    </>
+                  )
+                )}
               </div>
 
               <div className="interview-card__actions">

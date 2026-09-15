@@ -1552,3 +1552,9 @@ a {
   white-space: pre;
   overflow-x: auto;
 }
+
+/* Placeholder while a question's answer chunk loads (see useQuestionBody). */
+.answer-loading {
+  color: var(--text-muted);
+  font-style: italic;
+}

@@ -3,10 +3,13 @@ import { ChevronDown } from "lucide-react";
 import { QuestionCardMenu } from "./QuestionCardMenu.jsx";
 import { FormattedText } from "./FormattedText.jsx";
 import { CodeBlock } from "./CodeBlock.jsx";
+import { useQuestionBody } from "../hooks/useQuestionBody.js";
 
 export function QuestionCard({ question }) {
   const [expanded, setExpanded] = useState(false);
   const isLearned = question.status === "learned";
+  // null while collapsed — a collapsed card never fetches its answer.
+  const { body, loading } = useQuestionBody(expanded ? question.id : null);
 
   return (
     <div className="question-card">
@@ -33,11 +36,18 @@ export function QuestionCard({ question }) {
             </div>
           </div>
 
-          <p className="question-card__answer">
-            <FormattedText text={question.shortAnswer} />
-          </p>
-
-          {question.codeExample && <CodeBlock code={question.codeExample} />}
+          {loading ? (
+            <p className="question-card__answer answer-loading">Завантаження відповіді…</p>
+          ) : (
+            body && (
+              <>
+                <p className="question-card__answer">
+                  <FormattedText text={body.shortAnswer} />
+                </p>
+                {body.codeExample && <CodeBlock code={body.codeExample} />}
+              </>
+            )
+          )}
         </div>
       )}
     </div>

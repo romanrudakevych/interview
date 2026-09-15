@@ -29,22 +29,10 @@
 // localStorage, поэтому редактирование этого файла никогда не стирает твой прогресс.
 // ============================================================================
 
-export const SKILLS = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "React Router",
-  "Next.js",
-  "Redux",
-  "Git",
-  "Docker",
-  "Kubernetes",
-  "CI/CD",
-  "Webpack",
-  "Networks",
-];
+// SKILLS lives in its own module so UI code can import it without pulling this
+// whole file into the bundle. Re-exported here so `questions.js` still reads as
+// the canonical reference for the question format.
+export { SKILLS } from "./skills.js";
 
 const rawQuestions = [
   // ---------------------------------------------------------------- HTML ---
