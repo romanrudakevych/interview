@@ -1176,22 +1176,50 @@ a {
   justify-content: center;
   min-width: 30px;
   height: 30px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
   font-size: 13px;
   font-weight: 500;
+  color: var(--text);
+}
+
+/* Numbers are plain text; only the current page gets a filled chip. */
+.pagination__page {
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  padding: 0 4px;
+}
+
+.pagination__page:hover:not(.pagination__page--active) {
+  color: var(--accent);
 }
 
 .pagination__page--active {
   background: var(--accent);
-  border-color: var(--accent);
   color: #fff;
 }
 
+/* Arrows are outlined circles — muted when there's nowhere to go. */
+.pagination__arrow {
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.pagination__arrow:hover:not(:disabled) {
+  background: var(--accent-bg);
+}
+
 .pagination__arrow:disabled {
-  opacity: 0.4;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.pagination__ellipsis {
+  min-width: 18px;
+  text-align: center;
+  color: var(--text-muted);
+  user-select: none;
 }
 
 /* ---------------------------------------------------- Task details */
