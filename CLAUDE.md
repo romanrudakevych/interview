@@ -91,6 +91,20 @@ memoize, runSequentially), counts calls, or asserts on a rejection. When adding 
 a reference solution passes *and* that a plausible-wrong one fails; tests that only confirm the
 happy path let `return nums[0]` pass a majority-element suite.
 
+The 202 tasks under `// ---- Импортировано из yeahub scrape (scrap-code-tasks) ----` came from
+scraped pages that carry no test cases, so every suite there was written by hand against that
+two-sided rule. A few of those pages state examples that contradict their own rules (a triangle
+path that skips a row, an off-by-one silence interval) — the verified answer wins, and the
+task's `description` is overridden in place when it does. `description` sections render
+conditionally on the details page: an imported task may legitimately have no
+`input`/`output`/`constraints`/`example`.
+
+**`tasks.js` ships whole in the main bundle** (~1 MB raw / ~100 KB gz of the initial download)
+because `TasksProvider` wraps the whole app in `App.jsx`, while only `TasksPage`,
+`TaskDetailsPage`, `TaskFilterSidebar` and `useFilteredTasks` read it. It's now large enough to
+deserve the same index + lazy-chunk treatment as the question bank (`scripts/build-questions-data.mjs`),
+or at minimum a route-level split.
+
 `src/components/CodeEditor.jsx` is a transparent `<textarea>` over a highlighted `<pre>` plus a
 gutter — all three must keep identical font/size/line-height/padding (`.code-editor__*` in
 `index.css`) or the caret drifts from the text. `src/utils/highlightJs.js` feeds
