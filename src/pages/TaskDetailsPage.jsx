@@ -113,36 +113,54 @@ export function TaskDetailsPage() {
                   ))}
                 </div>
 
+                {/* Imported tasks don't all carry every section — a heading over
+                    an empty list reads as a bug, so each one is conditional. */}
                 <h3 className="task-section__title">Условие:</h3>
                 <p className="task-section__text">
                   <FormattedText text={task.description.condition} />
                 </p>
 
-                <h3 className="task-section__title">Входные данные:</h3>
-                <ul className="task-section__list">
-                  {task.description.input.map((item, i) => (
-                    <li key={i}>
-                      <FormattedText text={item} />
-                    </li>
-                  ))}
-                </ul>
+                {task.description.input.length > 0 && (
+                  <>
+                    <h3 className="task-section__title">Входные данные:</h3>
+                    <ul className="task-section__list">
+                      {task.description.input.map((item, i) => (
+                        <li key={i}>
+                          <FormattedText text={item} />
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
 
-                <h3 className="task-section__title">Выходные данные:</h3>
-                <p className="task-section__text">
-                  <FormattedText text={task.description.output} />
-                </p>
+                {task.description.output && (
+                  <>
+                    <h3 className="task-section__title">Выходные данные:</h3>
+                    <p className="task-section__text">
+                      <FormattedText text={task.description.output} />
+                    </p>
+                  </>
+                )}
 
-                <h3 className="task-section__title">Ограничения:</h3>
-                <ul className="task-section__list">
-                  {task.description.constraints.map((item, i) => (
-                    <li key={i}>
-                      <FormattedText text={item} />
-                    </li>
-                  ))}
-                </ul>
+                {task.description.constraints.length > 0 && (
+                  <>
+                    <h3 className="task-section__title">Ограничения:</h3>
+                    <ul className="task-section__list">
+                      {task.description.constraints.map((item, i) => (
+                        <li key={i}>
+                          <FormattedText text={item} />
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
 
-                <h3 className="task-section__title">Пример:</h3>
-                <CodeBlock code={task.description.example} />
+                {task.description.example && (
+                  <>
+                    <h3 className="task-section__title">Пример:</h3>
+                    <CodeBlock code={task.description.example} />
+                  </>
+                )}
               </>
             )}
 
