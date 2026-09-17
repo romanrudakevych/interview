@@ -107,8 +107,28 @@ or at minimum a route-level split.
 
 `src/components/CodeEditor.jsx` is a transparent `<textarea>` over a highlighted `<pre>` plus a
 gutter — all three must keep identical font/size/line-height/padding (`.code-editor__*` in
-`index.css`) or the caret drifts from the text. `src/utils/highlightJs.js` feeds
+`index.css`) or the caret drifts from the text. `src/utils/highlightCode.js` feeds
 `dangerouslySetInnerHTML`, so its HTML-escaping is load-bearing; edit it with care.
+
+### Syntax highlighting
+
+`src/utils/highlightCode.js` is a hand-rolled tokenizer (no highlighting library) used by
+both `CodeEditor` (`highlightJs`, JS only) and `CodeBlock` (`highlightCode(code, language)`,
+which auto-detects between markup / CSS / JS). It emits `<span class="tok tok--…">` colored by
+the shared palette near the end of `index.css`. Question `codeExample`s are a mix — ~2,600 JS
+(286 with JSX), ~230 markup, ~130 CSS — so `detectLanguage` dispatches per block, and
+`highlightMarkup` hands `<script>`/`<style>` bodies to the JS and CSS tokenizers.
+
+**Every tokenizer escapes each token's text as it emits it and never concatenates raw source
+into the output** — the output goes through `dangerouslySetInnerHTML` and the editor's input is
+user-typed. Highlighting accuracy is best-effort; escaping is not. The `JSX_HINT` gate exists
+for the same reason the tag pattern forbids a space after `<`: without it, `a<b && c>d` in
+plain JS would read as a tag and yellow-out everything after it. When touching this file,
+re-run the corpus round-trip check — unescaping the output of all ~3,000 `codeExample`s must
+return the input byte-for-byte.
+
+`CodeBlock` takes `language="text"` to opt out (used for a task's "Пример:" input/output prose,
+which isn't source).
 
 ### Resources
 

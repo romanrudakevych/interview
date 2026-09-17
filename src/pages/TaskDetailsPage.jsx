@@ -158,7 +158,8 @@ export function TaskDetailsPage() {
                 {task.description.example && (
                   <>
                     <h3 className="task-section__title">Пример:</h3>
-                    <CodeBlock code={task.description.example} />
+                    {/* Вход/Выход prose, not source — leave it uncolored. */}
+                    <CodeBlock code={task.description.example} language="text" />
                   </>
                 )}
               </>

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { highlightJs } from "../utils/highlightJs.js";
+import { highlightJs } from "../utils/highlightCode.js";
 
 // A transparent <textarea> layered over a highlighted <pre>, plus a line-number
 // gutter. The two layers must keep identical font, size, line-height, padding

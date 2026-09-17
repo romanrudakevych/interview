@@ -1428,11 +1428,18 @@ a {
   overflow: auto;
 }
 
-.tok--keyword { color: #c792ea; }
-.tok--string  { color: #c3e88d; }
-.tok--comment { color: #6c6a86; font-style: italic; }
-.tok--number  { color: #f78c6c; }
-.tok--literal { color: #82aaff; }
+/* ------------------------------------------------ Syntax highlight palette */
+/* Shared by the task code editor above and by .code-block (answer examples). */
+
+.tok--keyword  { color: #c792ea; }
+.tok--string   { color: #c3e88d; }
+.tok--comment  { color: #6c6a86; font-style: italic; }
+.tok--number   { color: #f78c6c; }
+.tok--literal  { color: #82aaff; }
+.tok--tag      { color: #f07178; }
+.tok--attr     { color: #ffcb6b; }
+.tok--property { color: #80cbc4; }
+.tok--selector { color: #ffcb6b; }
 
 /* ---------------------------------------------------- Test results */
 

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { highlightCode } from "../utils/highlightCode.js";
 
-export function CodeBlock({ code }) {
+export function CodeBlock({ code, language = "auto" }) {
   const [copied, setCopied] = useState(false);
+  const html = useMemo(() => highlightCode(code, language), [code, language]);
 
   async function handleCopy() {
     try {
@@ -21,7 +23,9 @@ export function CodeBlock({ code }) {
         {copied ? "Copied" : "Copy"}
       </button>
       <pre>
-        <code>{code}</code>
+        {/* highlightCode escapes every character it emits — see its header comment.
+            Copy still writes the raw `code` prop, so copied text stays plain. */}
+        <code dangerouslySetInnerHTML={{ __html: html }} />
       </pre>
     </div>
   );
