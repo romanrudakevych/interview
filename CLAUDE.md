@@ -110,6 +110,28 @@ gutter — all three must keep identical font/size/line-height/padding (`.code-e
 `index.css`) or the caret drifts from the text. `src/utils/highlightJs.js` feeds
 `dangerouslySetInnerHTML`, so its HTML-escaping is load-bearing; edit it with care.
 
+### Resources
+
+`/knowledge-base/resources` lists 26 external learning materials (courses, books,
+repositories, channels, games…) — the React Frontend Developer track of the yeahub
+catalog, the same slice the questions and tasks came from.
+
+`src/data/resources.js` is **generated** by `node scripts/import-resources.mjs`, which
+pulls the public, unauthenticated catalog API
+(`https://api.yeahub.ru/external-products/product?specializations=11`). It is deliberately
+not wired into `predev`/`prebuild` — that would make every build need the network. Re-run
+it by hand to refresh, and edit the script rather than the data file. `RESOURCE_TYPES` and
+`RESOURCE_SKILLS` are derived from the resources actually present, so the sidebar can
+never show a chip that matches nothing.
+
+Ids are upstream UUIDs, not array positions — the opposite of the `questions.js` /
+`tasks.js` rule, and safe here because the API assigns them and they survive a re-import.
+
+There is no context provider and no progress: resources are read-only links, so
+`src/hooks/useResources.js` is just the static bank plus filter state persisted under
+`interview-prep:resource-filters`. `ResourceCard` hot-links thumbnails from the upstream
+CDN and falls back to an initial-letter tile when one 404s.
+
 ### Shared behavior hooks
 
 - `src/hooks/useQuestionActions.js` (`learn` / `repeat` / `toggleFavorite` / `canRepeat`) is the **only** place Learn/Repeat/Favorite logic is implemented. Both `QuestionCardMenu` (list view dropdown) and `QuestionActionsBar` (details page) call into this hook so the two surfaces can never diverge. `repeat` is only meaningful when `learnedCount > 0` (`canRepeat`); `learn` increments `learnedCount` capped at `learnedGoal`.
@@ -117,6 +139,6 @@ gutter — all three must keep identical font/size/line-height/padding (`.code-e
 
 ### Pages and navigation
 
-`App.jsx` wraps everything in `QuestionsProvider` + `BrowserRouter`, with a persistent `Sidebar` (`src/components/Sidebar.jsx`) and routed content in `src/pages/*`. Route structure mirrors the sidebar's nav groups (Training → Interview/Tasks, Knowledge base → Resources/Questions/Collections, plus Home and Analytics); question details live at `/knowledge-base/questions/:id`. `TasksPage` and `ResourcesPage` are placeholders. Each page renders its own `Breadcrumbs` rather than deriving them from route config.
+`App.jsx` wraps everything in `QuestionsProvider` + `BrowserRouter`, with a persistent `Sidebar` (`src/components/Sidebar.jsx`) and routed content in `src/pages/*`. Route structure mirrors the sidebar's nav groups (Training → Interview/Tasks, Knowledge base → Resources/Questions/Collections, plus Home and Analytics); question details live at `/knowledge-base/questions/:id`. Each page renders its own `Breadcrumbs` rather than deriving them from route config.
 
 `src/utils/skillIcons.jsx` centralizes the skill → icon/color mapping (brand icons via `react-icons/si`, a couple of `lucide-react` fallbacks for CI/CD and Networks) — use `SKILL_META` / `<SkillIcon skill=... />` instead of adding new icon imports elsewhere.

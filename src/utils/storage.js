@@ -2,6 +2,7 @@ const PROGRESS_KEY = "interview-prep:progress";
 const FILTERS_KEY = "interview-prep:filters";
 const TASK_PROGRESS_KEY = "interview-prep:tasks";
 const TASK_FILTERS_KEY = "interview-prep:task-filters";
+const RESOURCE_FILTERS_KEY = "interview-prep:resource-filters";
 
 export function loadProgress() {
   try {
@@ -69,6 +70,25 @@ export function loadTaskFilters(defaults) {
 export function saveTaskFilters(filters) {
   try {
     localStorage.setItem(TASK_FILTERS_KEY, JSON.stringify(filters));
+  } catch {
+    // ignore
+  }
+}
+
+// Resources have no learning progress — only their filters are worth persisting.
+
+export function loadResourceFilters(defaults) {
+  try {
+    const raw = localStorage.getItem(RESOURCE_FILTERS_KEY);
+    return raw ? { ...defaults, ...JSON.parse(raw) } : defaults;
+  } catch {
+    return defaults;
+  }
+}
+
+export function saveResourceFilters(filters) {
+  try {
+    localStorage.setItem(RESOURCE_FILTERS_KEY, JSON.stringify(filters));
   } catch {
     // ignore
   }
