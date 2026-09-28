@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { highlightCode } from "../utils/highlightCode.js";
+import { useI18n } from "../i18n/index.jsx";
 
 export function CodeBlock({ code, language = "auto" }) {
   const [copied, setCopied] = useState(false);
+  const { t } = useI18n();
   const html = useMemo(() => highlightCode(code, language), [code, language]);
 
   async function handleCopy() {
@@ -20,7 +22,7 @@ export function CodeBlock({ code, language = "auto" }) {
     <div className="code-block">
       <button className="code-block__copy" onClick={handleCopy} type="button">
         {copied ? <Check size={14} /> : <Copy size={14} />}
-        {copied ? "Copied" : "Copy"}
+        {copied ? t("code.copied") : t("code.copy")}
       </button>
       <pre>
         {/* highlightCode escapes every character it emits — see its header comment.

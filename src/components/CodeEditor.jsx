@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { highlightJs } from "../utils/highlightCode.js";
+import { useI18n } from "../i18n/index.jsx";
 
 // A transparent <textarea> layered over a highlighted <pre>, plus a line-number
 // gutter. The two layers must keep identical font, size, line-height, padding
@@ -7,6 +8,7 @@ import { highlightJs } from "../utils/highlightCode.js";
 // away from the rendered text.
 export function CodeEditor({ value, onChange }) {
   const highlightRef = useRef(null);
+  const { t } = useI18n();
   const gutterRef = useRef(null);
 
   // The textarea is the only scrollable layer; the other two follow it.
@@ -57,7 +59,7 @@ export function CodeEditor({ value, onChange }) {
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
-          aria-label="Редактор кода"
+          aria-label={t("tasks.editorLabel")}
         />
       </div>
     </div>

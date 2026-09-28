@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Breadcrumbs } from "../components/Breadcrumbs.jsx";
+import { FormattedText } from "../components/FormattedText.jsx";
 import { QuestionCard } from "../components/QuestionCard.jsx";
 import { FilterSidebar } from "../components/FilterSidebar.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { useFilteredQuestions } from "../hooks/useFilteredQuestions.js";
+import { useI18n } from "../i18n/index.jsx";
 
 const PAGE_SIZE = 10;
 
 export function QuestionListPage() {
   const { filters } = useQuestions();
+  const { t } = useI18n();
   const questions = useFilteredQuestions();
   const [page, setPage] = useState(1);
 
@@ -38,15 +41,16 @@ export function QuestionListPage() {
 
   return (
     <div className="page">
-      <Breadcrumbs items={[{ label: "Knowledge base" }, { label: "List of questions" }]} />
+      <Breadcrumbs
+        items={[{ label: t("nav.knowledgeBase") }, { label: t("breadcrumb.listOfQuestions") }]}
+      />
       <div className="page-with-sidebar">
         <div className="page-with-sidebar__main">
-          <h1 className="page-title">Questions</h1>
+          <h1 className="page-title">{t("questions.pageTitle")}</h1>
 
           {questions.length === 0 ? (
             <div className="empty-state">
-              Немає питань, що відповідають фільтрам. Спробуй змінити критерії пошуку
-              або додай нові питання у <code className="inline-code">questions.js</code>.
+              <FormattedText text={t("questions.empty")} />
             </div>
           ) : (
             <>

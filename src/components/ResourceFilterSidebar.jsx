@@ -1,22 +1,24 @@
 import { Search } from "lucide-react";
 import { RESOURCE_SKILLS, RESOURCE_TYPES } from "../data/resources.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
+import { useI18n } from "../i18n/index.jsx";
 
 function toggleInArray(array, value) {
   return array.includes(value) ? array.filter((v) => v !== value) : [...array, value];
 }
 
 export function ResourceFilterSidebar({ filters, setFilters, resetFilters }) {
+  const { t } = useI18n();
   const hasActiveFilters =
     filters.query || filters.types.length > 0 || filters.skills.length > 0;
 
   return (
     <aside className="filter-sidebar">
       <div className="filter-sidebar__header">
-        <h3>Filters</h3>
+        <h3>{t("filters.title")}</h3>
         {hasActiveFilters && (
           <button type="button" className="filter-sidebar__reset" onClick={resetFilters}>
-            Reset
+            {t("filters.reset")}
           </button>
         )}
       </div>
@@ -26,7 +28,7 @@ export function ResourceFilterSidebar({ filters, setFilters, resetFilters }) {
           <Search size={16} />
           <input
             type="text"
-            placeholder="Enter resource..."
+            placeholder={t("filters.resourcePlaceholder")}
             value={filters.query}
             onChange={(e) => setFilters({ query: e.target.value })}
           />
@@ -36,7 +38,7 @@ export function ResourceFilterSidebar({ filters, setFilters, resetFilters }) {
       {/* Both chip lists come from the data, not from a fixed vocabulary, so a
           chip that can't match anything never renders. */}
       <div className="filter-group">
-        <div className="filter-group__title">Select skill from the list</div>
+        <div className="filter-group__title">{t("filters.selectSkill")}</div>
         <div className="skill-grid">
           {RESOURCE_SKILLS.map((skill) => {
             const active = filters.skills.includes(skill);
@@ -56,7 +58,7 @@ export function ResourceFilterSidebar({ filters, setFilters, resetFilters }) {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Resource types</div>
+        <div className="filter-group__title">{t("filters.resourceTypes")}</div>
         <div className="chip-row">
           {RESOURCE_TYPES.map((type) => {
             const active = filters.types.includes(type);

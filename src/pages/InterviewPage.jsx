@@ -7,6 +7,7 @@ import { SkillIcon } from "../utils/skillIcons.jsx";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { useQuestionActions } from "../hooks/useQuestionActions.js";
 import { useQuestionBody } from "../hooks/useQuestionBody.js";
+import { useI18n } from "../i18n/index.jsx";
 
 function pickRandomId(questions, excludeId) {
   const pool = questions.length > 1 ? questions.filter((q) => q.id !== excludeId) : questions;
@@ -15,6 +16,7 @@ function pickRandomId(questions, excludeId) {
 
 export function InterviewPage() {
   const { questions } = useQuestions();
+  const { t } = useI18n();
   const { learn, repeat } = useQuestionActions();
   const [currentId, setCurrentId] = useState(() => pickRandomId(questions, null));
   const [revealed, setRevealed] = useState(false);
@@ -40,12 +42,12 @@ export function InterviewPage() {
 
   return (
     <div className="page">
-      <Breadcrumbs items={[{ label: "Training" }, { label: "Interview" }]} />
-      <h1 className="page-title">Interview simulation</h1>
+      <Breadcrumbs items={[{ label: t("nav.training") }, { label: t("nav.interview") }]} />
+      <h1 className="page-title">{t("interview.title")}</h1>
 
       {!question ? (
         <div className="empty-state">
-          Немає жодного питання для симуляції. Додай питання у <code className="inline-code">questions.js</code>.
+          <FormattedText text={t("interview.empty")} />
         </div>
       ) : (
         <div className="interview-card">
@@ -58,13 +60,13 @@ export function InterviewPage() {
 
           {!revealed ? (
             <button type="button" className="btn btn--primary" onClick={() => setRevealed(true)}>
-              Показати відповідь
+              {t("interview.showAnswer")}
             </button>
           ) : (
             <>
               <div className="interview-card__answer">
                 {loading ? (
-                  <p className="answer-loading">Завантаження відповіді…</p>
+                  <p className="answer-loading">{t("common.loadingAnswer")}</p>
                 ) : (
                   body && (
                     <>
@@ -80,11 +82,11 @@ export function InterviewPage() {
               <div className="interview-card__actions">
                 <button type="button" className="btn btn--danger" onClick={handleDontKnow}>
                   <ThumbsDown size={16} />
-                  Не знаю
+                  {t("interview.dontKnow")}
                 </button>
                 <button type="button" className="btn btn--success" onClick={handleKnow}>
                   <ThumbsUp size={16} />
-                  Знаю
+                  {t("interview.know")}
                 </button>
               </div>
             </>
@@ -92,7 +94,7 @@ export function InterviewPage() {
 
           <button type="button" className="interview-card__skip" onClick={nextQuestion}>
             <Shuffle size={14} />
-            Наступне випадкове питання
+            {t("interview.nextRandom")}
           </button>
         </div>
       )}

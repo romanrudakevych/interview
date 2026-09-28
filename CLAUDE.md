@@ -16,8 +16,9 @@ Requires Node 20.19+ / 22.12+ (Vite 8) — there is no `engines` field to enforc
 There is no test suite configured in this project.
 
 `npm run lint` currently emits pre-existing `react/only-export-components` warnings in
-`src/context/QuestionsContext.jsx` and `src/utils/skillIcons.jsx` (both intentionally
-export non-component values alongside a provider/helpers). Don't try to "fix" these.
+`src/context/QuestionsContext.jsx`, `src/context/TasksContext.jsx`, `src/utils/skillIcons.jsx`
+and `src/i18n/index.jsx` (all intentionally export non-component values alongside a
+provider/helpers). Don't try to "fix" these.
 
 ## Architecture
 
@@ -151,6 +152,41 @@ There is no context provider and no progress: resources are read-only links, so
 `src/hooks/useResources.js` is just the static bank plus filter state persisted under
 `interview-prep:resource-filters`. `ResourceCard` hot-links thumbnails from the upstream
 CDN and falls back to an initial-letter tile when one 404s.
+
+### Interface language (i18n)
+
+`src/i18n/` is a hand-rolled i18n layer — no library, matching the project's other
+hand-rolled primitives. `LanguageProvider` wraps everything (outermost in `App.jsx`) and
+`useI18n()` yields `{ lang, setLang, t }`. Four locales live in `src/i18n/locales/`
+(`en`, `uk`, `ru`, `cs`) as flat dot-key maps, **kept in identical key order** so they diff
+cleanly; `en.js` is the fallback catalogue and must stay complete. `t()` resolves
+active locale → `en` → the key itself, so a missing key renders visibly as `filters.reset`
+rather than blank.
+
+**Only UI chrome is translated.** Question text, answers, task descriptions and test names,
+resource titles, and every data-derived chip label (`SKILLS`, `TASK_CATEGORIES`,
+`TASK_LANGUAGES`, `RESOURCE_TYPES`) stay in their source language — they are content. The
+"Interview Prep" brand name is likewise untranslated.
+
+Three things to know before editing:
+
+- **Inline code in a string uses backticks, not JSX.** `t("analytics.empty")` returns
+  ``"… add questions to `questions.js` …"`` and is rendered through `FormattedText`, which
+  already converts backticks to `<code class="inline-code">`. This keeps word order in the
+  translator's hands.
+- **Plural suffixes are opt-in by existence.** `t(key, { count })` only switches to
+  `key.one`/`.few`/`.many` when those variants exist in a catalogue; otherwise `count` is an
+  ordinary `{count}` placeholder. `tests.hiddenNote` is currently the one genuinely
+  inflecting string — the rest are the "N of M" shape, where the Slavic noun doesn't inflect
+  on the number. Czech and ru/uk use different three-form rules; see `pluralForm`.
+- **The Web Worker can't reach React context.** `runner.worker.js` and `runCode.js`
+  therefore report failures as `{ code, params }`, and `TestResults` calls
+  `t(error.code, error.params)`. Never put display text in the worker.
+
+Language choice persists under its own key (`interview-prep:language`, a bare string) via
+`loadLanguage`/`saveLanguage`, falls back to a `navigator.language` prefix match, and syncs
+`document.documentElement.lang`. The selector is `LanguageSelect` in the sidebar footer — a
+native `<select>`, for free keyboard/screen-reader behavior.
 
 ### Shared behavior hooks
 

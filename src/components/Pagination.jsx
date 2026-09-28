@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useI18n } from "../i18n/index.jsx";
 
 const ELLIPSIS = "ellipsis";
 
@@ -27,16 +28,18 @@ function pageItems(page, pageCount) {
 }
 
 export function Pagination({ page, pageCount, onChange }) {
+  const { t } = useI18n();
+
   if (pageCount <= 1) return null;
 
   return (
-    <nav className="pagination" aria-label="Pagination">
+    <nav className="pagination" aria-label={t("pagination.label")}>
       <button
         type="button"
         className="pagination__arrow"
         disabled={page === 1}
         onClick={() => onChange(page - 1)}
-        aria-label="Previous page"
+        aria-label={t("pagination.previousPage")}
       >
         <ArrowLeft size={16} />
       </button>
@@ -64,7 +67,7 @@ export function Pagination({ page, pageCount, onChange }) {
         className="pagination__arrow"
         disabled={page === pageCount}
         onClick={() => onChange(page + 1)}
-        aria-label="Next page"
+        aria-label={t("pagination.nextPage")}
       >
         <ArrowRight size={16} />
       </button>

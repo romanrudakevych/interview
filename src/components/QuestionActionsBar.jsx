@@ -1,15 +1,17 @@
 import { GraduationCap, RotateCcw, Heart } from "lucide-react";
 import { useQuestionActions } from "../hooks/useQuestionActions.js";
+import { useI18n } from "../i18n/index.jsx";
 
 export function QuestionActionsBar({ question }) {
   const { learn, repeat, toggleFavorite, canRepeat } = useQuestionActions();
+  const { t } = useI18n();
   const repeatEnabled = canRepeat(question);
 
   return (
     <div className="actions-bar">
       <button type="button" className="actions-bar__btn" onClick={() => learn(question.id)}>
         <GraduationCap size={18} />
-        Learn
+        {t("actions.learn")}
       </button>
       <button
         type="button"
@@ -18,7 +20,7 @@ export function QuestionActionsBar({ question }) {
         onClick={() => repeatEnabled && repeat(question.id)}
       >
         <RotateCcw size={18} />
-        Repeat
+        {t("actions.repeat")}
       </button>
       <button
         type="button"
@@ -26,7 +28,7 @@ export function QuestionActionsBar({ question }) {
         onClick={() => toggleFavorite(question.id)}
       >
         <Heart size={18} fill={question.favorite ? "currentColor" : "none"} />
-        Favorite
+        {t("actions.favorite")}
       </button>
     </div>
   );

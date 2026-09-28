@@ -1,25 +1,25 @@
 import { Check, X, Loader2 } from "lucide-react";
+import { useI18n } from "../i18n/index.jsx";
 
 export function TestResults({ state }) {
+  const { t } = useI18n();
+
   if (state.status === "idle") {
-    return (
-      <div className="empty-state">
-        Запусти код кнопкой <strong>Run</strong>, чтобы увидеть результат прогона тестов.
-      </div>
-    );
+    return <div className="empty-state">{t("tests.idle")}</div>;
   }
 
   if (state.status === "running") {
     return (
       <div className="test-results__running">
         <Loader2 size={16} className="spin" />
-        Выполняется…
+        {t("tests.running")}
       </div>
     );
   }
 
   if (state.status === "error") {
-    return <div className="test-results__error">{state.error}</div>;
+    // runCode/the worker hand back { code, params } — see src/utils/runCode.js.
+    return <div className="test-results__error">{t(state.error.code, state.error.params)}</div>;
   }
 
   const { results } = state;
@@ -29,7 +29,7 @@ export function TestResults({ state }) {
   return (
     <div className="test-results">
       <div className={"test-results__summary" + (allPassed ? " test-results__summary--ok" : "")}>
-        Пройдено {passedCount} из {results.length}
+        {t("tests.passed", { passed: passedCount, total: results.length })}
       </div>
 
       {results.map((result, i) => (
@@ -40,22 +40,22 @@ export function TestResults({ state }) {
           <div className="test-result__head">
             {result.passed ? <Check size={14} /> : <X size={14} />}
             <span>{result.name}</span>
-            {result.hidden && <span className="test-result__hidden-tag">скрытый</span>}
+            {result.hidden && <span className="test-result__hidden-tag">{t("tests.hiddenTag")}</span>}
           </div>
 
           {!result.passed && (
             <div className="test-result__detail">
               {result.error ? (
                 <div>
-                  Ошибка: <code>{result.error}</code>
+                  {t("tests.error")} <code>{result.error}</code>
                 </div>
               ) : (
                 <>
                   <div>
-                    Ожидалось: <code>{result.expected}</code>
+                    {t("tests.expected")} <code>{result.expected}</code>
                   </div>
                   <div>
-                    Получено: <code>{result.actual ?? "—"}</code>
+                    {t("tests.received")} <code>{result.actual ?? "—"}</code>
                   </div>
                 </>
               )}
@@ -68,7 +68,8 @@ export function TestResults({ state }) {
 }
 
 export function TestCaseList({ tests }) {
-  const visible = tests.filter((t) => !t.hidden);
+  const { t } = useI18n();
+  const visible = tests.filter((test) => !test.hidden);
   const hiddenCount = tests.length - visible.length;
 
   return (
@@ -82,11 +83,11 @@ export function TestCaseList({ tests }) {
               <pre className="test-case__body">{test.body}</pre>
             ) : (
               <div>
-                Вход: <code>{JSON.stringify(test.args)}</code>
+                {t("tests.input")} <code>{JSON.stringify(test.args)}</code>
               </div>
             )}
             <div>
-              Ожидается: <code>{JSON.stringify(test.expected)}</code>
+              {t("tests.expects")} <code>{JSON.stringify(test.expected)}</code>
             </div>
           </div>
         </div>
@@ -94,7 +95,7 @@ export function TestCaseList({ tests }) {
 
       {hiddenCount > 0 && (
         <div className="test-cases__hidden-note">
-          + {hiddenCount} скрытых теста выполняются при отправке решения (Submit).
+          {t("tests.hiddenNote", { count: hiddenCount })}
         </div>
       )}
     </div>

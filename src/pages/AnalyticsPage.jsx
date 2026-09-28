@@ -1,6 +1,8 @@
 import { Breadcrumbs } from "../components/Breadcrumbs.jsx";
+import { FormattedText } from "../components/FormattedText.jsx";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { SKILLS } from "../data/skills.js";
+import { useI18n } from "../i18n/index.jsx";
 
 const DIFFICULTY_BUCKETS = [
   { label: "1-3", min: 1, max: 3 },
@@ -11,6 +13,7 @@ const DIFFICULTY_BUCKETS = [
 
 export function AnalyticsPage() {
   const { questions } = useQuestions();
+  const { t } = useI18n();
 
   const total = questions.length;
   const learned = questions.filter((q) => q.status === "learned").length;
@@ -32,19 +35,19 @@ export function AnalyticsPage() {
 
   return (
     <div className="page">
-      <Breadcrumbs items={[{ label: "Analytics" }]} />
-      <h1 className="page-title">Analytics</h1>
+      <Breadcrumbs items={[{ label: t("nav.analytics") }]} />
+      <h1 className="page-title">{t("analytics.title")}</h1>
 
       {total === 0 ? (
         <div className="empty-state">
-          Ще немає жодного питання. Додай питання у <code className="inline-code">questions.js</code>, щоб побачити статистику.
+          <FormattedText text={t("analytics.empty")} />
         </div>
       ) : (
         <>
           <section className="analytics-card">
-            <h2 className="analytics-card__title">Загальний прогрес</h2>
+            <h2 className="analytics-card__title">{t("analytics.overallProgress")}</h2>
             <p className="analytics-card__summary">
-              Вивчено {learned} з {total} питань ({overallPercent}%)
+              {t("analytics.summary", { learned, total, percent: overallPercent })}
             </p>
             <div className="progress-bar progress-bar--large">
               <div className="progress-bar__fill" style={{ width: `${overallPercent}%` }} />
@@ -52,13 +55,13 @@ export function AnalyticsPage() {
           </section>
 
           <section className="analytics-card">
-            <h2 className="analytics-card__title">Розподіл по темах</h2>
+            <h2 className="analytics-card__title">{t("analytics.bySkill")}</h2>
             <div className="chart-legend">
               <span className="chart-legend__item">
-                <span className="chart-legend__swatch chart-legend__swatch--learned" /> Learned
+                <span className="chart-legend__swatch chart-legend__swatch--learned" /> {t("analytics.legendLearned")}
               </span>
               <span className="chart-legend__item">
-                <span className="chart-legend__swatch chart-legend__swatch--remaining" /> Remaining
+                <span className="chart-legend__swatch chart-legend__swatch--remaining" /> {t("analytics.legendRemaining")}
               </span>
             </div>
             <div className="bar-chart">
@@ -82,7 +85,7 @@ export function AnalyticsPage() {
           </section>
 
           <section className="analytics-card">
-            <h2 className="analytics-card__title">Питання за складністю</h2>
+            <h2 className="analytics-card__title">{t("analytics.byDifficulty")}</h2>
             <div className="bar-chart">
               {byDifficulty.map((bucket) => (
                 <div className="bar-chart__row" key={bucket.label}>
