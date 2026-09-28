@@ -673,6 +673,13 @@ a {
   display: flex;
   justify-content: center;
   gap: 12px;
+  margin-bottom: 4px;
+}
+
+.prev-next__position {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
   margin-bottom: 28px;
 }
 

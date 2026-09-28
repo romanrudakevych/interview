@@ -88,6 +88,12 @@ export function QuestionDetailsPage() {
             </button>
           </div>
 
+          {currentIndex >= 0 && (
+            <p className="prev-next__position">
+              {currentIndex + 1} з {listForNav.length}
+            </p>
+          )}
+
           {loading ? (
             <section className="answer-section">
               <p className="answer-section__text answer-loading">Завантаження відповіді…</p>
