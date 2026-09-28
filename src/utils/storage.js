@@ -3,6 +3,7 @@ const FILTERS_KEY = "interview-prep:filters";
 const TASK_PROGRESS_KEY = "interview-prep:tasks";
 const TASK_FILTERS_KEY = "interview-prep:task-filters";
 const RESOURCE_FILTERS_KEY = "interview-prep:resource-filters";
+const LANGUAGE_KEY = "interview-prep:language";
 
 export function loadProgress() {
   try {
@@ -89,6 +90,26 @@ export function loadResourceFilters(defaults) {
 export function saveResourceFilters(filters) {
   try {
     localStorage.setItem(RESOURCE_FILTERS_KEY, JSON.stringify(filters));
+  } catch {
+    // ignore
+  }
+}
+
+// The interface language is a bare string, not JSON — nothing to parse, and an
+// unrecognised value is rejected by the LOCALES match in src/i18n. Returns null
+// rather than a default so the provider owns the navigator.language fallback.
+
+export function loadLanguage() {
+  try {
+    return localStorage.getItem(LANGUAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function saveLanguage(lang) {
+  try {
+    localStorage.setItem(LANGUAGE_KEY, lang);
   } catch {
     // ignore
   }

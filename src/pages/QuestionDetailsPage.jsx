@@ -9,11 +9,13 @@ import { useQuestions } from "../context/QuestionsContext.jsx";
 import { useFilteredQuestions } from "../hooks/useFilteredQuestions.js";
 import { useQuestionBody } from "../hooks/useQuestionBody.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
+import { useI18n } from "../i18n/index.jsx";
 
 export function QuestionDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { questions } = useQuestions();
+  const { t } = useI18n();
   const filteredQuestions = useFilteredQuestions();
 
   const questionId = Number(id);
@@ -25,12 +27,17 @@ export function QuestionDetailsPage() {
   if (!question) {
     return (
       <div className="page">
-        <Breadcrumbs items={[{ label: "Knowledge base", to: "/knowledge-base/questions" }, { label: "Not found" }]} />
+        <Breadcrumbs
+          items={[
+            { label: t("nav.knowledgeBase"), to: "/knowledge-base/questions" },
+            { label: t("breadcrumb.notFound") },
+          ]}
+        />
         <div className="empty-state">
-          Питання не знайдено. Можливо, воно було видалене з <code className="inline-code">questions.js</code>.
+          <FormattedText text={t("questions.notFound")} />
         </div>
         <Link to="/knowledge-base/questions" className="btn btn--primary">
-          До списку питань
+          {t("questions.backToList")}
         </Link>
       </div>
     );
@@ -47,9 +54,9 @@ export function QuestionDetailsPage() {
     <div className="page">
       <Breadcrumbs
         items={[
-          { label: "Knowledge base", to: "/knowledge-base/questions" },
-          { label: "List of questions", to: "/knowledge-base/questions" },
-          { label: "More details" },
+          { label: t("nav.knowledgeBase"), to: "/knowledge-base/questions" },
+          { label: t("breadcrumb.listOfQuestions"), to: "/knowledge-base/questions" },
+          { label: t("breadcrumb.moreDetails") },
         ]}
       />
 
@@ -61,7 +68,7 @@ export function QuestionDetailsPage() {
             </div>
             <div>
               <h1 className="page-title">{question.question}</h1>
-              <p className="details-header__subtitle">Цей запит перевіряє розуміння {skillsLabel}</p>
+              <p className="details-header__subtitle">{t("questions.subtitle", { skills: skillsLabel })}</p>
             </div>
           </div>
 
@@ -75,7 +82,7 @@ export function QuestionDetailsPage() {
               onClick={() => prevQuestion && navigate(`/knowledge-base/questions/${prevQuestion.id}`)}
             >
               <ChevronLeft size={16} />
-              Previous
+              {t("questions.previous")}
             </button>
             <button
               type="button"
@@ -83,26 +90,26 @@ export function QuestionDetailsPage() {
               disabled={!nextQuestion}
               onClick={() => nextQuestion && navigate(`/knowledge-base/questions/${nextQuestion.id}`)}
             >
-              Next
+              {t("questions.next")}
               <ChevronRight size={16} />
             </button>
           </div>
 
           {currentIndex >= 0 && (
             <p className="prev-next__position">
-              {currentIndex + 1} з {listForNav.length}
+              {t("questions.position", { current: currentIndex + 1, total: listForNav.length })}
             </p>
           )}
 
           {loading ? (
             <section className="answer-section">
-              <p className="answer-section__text answer-loading">Завантаження відповіді…</p>
+              <p className="answer-section__text answer-loading">{t("common.loadingAnswer")}</p>
             </section>
           ) : (
             body && (
               <>
                 <section className="answer-section">
-                  <h2 className="answer-section__title">Short answer</h2>
+                  <h2 className="answer-section__title">{t("questions.shortAnswer")}</h2>
                   <p className="answer-section__text">
                     <FormattedText text={body.shortAnswer} />
                   </p>
@@ -110,7 +117,7 @@ export function QuestionDetailsPage() {
                 </section>
 
                 <section className="answer-section">
-                  <h2 className="answer-section__title">Long answer</h2>
+                  <h2 className="answer-section__title">{t("questions.longAnswer")}</h2>
                   <p className="answer-section__text">
                     <FormattedText text={body.longAnswer} />
                   </p>

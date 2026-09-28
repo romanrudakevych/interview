@@ -1,20 +1,17 @@
 import { Link } from "react-router-dom";
 import { SkillIcon } from "../utils/skillIcons.jsx";
-
-const STATUS_LABELS = {
-  not_started: "Not started",
-  in_progress: "In progress",
-  solved: "Solved",
-};
+import { useI18n } from "../i18n/index.jsx";
 
 export function TaskCard({ task }) {
+  const { t } = useI18n();
+
   return (
     <Link className="task-card" to={`/training/tasks/${task.id}`}>
       <span className="task-card__title">{task.title}</span>
 
       <div className="task-card__meta">
         <span className={`task-status task-status--${task.status.replace("_", "-")}`}>
-          {STATUS_LABELS[task.status]}
+          {t(`tasks.status.${task.status}`)}
         </span>
 
         <span className={`difficulty-badge difficulty-badge--${task.difficulty}`}>

@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoreVertical, ExternalLink, GraduationCap, RotateCcw, Heart } from "lucide-react";
 import { useQuestionActions } from "../hooks/useQuestionActions.js";
+import { useI18n } from "../i18n/index.jsx";
 
 export function QuestionCardMenu({ question }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const { learn, repeat, toggleFavorite, canRepeat } = useQuestionActions();
+  const { t } = useI18n();
 
   useEffect(() => {
     if (!open) return;
@@ -26,7 +28,7 @@ export function QuestionCardMenu({ question }) {
         type="button"
         className="card-menu__trigger"
         onClick={() => setOpen((o) => !o)}
-        aria-label="Question actions"
+        aria-label={t("actions.questionActions")}
       >
         <MoreVertical size={18} />
       </button>
@@ -42,7 +44,7 @@ export function QuestionCardMenu({ question }) {
             }}
           >
             <ExternalLink size={15} />
-            More
+            {t("actions.more")}
           </button>
           <button
             type="button"
@@ -53,7 +55,7 @@ export function QuestionCardMenu({ question }) {
             }}
           >
             <GraduationCap size={15} />
-            Learn
+            {t("actions.learn")}
           </button>
           <button
             type="button"
@@ -66,7 +68,7 @@ export function QuestionCardMenu({ question }) {
             }}
           >
             <RotateCcw size={15} />
-            Repeat
+            {t("actions.repeat")}
           </button>
           <button
             type="button"
@@ -77,7 +79,7 @@ export function QuestionCardMenu({ question }) {
             }}
           >
             <Heart size={15} fill={question.favorite ? "currentColor" : "none"} />
-            {question.favorite ? "Unfavorite" : "Favorite"}
+            {question.favorite ? t("actions.unfavorite") : t("actions.favorite")}
           </button>
         </div>
       )}

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { LanguageProvider } from "./i18n/index.jsx";
 import { QuestionsProvider } from "./context/QuestionsContext.jsx";
 import { TasksProvider } from "./context/TasksContext.jsx";
 import { Sidebar } from "./components/Sidebar.jsx";
@@ -14,28 +15,31 @@ import { CollectionsPage } from "./pages/CollectionsPage.jsx";
 
 export default function App() {
   return (
-    <QuestionsProvider>
-      <TasksProvider>
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
-          <div className="app-shell">
-            <Sidebar />
-            <main className="app-content">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/training/interview" element={<InterviewPage />} />
-                <Route path="/training/tasks" element={<TasksPage />} />
-                <Route path="/training/tasks/:id" element={<TaskDetailsPage />} />
-                <Route path="/knowledge-base/resources" element={<ResourcesPage />} />
-                <Route path="/knowledge-base/questions" element={<QuestionListPage />} />
-                <Route path="/knowledge-base/questions/:id" element={<QuestionDetailsPage />} />
-                <Route path="/knowledge-base/collections" element={<CollectionsPage />} />
-                <Route path="/analytics" element={<AnalyticsPage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-          </div>
-        </BrowserRouter>
-      </TasksProvider>
-    </QuestionsProvider>
+    // Outermost: the Sidebar and every page read the language.
+    <LanguageProvider>
+      <QuestionsProvider>
+        <TasksProvider>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <div className="app-shell">
+              <Sidebar />
+              <main className="app-content">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/training/interview" element={<InterviewPage />} />
+                  <Route path="/training/tasks" element={<TasksPage />} />
+                  <Route path="/training/tasks/:id" element={<TaskDetailsPage />} />
+                  <Route path="/knowledge-base/resources" element={<ResourcesPage />} />
+                  <Route path="/knowledge-base/questions" element={<QuestionListPage />} />
+                  <Route path="/knowledge-base/questions/:id" element={<QuestionDetailsPage />} />
+                  <Route path="/knowledge-base/collections" element={<CollectionsPage />} />
+                  <Route path="/analytics" element={<AnalyticsPage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+            </div>
+          </BrowserRouter>
+        </TasksProvider>
+      </QuestionsProvider>
+    </LanguageProvider>
   );
 }

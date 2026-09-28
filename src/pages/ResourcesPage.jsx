@@ -4,11 +4,13 @@ import { Pagination } from "../components/Pagination.jsx";
 import { ResourceCard } from "../components/ResourceCard.jsx";
 import { ResourceFilterSidebar } from "../components/ResourceFilterSidebar.jsx";
 import { useFilteredResources } from "../hooks/useResources.js";
+import { useI18n } from "../i18n/index.jsx";
 
 const PAGE_SIZE = 10;
 
 export function ResourcesPage() {
   const { resources, filters, setFilters, resetFilters } = useFilteredResources();
+  const { t } = useI18n();
   const [page, setPage] = useState(1);
 
   const pageCount = Math.max(1, Math.ceil(resources.length / PAGE_SIZE));
@@ -19,15 +21,13 @@ export function ResourcesPage() {
 
   return (
     <div className="page">
-      <Breadcrumbs items={[{ label: "Knowledge base" }, { label: "Resources" }]} />
+      <Breadcrumbs items={[{ label: t("nav.knowledgeBase") }, { label: t("nav.resources") }]} />
       <div className="page-with-sidebar">
         <div className="page-with-sidebar__main">
-          <h1 className="page-title">Useful IT resources</h1>
+          <h1 className="page-title">{t("resources.title")}</h1>
 
           {resources.length === 0 ? (
-            <div className="empty-state">
-              Немає ресурсів, що відповідають фільтрам. Спробуй змінити критерії пошуку.
-            </div>
+            <div className="empty-state">{t("resources.empty")}</div>
           ) : (
             <>
               <div className="resource-list">

@@ -2,6 +2,7 @@ import { Search, Heart } from "lucide-react";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { SKILLS } from "../data/skills.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
+import { useI18n } from "../i18n/index.jsx";
 
 const DIFFICULTY_RANGES = ["1-3", "4-6", "7-8", "9-10"];
 const RATINGS = [1, 2, 3, 4, 5];
@@ -12,6 +13,7 @@ function toggleInArray(array, value) {
 
 export function FilterSidebar() {
   const { filters, setFilters, resetFilters } = useQuestions();
+  const { t } = useI18n();
 
   const hasActiveFilters =
     filters.query ||
@@ -24,10 +26,10 @@ export function FilterSidebar() {
   return (
     <aside className="filter-sidebar">
       <div className="filter-sidebar__header">
-        <h3>Filters</h3>
+        <h3>{t("filters.title")}</h3>
         {hasActiveFilters && (
           <button type="button" className="filter-sidebar__reset" onClick={resetFilters}>
-            Reset
+            {t("filters.reset")}
           </button>
         )}
       </div>
@@ -37,7 +39,7 @@ export function FilterSidebar() {
           <Search size={16} />
           <input
             type="text"
-            placeholder="Enter a query..."
+            placeholder={t("filters.queryPlaceholder")}
             value={filters.query}
             onChange={(e) => setFilters({ query: e.target.value })}
           />
@@ -45,7 +47,7 @@ export function FilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Select skill from the list</div>
+        <div className="filter-group__title">{t("filters.selectSkill")}</div>
         <div className="skill-grid">
           {SKILLS.map((skill) => {
             const active = filters.skills.includes(skill);
@@ -65,7 +67,7 @@ export function FilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Question Difficulty</div>
+        <div className="filter-group__title">{t("filters.questionDifficulty")}</div>
         <div className="chip-row">
           {DIFFICULTY_RANGES.map((range) => {
             const active = filters.difficultyRanges.includes(range);
@@ -86,7 +88,7 @@ export function FilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Question Rating</div>
+        <div className="filter-group__title">{t("filters.questionRating")}</div>
         <div className="chip-row">
           {RATINGS.map((rating) => {
             const active = filters.ratings.includes(rating);
@@ -105,12 +107,12 @@ export function FilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Status</div>
+        <div className="filter-group__title">{t("filters.status")}</div>
         <div className="segmented">
           {[
-            { value: "not_learned", label: "Unlearned" },
-            { value: "learned", label: "Learned" },
-            { value: "all", label: "All" },
+            { value: "not_learned", labelKey: "filters.statusUnlearned" },
+            { value: "learned", labelKey: "filters.statusLearned" },
+            { value: "all", labelKey: "filters.statusAll" },
           ].map((opt) => (
             <button
               key={opt.value}
@@ -118,7 +120,7 @@ export function FilterSidebar() {
               className={"segmented__item" + (filters.status === opt.value ? " segmented__item--active" : "")}
               onClick={() => setFilters({ status: opt.value })}
             >
-              {opt.label}
+              {t(opt.labelKey)}
             </button>
           ))}
         </div>
@@ -132,7 +134,7 @@ export function FilterSidebar() {
             onChange={(e) => setFilters({ favoriteOnly: e.target.checked })}
           />
           <Heart size={16} fill={filters.favoriteOnly ? "currentColor" : "none"} />
-          Favorite only
+          {t("filters.favoriteOnly")}
         </label>
       </div>
     </aside>

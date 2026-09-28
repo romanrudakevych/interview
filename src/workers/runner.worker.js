@@ -3,6 +3,10 @@
 // Lives in a Web Worker so that an infinite loop in user code can be killed by
 // terminating the worker instead of freezing the tab. The host (src/utils/runCode.js)
 // owns the timeout — this file just runs and reports.
+//
+// Errors are reported as { code, params } rather than sentences: a Worker can't
+// read the React i18n context, so display text is produced on the main thread
+// (see TestResults.jsx).
 
 function deepEqual(a, b) {
   if (a === b) return true;
@@ -62,14 +66,17 @@ self.onmessage = async (event) => {
     // eslint-disable-next-line no-new-func
     solution = new Function(`"use strict";\n${code}\nreturn typeof ${functionName} === "function" ? ${functionName} : null;`)();
   } catch (error) {
-    self.postMessage({ ok: false, error: `Ошибка компиляции: ${error.message}` });
+    self.postMessage({
+      ok: false,
+      error: { code: "run.compileError", params: { message: error.message } },
+    });
     return;
   }
 
   if (typeof solution !== "function") {
     self.postMessage({
       ok: false,
-      error: `Функция \`${functionName}\` не найдена. Объявите её в редакторе.`,
+      error: { code: "run.functionNotFound", params: { name: functionName } },
     });
     return;
   }

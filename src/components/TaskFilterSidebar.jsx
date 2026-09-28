@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useTasks } from "../context/TasksContext.jsx";
 import { TASK_CATEGORIES, TASK_LANGUAGES } from "../data/tasks.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
+import { useI18n } from "../i18n/index.jsx";
 
 const DIFFICULTIES = [1, 2, 3, 4, 5];
 const COLLAPSED_CATEGORY_COUNT = 4;
@@ -13,6 +14,7 @@ function toggleInArray(array, value) {
 
 export function TaskFilterSidebar() {
   const { filters, setFilters, resetFilters } = useTasks();
+  const { t } = useI18n();
   const [showAllCategories, setShowAllCategories] = useState(false);
 
   const hasActiveFilters =
@@ -28,10 +30,10 @@ export function TaskFilterSidebar() {
   return (
     <aside className="filter-sidebar">
       <div className="filter-sidebar__header">
-        <h3>Filters</h3>
+        <h3>{t("filters.title")}</h3>
         {hasActiveFilters && (
           <button type="button" className="filter-sidebar__reset" onClick={resetFilters}>
-            Reset
+            {t("filters.reset")}
           </button>
         )}
       </div>
@@ -41,7 +43,7 @@ export function TaskFilterSidebar() {
           <Search size={16} />
           <input
             type="text"
-            placeholder="Enter a task..."
+            placeholder={t("filters.taskPlaceholder")}
             value={filters.query}
             onChange={(e) => setFilters({ query: e.target.value })}
           />
@@ -49,7 +51,7 @@ export function TaskFilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Difficulty</div>
+        <div className="filter-group__title">{t("filters.difficulty")}</div>
         <div className="chip-row">
           {DIFFICULTIES.map((level) => {
             const active = filters.difficulties.includes(level);
@@ -73,7 +75,7 @@ export function TaskFilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Programming languages</div>
+        <div className="filter-group__title">{t("filters.programmingLanguages")}</div>
         <div className="skill-grid">
           {TASK_LANGUAGES.map((lang) => {
             const active = filters.languages.includes(lang);
@@ -95,7 +97,7 @@ export function TaskFilterSidebar() {
       </div>
 
       <div className="filter-group">
-        <div className="filter-group__title">Task categories</div>
+        <div className="filter-group__title">{t("filters.taskCategories")}</div>
         <div className="chip-row">
           {visibleCategories.map((category) => {
             const active = filters.categories.includes(category);
@@ -119,7 +121,7 @@ export function TaskFilterSidebar() {
             className="filter-group__more"
             onClick={() => setShowAllCategories((v) => !v)}
           >
-            {showAllCategories ? "Show less" : "View all"}
+            {showAllCategories ? t("filters.showLess") : t("filters.viewAll")}
           </button>
         )}
       </div>

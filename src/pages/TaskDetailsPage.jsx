@@ -9,22 +9,19 @@ import { TestResults, TestCaseList } from "../components/TestResults.jsx";
 import { SkillIcon } from "../utils/skillIcons.jsx";
 import { useTasks } from "../context/TasksContext.jsx";
 import { runCode } from "../utils/runCode.js";
+import { useI18n } from "../i18n/index.jsx";
 
+// Ids are the tab state; only the text varies by locale.
 const TABS = [
-  { id: "description", label: "Description" },
-  { id: "result", label: "Code result" },
-  { id: "tests", label: "Test cases" },
+  { id: "description", labelKey: "tasks.tab.description" },
+  { id: "result", labelKey: "tasks.tab.result" },
+  { id: "tests", labelKey: "tasks.tab.tests" },
 ];
-
-const STATUS_LABELS = {
-  not_started: "Not started",
-  in_progress: "In progress",
-  solved: "Solved",
-};
 
 export function TaskDetailsPage() {
   const { id } = useParams();
   const { tasks, updateTaskProgress } = useTasks();
+  const { t } = useI18n();
   const task = tasks.find((t) => t.id === Number(id));
 
   const [tab, setTab] = useState("description");
@@ -33,9 +30,14 @@ export function TaskDetailsPage() {
   if (!task) {
     return (
       <div className="page">
-        <Breadcrumbs items={[{ label: "Tasks", to: "/training/tasks" }, { label: "Not found" }]} />
+        <Breadcrumbs
+          items={[
+            { label: t("nav.tasks"), to: "/training/tasks" },
+            { label: t("breadcrumb.notFound") },
+          ]}
+        />
         <div className="empty-state">
-          Завдання не знайдено. <Link to="/training/tasks">До списку завдань</Link>.
+          {t("tasks.notFound")} <Link to="/training/tasks">{t("tasks.backToList")}</Link>.
         </div>
       </div>
     );
@@ -73,20 +75,23 @@ export function TaskDetailsPage() {
   return (
     <div className="page">
       <Breadcrumbs
-        items={[{ label: "Tasks", to: "/training/tasks" }, { label: "More details" }]}
+        items={[
+          { label: t("nav.tasks"), to: "/training/tasks" },
+          { label: t("breadcrumb.moreDetails") },
+        ]}
       />
 
       <div className="task-details">
         <section className="task-details__pane">
           <div className="task-tabs">
-            {TABS.map((t) => (
+            {TABS.map((item) => (
               <button
-                key={t.id}
+                key={item.id}
                 type="button"
-                className={"task-tab" + (tab === t.id ? " task-tab--active" : "")}
-                onClick={() => setTab(t.id)}
+                className={"task-tab" + (tab === item.id ? " task-tab--active" : "")}
+                onClick={() => setTab(item.id)}
               >
-                {t.label}
+                {t(item.labelKey)}
               </button>
             ))}
           </div>
@@ -98,7 +103,7 @@ export function TaskDetailsPage() {
 
                 <div className="task-card__meta">
                   <span className={`task-status task-status--${task.status.replace("_", "-")}`}>
-                    {STATUS_LABELS[task.status]}
+                    {t(`tasks.status.${task.status}`)}
                   </span>
                   <span className={`difficulty-badge difficulty-badge--${task.difficulty}`}>
                     {task.difficulty}
@@ -115,14 +120,14 @@ export function TaskDetailsPage() {
 
                 {/* Imported tasks don't all carry every section — a heading over
                     an empty list reads as a bug, so each one is conditional. */}
-                <h3 className="task-section__title">Условие:</h3>
+                <h3 className="task-section__title">{t("tasks.section.condition")}</h3>
                 <p className="task-section__text">
                   <FormattedText text={task.description.condition} />
                 </p>
 
                 {task.description.input.length > 0 && (
                   <>
-                    <h3 className="task-section__title">Входные данные:</h3>
+                    <h3 className="task-section__title">{t("tasks.section.input")}</h3>
                     <ul className="task-section__list">
                       {task.description.input.map((item, i) => (
                         <li key={i}>
@@ -135,7 +140,7 @@ export function TaskDetailsPage() {
 
                 {task.description.output && (
                   <>
-                    <h3 className="task-section__title">Выходные данные:</h3>
+                    <h3 className="task-section__title">{t("tasks.section.output")}</h3>
                     <p className="task-section__text">
                       <FormattedText text={task.description.output} />
                     </p>
@@ -144,7 +149,7 @@ export function TaskDetailsPage() {
 
                 {task.description.constraints.length > 0 && (
                   <>
-                    <h3 className="task-section__title">Ограничения:</h3>
+                    <h3 className="task-section__title">{t("tasks.section.constraints")}</h3>
                     <ul className="task-section__list">
                       {task.description.constraints.map((item, i) => (
                         <li key={i}>
@@ -157,7 +162,7 @@ export function TaskDetailsPage() {
 
                 {task.description.example && (
                   <>
-                    <h3 className="task-section__title">Пример:</h3>
+                    <h3 className="task-section__title">{t("tasks.section.example")}</h3>
                     {/* Вход/Выход prose, not source — leave it uncolored. */}
                     <CodeBlock code={task.description.example} language="text" />
                   </>
@@ -188,7 +193,7 @@ export function TaskDetailsPage() {
                 disabled={isRunning}
               >
                 <Play size={14} />
-                Run
+                {t("tasks.run")}
               </button>
               <button
                 type="button"
@@ -197,7 +202,7 @@ export function TaskDetailsPage() {
                 disabled={isRunning}
               >
                 <Send size={14} />
-                Submit
+                {t("tasks.submit")}
               </button>
             </div>
           </div>
@@ -209,7 +214,7 @@ export function TaskDetailsPage() {
             className="task-editor__reset"
             onClick={() => handleCodeChange(task.starterCode)}
           >
-            Сбросить к шаблону
+            {t("tasks.resetToTemplate")}
           </button>
         </section>
       </div>

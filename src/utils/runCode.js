@@ -8,6 +8,9 @@ const TIMEOUT_MS = 2000;
  * always torn down, on every path.
  *
  * Resolves with { ok: true, results } or { ok: false, error }; never rejects.
+ *
+ * `error` is a { code, params } pair, not a sentence — the worker has no access
+ * to the React i18n context, so TestResults translates it on the main thread.
  */
 export function runCode({ code, functionName, tests }) {
   return new Promise((resolve) => {
@@ -30,18 +33,26 @@ export function runCode({ code, functionName, tests }) {
         type: "module",
       });
     } catch (error) {
-      finish({ ok: false, error: `Не удалось запустить воркер: ${error.message}` });
+      finish({
+        ok: false,
+        error: { code: "run.workerFailed", params: { message: error.message } },
+      });
       return;
     }
 
     worker.onmessage = (event) => finish(event.data);
     worker.onerror = (event) =>
-      finish({ ok: false, error: event.message || "Ошибка выполнения кода" });
+      finish({
+        ok: false,
+        error: event.message
+          ? { code: "run.executionErrorDetail", params: { message: event.message } }
+          : { code: "run.executionError" },
+      });
 
     timer = setTimeout(() => {
       finish({
         ok: false,
-        error: `Превышено время выполнения (${TIMEOUT_MS} мс). Возможно, в коде бесконечный цикл.`,
+        error: { code: "run.timeout", params: { ms: TIMEOUT_MS } },
       });
     }, TIMEOUT_MS);
 

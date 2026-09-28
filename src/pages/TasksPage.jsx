@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Breadcrumbs } from "../components/Breadcrumbs.jsx";
+import { FormattedText } from "../components/FormattedText.jsx";
 import { TaskCard } from "../components/TaskCard.jsx";
 import { TaskFilterSidebar } from "../components/TaskFilterSidebar.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { useFilteredTasks } from "../hooks/useFilteredTasks.js";
+import { useI18n } from "../i18n/index.jsx";
 
 const PAGE_SIZE = 10;
 
 export function TasksPage() {
   const tasks = useFilteredTasks();
+  const { t } = useI18n();
   const [page, setPage] = useState(1);
 
   const pageCount = Math.max(1, Math.ceil(tasks.length / PAGE_SIZE));
@@ -20,15 +23,14 @@ export function TasksPage() {
 
   return (
     <div className="page">
-      <Breadcrumbs items={[{ label: "Training" }, { label: "Tasks" }]} />
+      <Breadcrumbs items={[{ label: t("nav.training") }, { label: t("nav.tasks") }]} />
       <div className="page-with-sidebar">
         <div className="page-with-sidebar__main">
-          <h1 className="page-title">Coding tasks</h1>
+          <h1 className="page-title">{t("tasks.title")}</h1>
 
           {tasks.length === 0 ? (
             <div className="empty-state">
-              Немає завдань, що відповідають фільтрам. Спробуй змінити критерії пошуку
-              або додай нові завдання у <code className="inline-code">tasks.js</code>.
+              <FormattedText text={t("tasks.empty")} />
             </div>
           ) : (
             <>
