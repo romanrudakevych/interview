@@ -4,7 +4,7 @@ import { useQuestions } from "../context/QuestionsContext.jsx";
 import { useI18n } from "../i18n/index.jsx";
 
 export function HomePage() {
-  const { questions } = useQuestions();
+  const { questions, loading } = useQuestions();
   const { t } = useI18n();
 
   const total = questions.length;
@@ -15,7 +15,9 @@ export function HomePage() {
   return (
     <div className="page">
       <h1 className="page-title">{t("home.title")}</h1>
-      <p className="home__subtitle">{t("home.subtitle")}</p>
+      <p className="home__subtitle">
+        {loading ? t("questions.loadingIndex") : t("home.subtitle")}
+      </p>
 
       <div className="stat-grid">
         <div className="stat-card">

@@ -37,6 +37,8 @@ export default {
   "questions.pageTitle": "Питання",
   "questions.empty": "Немає питань, що відповідають фільтрам. Спробуй змінити критерії пошуку або додай нові питання у `questions.js`.",
   "questions.notFound": "Питання не знайдено. Можливо, воно було видалене з `questions.js`.",
+  "questions.loadingIndex": "Завантаження питань…",
+  "questions.notInLanguage": "Це питання поки недоступне вибраною мовою.",
   "questions.backToList": "До списку питань",
   "questions.subtitle": "Цей запит перевіряє розуміння {skills}",
   "questions.previous": "Назад",

@@ -163,10 +163,11 @@ cleanly; `en.js` is the fallback catalogue and must stay complete. `t()` resolve
 active locale → `en` → the key itself, so a missing key renders visibly as `filters.reset`
 rather than blank.
 
-**Only UI chrome is translated.** Question text, answers, task descriptions and test names,
+Chrome and **question content** are translated separately — see "Translated question
+content" below for the latter. Coding-task content (titles, descriptions, test names),
 resource titles, and every data-derived chip label (`SKILLS`, `TASK_CATEGORIES`,
-`TASK_LANGUAGES`, `RESOURCE_TYPES`) stay in their source language — they are content. The
-"Interview Prep" brand name is likewise untranslated.
+`TASK_LANGUAGES`, `RESOURCE_TYPES`) stay in their source language. The "Interview Prep"
+brand name is likewise untranslated.
 
 Three things to know before editing:
 
@@ -187,6 +188,53 @@ Language choice persists under its own key (`interview-prep:language`, a bare st
 `loadLanguage`/`saveLanguage`, falls back to a `navigator.language` prefix match, and syncs
 `document.documentElement.lang`. The selector is `LanguageSelect` in the sidebar footer — a
 native `<select>`, for free keyboard/screen-reader behavior.
+
+### Translated question content
+
+The same selector also switches **question content**. `ru` is the source bank
+(`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
+in `src/data/translations/<lang>.js`. `cs` covers HTML (306), CSS (286), React (743) and
+React Router (40) — 1,375 questions; `en` and `uk` carry only the React Router block
+(ids 2751–2790).
+
+**A question with no translation is hidden, not fallen back.** Selecting cs/en/uk therefore
+shows only what that language covers, and Home totals, Analytics and Collections shrink to
+match; only `ru` shows the full bank. This is deliberate — mixing languages in one list
+was the alternative.
+
+- **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
+  skill must be 100 % translated or the build fails; entries for unclaimed skills are
+  staged (reported by the generator) and excluded from the shipped data. That is how a
+  half-finished skill block can sit in the file without ever reaching a user. A question
+  tagged with several skills ships once any one of its skills is claimed — which is why the
+  Czech sidebar shows a **Next.js** chip with 6 of that skill's 36 questions (ids
+  3362–3367 are tagged React *and* Next.js).
+- **Ids are the join key across languages and into localStorage progress.** They are array
+  positions in `questions.js`, so each translation entry carries the Russian `source` text
+  it was made from, and `scripts/build-questions-data.mjs` fails the build if that text no
+  longer matches. It also fails if a *claimed* skill block is partially translated — adding
+  a 41st React Router question forces you to translate it rather than letting it vanish from
+  three locales.
+- **Generated artifacts are per-language**: `index.<lang>.json` plus `bodies/<lang>/NNN.json`.
+  Chunking still keys on the *global* id, so `chunkIndexForId` is language-independent and a
+  sparse language simply writes fewer files (en/uk each produce only `027.json`).
+- **Three places must agree on the language or you serve stale prose**: the glob in
+  `questionBodies.js` is two levels deep (`bodies/*/*.json`), its caches key on
+  `` `${lang}:${chunk}` ``, and `useQuestionBody` tags its result `{ id, lang }` with
+  `[id, lang]` deps.
+- **The index is async.** `QuestionsContext` loads `index.<lang>.json` on demand and exposes
+  `loading`; consumers that render an empty state (`QuestionListPage`, `HomePage`,
+  `AnalyticsPage`, `CollectionsPage`, `QuestionDetailsPage`) must check it first or they
+  flash "no questions" on every switch. `FilterSidebar` derives its skill chips from the
+  loaded index for the same reason `ResourceFilterSidebar` does — a chip that matches
+  nothing never renders.
+- Translating `question` text is also what keeps **search** working: `useFilteredQuestions`
+  substring-matches `question.question`, so a Czech user typing Czech finds Czech questions.
+
+Some scraped React Router entries are imperfect: ids 2783–2786 are actually about **Vue
+Router** despite their tag, and 2790's code example lost its JSX to the scraper (the
+translations carry a reconstructed one). Translate faithfully; don't silently rewrite the
+subject matter.
 
 ### Shared behavior hooks
 

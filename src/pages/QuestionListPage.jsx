@@ -11,7 +11,7 @@ import { useI18n } from "../i18n/index.jsx";
 const PAGE_SIZE = 10;
 
 export function QuestionListPage() {
-  const { filters } = useQuestions();
+  const { filters, loading } = useQuestions();
   const { t } = useI18n();
   const questions = useFilteredQuestions();
   const [page, setPage] = useState(1);
@@ -48,7 +48,9 @@ export function QuestionListPage() {
         <div className="page-with-sidebar__main">
           <h1 className="page-title">{t("questions.pageTitle")}</h1>
 
-          {questions.length === 0 ? (
+          {loading ? (
+            <div className="empty-state">{t("questions.loadingIndex")}</div>
+          ) : questions.length === 0 ? (
             <div className="empty-state">
               <FormattedText text={t("questions.empty")} />
             </div>

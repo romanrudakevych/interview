@@ -1,4 +1,5 @@
 import { Search, Heart } from "lucide-react";
+import { useMemo } from "react";
 import { useQuestions } from "../context/QuestionsContext.jsx";
 import { SKILLS } from "../data/skills.js";
 import { SkillIcon } from "../utils/skillIcons.jsx";
@@ -12,8 +13,15 @@ function toggleInArray(array, value) {
 }
 
 export function FilterSidebar() {
-  const { filters, setFilters, resetFilters } = useQuestions();
+  const { questions, filters, setFilters, resetFilters } = useQuestions();
   const { t } = useI18n();
+
+  // Only the skills the active language actually covers. Kept in SKILLS order
+  // so the grid doesn't reshuffle as the bank changes.
+  const availableSkills = useMemo(() => {
+    const present = new Set(questions.flatMap((q) => q.skills));
+    return SKILLS.filter((skill) => present.has(skill));
+  }, [questions]);
 
   const hasActiveFilters =
     filters.query ||
@@ -49,7 +57,7 @@ export function FilterSidebar() {
       <div className="filter-group">
         <div className="filter-group__title">{t("filters.selectSkill")}</div>
         <div className="skill-grid">
-          {SKILLS.map((skill) => {
+          {availableSkills.map((skill) => {
             const active = filters.skills.includes(skill);
             return (
               <button

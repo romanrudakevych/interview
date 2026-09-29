@@ -4,7 +4,7 @@ import { QuestionCard } from "../components/QuestionCard.jsx";
 import { useI18n } from "../i18n/index.jsx";
 
 export function CollectionsPage() {
-  const { questions } = useQuestions();
+  const { questions, loading } = useQuestions();
   const { t } = useI18n();
   const favorites = questions.filter((q) => q.favorite);
 
@@ -14,7 +14,9 @@ export function CollectionsPage() {
       <h1 className="page-title">{t("collections.title")}</h1>
       <p className="home__subtitle">{t("collections.subtitle")}</p>
 
-      {favorites.length === 0 ? (
+      {loading ? (
+        <div className="empty-state">{t("questions.loadingIndex")}</div>
+      ) : favorites.length === 0 ? (
         <div className="empty-state">{t("collections.empty")}</div>
       ) : (
         <div className="question-list">

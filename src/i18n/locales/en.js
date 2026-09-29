@@ -38,6 +38,8 @@ export default {
   "questions.pageTitle": "Questions",
   "questions.empty": "No questions match the filters. Try changing the search criteria or add new questions to `questions.js`.",
   "questions.notFound": "Question not found. It may have been removed from `questions.js`.",
+  "questions.loadingIndex": "Loading questions…",
+  "questions.notInLanguage": "This question is not available in the selected language yet.",
   "questions.backToList": "Back to the question list",
   "questions.subtitle": "This question tests your understanding of {skills}",
   "questions.previous": "Previous",

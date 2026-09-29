@@ -38,6 +38,8 @@ export default {
   "questions.pageTitle": "Вопросы",
   "questions.empty": "Нет вопросов, соответствующих фильтрам. Попробуй изменить критерии поиска или добавь новые вопросы в `questions.js`.",
   "questions.notFound": "Вопрос не найден. Возможно, он был удалён из `questions.js`.",
+  "questions.loadingIndex": "Загрузка вопросов…",
+  "questions.notInLanguage": "Этот вопрос пока недоступен на выбранном языке.",
   "questions.backToList": "К списку вопросов",
   "questions.subtitle": "Этот вопрос проверяет понимание {skills}",
   "questions.previous": "Назад",

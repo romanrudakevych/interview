@@ -36,6 +36,8 @@ export default {
   "questions.pageTitle": "Otázky",
   "questions.empty": "Žádné otázky neodpovídají filtrům. Zkus změnit kritéria hledání nebo přidej nové otázky do `questions.js`.",
   "questions.notFound": "Otázka nenalezena. Možná byla odstraněna z `questions.js`.",
+  "questions.loadingIndex": "Načítání otázek…",
+  "questions.notInLanguage": "Tato otázka zatím není ve zvoleném jazyce k dispozici.",
   "questions.backToList": "Zpět na seznam otázek",
   "questions.subtitle": "Tato otázka zkouší porozumění {skills}",
   "questions.previous": "Předchozí",

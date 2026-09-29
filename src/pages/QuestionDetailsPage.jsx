@@ -14,7 +14,7 @@ import { useI18n } from "../i18n/index.jsx";
 export function QuestionDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { questions } = useQuestions();
+  const { questions, loading: indexLoading } = useQuestions();
   const { t } = useI18n();
   const filteredQuestions = useFilteredQuestions();
 
@@ -24,7 +24,20 @@ export function QuestionDetailsPage() {
   // so a bad URL never requests a nonexistent chunk.
   const { body, loading } = useQuestionBody(question ? questionId : null);
 
+  // The index for this language is still arriving; "not found" below would be
+  // wrong until it lands.
+  if (indexLoading) {
+    return (
+      <div className="page">
+        <div className="empty-state">{t("questions.loadingIndex")}</div>
+      </div>
+    );
+  }
+
   if (!question) {
+    // The id may be valid but simply untranslated — every language shows only
+    // the questions it covers, so this is the common case after a switch.
+    const existsElsewhere = Number.isInteger(questionId) && questionId > 0;
     return (
       <div className="page">
         <Breadcrumbs
@@ -34,7 +47,7 @@ export function QuestionDetailsPage() {
           ]}
         />
         <div className="empty-state">
-          <FormattedText text={t("questions.notFound")} />
+          <FormattedText text={existsElsewhere ? t("questions.notInLanguage") : t("questions.notFound")} />
         </div>
         <Link to="/knowledge-base/questions" className="btn btn--primary">
           {t("questions.backToList")}

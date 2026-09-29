@@ -12,7 +12,7 @@ const DIFFICULTY_BUCKETS = [
 ];
 
 export function AnalyticsPage() {
-  const { questions } = useQuestions();
+  const { questions, loading } = useQuestions();
   const { t } = useI18n();
 
   const total = questions.length;
@@ -38,7 +38,9 @@ export function AnalyticsPage() {
       <Breadcrumbs items={[{ label: t("nav.analytics") }]} />
       <h1 className="page-title">{t("analytics.title")}</h1>
 
-      {total === 0 ? (
+      {loading ? (
+        <div className="empty-state">{t("questions.loadingIndex")}</div>
+      ) : total === 0 ? (
         <div className="empty-state">
           <FormattedText text={t("analytics.empty")} />
         </div>
