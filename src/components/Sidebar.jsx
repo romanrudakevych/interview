@@ -57,6 +57,10 @@ export function Sidebar() {
         <span className="sidebar__brand-name">Interview Prep</span>
       </div>
 
+      <div className="sidebar__lang-row">
+        <LanguageSelect />
+      </div>
+
       <nav className="sidebar__nav">
         {NAV_SECTIONS.map((section) => (
           <div className="sidebar__section" key={section.id}>
@@ -85,10 +89,6 @@ export function Sidebar() {
           </div>
         ))}
       </nav>
-
-      <div className="sidebar__footer">
-        <LanguageSelect />
-      </div>
     </aside>
   );
 }
