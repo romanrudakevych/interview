@@ -193,9 +193,9 @@ native `<select>`, for free keyboard/screen-reader behavior.
 
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
-in `src/data/translations/<lang>.js`. `cs` covers HTML (306), CSS (286), React (743) and
-React Router (40) — 1,375 questions; `en` and `uk` carry only the React Router block
-(ids 2751–2790).
+in `src/data/translations/<lang>.js`. `cs` covers HTML (306), CSS (286), TypeScript (162),
+React (743) and React Router (40) — 1,537 questions; `en` and `uk` carry only the React
+Router block (ids 2751–2790).
 
 **A question with no translation is hidden, not fallen back.** Selecting cs/en/uk therefore
 shows only what that language covers, and Home totals, Analytics and Collections shrink to
