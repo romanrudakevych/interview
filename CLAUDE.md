@@ -194,8 +194,8 @@ native `<select>`, for free keyboard/screen-reader behavior.
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
 in `src/data/translations/<lang>.js`. `cs` covers HTML (306), CSS (286), TypeScript (162),
-React (743) and React Router (40) — 1,537 questions; `en` and `uk` carry only the React
-Router block (ids 2751–2790).
+React (743), React Router (40) and Next.js (36) — 1,567 questions; `en` and `uk` carry only
+the React Router block (ids 2751–2790).
 
 **A question with no translation is hidden, not fallen back.** Selecting cs/en/uk therefore
 shows only what that language covers, and Home totals, Analytics and Collections shrink to
@@ -206,9 +206,9 @@ was the alternative.
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
   staged (reported by the generator) and excluded from the shipped data. That is how a
   half-finished skill block can sit in the file without ever reaching a user. A question
-  tagged with several skills ships once any one of its skills is claimed — which is why the
-  Czech sidebar shows a **Next.js** chip with 6 of that skill's 36 questions (ids
-  3362–3367 are tagged React *and* Next.js).
+  tagged with several skills ships once any one of its skills is claimed, so a question can
+  reach a locale through a skill other than the one you were translating (ids 3362–3367 are
+  tagged React *and* Next.js, and shipped with the React block before Next.js was claimed).
 - **Ids are the join key across languages and into localStorage progress.** They are array
   positions in `questions.js`, so each translation entry carries the Russian `source` text
   it was made from, and `scripts/build-questions-data.mjs` fails the build if that text no
