@@ -14,7 +14,7 @@
 // enforces that. Entries for a skill *not* listed are staged work in progress:
 // they are kept here but left out of the generated data, so a half-translated
 // section never reaches the UI.
-export const coverage = ["React Router", "HTML", "CSS", "React", "TypeScript", "Next.js", "Networks"];
+export const coverage = ["React Router", "HTML", "CSS", "React", "TypeScript", "Next.js", "Networks", "Kubernetes"];
 
 export default {
   // ---- HTML ----
@@ -10716,6 +10716,64 @@ export default {
     codeExample: "// app/page.tsx (Server Component)\nexport default async function Page() {\n  const res = await fetch('https://api.example.com/data');\n  const data = await res.json();\n  return <div>{data.title}</div>;\n}\n\n// app/dashboard.tsx (Client Component)\n'use client';\nimport { useEffect, useState } from 'react';\n\nexport default function Dashboard() {\n  const [data, setData] = useState(null);\n  useEffect(() => {\n    fetch('/api/dashboard')\n      .then(res => res.json())\n      .then(setData);\n  }, []);\n  return <div>{data?.message}</div>;\n}\n\nconst res = await fetch('https://api.example.com/posts', {\n  next: { revalidate: 60 } // aktualizovat každých 60 sekund\n});",
   },
   // ---- end Next.js ----
+  // ---- Kubernetes ----
+  3027: {
+    source: "Что такое Kubernetes?",
+    question: "Co je Kubernetes?",
+    shortAnswer: "Kubernetes je platforma s otevřeným zdrojovým kódem pro orchestraci kontejnerů. Automatizuje nasazování, správu a škálování kontejnerizovaných aplikací. Místo ruční správy kontejnerů umožňuje Kubernetes použít k jejich nastavení deklarativní konfigurace. Pomáhá to provozovat aplikace spolehlivě a zajišťuje jejich odolnost proti výpadkům i pružnost.",
+    longAnswer: "Kubernetes (často zkracovaný jako K8s) je systém pro automatickou správu kontejnerizovaných aplikací. Řeší problémy ručního nasazování, aktualizace a škálování tím, že poskytuje mocné automatizační mechanismy.\nZákladní možnosti Kubernetes:\n\n- Orchestrace kontejnerů – spravuje několik kontejnerů na různých serverech.\n\n- Automatické škálování – zvyšuje nebo snižuje počet běžících kontejnerů podle zátěže.\n\n- Samoopravování – kontejnery při výpadcích restartuje.\n\n- Vyvažování zátěže – rovnoměrně rozděluje provoz mezi kontejnery.\n\n- Deklarativní správa – uživatelé popíšou žádaný stav systému a Kubernetes ho automaticky udržuje.\n\nPříklad použití:\nDejme tomu, že máte webovou aplikaci běžící v Docker kontejneru. Místo ručního spouštění kontejnerů na serverech lze vytvořit manifest pro Kubernetes:\n\nTento soubor udává, že mají běžet tři instance kontejneru `my-app`. Kubernetes je sám nasadí, rozdělí mezi servery a zajistí jejich stabilní chod.\nKubernetes slouží k automatizované správě kontejnerových aplikací. Činí nasazování i údržbu systémů jednodušší, spolehlivější a pružnější.",
+    codeExample: "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-app\n        image: my-app:latest",
+  },
+  3028: {
+    source: "Каковы преимущества использования Kubernetes?",
+    question: "Jaké jsou výhody používání Kubernetes?",
+    shortAnswer: "Kubernetes automatizuje správu kontejnerů a usnadňuje nasazování, škálování i vyvažování zátěže. Činí aplikace odolnými proti výpadkům a umožňuje rovnoměrně rozdělovat zdroje. Díky tomu lze snadno spravovat složité systémy se stovkami kontejnerů.",
+    longAnswer: "Používání Kubernetes přináší množství výhod, zvlášť při práci s mikroslužbami a s cloudovými aplikacemi.\nZákladní výhody:\n\n- Automatizace – Kubernetes kontejnery spravuje sám a při výpadcích je restartuje.\n\n- Pružnost škálování – podle zátěže kontejnery přidává nebo ubírá.\n\n- Vyvažování zátěže – rovnoměrně rozděluje požadavky mezi kontejnery.\n\n- Aktualizace bez výpadku – nové verze aplikace lze nasadit bez zastavení služby.\n\n- Efektivní využití zdrojů – kontejnery běží na různých uzlech clusteru a šetří tím kapacitu.\n\nPříklad:\nPokud máte webovou aplikaci, může Kubernetes počet instancí při vysokém provozu automaticky zvýšit a při nízkém snížit.\n\nTento manifest udává, že Kubernetes aplikaci automaticky škáluje při překročení 50% zatížení CPU.\nKubernetes činí správu kontejnerů jednoduchou a spolehlivou. Zajišťuje automatické škálování, odolnost proti výpadkům a zjednodušuje aktualizace.",
+    codeExample: "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata:\n  name: my-app-hpa\nspec:\n  scaleTargetRef:\n    apiVersion: apps/v1\n    kind: Deployment\n    name: my-app\n  minReplicas: 2\n  maxReplicas: 10\n  metrics:\n  - type: Resource\n    resource:\n      name: cpu\n      target:\n        type: Utilization\n        averageUtilization: 50",
+  },
+  3029: {
+    source: "Что такое кластер Kubernetes?",
+    question: "Co je cluster Kubernetes?",
+    shortAnswer: "Cluster Kubernetes je skupina uzlů (serverů), na kterých běží kontejnerizované aplikace. V clusteru je řídicí komponenta (control plane) a pracovní uzly (worker nodes), které kontejnery vykonávají. Kubernetes cluster spravuje a zajišťuje automatické nasazování, škálování i vyvažování zátěže.",
+    longAnswer: "Cluster Kubernetes je základní jednotkou infrastruktury v Kubernetes. Sdružuje několik serverů a zajišťuje distribuované vykonávání kontejnerů.\nZákladní komponenty clusteru\n1. Control Plane (řídicí rovina)\n\n- Odpovídá za správu clusteru.\n\n- Zahrnuje `kube-apiserver`, `etcd`, `controller-manager`, `scheduler`.\n\n- Přijímá příkazy a rozděluje zátěž mezi uzly.\n\n2. Worker Nodes (pracovní uzly)\n\n- Vykonávají kontejnery v podobě podů.\n\n- Zahrnují `kubelet`, `kube-proxy` a kontejnerový runtime (například Docker, containerd).\n\n- Spojují se s `control plane` kvůli získání instrukcí.\n\nJak cluster funguje?\n1. Vývojář vytvoří popis žádaného stavu (například „spustit 3 kopie služby“).\n2. Kubernetes kontejnery rozdělí mezi uzly clusteru.\n3. Kontejnery se spustí v podech, které zajišťují jejich chod.\n4. Kubernetes jejich stav automaticky sleduje a vyvažuje zátěž.\nPříklad:\nVytvoření jednoduchého clusteru Minikube pro lokální testování:\n\nVýstup:\n\nTeď máme jeden uzel běžící v clusteru.\nCluster Kubernetes sdružuje několik uzlů kvůli správě kontejnerů. Činí aplikace odolnými proti výpadkům a pružnými tím, že jejich vykonávání rozděluje mezi servery.",
+    codeExample: "minikube start\nkubectl get nodes\n\nNAME       STATUS   ROLES    AGE   VERSION\nminikube   Ready    master   5m    v1.28.0",
+  },
+  3030: {
+    source: "Что такое узел (node) в Kubernetes?",
+    question: "Co je uzel (node) v Kubernetes?",
+    shortAnswer: "Uzel (node) je server v clusteru Kubernetes, který vykonává kontejnery. Může být fyzický nebo virtuální. Na každém uzlu běží agent `kubelet`, který spravuje pody a komunikuje s řídicí rovinou clusteru. Uzly se sdružují do clusteru kvůli společné práci a vyvažování zátěže.",
+    longAnswer: "Uzel je v Kubernetes základním výpočetním prvkem, na kterém se spouštějí kontejnery. Uzly mohou být fyzické stroje (bare metal) nebo virtuální (například v cloudu AWS, GCP, Azure).\nDruhy uzlů:\n1. Control Plane Node (řídicí uzel)\n\n- Spravuje cluster.\n\n- Zahrnuje komponenty: `kube-apiserver`, `controller-manager`, `scheduler`.\n\n- Obvykle kontejnery nevykonává, ale rozděluje je mezi pracovní uzly.\n\n2. Worker Node (pracovní uzel)\n\n- Spouští kontejnery v podobě podů.\n\n- Zahrnuje:\n\n- `kubelet` – agent pro správu podů.\n\n- `kube-proxy` – směrování provozu.\n\n- Kontejnerový runtime (Docker, containerd, CRI-O).\n\nJak uzel funguje?\n\n- Kubernetes dostane příkaz nasadit pod.\n\n- `scheduler` pod přiřadí jednomu z uzlů.\n\n- `kubelet` uvnitř podu spustí kontejnery.\n\n- `kube-proxy` nastaví síť pro komunikaci mezi pody.\n\nPříklad:\nPodívejme se na seznam uzlů v clusteru:\n\nPříklad výstupu:\n\nZnamená to, že v clusteru jsou dva pracovní uzly.\nUzly Kubernetes jsou servery, na kterých běží kontejnerizované aplikace. Pracovní uzly vykonávají pody a řídicí uzel jejich práci koordinuje.",
+    codeExample: "kubectl get nodes\n\nNAME         STATUS   ROLES    AGE   VERSION\nworker-1     Ready    worker   2d    v1.28.0\nworker-2     Ready    worker   2d    v1.28.0",
+  },
+  3031: {
+    source: "Что такое Pod в Kubernetes?",
+    question: "Co je Pod v Kubernetes?",
+    shortAnswer: "Pod je nejmenší nasaditelná jednotka v Kubernetes a představuje jeden nebo několik kontejnerů, které běží společně. Kontejnery uvnitř podu sdílejí síť i souborový systém, což jim umožňuje spolu komunikovat. Kubernetes pody spravuje, přiřazuje je uzlům a zajišťuje jejich chod.",
+    longAnswer: "Pod je v Kubernetes základní jednotkou vykonávání, která zapouzdřuje jeden nebo několik kontejnerů. Pokud se aplikace skládá z několika kontejnerů, které mají běžet společně (například webový server a proxy cache), lze je sloučit do jednoho podu.\nVlastnosti podu:\n\n- Jednotná síť – všechny kontejnery uvnitř podu používají jednu IP adresu.\n\n- Společný disk – kontejnery mohou souborový systém sdílet.\n\n- Společná správa – Kubernetes spravuje pody, ne jednotlivé kontejnery.\n\nPříklad manifestu podu:\n\nTento pod spustí kontejner s `nginx`, který naslouchá na portu `80`.\nZávěr:\nPod je základní nasazovací jednotka Kubernetes, která kontejnery sdružuje do logické skupiny. Kubernetes pody spravuje a zajišťuje jejich chod i vzájemnou komunikaci.",
+    codeExample: "apiVersion: v1\nkind: Pod\nmetadata:\n    name: my-pod\nspec:\n    containers:\n    - name: app-container\n      image: nginx\n      ports:\n      - containerPort: 80",
+  },
+  3032: {
+    source: "Что такое управляющая плоскость (Control Plane) Kubernetes?",
+    question: "Co je řídicí rovina (Control Plane) Kubernetes?",
+    shortAnswer: "Control Plane je sada komponent, které spravují cluster Kubernetes. Patří do ní API Server, etcd, Scheduler a Controller Manager. Tyto komponenty odpovídají za zpracování požadavků, za uchovávání dat o stavu clusteru, za rozdělování zátěže a za kontrolu chodu uzlů.",
+    longAnswer: "Control Plane je centrální část Kubernetes, která celý systém řídí. Přijímá příkazy, zpracovává je a dohlíží na jejich provedení.\nZákladní komponenty:\n\n- API Server – vstupní bod do Kubernetes, zpracovává příkazy (`kubectl`, API).\n\n- etcd – distribuované úložiště konfigurací a stavů clusteru.\n\n- Scheduler – rozděluje pody mezi uzly a volí optimální místo.\n\n- Controller Manager – řídí procesy, které udržují stav systému.\n\n- Cloud Controller Manager – komunikuje s cloudovými poskytovateli (pokud cluster běží v cloudu).\n\nJak to funguje?\n\n- Vývojář odešle příkaz (`kubectl apply -f pod.yaml`).\n\n- API Server požadavek přijme a zapíše ho do `etcd`.\n\n- Scheduler určí, na kterém uzlu pod spustit.\n\n- `kubelet` (na uzlu) příkaz dostane a kontejner spustí.\n\nControl Plane je „mozek“ Kubernetes, který cluster řídí. Koordinuje práci uzlů, plánuje nasazování podů a sleduje stav systému.",
+    codeExample: null,
+  },
+  3033: {
+    source: "Что такое API Server в Kubernetes?",
+    question: "Co je API Server v Kubernetes?",
+    shortAnswer: "API Server je centrální komponenta Kubernetes, která zpracovává uživatelské příkazy a komunikuje s dalšími komponentami clusteru. Přijímá požadavky od `kubectl`, od kontrolerů a od služeb, a poté stav clusteru mění.",
+    longAnswer: "Kubernetes API Server (`kube-apiserver`) je hlavní vstupní bod pro správu clusteru.\nZákladní funkce:\n\n- Zpracovává API požadavky (`kubectl`, Helm, Dashboard).\n\n- Předává příkazy dalším komponentám (`Scheduler`, `Controller Manager`).\n\n- Uchovává data v `etcd`.\n\nPožadavky autorizuje a autentizuje.\nPříklad požadavku na API Server:\n\nAPI Server tento požadavek přijme, vyžádá si data z `etcd` a vrátí seznam podů.\nAPI Server je hlavní rozhraní pro správu Kubernetes, které přijímá příkazy a rozděluje je mezi komponenty systému.",
+    codeExample: "kubectl get pods",
+  },
+  3034: {
+    source: "Что такое etcd в Kubernetes?",
+    question: "Co je etcd v Kubernetes?",
+    shortAnswer: "etcd je distribuované, spolehlivé úložiště typu klíč-hodnota, ve kterém Kubernetes uchovává veškeré informace o clusteru. Zaručuje konzistenci dat a zajišťuje odolnost proti výpadkům.",
+    longAnswer: "`etcd` je vysoce dostupné úložiště, které Kubernetes používá k uchovávání konfigurace clusteru.\nZákladní funkce:\n\n- Uchovává informace o podech, o uzlech, o konfiguracích.\n\n- Zajišťuje konzistenci dat.\n\n- Podporuje odolnost proti výpadkům (replikuje se mezi uzly).\n\nPříklad:\nPodívejme se na obsah `etcd`:\n\nPři výpadku uzlu Kubernetes jeho stav obnoví na základě dat z `etcd`.\n`etcd` je datové úložiště Kubernetes, které zaručuje zachování a konzistenci informací o clusteru.",
+    codeExample: "kubectl get etcd",
+  },
+  // ---- end Kubernetes ----
   // ---- Networks ----
   3158: {
     source: "Что такое протокол HTTPS?",
