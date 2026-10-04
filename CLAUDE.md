@@ -194,17 +194,17 @@ native `<select>`, for free keyboard/screen-reader behavior.
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
 in `src/data/translations/<lang>.js`. **`cs` now claims all 14 skills and covers the whole
-bank — 3,367 of 3,367 questions**. `en` claims **React Router** (ids 2751–2790) and
-**TypeScript** (ids 1852–2013) — 202 questions; `uk` carries only the React Router block
-(40 questions).
+bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **TypeScript**
+(ids 1852–2013) and **React Router** (ids 2751–2790) — 508 questions; `uk` carries only
+the React Router block (40 questions).
 
 **A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 202 questions and `uk` only its 40, and Home totals, Analytics and
+shows only its 508 questions and `uk` only its 40, and Home totals, Analytics and
 Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
 mixing languages in one list was the alternative. Because `cs` is now complete, adding a
 question to `questions.js` breaks the Czech build until it is translated too (a claimed
-skill must be 100 % covered), and adding a TypeScript or React Router question now breaks
-the English build for the same reason.
+skill must be 100 % covered), and adding an HTML, TypeScript or React Router question now
+breaks the English build for the same reason.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
