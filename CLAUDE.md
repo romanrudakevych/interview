@@ -197,18 +197,18 @@ in `src/data/translations/<lang>.js`. **`cs` now claims all 14 skills and covers
 bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **CSS**
 (ids 307–592), **React** (ids 2014–2750 and 3362–3367), **TypeScript**
 (ids 1852–2013), **React Router** (ids 2751–2790), **Networks**
-(ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980) and
-**Next.js** (ids 2791–2820) — 1,843 questions; `uk` carries only the React
-Router block (40 questions).
+(ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980),
+**Next.js** (ids 2791–2820) and **Redux** (ids 2821–2916) — 1,939 questions;
+`uk` carries only the React Router block (40 questions).
 
 **A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 1,843 questions and `uk` only its 40, and Home totals, Analytics and
+shows only its 1,939 questions and `uk` only its 40, and Home totals, Analytics and
 Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
 mixing languages in one list was the alternative. Because `cs` is now complete, adding a
 question to `questions.js` breaks the Czech build until it is translated too (a claimed
 skill must be 100 % covered), and adding an HTML, CSS, React, TypeScript, React
-Router, Networks, Kubernetes, Git or Next.js question now breaks the English build
-for the same reason.
+Router, Networks, Kubernetes, Git, Next.js or Redux question now breaks the English
+build for the same reason.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
@@ -240,10 +240,11 @@ for the same reason.
 - Translating `question` text is also what keeps **search** working: `useFilteredQuestions`
   substring-matches `question.question`, so a Czech user typing Czech finds Czech questions.
 
-Some scraped React Router entries are imperfect: ids 2783–2786 are actually about **Vue
-Router** despite their tag, and 2790's code example lost its JSX to the scraper (the
-translations carry a reconstructed one). Translate faithfully; don't silently rewrite the
-subject matter.
+Some scraped entries are imperfect. React Router ids 2783–2786 are actually about **Vue
+Router** despite their tag, and Redux ids 2887–2888 are about **Vuex** (they name it, and
+use `this.$store.commit`). Several code examples lost their JSX to the scraper — 2790,
+2810, 2895 and 2811 — and the translations carry reconstructed ones. Translate
+faithfully; don't silently rewrite the subject matter.
 
 ### Shared behavior hooks
 
