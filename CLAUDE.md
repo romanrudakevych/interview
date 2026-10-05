@@ -197,17 +197,18 @@ in `src/data/translations/<lang>.js`. **`cs` now claims all 14 skills and covers
 bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **CSS**
 (ids 307–592), **React** (ids 2014–2750 and 3362–3367), **TypeScript**
 (ids 1852–2013), **React Router** (ids 2751–2790), **Networks**
-(ids 3158–3361), **Kubernetes** (ids 3027–3034) and **Git** (ids 2917–2980) —
-1,813 questions; `uk` carries only the React Router block (40 questions).
+(ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980) and
+**Next.js** (ids 2791–2820) — 1,843 questions; `uk` carries only the React
+Router block (40 questions).
 
 **A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 1,813 questions and `uk` only its 40, and Home totals, Analytics and
+shows only its 1,843 questions and `uk` only its 40, and Home totals, Analytics and
 Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
 mixing languages in one list was the alternative. Because `cs` is now complete, adding a
 question to `questions.js` breaks the Czech build until it is translated too (a claimed
 skill must be 100 % covered), and adding an HTML, CSS, React, TypeScript, React
-Router, Networks, Kubernetes or Git question now breaks the English build for the
-same reason.
+Router, Networks, Kubernetes, Git or Next.js question now breaks the English build
+for the same reason.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
@@ -215,7 +216,8 @@ same reason.
   half-finished skill block can sit in the file without ever reaching a user. A question
   tagged with several skills ships once any one of its skills is claimed, so a question can
   reach a locale through a skill other than the one you were translating (ids 3362–3367 are
-  tagged React *and* Next.js, and shipped with the React block before Next.js was claimed).
+  tagged React *and* Next.js, and shipped with the React block before Next.js was claimed —
+  so claiming Next.js later needed only its own 30 ids, 2791–2820).
 - **Ids are the join key across languages and into localStorage progress.** They are array
   positions in `questions.js`, so each translation entry carries the Russian `source` text
   it was made from, and `scripts/build-questions-data.mjs` fails the build if that text no
