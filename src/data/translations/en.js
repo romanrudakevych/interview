@@ -1,12 +1,13 @@
 // English translations of the HTML (ids 1-306), CSS (ids 307-592),
 // React (ids 2014-2750 and 3362-3367), TypeScript (ids 1852-2013),
-// React Router (ids 2751-2790) and Networks (ids 3158-3361) question blocks.
+// React Router (ids 2751-2790), Networks (ids 3158-3361) and
+// Kubernetes (ids 3027-3034) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "TypeScript", "HTML", "CSS", "React", "Networks"];
+export const coverage = ["React Router", "TypeScript", "HTML", "CSS", "React", "Networks", "Kubernetes"];
 
 export default {
   2751: {
@@ -12206,4 +12207,62 @@ export default {
     codeExample: "GET /users/42 HTTP/1.1\n\nContent-Type: application/json\nAuthorization: Bearer token\nAccept-Language: en-US\n\n{\n  \"name\": \"John\",\n  \"email\": \"john@example.com\"\n}\n\nPOST /login HTTP/1.1\nContent-Type: application/json\nAuthorization: Bearer token\n\n{\n  \"email\": \"user@mail.com\",\n  \"password\": \"123456\"\n}",
   },
   // ---- end Networks ----
+  // ---- Kubernetes ----
+  3027: {
+    source: "Что такое Kubernetes?",
+    question: "What is Kubernetes?",
+    shortAnswer: "Kubernetes is an open-source platform for the orchestration of containers. It automates the deployment, the management and the scaling of containerized applications. Instead of managing containers by hand, Kubernetes lets you use declarative configurations in order to set them up. That helps you run applications reliably, ensuring their fault tolerance and flexibility.",
+    longAnswer: "Kubernetes (often abbreviated as K8s) is a system for the automatic management of containerized applications. It solves the problems of manual deployment, updating and scaling, providing powerful mechanisms of automation.\nKubernetes's main capabilities:\n\n- The orchestration of containers - it manages several containers on different servers.\n\n- Automatic scaling - it increases or reduces the number of running containers depending on the load.\n\n- Self-healing - it restarts the containers in the event of failures.\n\n- The balancing of the load - it distributes the traffic between the containers evenly.\n\n- Declarative management - the users describe the system's desired state, and Kubernetes maintains it automatically.\n\nAn example of the use:\nSuppose you have a web application working in a Docker container. Instead of starting the containers on the servers by hand, you can create a Kubernetes manifest:\n\nThat file states that there have to be three working instances of the `my-app` container. Kubernetes will itself deploy them, distribute them between the servers and ensure their stable work.\nKubernetes is needed for the automated management of container applications. It makes the deployment and the maintenance of systems simpler, more reliable and more flexible.",
+    codeExample: "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-app\n        image: my-app:latest",
+  },
+  3028: {
+    source: "Каковы преимущества использования Kubernetes?",
+    question: "What are the advantages of using Kubernetes?",
+    shortAnswer: "Kubernetes automates the management of containers, making the deployment, the scaling and the balancing of the load easier. It makes applications fault-tolerant and lets the resources be distributed evenly. Thanks to that, complex systems with hundreds of containers can be managed easily.",
+    longAnswer: "The use of Kubernetes gives a multitude of advantages, especially when working with microservices and cloud applications.\nThe main advantages:\n\n- Automation - Kubernetes itself manages the containers, restarting them when they fail.\n\n- The flexibility of the scaling - it adds or removes containers depending on the load.\n\n- The balancing of the load - it distributes the requests between the containers evenly.\n\n- Updates without downtime - new versions of an application can be deployed without stopping the service.\n\n- The effective use of the resources - the containers run on the cluster's different nodes, saving capacity.\n\nAn example:\nIf you have a web application, Kubernetes can increase the number of instances automatically during high traffic and reduce it when the traffic is low.\n\nThat manifest states that Kubernetes scales the application automatically when the CPU load exceeds 50%.\nKubernetes makes the management of containers simple and reliable. It ensures automatic scaling and fault tolerance and makes the updates easier.",
+    codeExample: "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata:\n  name: my-app-hpa\nspec:\n  scaleTargetRef:\n    apiVersion: apps/v1\n    kind: Deployment\n    name: my-app\n  minReplicas: 2\n  maxReplicas: 10\n  metrics:\n  - type: Resource\n    resource:\n      name: cpu\n      target:\n        type: Utilization\n        averageUtilization: 50",
+  },
+  3029: {
+    source: "Что такое кластер Kubernetes?",
+    question: "What is a Kubernetes cluster?",
+    shortAnswer: "A Kubernetes cluster is a group of nodes (servers) on which containerized applications are run. In a cluster there is a managing component (the control plane) and worker nodes, which run the containers. Kubernetes manages the cluster, ensuring the automatic deployment, scaling and balancing of the load.",
+    longAnswer: "A Kubernetes cluster is the main unit of infrastructure in Kubernetes. It unites several servers, ensuring the distributed running of containers.\nThe cluster's main components\n1. The control plane\n\n- It is responsible for the management of the cluster.\n\n- It includes the `kube-apiserver`, `etcd`, the `controller-manager` and the `scheduler`.\n\n- It accepts the commands and distributes the load between the nodes.\n\n2. The worker nodes\n\n- They run the containers in the form of pods.\n\n- They include the `kubelet`, the `kube-proxy` and a container runtime (Docker, containerd, for example).\n\n- They communicate with the `control plane` in order to receive instructions.\n\nHow does a cluster work?\n1. The developer creates a description of the desired state (\"run 3 copies of the service\", for example).\n2. Kubernetes distributes the containers between the cluster's nodes.\n3. The containers are run in pods, which ensure their work.\n4. Kubernetes watches their state automatically and balances the load.\nAn example:\nThe creation of a simple Minikube cluster for local testing:\n\nThe output:\n\nNow we have one node working in the cluster.\nA Kubernetes cluster unites several nodes for the management of containers. It makes applications fault-tolerant and flexible, distributing their running between the servers.",
+    codeExample: "minikube start\nkubectl get nodes\n\nNAME       STATUS   ROLES    AGE   VERSION\nminikube   Ready    master   5m    v1.28.0",
+  },
+  3030: {
+    source: "Что такое узел (node) в Kubernetes?",
+    question: "What is a node in Kubernetes?",
+    shortAnswer: "A node is a server in a Kubernetes cluster that runs containers. It can be physical or virtual. On every node the `kubelet` agent works, which manages the pods and interacts with the cluster's control plane. The nodes are united into a cluster for working together and for the balancing of the load.",
+    longAnswer: "In Kubernetes a node is the main computational element on which the containers are run. The nodes can be physical machines (bare metal) or virtual ones (in the AWS, GCP or Azure cloud, for example).\nThe kinds of node:\n1. A control plane node\n\n- It manages the cluster.\n\n- It includes the components: the `kube-apiserver`, the `controller-manager`, the `scheduler`.\n\n- It normally runs no containers, but distributes them over the worker nodes.\n\n2. A worker node\n\n- It runs the containers in the form of pods.\n\n- It includes:\n\n- the `kubelet` - the agent for managing the pods.\n\n- the `kube-proxy` - the routing of the traffic.\n\n- A container runtime (Docker, containerd, CRI-O).\n\nHow does a node work?\n\n- Kubernetes receives the command to deploy a pod.\n\n- The `scheduler` assigns the pod to one of the nodes.\n\n- The `kubelet` starts the containers inside the pod.\n\n- The `kube-proxy` configures the network for the interaction between the pods.\n\nAn example:\nLet us look at the list of the nodes in the cluster:\n\nAn example of the output:\n\nThat means that there are two worker nodes in the cluster.\nKubernetes's nodes are the servers on which the containerized applications work. The worker nodes run the pods, and the control plane node coordinates their work.",
+    codeExample: "kubectl get nodes\n\nNAME         STATUS   ROLES    AGE   VERSION\nworker-1     Ready    worker   2d    v1.28.0\nworker-2     Ready    worker   2d    v1.28.0",
+  },
+  3031: {
+    source: "Что такое Pod в Kubernetes?",
+    question: "What is a Pod in Kubernetes?",
+    shortAnswer: "A pod is the smallest deployable unit in Kubernetes, representing one or several containers working together. The containers inside a pod share the network and the file system, which lets them interact with one another. Kubernetes manages the pods, assigning them to nodes and ensuring their work.",
+    longAnswer: "In Kubernetes a pod is the main unit of running, which encapsulates one or several containers. If an application consists of several containers that have to work together (a web server and a proxy cache, for example), they can be united into one pod.\nA pod's particulars:\n\n- A single network - all of the containers inside a pod use one IP address.\n\n- A shared disk - the containers can use the file system jointly.\n\n- Shared management - Kubernetes manages the pods rather than the individual containers.\n\nAn example of a pod's manifest:\n\nThat pod runs a container with `nginx`, which listens on port `80`.\nConclusion:\nA pod is the basic unit of deployment in Kubernetes, uniting containers into a logical group. Kubernetes manages the pods, ensuring their work and their interaction.",
+    codeExample: "apiVersion: v1\nkind: Pod\nmetadata:\n    name: my-pod\nspec:\n    containers:\n    - name: app-container\n      image: nginx\n      ports:\n      - containerPort: 80",
+  },
+  3032: {
+    source: "Что такое управляющая плоскость (Control Plane) Kubernetes?",
+    question: "What is Kubernetes's control plane?",
+    shortAnswer: "The control plane is the set of components that manage a Kubernetes cluster. It includes the API Server, etcd, the Scheduler and the Controller Manager. These components are responsible for the handling of the requests, for the storage of the data about the cluster's state, for the distribution of the loads and for the control of the nodes' work.",
+    longAnswer: "The control plane is Kubernetes's central part, managing the whole system. It accepts the commands, handles them and watches over their running.\nThe main components:\n\n- The API Server - the point of entry into Kubernetes; it handles the commands (`kubectl`, the `API`).\n\n- etcd - the distributed storage of the cluster's configurations and states.\n\n- The Scheduler - it distributes the pods over the nodes, choosing the optimal place.\n\n- The Controller Manager - it manages the processes that maintain the system's state.\n\n- The Cloud Controller Manager - it interacts with the cloud providers (if the cluster is in a cloud).\n\nHow does that work?\n\n- The developer sends a command (`kubectl apply -f pod.yaml`).\n\n- The API Server accepts the request and writes it into `etcd`.\n\n- The Scheduler determines on which node the pod is to be run.\n\n- The kubelet (on the node) receives the command and starts the container.\n\nThe control plane is Kubernetes's \"brain\", which manages the cluster. It coordinates the nodes' work, plans the deployment of the pods and watches the system's state.",
+    codeExample: null,
+  },
+  3033: {
+    source: "Что такое API Server в Kubernetes?",
+    question: "What is the API Server in Kubernetes?",
+    shortAnswer: "The API Server is Kubernetes's central component, which handles the users' commands and interacts with the cluster's other components. It accepts the requests from `kubectl`, from the controllers and from the services, and then changes the cluster's state.",
+    longAnswer: "The Kubernetes API Server (`kube-apiserver`) is the main point of entry for managing the cluster.\nThe main functions:\n\n- It handles the API requests (`kubectl`, `Helm`, the `Dashboard`).\n\n- It passes the commands to the other components (the `Scheduler`, the `Controller Manager`).\n\n- It holds the data in `etcd`.\n\nIt authorizes and authenticates the requests.\nAn example of a request to the API Server:\n\nThe API Server receives that request, requests the data in `etcd` and returns the list of the pods.\nThe API Server is Kubernetes's main interface of management, accepting the commands and distributing them between the system's components.",
+    codeExample: "kubectl get pods",
+  },
+  3034: {
+    source: "Что такое etcd в Kubernetes?",
+    question: "What is etcd in Kubernetes?",
+    shortAnswer: "etcd is a distributed, reliable key-value storage in which Kubernetes holds all of the information about the cluster. It guarantees the consistency of the data and ensures fault tolerance.",
+    longAnswer: "`etcd` is a highly available storage, used by Kubernetes for holding the cluster's configuration.\nThe main functions:\n\n- It holds the information about the pods, the nodes and the configurations.\n\n- It ensures the consistency of the data.\n\n- It supports fault tolerance (it is replicated between the nodes).\n\nAn example:\nLet us look at `etcd`'s content:\n\nWhen a node fails, Kubernetes restores its state on the basis of `etcd`'s data.\n`etcd` is Kubernetes's storage of data, which guarantees the preservation and the consistency of the information about the cluster.",
+    codeExample: "kubectl get etcd",
+  },
+  // ---- end Kubernetes ----
 };
