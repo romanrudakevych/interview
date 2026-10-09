@@ -3,13 +3,14 @@
 // React Router (ids 2751-2790), Networks (ids 3158-3361),
 // Kubernetes (ids 3027-3034), Git (ids 2917-2980),
 // Next.js (ids 2791-2820, plus 3362-3367 shared with React),
-// Redux (ids 2821-2916) and CI/CD (ids 3035-3088) question blocks.
+// Redux (ids 2821-2916), CI/CD (ids 3035-3088) and
+// JavaScript (ids 593-1851) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "TypeScript", "HTML", "CSS", "React", "Networks", "Kubernetes", "Git", "Next.js", "Redux", "CI/CD"];
+export const coverage = ["React Router", "TypeScript", "HTML", "CSS", "React", "Networks", "Kubernetes", "Git", "Next.js", "Redux", "CI/CD", "JavaScript"];
 
 export default {
   2751: {
@@ -13983,7 +13984,7 @@ export default {
     codeExample: "def calculate():\n    return 10",
   },
   // ---- end CI/CD ----
-  // ---- JavaScript (staged, not yet claimed) ----
+  // ---- JavaScript ----
   593: {
     source: "Для чего нужны функции?",
     question: "What are functions for?",

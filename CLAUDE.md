@@ -198,18 +198,19 @@ bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **CSS**
 (ids 307–592), **React** (ids 2014–2750 and 3362–3367), **TypeScript**
 (ids 1852–2013), **React Router** (ids 2751–2790), **Networks**
 (ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980),
-**Next.js** (ids 2791–2820), **Redux** (ids 2821–2916) and **CI/CD**
-(ids 3035–3088) — 1,993 questions; `uk` carries only the React Router block
-(40 questions).
+**Next.js** (ids 2791–2820), **Redux** (ids 2821–2916), **CI/CD**
+(ids 3035–3088) and **JavaScript** (ids 593–1851) — 3,252 questions, 12 of the
+14 skills; `uk` carries only the React Router block (40 questions).
 
 **A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 1,993 questions and `uk` only its 40, and Home totals, Analytics and
+shows only its 3,252 questions and `uk` only its 40, and Home totals, Analytics and
 Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
 mixing languages in one list was the alternative. Because `cs` is now complete, adding a
 question to `questions.js` breaks the Czech build until it is translated too (a claimed
-skill must be 100 % covered), and adding an HTML, CSS, React, TypeScript, React
-Router, Networks, Kubernetes, Git, Next.js, Redux or CI/CD question now breaks the
-English build for the same reason.
+skill must be 100 % covered), and adding an HTML, CSS, JavaScript, React, TypeScript,
+React Router, Networks, Kubernetes, Git, Next.js, Redux or CI/CD question now breaks the
+English build for the same reason. Only **Vue**, **Node.js** and **Databases** are still
+unclaimed by `en`.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
@@ -248,6 +249,29 @@ an **Apache Airflow** primer and 3071–3072 are about **Agile process**. Severa
 examples lost characters to the scraper — JSX in 2790, 2810, 2895 and 2811, string
 literals in 3050, 3056, 3066 and 3087 — and the translations carry reconstructed ones.
 Translate faithfully; don't silently rewrite the subject matter.
+
+The **JavaScript** block (ids 593–1851, 1,259 questions — a third of the bank) is the worst
+of the scraped lot and worth knowing before you touch it:
+
+- **It is only loosely about JavaScript.** Long stretches are Python, Java, C#, C/C++,
+  Swift/iOS, Kotlin/Android, TypeScript, React, Redux, SQL or process questions that merely
+  arrived under the JavaScript tag. The translations keep each example in its source
+  language rather than porting it to JS.
+- **Heavy duplication.** The event loop is re-covered 15+ times; retry mechanisms four times
+  (1720, 1723, 1731, 1732); FSD five times (1749, 1760, 1765, 1766, 1769); `Promise.all`
+  fan-out five times (1618, 1635, 1636, 1644, 1710); string interning twice (1805, 1809);
+  stack/LIFO and queue/FIFO twice each; and ids 1349–1356 are eight consecutive
+  `Array.prototype.some` questions.
+- **Some answers are simply wrong, and were translated as-is.** 1413 and 1414 answer a
+  different question than they ask (both repeat the setTimeout/ECMAScript answer of
+  1410–1412); 1649 claims a Python `set` preserves insertion order; 1677 claims
+  `Promise.all` returns results in completion order; 1732 advises against retrying
+  idempotent operations; 1800 says `every` returns `false` for an empty array. Flag such
+  entries rather than silently correcting the prose.
+- **Scraper damage is dense**: stripped JSX (30+ blocks), eaten `"n` inside JSON string
+  literals, eaten `\n`/`\s`/`\.` escapes, eaten Java/TS generics, eaten Swift string
+  interpolation backslashes, eaten shell line continuations and eaten ASCII-art backslashes.
+  All of these were reconstructed in `en.js`; expect the same in any other locale.
 
 ### Shared behavior hooks
 
