@@ -193,24 +193,16 @@ native `<select>`, for free keyboard/screen-reader behavior.
 
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
-in `src/data/translations/<lang>.js`. **`cs` now claims all 14 skills and covers the whole
-bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **CSS**
-(ids 307–592), **React** (ids 2014–2750 and 3362–3367), **TypeScript**
-(ids 1852–2013), **React Router** (ids 2751–2790), **Networks**
-(ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980),
-**Next.js** (ids 2791–2820), **Redux** (ids 2821–2916), **CI/CD**
-(ids 3035–3088), **JavaScript** (ids 593–1851) and **Webpack**
-(ids 3089–3157) — 3,321 questions, 13 of the
-14 skills; `uk` carries only the React Router block (40 questions).
+in `src/data/translations/<lang>.js`. **`cs` and `en` both claim all 14 skills and cover
+the whole bank — 3,367 of 3,367 questions each**; `uk` carries only the React Router
+block (40 questions).
 
-**A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 3,321 questions and `uk` only its 40, and Home totals, Analytics and
-Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
-mixing languages in one list was the alternative. Because `cs` is now complete, adding a
-question to `questions.js` breaks the Czech build until it is translated too (a claimed
-skill must be 100 % covered), and adding an HTML, CSS, JavaScript, React, TypeScript,
-React Router, Networks, Kubernetes, Git, Next.js, Redux, CI/CD or Webpack question now
-breaks the English build for the same reason. Only **Docker** is still unclaimed by `en`.
+**A question with no translation is hidden, not fallen back.** Selecting `uk` therefore
+shows only its 40 questions, and Home totals, Analytics and Collections shrink to match;
+`ru`, `cs` and `en` all show the full bank. This is deliberate — mixing languages in one
+list was the alternative. Because `cs` and `en` are both complete, **adding a question to
+`questions.js` now breaks both the Czech and the English build until it is translated in
+each** (a claimed skill must be 100 % covered), whatever skill it is tagged with.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
