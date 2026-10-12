@@ -194,11 +194,11 @@ native `<select>`, for free keyboard/screen-reader behavior.
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
 in `src/data/translations/<lang>.js`. **`cs` and `en` both claim all 14 skills and cover
-the whole bank — 3,367 of 3,367 questions each**; `uk` carries only the React Router
-block (40 questions).
+the whole bank — 3,367 of 3,367 questions each**; `uk` claims React Router (ids 2751-2790)
+and HTML (ids 1-306) — 346 questions.
 
 **A question with no translation is hidden, not fallen back.** Selecting `uk` therefore
-shows only its 40 questions, and Home totals, Analytics and Collections shrink to match;
+shows only its 346 questions, and Home totals, Analytics and Collections shrink to match;
 `ru`, `cs` and `en` all show the full bank. This is deliberate — mixing languages in one
 list was the alternative. Because `cs` and `en` are both complete, **adding a question to
 `questions.js` now breaks both the Czech and the English build until it is translated in
@@ -220,7 +220,8 @@ each** (a claimed skill must be 100 % covered), whatever skill it is tagged with
   three locales.
 - **Generated artifacts are per-language**: `index.<lang>.json` plus `bodies/<lang>/NNN.json`.
   Chunking still keys on the *global* id, so `chunkIndexForId` is language-independent and a
-  sparse language simply writes fewer files (`uk` produces only `027.json`).
+  sparse language simply writes fewer files (`uk` writes only `000.json`-`003.json`
+  and `027.json`).
 - **Three places must agree on the language or you serve stale prose**: the glob in
   `questionBodies.js` is two levels deep (`bodies/*/*.json`), its caches key on
   `` `${lang}:${chunk}` ``, and `useQuestionBody` tags its result `{ id, lang }` with
