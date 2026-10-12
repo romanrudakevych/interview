@@ -199,18 +199,18 @@ bank — 3,367 of 3,367 questions**. `en` claims **HTML** (ids 1–306), **CSS**
 (ids 1852–2013), **React Router** (ids 2751–2790), **Networks**
 (ids 3158–3361), **Kubernetes** (ids 3027–3034), **Git** (ids 2917–2980),
 **Next.js** (ids 2791–2820), **Redux** (ids 2821–2916), **CI/CD**
-(ids 3035–3088) and **JavaScript** (ids 593–1851) — 3,252 questions, 12 of the
+(ids 3035–3088), **JavaScript** (ids 593–1851) and **Webpack**
+(ids 3089–3157) — 3,321 questions, 13 of the
 14 skills; `uk` carries only the React Router block (40 questions).
 
 **A question with no translation is hidden, not fallen back.** Selecting `en` therefore
-shows only its 3,252 questions and `uk` only its 40, and Home totals, Analytics and
+shows only its 3,321 questions and `uk` only its 40, and Home totals, Analytics and
 Collections shrink to match; `ru` and `cs` both show the full bank. This is deliberate —
 mixing languages in one list was the alternative. Because `cs` is now complete, adding a
 question to `questions.js` breaks the Czech build until it is translated too (a claimed
 skill must be 100 % covered), and adding an HTML, CSS, JavaScript, React, TypeScript,
-React Router, Networks, Kubernetes, Git, Next.js, Redux or CI/CD question now breaks the
-English build for the same reason. Only **Vue**, **Node.js** and **Databases** are still
-unclaimed by `en`.
+React Router, Networks, Kubernetes, Git, Next.js, Redux, CI/CD or Webpack question now
+breaks the English build for the same reason. Only **Docker** is still unclaimed by `en`.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
