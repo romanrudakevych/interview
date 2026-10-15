@@ -3,14 +3,14 @@
 // TypeScript (ids 1852-2013), Next.js (ids 2791-2820, 3362-3367),
 // React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916),
 // Git (ids 2917-2980), Docker (ids 2981-3026),
-// Kubernetes (ids 3027-3034), CI/CD (ids 3035-3088) and
-// Webpack (ids 3089-3157) question blocks.
+// Kubernetes (ids 3027-3034), CI/CD (ids 3035-3088),
+// Webpack (ids 3089-3157) and Networks (ids 3158-3361) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes", "Webpack", "CI/CD"];
+export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes", "Webpack", "CI/CD", "Networks"];
 
 export default {
   2751: {
@@ -23607,4 +23607,5 @@ export default {
     longAnswer: "HTTP-запит — це структуроване повідомлення, яке клієнт надсилає серверу для виконання операції.\nВизначення\nHTTP-запит — це повідомлення, яке клієнт надсилає серверу за протоколом HTTP, що містить інструкції про те, яку дію необхідно виконати над ресурсом.\nОсновні частини HTTP-запиту\nБудь-який HTTP-запит логічно складається з трьох основних частин:\n\n- стартовий рядок (Request Line)\n\n- заголовки (Headers)\n\n- тіло запиту (Body)\n\nКожна частина виконує свою роль і використовується сервером під час обробки запиту.\nСтартовий рядок (Request Line)\nСтартовий рядок завжди йде першим і містить базову інформацію про запит.\nВін складається з:\n\n- HTTP-метода\n\n- шляху до ресурсу\n\n- версії протоколу\n\nПриклад:\n\nДе:\n\n- `GET` — метод\n\n- `/users/42` — шлях\n\n- `HTTP/1.1` — версія протоколу\n\nЗаголовки (Headers)\nПісля стартового рядка йдуть заголовки запиту.\nВони передають серверу додаткову інформацію про запит і клієнта.\nЗаголовки використовують для:\n\n- указання формату даних\n\n- передавання токена авторизації\n\n- керування кешуванням\n\n- опису клієнта\n\nПриклад:\n\nЗаголовки не містять бізнес-даних, а лише метаінформацію.\nТіло запиту (Body)\nТіло запиту використовують для передавання даних на сервер.\nВоно присутнє не в усіх запитах.\nТіло найчастіше використовують у:\n\n- POST\n\n- PUT\n\n- PATCH\n\nПриклад тіла:\n\nВажливо розуміти:\n\n- `GET` звичайно не містить body\n\n- наявність body залежить від метода й призначення запиту\n\nЩо може бути відсутнім\nУ HTTP-запиті:\n\n- body може бути відсутнім\n\n- заголовки можуть бути мінімальними\n\n- стартовий рядок присутній завжди\n\nПрактичний приклад цілого запиту\n\nЧому це важливо для iOS-розробника\nРозуміння структури HTTP-запиту необхідне для:\n\n- роботи з `URLRequest`\n\n- зневадження мережевих проблем\n\n- коректного налаштування заголовків\n\n- розуміння backend-помилок\n\nВисновок\nHTTP-запит завжди складається зі стартового рядка, заголовків і, за потреби, тіла. Чітке розуміння структури запиту дозволяє впевнено працювати з мережею, правильно формувати запити та швидше знаходити помилки під час інтеграції з API.",
     codeExample: "GET /users/42 HTTP/1.1\n\nContent-Type: application/json\nAuthorization: Bearer token\nAccept-Language: en-US\n\n{\n  \"name\": \"John\",\n  \"email\": \"john@example.com\"\n}\n\nPOST /login HTTP/1.1\nContent-Type: application/json\nAuthorization: Bearer token\n\n{\n  \"email\": \"user@mail.com\",\n  \"password\": \"123456\"\n}",
   },
+  // ---- end Networks ----
 };
