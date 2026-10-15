@@ -1,14 +1,14 @@
 // Ukrainian translations of the React Router (ids 2751-2790),
 // HTML (ids 1-306), CSS (ids 307-592), JavaScript (ids 593-1851),
 // TypeScript (ids 1852-2013), Next.js (ids 2791-2820, 3362-3367),
-// React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916) and
-// Git (ids 2917-2980) question blocks.
+// React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916),
+// Git (ids 2917-2980) and Docker (ids 2981-3026) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git"];
+export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker"];
 
 export default {
   2751: {
@@ -21252,4 +21252,5 @@ export default {
     longAnswer: "Docker вирішує одну з головних проблем backend-розробки — різницю оточень між розробкою, тестуванням і продакшеном.\nВизначення\nDocker — це інструмент контейнеризації, який дозволяє запускати застосунок разом з усіма його залежностями в ізольованому середовищі.\nОсновні завдання Docker у backend\nDocker використовують не заради самого Docker, а заради передбачуваності та повторюваності.\n1. Єдине оточення\nDocker гарантує, що:\n\n- версія Python однакова\n\n- залежності збігаються\n\n- системні бібліотеки ідентичні\n\nФраза «у мене працює» перестає бути проблемою.\n2. Спрощення локальної розробки\nЗ Docker:\n\n- не потрібно встановлювати БД локально\n\n- не потрібно налаштовувати оточення вручну\n\n- проєкт піднімається однією командою\n\n3. Ізоляція сервісів\nКожен сервіс:\n\n- працює у своєму контейнері\n\n- не конфліктує з іншими\n\n- має чіткі межі відповідальності\n\nЦе особливо важливо для мікросервісів.\n4. Спрощення CI/CD\nУ CI Docker:\n\n- використовують для збирання образів\n\n- запуску тестів в ізольованому середовищі\n\n- деплою на сервери та в Kubernetes\n\n5. Масштабованість і переносимість\nDocker-контейнер:\n\n- однаково працює локально та в хмарі\n\n- легко масштабується\n\n- підходить для оркестрації\n\nВисновок\nDocker — це базовий інструмент backend-розробника, який робить застосунки переносимими, відтворюваними та зручними для командної роботи й автоматизації.",
     codeExample: "docker-compose up",
   },
+  // ---- end Docker ----
 };
