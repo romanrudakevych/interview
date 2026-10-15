@@ -2,13 +2,14 @@
 // HTML (ids 1-306), CSS (ids 307-592), JavaScript (ids 593-1851),
 // TypeScript (ids 1852-2013), Next.js (ids 2791-2820, 3362-3367),
 // React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916),
-// Git (ids 2917-2980) and Docker (ids 2981-3026) question blocks.
+// Git (ids 2917-2980), Docker (ids 2981-3026) and
+// Kubernetes (ids 3027-3034) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker"];
+export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes"];
 
 export default {
   2751: {
@@ -21310,4 +21311,5 @@ export default {
     longAnswer: "`etcd` — це високодоступне сховище, яке Kubernetes використовує для зберігання конфігурації кластера.\nОсновні функції:\n\n- Зберігає інформацію про Pod-и, вузли, конфігурації.\n\n- Забезпечує узгодженість даних.\n\n- Підтримує відмовостійкість (реплікується між вузлами).\n\nПриклад:\nПодивимося вміст `etcd`:\n\nУ разі відмови вузла Kubernetes відновлює його стан, спираючись на дані `etcd`.\n`etcd` — це сховище даних Kubernetes, яке гарантує збереження та консистентність інформації про кластер.",
     codeExample: "kubectl get etcd",
   },
+  // ---- end Kubernetes ----
 };
