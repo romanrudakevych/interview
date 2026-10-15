@@ -2,14 +2,14 @@
 // HTML (ids 1-306), CSS (ids 307-592), JavaScript (ids 593-1851),
 // TypeScript (ids 1852-2013), Next.js (ids 2791-2820, 3362-3367),
 // React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916),
-// Git (ids 2917-2980), Docker (ids 2981-3026) and
-// Kubernetes (ids 3027-3034) question blocks.
+// Git (ids 2917-2980), Docker (ids 2981-3026),
+// Kubernetes (ids 3027-3034) and Webpack (ids 3089-3157) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes"];
+export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes", "Webpack"];
 
 export default {
   2751: {
@@ -21796,4 +21796,5 @@ export default {
     longAnswer: "Мікрофронтенди — це архітектурний підхід, за якого єдиний фронтенд-застосунок розбивається на кілька незалежно розроблюваних і деплоюваних частин. Кожна частина відповідає за свій бізнес-домен і може використовувати власний стек, мати свій цикл релізів і свою команду.\nПричини переходу\n\n- Зростання команди: коли над одним SPA працює 20+ розробників, релізи стають вузьким місцем.\n- Незалежний деплой: одна команда може викотити фічу, не чекаючи на решту.\n- Різні технології: старий Angular-модуль і новий React-модуль можуть співіснувати.\n- Ізоляція збоїв: падіння одного мікрофронтенду не обов'язково ламає весь застосунок.\nКритерії для розділення\n\n- Є чіткі бізнес-домени (каталог, кошик, профіль).\n- Команди автономні й володіють своїми доменами end-to-end.\n- Потрібен незалежний релізний цикл.\n- Застосунок уже великий і монолітний фронтенд гальмує розробку.\nПриклад з Module Federation\n\nТут хост-застосунок підвантажує віддалений модуль каталогу під час виконання, а спільні залежності (React) шаряться, щоб не дублювати їх.\nКоли не варто\nЯкщо застосунок невеликий, команда одна й релізи не конфліктують, мікрофронтенди принесуть більше проблем: ускладниться збирання, виросте розмір бандла, з'являться проблеми зі спільним станом і стилями.\nПідсумок: застосовувати мікрофронтенди варто під час масштабування команд і потреби в незалежних релізах за бізнес-доменами; у невеликих проєктах це надлишково.",
     codeExample: "// host/webpack.config.js\nnew ModuleFederationPlugin({\n  name: 'host',\n  remotes: {\n    catalog: 'catalog@https://cdn.example.com/remoteEntry.js'\n  },\n  shared: ['react', 'react-dom']\n});\n\n// У коді хоста\nconst Catalog = React.lazy(() => import('catalog/App'));",
   },
+  // ---- end Webpack ----
 };
