@@ -3,13 +3,14 @@
 // TypeScript (ids 1852-2013), Next.js (ids 2791-2820, 3362-3367),
 // React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916),
 // Git (ids 2917-2980), Docker (ids 2981-3026),
-// Kubernetes (ids 3027-3034) and Webpack (ids 3089-3157) question blocks.
+// Kubernetes (ids 3027-3034), CI/CD (ids 3035-3088) and
+// Webpack (ids 3089-3157) question blocks.
 // See cs.js for the conventions: ids are array positions, `source` is the drift
 // guard the generator asserts on, and an absent question is hidden rather than
 // falling back to Russian.
 // See cs.js for the conventions. `coverage` lists the skills this locale claims;
 // a claimed skill must be complete, and entries outside it are staged but unused.
-export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes", "Webpack"];
+export const coverage = ["React Router", "HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Redux", "Git", "Docker", "Kubernetes", "Webpack", "CI/CD"];
 
 export default {
   2751: {
@@ -22176,4 +22177,5 @@ export default {
     longAnswer: "XCom (cross-communication) — це стандартний спосіб обміну даними між завданнями всередині одного DAG Run.\nВизначення\nXCom — це механізм Airflow для передавання невеликих значень між завданнями через metadata database.\n1. Як працює XCom\nПроцес виглядає так:\n\n- Завдання виконується.\n\n- Воно зберігає значення через `xcom_push`.\n\n- Інше завдання читає його через `xcom_pull`.\n\nВажливо:\n\n- XCom прив'язаний до `task_id` і `dag_run`;\n\n- дані серіалізуються й зберігаються в БД.\n\n2. Автоматичний XCom\nДеякі оператори:\n\n- автоматично кладуть результат у XCom;\n\n- наприклад, PythonOperator може повернути значення.\n\nПриклад:\n\nЗначення, що повертається, стане XCom.\n3. Типові сценарії використання\nXCom добре підходить для:\n\n- передавання ID записів;\n\n- передавання дат і флагів;\n\n- передавання шляхів до файлів;\n\n- передавання невеликих конфігурацій.\n\n4. Де зберігається XCom\nЗа замовчуванням:\n\n- XCom зберігається в metadata database;\n\n- бере участь у бекапах і міграціях.\n\nЦе робить його надійним, але не швидким для великих даних.\n5. Практичні рекомендації\n\n- використовуйте короткі та зрозумілі ключі;\n\n- не зловживайте XCom;\n\n- очищайте старі DAG Run за потреби.\n\n6. Короткий висновок\nXCom — зручний механізм для передавання невеликих даних і метаданих між завданнями. Він спрощує побудову workflow, але не заміняє повноцінних сховищ даних.",
     codeExample: "def calculate():\n    return 10",
   },
+  // ---- end CI/CD ----
 };
