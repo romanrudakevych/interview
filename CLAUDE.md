@@ -197,10 +197,11 @@ in `src/data/translations/<lang>.js`. **`cs` and `en` both claim all 14 skills a
 the whole bank — 3,367 of 3,367 questions each**; `uk` claims React Router (ids 2751-2790),
 HTML (ids 1-306), CSS (ids 307-592), JavaScript (ids 593-1851), TypeScript
 (ids 1852-2013), Next.js (ids 2791-2820 plus the React-tagged 3362-3367),
-React (ids 2014-2750, 3362-3367) and Redux (ids 2821-2916) — 2,922 questions.
+React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916) and Git
+(ids 2917-2980) — 2,986 questions.
 
 **A question with no translation is hidden, not fallen back.** Selecting `uk` therefore
-shows only its 2,922 questions, and Home totals, Analytics and Collections shrink to match;
+shows only its 2,986 questions, and Home totals, Analytics and Collections shrink to match;
 `ru`, `cs` and `en` all show the full bank. This is deliberate — mixing languages in one
 list was the alternative. Because `cs` and `en` are both complete, **adding a question to
 `questions.js` now breaks both the Czech and the English build until it is translated in
