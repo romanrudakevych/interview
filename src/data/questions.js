@@ -18473,7 +18473,7 @@ const rawQuestions = [
     rating: 4,
   },
 
-  // ---- Импортировано из yeahub-scrap (page-001..164), новые вопросы по TypeScript ----
+  // ---- Импортировано из внешнего скрейпа (page-001..164), новые вопросы по TypeScript ----
   {
     question: "Чем отличается тип unknown от типа any в TypeScript?",
     shortAnswer:
@@ -20446,7 +20446,7 @@ const rawQuestions = [
   },
 
   // -------------------------------------------------------------- React ----
-  // ---- Импортировано из yeahub-scrap (React), page-001..752 ----
+  // ---- Импортировано из внешнего скрейпа (React), page-001..752 ----
   {
     question: "Что такое JSX?",
     shortAnswer:

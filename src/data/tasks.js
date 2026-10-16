@@ -690,7 +690,7 @@ const rawTasks = [
       },
     ],
   },
-  // ---- Импортировано из yeahub scrape (scrap-code-tasks) ----
+  // ---- Импортировано из внешнего скрейпа (scrap-code-tasks) ----
   {
     title: "Самая длинная подстрока с не более чем K различными символами",
     difficulty: 3,
