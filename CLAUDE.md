@@ -63,7 +63,7 @@ match `questions[].id` position-for-position and fails the build otherwise.
 
 ### Editing the question bank
 
-`src/data/questions.js` is ~13k lines. `rawQuestions` is split into per-skill blocks with banner comments (`// ---- <Skill> ----`) in `SKILLS` order; the large blocks under `// ---- Импортировано из yeahub-scrap ... ----` markers (React, TypeScript, Git) are bulk-imported and dominate the file. When adding a question for a skill, append it at the **end of that skill's block**; appending at the very end of `rawQuestions` is safest for ID stability. The Russian comment block at the top of the file is the canonical "shape of one question" reference — copy it from there.
+`src/data/questions.js` is ~13k lines. `rawQuestions` is split into per-skill blocks with banner comments (`// ---- <Skill> ----`) in `SKILLS` order; the large blocks under `// ---- Импортировано из внешнего скрейпа ... ----` markers (React, TypeScript, Git) are bulk-imported and dominate the file. When adding a question for a skill, append it at the **end of that skill's block**; appending at the very end of `rawQuestions` is safest for ID stability. The Russian comment block at the top of the file is the canonical "shape of one question" reference — copy it from there.
 
 Question text conventions: inline code in `shortAnswer` / `longAnswer` is written with `` `backticks` `` and rendered as `<code>` by `src/components/FormattedText.jsx`; `codeExample` (optional) renders through `src/components/CodeBlock.jsx` with a copy button. `\n` in answer strings survives as a line break because `.answer-section__text` in `index.css` sets `white-space: pre-line` — keep that rule if you touch answer styling.
 
@@ -92,7 +92,7 @@ memoize, runSequentially), counts calls, or asserts on a rejection. When adding 
 a reference solution passes *and* that a plausible-wrong one fails; tests that only confirm the
 happy path let `return nums[0]` pass a majority-element suite.
 
-The 202 tasks under `// ---- Импортировано из yeahub scrape (scrap-code-tasks) ----` came from
+The 202 tasks under `// ---- Импортировано из внешнего скрейпа (scrap-code-tasks) ----` came from
 scraped pages that carry no test cases, so every suite there was written by hand against that
 two-sided rule. A few of those pages state examples that contradict their own rules (a triangle
 path that skips a row, an off-by-one silence interval) — the verified answer wins, and the
@@ -134,14 +134,15 @@ which isn't source).
 ### Resources
 
 `/knowledge-base/resources` lists 26 external learning materials (courses, books,
-repositories, channels, games…) — the React Frontend Developer track of the yeahub
+repositories, channels, games…) — the React Frontend Developer track of an upstream
 catalog, the same slice the questions and tasks came from.
 
 `src/data/resources.js` is **generated** by `node scripts/import-resources.mjs`, which
-pulls the public, unauthenticated catalog API
-(`https://api.yeahub.ru/external-products/product?specializations=11`). It is deliberately
-not wired into `predev`/`prebuild` — that would make every build need the network. Re-run
-it by hand to refresh, and edit the script rather than the data file. `RESOURCE_TYPES` and
+pulls a paginated catalog API. **The endpoint is not in the repo** — the script reads it
+from `RESOURCES_API_URL` or `argv[2]` and exits with a usage message otherwise, so a
+re-import needs whoever runs it to supply the URL. It is deliberately not wired into
+`predev`/`prebuild` — that would make every build need the network. Re-run it by hand to
+refresh, and edit the script rather than the data file. `RESOURCE_TYPES` and
 `RESOURCE_SKILLS` are derived from the resources actually present, so the sidebar can
 never show a chip that matches nothing.
 
