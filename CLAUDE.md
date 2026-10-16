@@ -39,13 +39,15 @@ would otherwise ship 2.7 MB gzipped to every visitor, so
 `scripts/build-questions-data.mjs` (Node-only, run from `predev`/`prebuild`) splits it
 into gitignored `src/data/generated/`:
 
-- `index.json` — `id`, `question`, `skills`, `keywords`, `difficulty`, `rating` for all
-  3,361 questions (~100 KB gz). Imported eagerly by `QuestionsContext`; this is all that
-  filtering, search, Analytics, Home totals and Collections ever need.
-- `bodies/000.json`…`033.json` — `shortAnswer`/`longAnswer`/`codeExample` as tuples, 100
-  questions per chunk (~77 KB gz each), loaded on demand.
-- `meta.json` — `{ chunkSize, chunkCount, total }`; the client reads `chunkSize` from
-  here rather than redeclaring it, so the two can't drift.
+- `index.<lang>.json` — `id`, `question`, `skills`, `keywords`, `difficulty`, `rating`
+  for all 3,367 questions (~100 KB gz per language). Imported eagerly by
+  `QuestionsContext`; this is all that filtering, search, Analytics, Home totals and
+  Collections ever need.
+- `bodies/<lang>/000.json`…`033.json` — `shortAnswer`/`longAnswer`/`codeExample` as
+  tuples, 100 questions per chunk (~78 KB gz each), loaded on demand.
+- `meta.json` — `{ chunkSize, languages: { <lang>: { total, chunks } } }`, where `chunks`
+  lists the chunk indices that language actually wrote. `questionBodies.js` reads
+  `meta.chunkSize` rather than redeclaring it, so the two can't drift.
 
 Answers load through `useQuestionBody(id | null)`
 (`src/hooks/useQuestionBody.js` + `src/utils/questionBodies.js`). Pass `null` to skip
