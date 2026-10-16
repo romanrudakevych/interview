@@ -193,19 +193,15 @@ native `<select>`, for free keyboard/screen-reader behavior.
 
 The same selector also switches **question content**. `ru` is the source bank
 (`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
-in `src/data/translations/<lang>.js`. **`cs` and `en` both claim all 14 skills and cover
-the whole bank — 3,367 of 3,367 questions each**; `uk` claims React Router (ids 2751-2790),
-HTML (ids 1-306), CSS (ids 307-592), JavaScript (ids 593-1851), TypeScript
-(ids 1852-2013), Next.js (ids 2791-2820 plus the React-tagged 3362-3367),
-React (ids 2014-2750, 3362-3367), Redux (ids 2821-2916) and Git
-(ids 2917-2980) — 2,986 questions.
+in `src/data/translations/<lang>.js`. **All three claim all 14 skills and cover the whole
+bank — 3,367 of 3,367 questions each**, so every locale now shows every question.
 
-**A question with no translation is hidden, not fallen back.** Selecting `uk` therefore
-shows only its 2,986 questions, and Home totals, Analytics and Collections shrink to match;
-`ru`, `cs` and `en` all show the full bank. This is deliberate — mixing languages in one
-list was the alternative. Because `cs` and `en` are both complete, **adding a question to
-`questions.js` now breaks both the Czech and the English build until it is translated in
-each** (a claimed skill must be 100 % covered), whatever skill it is tagged with.
+**A question with no translation is hidden, not fallen back** — the mechanism still
+matters even though nothing is currently hidden, because it is what a partially translated
+skill would do. Mixing languages in one list was the alternative. Since every locale is
+complete, **adding a question to `questions.js` breaks the Czech, English *and* Ukrainian
+builds until it is translated in each** (a claimed skill must be 100 % covered), whatever
+skill it is tagged with.
 
 - **Each translation file declares `coverage`**, a named list of skills it claims. A claimed
   skill must be 100 % translated or the build fails; entries for unclaimed skills are
@@ -223,8 +219,8 @@ each** (a claimed skill must be 100 % covered), whatever skill it is tagged with
   three locales.
 - **Generated artifacts are per-language**: `index.<lang>.json` plus `bodies/<lang>/NNN.json`.
   Chunking still keys on the *global* id, so `chunkIndexForId` is language-independent and a
-  sparse language simply writes fewer files (`uk` writes only `000.json`-`029.json`
-  and `033.json`).
+  sparse language simply writes fewer files — no locale is sparse today, but one that
+  claimed only, say, Networks would write just the chunks its ids fall in.
 - **Three places must agree on the language or you serve stale prose**: the glob in
   `questionBodies.js` is two levels deep (`bodies/*/*.json`), its caches key on
   `` `${lang}:${chunk}` ``, and `useQuestionBody` tags its result `{ id, lang }` with
