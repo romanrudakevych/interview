@@ -1061,6 +1061,8 @@ a {
   box-shadow: var(--shadow-sm);
   padding: 32px;
   max-width: 680px;
+  /* the card is narrower than .page, so centre it in the content column */
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

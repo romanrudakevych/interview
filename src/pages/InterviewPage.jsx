@@ -15,15 +15,30 @@ function pickRandomId(questions, excludeId) {
 }
 
 export function InterviewPage() {
-  const { questions } = useQuestions();
+  const { questions, loading } = useQuestions();
   const { t } = useI18n();
   const { learn, repeat } = useQuestionActions();
   const [currentId, setCurrentId] = useState(() => pickRandomId(questions, null));
   const [revealed, setRevealed] = useState(false);
 
+  // The index loads asynchronously, so on a cold load `questions` is still empty
+  // when the initial id is picked above — without this the page would sit on its
+  // empty state forever. Adjusting state during render (rather than in an effect)
+  // is React's documented pattern for this: it re-renders immediately instead of
+  // painting a wrong frame first. The id is also re-picked when it isn't in the
+  // bank at all, which is what switching to a locale missing that question does.
+  const [bank, setBank] = useState(questions);
+  if (bank !== questions) {
+    setBank(questions);
+    if (questions.length > 0 && !questions.some((q) => q.id === currentId)) {
+      setCurrentId(pickRandomId(questions, null));
+      setRevealed(false);
+    }
+  }
+
   const question = questions.find((q) => q.id === currentId);
   // null until revealed — the answer isn't fetched while it's still hidden.
-  const { body, loading } = useQuestionBody(revealed ? currentId : null);
+  const { body, loading: bodyLoading } = useQuestionBody(revealed ? currentId : null);
 
   const nextQuestion = useCallback(() => {
     setCurrentId((prevId) => pickRandomId(questions, prevId));
@@ -45,7 +60,9 @@ export function InterviewPage() {
       <Breadcrumbs items={[{ label: t("nav.training") }, { label: t("nav.interview") }]} />
       <h1 className="page-title">{t("interview.title")}</h1>
 
-      {!question ? (
+      {loading ? (
+        <div className="empty-state">{t("questions.loadingIndex")}</div>
+      ) : !question ? (
         <div className="empty-state">
           <FormattedText text={t("interview.empty")} />
         </div>
@@ -65,7 +82,7 @@ export function InterviewPage() {
           ) : (
             <>
               <div className="interview-card__answer">
-                {loading ? (
+                {bodyLoading ? (
                   <p className="answer-loading">{t("common.loadingAnswer")}</p>
                 ) : (
                   body && (
