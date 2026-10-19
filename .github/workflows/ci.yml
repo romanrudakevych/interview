@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# A new push to a PR makes the in-flight run pointless — cancel it rather than
+# queue behind it. Never cancel a run on master, which is the record of what the
+# branch actually did.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: Lint, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # Vite 8 needs 20.19+ / 22.12+ and there is no `engines` field to
+          # enforce it. 22.x is the floor this is verified against.
+          node-version: 22.x
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        # Oxlint exits 0 on warnings. The 7 pre-existing
+        # react/only-export-components warnings are intentional (see CLAUDE.md),
+        # so the gate is on errors; --deny-warnings would fail the build today.
+        run: npm run lint
+
+      # Each test script regenerates src/data/generated/ through its own
+      # pretest hook, so there is no separate build:data step here. Coverage
+      # thresholds live in vitest.config.js and failing them fails the job.
+      - name: Test with coverage
+        run: npm run test:coverage
+
+      - name: Test the worker's coverage separately
+        # It is loaded twice — by its own suite and again through
+        # @vitest/web-worker — and the merged report keeps the second,
+        # barely-exercised copy, so it is excluded from the run above.
+        run: npm run test:coverage:worker
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload coverage report
+        # Useful on a failure, when the summary alone doesn't say which lines
+        # went uncovered.
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 7
+          if-no-files-found: ignore
