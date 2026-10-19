@@ -97,7 +97,14 @@ or mocked. The test API is Jest-compatible (`describe` / `it` / `expect` /
 
 ## Getting started
 
-Requires Node.js **20.19+** or **22.12+** (Vite 8).
+Requires Node.js **20.19+** or **22.12+** to run and build the app (Vite 8),
+declared in `engines` so npm warns on anything older.
+
+**Running the test suite needs 22.12+**, which is a higher floor than the app
+itself: `vitest` asks for `^22.12.0 || ^24.0.0 || >=26.0.0`, `jsdom` for
+`^22.22.2 || ^24.15.0 || >=26.0.0`, and `@testing-library/jest-dom` for `>=22`.
+CI enforces both bounds — the full suite on 22.x, and a build-only job on 20.19
+so the lower bound stays a tested claim rather than an assumed one.
 
 ```bash
 npm install

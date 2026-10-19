@@ -23,8 +23,10 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          # Vite 8 needs 20.19+ / 22.12+ and there is no `engines` field to
-          # enforce it. 22.x is the floor this is verified against.
+          # The floor for the test suite, which is higher than the app's own:
+          # vitest wants ^22.12 || ^24 || >=26, jsdom ^22.22.2 || ^24.15 || >=26,
+          # and @testing-library/jest-dom >=22. The `build-on-minimum` job below
+          # covers the app's lower bound.
           node-version: 22.x
           cache: npm
 
@@ -62,3 +64,34 @@ jobs:
           path: coverage/
           retention-days: 7
           if-no-files-found: ignore
+
+  build-on-minimum:
+    # The README and `engines` both claim the app builds on Node 20.19. This is
+    # what keeps that a tested claim rather than an assumption.
+    #
+    # It deliberately does not run the tests: vitest, jsdom and
+    # @testing-library/jest-dom all require Node 22+, so a test step here would
+    # fail by design and say nothing about the app. If the two bounds are ever
+    # unified, delete this job rather than weakening it.
+    name: Build on the minimum supported Node (20.19)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20.19.x
+          cache: npm
+
+      - name: Install
+        # EBADENGINE warnings for the test-only dependencies are expected here
+        # and do not fail the install — they are precisely the higher floor this
+        # job exists to sit below.
+        run: npm ci
+
+      - name: Build
+        # Covers build:data too, via the prebuild hook — so this also proves the
+        # generator runs on the documented minimum.
+        run: npm run build

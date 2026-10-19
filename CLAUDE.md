@@ -26,7 +26,11 @@ Lint is gated on errors, not warnings: the 7 documented
 `react/only-export-components` warnings are intentional, so `--deny-warnings`
 would fail the build today.
 
-Requires Node 20.19+ / 22.12+ (Vite 8) — there is no `engines` field to enforce it.
+Requires Node 20.19+ / 22.12+ to build and run the app (Vite 8), declared in
+`engines`. **The test suite needs 22.12+** — a higher floor than the app, because
+`vitest`, `jsdom` and `@testing-library/jest-dom` all drop Node 20. Don't
+"simplify" the two bounds into one: CI runs the suite on 22.x and builds on
+20.19 precisely to keep both honest.
 
 ## Tests
 
