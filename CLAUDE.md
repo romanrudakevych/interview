@@ -16,6 +16,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   `vitest.config.js`
 - `npm run test:coverage:worker` — coverage for `src/workers/` alone (see below)
 
+Each of the four test scripts has its own `pre*` hook running `build:data`, because
+npm only fires `pre<exact script name>` — `pretest` alone would leave
+`test:coverage` failing on a clean checkout.
+
+`.github/workflows/ci.yml` runs lint, `test:coverage`, `test:coverage:worker` and
+the production build on every push to `master` and every pull request (Node 22.x).
+Lint is gated on errors, not warnings: the 7 documented
+`react/only-export-components` warnings are intentional, so `--deny-warnings`
+would fail the build today.
+
 Requires Node 20.19+ / 22.12+ (Vite 8) — there is no `engines` field to enforce it.
 
 ## Tests

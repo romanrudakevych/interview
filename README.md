@@ -267,11 +267,19 @@ What the suite is actually guarding, beyond the obvious:
 - **The 2 s worker timeout** terminates the worker rather than just resolving,
   and `runCode` never rejects or settles twice.
 
+Every push to `master` and every pull request runs lint, the suite with
+coverage, the worker's own coverage check and a production build
+(`.github/workflows/ci.yml`, Node 22.x). The coverage report is uploaded as an
+artifact, which is what you want when a threshold fails and the summary alone
+doesn't say which lines went uncovered.
+
 Two notes for whoever runs this next:
 
-- `npm test` regenerates `src/data/generated/` first (`pretest`, ~0.4 s). Without
-  it the config fails fast with a message saying what to run, because
-  `import.meta.glob` resolves that directory at transform time.
+- Every test script regenerates `src/data/generated/` first through its own
+  `pre*` hook (~0.4 s). Without that data the config fails fast with a message
+  saying what to run, because `import.meta.glob` resolves that directory at
+  transform time — which is also why each entry point needs its own hook rather
+  than relying on `pretest`.
 - `src/workers/runner.worker.js` is excluded from the main coverage report and
   measured by `npm run test:coverage:worker` instead (100% statements and
   branches). It is loaded twice — directly by its own suite and again through
