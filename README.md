@@ -78,11 +78,20 @@ of time by `npm run build:data`; progress, filters and language choice live in
 | Code execution | Web Worker raced against a 2 s timeout (`src/utils/runCode.js`) |
 | Syntax highlighting | Hand-rolled tokenizer (`src/utils/highlightCode.js`), no library |
 | Linting      | Oxlint (`react` + `oxc` plugins)                                |
+| Tests        | Vitest + Testing Library, jsdom (`vitest.config.js`)            |
 | Styling      | One hand-written global stylesheet (`src/index.css`), no CSS framework |
 
-No TypeScript, no test runner, and no state-management library — runtime state
-lives in three React contexts (`LanguageProvider`, `QuestionsProvider`,
-`TasksProvider`).
+No TypeScript and no state-management library — runtime state lives in three
+React contexts (`LanguageProvider`, `QuestionsProvider`, `TasksProvider`).
+
+Tests run on **Vitest** rather than Jest, because the suite reuses the real
+`vite.config.js`: `src/utils/questionBodies.js` and
+`src/context/QuestionsContext.jsx` load their data through `import.meta.glob`,
+and `src/utils/runCode.js` builds its worker with
+`new Worker(new URL(..., import.meta.url))`. Both are Vite constructs with no
+meaning outside it, so any other runner would need those three modules rewritten
+or mocked. The test API is Jest-compatible (`describe` / `it` / `expect` /
+`vi.fn`).
 
 ## Getting started
 
@@ -101,6 +110,9 @@ npm run dev        # start the dev server with HMR — http://localhost:5173
 | `npm run build`   | Production build to `dist/` (also the quickest compile check)   |
 | `npm run preview` | Serve the production build locally                              |
 | `npm run lint`    | Run Oxlint (config: `.oxlintrc.json`)                           |
+| `npm test`        | Run the test suite once (regenerates the split data first)      |
+| `npm run test:watch` | Re-run affected tests as files change                        |
+| `npm run test:coverage` | Run with coverage; fails below the configured thresholds  |
 | `npm run build:data` | Regenerate the split question data (runs automatically before dev/build) |
 | `npm run deploy`  | Build and publish `dist/` to the `gh-pages` branch              |
 
@@ -219,6 +231,53 @@ language simply writes fewer files.
 icons from `react-icons/si`, `lucide-react` fallbacks for CI/CD and Networks).
 Use `SKILL_META` / `<SkillIcon skill=… />` instead of importing icons elsewhere.
 
+## Tests
+
+```bash
+npm test                 # once
+npm run test:watch       # on change
+npm run test:coverage    # with coverage, enforcing thresholds
+```
+
+948 tests across 46 files, co-located as `src/**/*.test.{js,jsx}`; only shared
+setup, fixtures and helpers live under `test/`. Coverage sits at ~99% of
+statements and ~98% of branches, and `test:coverage` fails below the thresholds
+in `vitest.config.js` so new untested code can't quietly lower the bar.
+
+What the suite is actually guarding, beyond the obvious:
+
+- **The tokenizer's escaping**, which is a security property rather than a
+  cosmetic one — its output goes through `dangerouslySetInnerHTML` and one
+  caller's input is user-typed code. `highlightCode.corpus.test.js` re-runs the
+  round-trip check over **every** `codeExample` in all four languages (~13,000
+  blocks) and asserts each one survives byte-for-byte, which is the only way to
+  catch a regex that silently eats characters.
+- **`status` is derived, never trusted from storage**, for both questions and
+  tasks, so a "Learned" badge can't drift from its count.
+- **Ids are array positions** and are the join key for saved progress: the
+  generated index, every body chunk and `meta.json` are all checked against the
+  source bank.
+- **The translation rules**: `validate()` is exercised against synthetic
+  translation maps for all four of its failure paths (source drift, a partially
+  translated claimed skill, an unknown skill, empty coverage).
+- **Storage never throws** — every loader is tested against a throwing
+  `localStorage`, malformed JSON and a quota error.
+- **Run vs Submit**: only a Submit that passes the hidden tests too can mark a
+  task solved.
+- **The 2 s worker timeout** terminates the worker rather than just resolving,
+  and `runCode` never rejects or settles twice.
+
+Two notes for whoever runs this next:
+
+- `npm test` regenerates `src/data/generated/` first (`pretest`, ~0.4 s). Without
+  it the config fails fast with a message saying what to run, because
+  `import.meta.glob` resolves that directory at transform time.
+- `src/workers/runner.worker.js` is excluded from the main coverage report and
+  measured by `npm run test:coverage:worker` instead (100% statements and
+  branches). It is loaded twice — directly by its own suite and again through
+  `@vitest/web-worker` — and the second, barely-exercised copy is what the
+  merged report keeps.
+
 ## Project structure
 
 ```
@@ -286,6 +345,11 @@ src/
     ├── CodeEditor.jsx       # textarea over a highlighted <pre> + gutter
     ├── FormattedText.jsx    # renders `backtick` spans as inline <code>
     └── CodeBlock.jsx        # <pre> block with copy-to-clipboard
+test/                        # test support only — the tests live beside their source
+├── setup.js                 # matchers, per-test cleanup, the jsdom gaps the app hits
+├── fixtures/                # hand-written questions / tasks / resources
+├── helpers/                 # renderWithProviders, the context doubles
+└── scripts/                 # tests for the two Node scripts (run them as subprocesses)
 ```
 
 ### Routes

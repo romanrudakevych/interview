@@ -58,7 +58,7 @@ function pad(n) {
  * adding a 41st React Router question should fail the build rather than let it
  * quietly vanish from every non-Russian locale.
  */
-function validate(lang, map, coverage, byId) {
+export function validate(lang, map, coverage, byId) {
   const ids = Object.keys(map).map(Number).sort((a, b) => a - b);
   if (ids.length === 0) throw new Error(`${lang}: translation file is empty`);
   if (coverage.length === 0) throw new Error(`${lang}: coverage is empty — nothing would ship`);
@@ -100,7 +100,7 @@ function validate(lang, map, coverage, byId) {
 }
 
 /** The questions available in `lang`, with translated prose merged in. */
-function questionsFor(lang) {
+export function questionsFor(lang) {
   if (lang === SOURCE_LANG) return questions;
   const { default: map, coverage } = TRANSLATIONS[lang];
   const claimed = new Set(coverage);
@@ -184,7 +184,12 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// Only generate when run as a script. The two functions above are exported so
+// test/scripts/ can exercise the drift and coverage rules directly; importing
+// this module must not start writing files.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

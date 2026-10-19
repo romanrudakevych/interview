@@ -25,3 +25,6 @@ dist-ssr
 
 # Generated from src/data/questions.js by scripts/build-questions-data.mjs
 src/data/generated/
+
+# Coverage reports from `npm run test:coverage`
+coverage/
