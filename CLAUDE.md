@@ -10,10 +10,62 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   automatically via `predev`/`prebuild`, so you rarely invoke it directly.
 - `npm run preview` — serve the production build locally
 - `npm run lint` — run Oxlint (config: `.oxlintrc.json`, plugins `react` + `oxc`)
+- `npm test` — run the whole suite once (`pretest` regenerates the split data first)
+- `npm run test:watch` — re-run affected tests on change
+- `npm run test:coverage` — coverage report; **fails below the thresholds** in
+  `vitest.config.js`
+- `npm run test:coverage:worker` — coverage for `src/workers/` alone (see below)
 
 Requires Node 20.19+ / 22.12+ (Vite 8) — there is no `engines` field to enforce it.
 
-There is no test suite configured in this project.
+## Tests
+
+**Vitest, not Jest** — 948 tests in 46 files, co-located as `src/**/*.test.{js,jsx}`
+plus `test/scripts/` for the two Node scripts. The runner choice is forced:
+`questionBodies.js` and `QuestionsContext.jsx` read their data through
+`import.meta.glob`, and `runCode.js` builds its worker with
+`new Worker(new URL(..., import.meta.url))`. Those are Vite constructs with no
+runtime meaning elsewhere, so `vitest.config.js` merges the real `vite.config.js`
+and all three modules are tested as written rather than mocked away. The API is
+Jest-compatible (`describe`/`it`/`expect`/`vi.fn`), so don't let the filenames
+mislead you into reaching for Jest.
+
+Things to know before adding a test:
+
+- **Never import `src/data/questions.js` from a test** — it is 11 MB and Node-only.
+  Use `test/fixtures/questions.js`, whose eight entries span every filter axis
+  (two skills plus a multi-skill entry, all four difficulty buckets, ratings 1–5,
+  one favourite, one learned). `test/fixtures/tasks.js` and `resources.js` do the
+  same for the other two banks. The exception is `test/scripts/`, which tests the
+  generator and therefore must load the real bank — that import alone costs ~6 s,
+  which is why it happens once in a `beforeAll`.
+- **Contexts are tested for real, everything above them is not.**
+  `QuestionsContext.jsx` and `TasksContext.jsx` have their own suites running the
+  real providers against the real generated data — that is where the
+  `import.meta.glob` load, the progress merge and the status derivation are
+  exercised. Components and pages instead mock `useQuestions`/`useTasks`/
+  `useQuestionBody` through `test/helpers/mockContexts.js`, so a page test fails
+  for a reason in the page. The `vi.mock` block has to be written out in each
+  file (Vitest hoists it), and that helper **must not import the context modules
+  it stands in for** — that cycle deadlocks the loader, which is why it keeps its
+  own copy of the filter defaults, guarded by a parity test in each context's suite.
+- **The corpus round-trip check is now automated.** `highlightCode.corpus.test.js`
+  unescapes the output of every `codeExample` in all four languages (~13,000
+  blocks) and asserts it equals the input byte-for-byte. Run it after any edit to
+  `highlightCode.js`: unit tests on hostile inputs can't catch a regex that eats
+  characters, and a corpus can.
+- **`src/workers/runner.worker.js` is excluded from the main coverage report.** It
+  is loaded twice — directly by its own suite (which covers it 100%) and again
+  through `@vitest/web-worker` in `runCode.test.js`, whose barely-exercised copy
+  is what the merged report keeps. Measure it with `npm run test:coverage:worker`.
+  For the same reason `runCode`'s timeout and transport-failure paths live in
+  `runCode.timeout.test.js`: `@vitest/web-worker` installs a non-configurable
+  global `Worker` that `vi.stubGlobal` cannot displace, and it runs the worker on
+  the same thread, so an infinite loop would hang the run instead of tripping the
+  2 s timeout.
+- `test/setup.js` raises testing-library's `asyncUtilTimeout` to 10 s. The real
+  provider imports a ~650 KB language index, which under coverage instrumentation
+  and 46 parallel files intermittently outran the 1 s default.
 
 `npm run lint` currently emits pre-existing `react/only-export-components` warnings in
 `src/context/QuestionsContext.jsx`, `src/context/TasksContext.jsx`, `src/utils/skillIcons.jsx`
@@ -62,6 +114,12 @@ as the Web Worker URL.
 
 Ids are the join key for saved localStorage progress, so the generator asserts its ids
 match `questions[].id` position-for-position and fails the build otherwise.
+
+The generator runs `main()` only when invoked as a script
+(`process.argv[1] === fileURLToPath(import.meta.url)`) and exports `validate` and
+`questionsFor`, so `test/scripts/build-questions-data.test.mjs` can drive the drift
+and coverage rules against synthetic translation maps. Importing the module must stay
+side-effect-free — don't move that guard.
 
 ### Editing the question bank
 
