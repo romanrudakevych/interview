@@ -1,5 +1,7 @@
 # Interview Prep
 
+[![CI](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml/badge.svg)](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml)
+
 A client-only React single-page app for studying technical-interview questions.
 Browse a bank of 3,367 questions in any of four languages (Russian, English,
 Czech, Ukrainian), filter by skill / difficulty / rating, expand short and long
@@ -289,6 +291,7 @@ Two notes for whoever runs this next:
 ## Project structure
 
 ```
+.github/workflows/ci.yml     # lint + tests + coverage + build, on push and PR
 screenshots/                 # images used by this README
 public/                      # favicon + 404.html (SPA redirect for GitHub Pages)
 scripts/
