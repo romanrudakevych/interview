@@ -34,7 +34,7 @@ Requires Node 20.19+ / 22.12+ to build and run the app (Vite 8), declared in
 
 ## Tests
 
-**Vitest, not Jest** — 948 tests in 46 files, co-located as `src/**/*.test.{js,jsx}`
+**Vitest, not Jest** — 949 tests in 46 files, co-located as `src/**/*.test.{js,jsx}`
 plus `test/scripts/` for the two Node scripts. The runner choice is forced:
 `questionBodies.js` and `QuestionsContext.jsx` read their data through
 `import.meta.glob`, and `runCode.js` builds its worker with
@@ -94,7 +94,7 @@ This is a client-only React 19 + Vite SPA (no backend) for interview-prep Q&A st
 
 The core design constraint: **question content and user progress are stored separately** so that editing the question bank never wipes a user's learning progress, and vice versa.
 
-- `src/data/questions.js` — the static question bank. Exports `SKILLS` (the fixed list of 14 skill tags) and `questions` (an array built from an internal `rawQuestions` array via `createQuestion()`). **IDs are assigned by array position (`index + 1`), not randomly** — this is intentional: a random ID generated at module-load time would change on every page refresh and orphan all saved localStorage progress. This means reordering or deleting entries in `rawQuestions` shifts IDs and can disconnect existing progress; appending new entries at the end is always safe. `rawQuestions.map()` also re-forces the progress fields (`status`/`favorite`/`learnedCount`/`learnedGoal`) to defaults, so any progress-like values in the data file are ignored.
+- `src/data/questions.js` — the static question bank. Exports `SKILLS` (the fixed list of 15 skill tags) and `questions` (an array built from an internal `rawQuestions` array via `createQuestion()`). **IDs are assigned by array position (`index + 1`), not randomly** — this is intentional: a random ID generated at module-load time would change on every page refresh and orphan all saved localStorage progress. This means reordering or deleting entries in `rawQuestions` shifts IDs and can disconnect existing progress; appending new entries at the end is always safe. `rawQuestions.map()` also re-forces the progress fields (`status`/`favorite`/`learnedCount`/`learnedGoal`) to defaults, so any progress-like values in the data file are ignored.
 - `src/utils/storage.js` — thin localStorage read/write wrappers for two independent keys (`interview-prep:progress`, `interview-prep:filters`). Every read/write is wrapped in try/catch and degrades silently (private mode, quota) — these functions never throw. `loadFilters` spreads saved state over the passed defaults, so adding a new filter key is backward-compatible.
 - `src/context/QuestionsContext.jsx` (`QuestionsProvider` / `useQuestions()`) — the single source of truth at runtime. On render it merges the static `questions` array with saved progress from localStorage, and **derives `status` from `learnedCount >= learnedGoal`** rather than trusting a stored status field, so the "Learned" badge can never drift out of sync with the count. Also owns filter state: `DEFAULT_FILTERS` is `{ query, skills[], difficultyRanges[] (values `"1-3"|"4-6"|"7-8"|"9-10"`), ratings[] (1–5), status (`"all"|"learned"|"not_learned"`), favoriteOnly }`, persisted the same way.
 
@@ -106,10 +106,10 @@ would otherwise ship 2.7 MB gzipped to every visitor, so
 into gitignored `src/data/generated/`:
 
 - `index.<lang>.json` — `id`, `question`, `skills`, `keywords`, `difficulty`, `rating`
-  for all 3,367 questions (~100 KB gz per language). Imported eagerly by
+  for all 3,524 questions (~100 KB gz per language). Imported eagerly by
   `QuestionsContext`; this is all that filtering, search, Analytics, Home totals and
   Collections ever need.
-- `bodies/<lang>/000.json`…`033.json` — `shortAnswer`/`longAnswer`/`codeExample` as
+- `bodies/<lang>/000.json`…`035.json` — `shortAnswer`/`longAnswer`/`codeExample` as
   tuples, 100 questions per chunk (~78 KB gz each), loaded on demand.
 - `meta.json` — `{ chunkSize, languages: { <lang>: { total, chunks } } }`, where `chunks`
   lists the chunk indices that language actually wrote. `questionBodies.js` reads
@@ -267,9 +267,9 @@ native `<select>`, for free keyboard/screen-reader behavior.
 ### Translated question content
 
 The same selector also switches **question content**. `ru` is the source bank
-(`src/data/questions.js`, all 3,367 questions); `cs`, `en` and `uk` each carry translations
-in `src/data/translations/<lang>.js`. **All three claim all 14 skills and cover the whole
-bank — 3,367 of 3,367 questions each**, so every locale now shows every question.
+(`src/data/questions.js`, all 3,524 questions); `cs`, `en` and `uk` each carry translations
+in `src/data/translations/<lang>.js`. **All three claim all 15 skills and cover the whole
+bank — 3,524 of 3,524 questions each**, so every locale now shows every question.
 
 **A question with no translation is hidden, not fallen back** — the mechanism still
 matters even though nothing is currently hidden, because it is what a partially translated
@@ -308,6 +308,16 @@ skill it is tagged with.
   nothing never renders.
 - Translating `question` text is also what keeps **search** working: `useFilteredQuestions`
   substring-matches `question.question`, so a Czech user typing Czech finds Czech questions.
+
+**Node.js** (ids 3368–3524) is the newest block and the only one written by hand rather
+than scraped. It deliberately holds adjacent back-end topics too — Express.js middleware
+(3384–3387), databases/SQL (3392–3397) and web basics — CORS, REST methods, DNS
+(3398–3401) —, NestJS (3433–3434), core JavaScript and Web Workers (3435–3448),
+microservices architecture (3449–3452), CI, Docker and deployment strategies
+(3453–3455) and web security (3456–3460) under the Node.js tag rather than skills of their own. The block is appended after id 3367, so it sits last in `rawQuestions` and
+last in `SKILLS`. Ids 3383 (`string` vs
+`String`) and 3444 (abstract class vs interface) are really TypeScript questions and are
+tagged with both skills, so they also list under TypeScript.
 
 Some scraped entries are imperfect. React Router ids 2783–2786 are actually about **Vue
 Router** despite their tag, and Redux ids 2887–2888 are about **Vuex** (they name it, and

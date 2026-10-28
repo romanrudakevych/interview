@@ -11,6 +11,7 @@ import {
   SiDocker,
   SiKubernetes,
   SiWebpack,
+  SiNodedotjs,
 } from "react-icons/si";
 import { GitBranch, Network, Workflow } from "lucide-react";
 
@@ -31,6 +32,7 @@ export const SKILL_META = {
   "CI/CD": { icon: Workflow, color: "#7C3AED" },
   Webpack: { icon: SiWebpack, color: "#8DD6F9" },
   Networks: { icon: Network, color: "#0EA5E9" },
+  "Node.js": { icon: SiNodedotjs, color: "#5FA04E" },
 };
 
 export function SkillIcon({ skill, size = 16, ...props }) {

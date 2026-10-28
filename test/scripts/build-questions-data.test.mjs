@@ -293,7 +293,7 @@ describe("the real translation files", () => {
     expect(() => validate(lang, mod.default, mod.coverage, byId)).not.toThrow();
   });
 
-  it.each(["cs", "en", "uk"])("%s claims all 14 skills", async (lang) => {
+  it.each(["cs", "en", "uk"])("%s claims every skill", async (lang) => {
     const { SKILLS } = await import("../../src/data/skills.js");
     const { coverage } = await import(`../../src/data/translations/${lang}.js`);
     expect([...coverage].sort()).toEqual([...SKILLS].sort());

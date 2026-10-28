@@ -16,4 +16,5 @@ export const SKILLS = [
   "CI/CD",
   "Webpack",
   "Networks",
+  "Node.js",
 ];

@@ -3,7 +3,7 @@
 [![CI](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml/badge.svg)](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml)
 
 A client-only React single-page app for studying technical-interview questions.
-Browse a bank of 3,367 questions in any of four languages (Russian, English,
+Browse a bank of 3,524 questions in any of four languages (Russian, English,
 Czech, Ukrainian), filter by skill / difficulty / rating, expand short and long
 answers with runnable code samples, track how well you know each question, star
 favorites, solve coding exercises against real tests, and run a quick flash-card
@@ -17,7 +17,7 @@ of time by `npm run build:data`; progress, filters and language choice live in
 
 ## Features
 
-- **Question bank** (`/knowledge-base/questions`) — 3,367 questions across 14
+- **Question bank** (`/knowledge-base/questions`) — 3,524 questions across 15
   skills as collapsible cards showing a learned/not-learned badge, and, when
   expanded, rating, complexity, the short answer, and an optional
   copy-to-clipboard code block. Answers are fetched on demand, so a collapsed
@@ -26,7 +26,7 @@ of time by `npm run build:data`; progress, filters and language choice live in
   the question content between Russian, English, Czech and Ukrainian. A question
   with **no translation is hidden rather than falling back** to another language,
   so a partially translated locale would show a smaller bank; all three translated
-  locales are currently complete, so every language shows all 3,367.
+  locales are currently complete, so every language shows all 3,524.
 - **Filtering** — full-text query over question text and keywords, multi-select
   skill tags, difficulty buckets (`1-3`, `4-6`, `7-8`, `9-10`), rating chips,
   learned / not-learned status, and a "favorites only" toggle. The filter state
@@ -171,7 +171,7 @@ vice-versa.
 - **`src/data/questions.js`** — the static bank and source of truth, built from an
   internal `rawQuestions` list via `createQuestion()`. At ~11 MB it is **never
   bundled**: `scripts/build-questions-data.mjs` splits it into a small eagerly-loaded
-  index per language (~100 KB gzipped) plus 34 lazy answer chunks of 100 questions
+  index per language (~100 KB gzipped) plus 36 lazy answer chunks of 100 questions
   each (~78 KB gzipped apiece), so a visitor downloads ~225 KB of app plus one
   index instead of 2.7 MB of question bank. Answers are fetched on demand by
   `useQuestionBody()` — pass `null` to skip the fetch, which is how collapsed
@@ -201,8 +201,8 @@ vice-versa.
 ### Translated question content
 
 `ru` is the source bank (`src/data/questions.js`); `cs`, `en` and `uk` each carry
-a translation file in `src/data/translations/`. All three claim all 14 skills and
-cover the whole bank — 3,367 of 3,367 questions each. Three rules are
+a translation file in `src/data/translations/`. All three claim all 15 skills and
+cover the whole bank — 3,524 of 3,524 questions each. Three rules are
 load-bearing here, and each one will stop a build rather than ship something
 wrong:
 
@@ -392,7 +392,7 @@ test/                        # test support only — the tests live beside their
 
 ```
 HTML · CSS · JavaScript · TypeScript · React · React Router · Next.js ·
-Redux · Git · Docker · Kubernetes · CI/CD · Webpack · Networks
+Redux · Git · Docker · Kubernetes · CI/CD · Webpack · Networks · Node.js
 ```
 
 ### Adding a question
