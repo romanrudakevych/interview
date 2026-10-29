@@ -106,7 +106,7 @@ would otherwise ship 2.7 MB gzipped to every visitor, so
 into gitignored `src/data/generated/`:
 
 - `index.<lang>.json` — `id`, `question`, `skills`, `keywords`, `difficulty`, `rating`
-  for all 3,524 questions (~100 KB gz per language). Imported eagerly by
+  for all 3,556 questions (~100 KB gz per language). Imported eagerly by
   `QuestionsContext`; this is all that filtering, search, Analytics, Home totals and
   Collections ever need.
 - `bodies/<lang>/000.json`…`035.json` — `shortAnswer`/`longAnswer`/`codeExample` as
@@ -137,7 +137,7 @@ side-effect-free — don't move that guard.
 
 ### Editing the question bank
 
-`src/data/questions.js` is ~13k lines. `rawQuestions` is split into per-skill blocks with banner comments (`// ---- <Skill> ----`) in `SKILLS` order; the large blocks under `// ---- Импортировано из внешнего скрейпа ... ----` markers (React, TypeScript, Git) are bulk-imported and dominate the file. When adding a question for a skill, append it at the **end of that skill's block**; appending at the very end of `rawQuestions` is safest for ID stability. The Russian comment block at the top of the file is the canonical "shape of one question" reference — copy it from there.
+`src/data/questions.js` is ~13k lines. `rawQuestions` is split into per-skill blocks with banner comments (`// ---- <Skill> ----`) in `SKILLS` order; the large blocks under `// ---- Импортировано из внешнего скрейпа ... ----` markers (React, TypeScript, Git) are bulk-imported and dominate the file. When adding a question, append it at the **very end of `rawQuestions`**, whatever its skill: inserting it at the end of its skill's block shifts the id of every question after it (see the JavaScript note under "Translated question content"). The Russian comment block at the top of the file is the canonical "shape of one question" reference — copy it from there.
 
 Question text conventions: inline code in `shortAnswer` / `longAnswer` is written with `` `backticks` `` and rendered as `<code>` by `src/components/FormattedText.jsx`; `codeExample` (optional) renders through `src/components/CodeBlock.jsx` with a copy button. `\n` in answer strings survives as a line break because `.answer-section__text` in `index.css` sets `white-space: pre-line` — keep that rule if you touch answer styling.
 
@@ -267,9 +267,9 @@ native `<select>`, for free keyboard/screen-reader behavior.
 ### Translated question content
 
 The same selector also switches **question content**. `ru` is the source bank
-(`src/data/questions.js`, all 3,524 questions); `cs`, `en` and `uk` each carry translations
+(`src/data/questions.js`, all 3,556 questions); `cs`, `en` and `uk` each carry translations
 in `src/data/translations/<lang>.js`. **All three claim all 15 skills and cover the whole
-bank — 3,524 of 3,524 questions each**, so every locale now shows every question.
+bank — 3,556 of 3,556 questions each**, so every locale now shows every question.
 
 **A question with no translation is hidden, not fallen back** — the mechanism still
 matters even though nothing is currently hidden, because it is what a partially translated
@@ -309,13 +309,15 @@ skill it is tagged with.
 - Translating `question` text is also what keeps **search** working: `useFilteredQuestions`
   substring-matches `question.question`, so a Czech user typing Czech finds Czech questions.
 
-**Node.js** (ids 3368–3524) is the newest block and the only one written by hand rather
+**Node.js** (ids 3368–3532, 3540–3556) is the newest block and the only one written by hand rather
 than scraped. It deliberately holds adjacent back-end topics too — Express.js middleware
-(3384–3387), databases/SQL (3392–3397) and web basics — CORS, REST methods, DNS
+(3384–3387), databases/SQL (3392–3397, 3540–3556) and web basics — CORS, REST methods, DNS
 (3398–3401) —, NestJS (3433–3434), core JavaScript and Web Workers (3435–3448),
-microservices architecture (3449–3452), CI, Docker and deployment strategies
-(3453–3455) and web security (3456–3460) under the Node.js tag rather than skills of their own. The block is appended after id 3367, so it sits last in `rawQuestions` and
-last in `SKILLS`. Ids 3383 (`string` vs
+microservices architecture (3449–3452, 3525–3532), CI, Docker and deployment strategies
+(3453–3455) and web security (3456–3460) under the Node.js tag rather than skills of their own. The block is appended after id 3367 and Node.js is last in `SKILLS`; the appended
+JavaScript questions (3533–3539) follow it in `rawQuestions`, and after them a second
+Node.js run (3540–3556, transactions, isolation, indexes, replication, sharding) under a
+`Node.js (continued)` banner. Ids 3383 (`string` vs
 `String`) and 3444 (abstract class vs interface) are really TypeScript questions and are
 tagged with both skills, so they also list under TypeScript.
 
@@ -326,6 +328,12 @@ an **Apache Airflow** primer and 3071–3072 are about **Agile process**. Severa
 examples lost characters to the scraper — JSX in 2790, 2810, 2895 and 2811, string
 literals in 3050, 3056, 3066 and 3087 — and the translations carry reconstructed ones.
 Translate faithfully; don't silently rewrite the subject matter.
+
+**JavaScript also owns ids 3533–3539**, hand-written questions appended after the Node.js
+block rather than inserted at the end of 593–1851: inserting there would shift every later
+id and orphan saved progress. They sit under their own `JavaScript (appended)` banner in
+`questions.js` and in each translation file, and list under the JavaScript skill like the
+rest. Add further hand-written JavaScript questions there, not in the scraped block.
 
 The **JavaScript** block (ids 593–1851, 1,259 questions — a third of the bank) is the worst
 of the scraped lot and worth knowing before you touch it:

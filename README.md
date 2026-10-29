@@ -3,7 +3,7 @@
 [![CI](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml/badge.svg)](https://github.com/romanrudakevych/interview/actions/workflows/ci.yml)
 
 A client-only React single-page app for studying technical-interview questions.
-Browse a bank of 3,524 questions in any of four languages (Russian, English,
+Browse a bank of 3,556 questions in any of four languages (Russian, English,
 Czech, Ukrainian), filter by skill / difficulty / rating, expand short and long
 answers with runnable code samples, track how well you know each question, star
 favorites, solve coding exercises against real tests, and run a quick flash-card
@@ -17,7 +17,7 @@ of time by `npm run build:data`; progress, filters and language choice live in
 
 ## Features
 
-- **Question bank** (`/knowledge-base/questions`) — 3,524 questions across 15
+- **Question bank** (`/knowledge-base/questions`) — 3,556 questions across 15
   skills as collapsible cards showing a learned/not-learned badge, and, when
   expanded, rating, complexity, the short answer, and an optional
   copy-to-clipboard code block. Answers are fetched on demand, so a collapsed
@@ -26,7 +26,7 @@ of time by `npm run build:data`; progress, filters and language choice live in
   the question content between Russian, English, Czech and Ukrainian. A question
   with **no translation is hidden rather than falling back** to another language,
   so a partially translated locale would show a smaller bank; all three translated
-  locales are currently complete, so every language shows all 3,524.
+  locales are currently complete, so every language shows all 3,556.
 - **Filtering** — full-text query over question text and keywords, multi-select
   skill tags, difficulty buckets (`1-3`, `4-6`, `7-8`, `9-10`), rating chips,
   learned / not-learned status, and a "favorites only" toggle. The filter state
@@ -169,11 +169,11 @@ separately**, so editing the question bank never wipes learning progress and
 vice-versa.
 
 - **`src/data/questions.js`** — the static bank and source of truth, built from an
-  internal `rawQuestions` list via `createQuestion()`. At ~11 MB it is **never
+  internal `rawQuestions` list via `createQuestion()`. At ~12 MB it is **never
   bundled**: `scripts/build-questions-data.mjs` splits it into a small eagerly-loaded
-  index per language (~100 KB gzipped) plus 36 lazy answer chunks of 100 questions
-  each (~78 KB gzipped apiece), so a visitor downloads ~225 KB of app plus one
-  index instead of 2.7 MB of question bank. Answers are fetched on demand by
+  index per language (~110 KB gzipped) plus 36 lazy answer chunks of 100 questions
+  each (~80 KB gzipped apiece), so a visitor downloads ~225 KB of app plus one
+  index instead of 3 MB of question bank. Answers are fetched on demand by
   `useQuestionBody()` — pass `null` to skip the fetch, which is how collapsed
   cards stay inert. The generated `src/data/generated/` directory is gitignored
   and rebuilt by `predev` / `prebuild`.
@@ -202,7 +202,7 @@ vice-versa.
 
 `ru` is the source bank (`src/data/questions.js`); `cs`, `en` and `uk` each carry
 a translation file in `src/data/translations/`. All three claim all 15 skills and
-cover the whole bank — 3,524 of 3,524 questions each. Three rules are
+cover the whole bank — 3,556 of 3,556 questions each. Three rules are
 load-bearing here, and each one will stop a build rather than ship something
 wrong:
 
@@ -248,7 +248,7 @@ npm run test:watch       # on change
 npm run test:coverage    # with coverage, enforcing thresholds
 ```
 
-948 tests across 46 files, co-located as `src/**/*.test.{js,jsx}`; only shared
+949 tests across 46 files, co-located as `src/**/*.test.{js,jsx}`; only shared
 setup, fixtures and helpers live under `test/`. Coverage sits at ~99% of
 statements and ~98% of branches, and `test:coverage` fails below the thresholds
 in `vitest.config.js` so new untested code can't quietly lower the bar.
@@ -394,6 +394,16 @@ test/                        # test support only — the tests live beside their
 HTML · CSS · JavaScript · TypeScript · React · React Router · Next.js ·
 Redux · Git · Docker · Kubernetes · CI/CD · Webpack · Networks · Node.js
 ```
+
+Most skill blocks were bulk-imported from a scrape. **Node.js** (ids 3368–3532 and 3540–3556,
+182 questions) is the exception: written by hand in Russian and translated into
+the other three languages, from Junior basics through Senior-level runtime and
+architecture questions (libuv, the event loop, streams, clustering, graceful
+shutdown, Saga, message brokers, serverless, CAP, transaction isolation, sharding). It deliberately also holds
+adjacent back-end topics — Express middleware, SQL, CORS / REST / DNS, NestJS,
+core JavaScript, microservices, deployment and web security — under the Node.js
+tag rather than as skills of their own. Ids 3383 and 3444 are TypeScript
+questions and carry both tags.
 
 ### Adding a question
 
